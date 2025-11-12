@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blueprint GTM Playbook for Owner.com</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+        :root {
+            --print-blue: #5611A6;
+            --dark-print: #280A4A;
+            --light-print: #D6B2FF;
+            --corn: #FFF277;
+            --ice: #F5F8FF;
+            --white: #FFFFFF;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.7;
+            color: var(--dark-print);
+            background: var(--ice);
+            font-size: 16px;
+        }
+
+        .container {
+            max-width: 100%;
+            margin: 0 auto;
+            padding: 1rem;
+        }
+
+        h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--dark-print);
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 3px solid var(--light-print);
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--dark-print);
+            margin: 2.5rem 0 1rem;
+            padding-left: 1rem;
+            position: relative;
+        }
+
+        h2::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: var(--print-blue);
+        }
+
+        h3 {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: var(--dark-print);
+            margin-bottom: 0.5rem;
+        }
+
+        p {
+            font-size: 1rem;
+            color: rgba(40, 10, 74, 0.9);
+            margin-bottom: 1rem;
+            line-height: 1.7;
+        }
+
+        .section {
+            background: var(--white);
+            padding: 1.5rem;
+            border-radius: 0.75rem;
+            box-shadow: 0 2px 8px rgba(86, 17, 166, 0.08);
+            margin-bottom: 2rem;
+        }
+
+        .highlight-box {
+            background: var(--corn);
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 0.5rem;
+        }
+
+        .old-way-example {
+            background: #FFF8DC;
+            border: 2px solid #F0E68C;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            margin: 1rem 0;
+        }
+
+        .message-example {
+            background: var(--ice);
+            padding: 1rem;
+            border-radius: 0.5rem;
+            font-family: 'Courier New', monospace;
+            font-size: 0.875rem;
+            line-height: 1.6;
+            white-space: pre-wrap;
+            overflow-x: auto;
+            margin: 0.5rem 0;
+        }
+
+        .play-card {
+            background: var(--white);
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 2px 8px rgba(86, 17, 166, 0.08);
+            border: 1px solid var(--light-print);
+        }
+
+        .play-type {
+            display: inline-block;
+            background: var(--print-blue);
+            color: var(--white);
+            padding: 0.25rem 0.75rem;
+            border-radius: 2rem;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+        }
+
+        .play-type.pvp {
+            background: var(--dark-print);
+        }
+
+        .play-explanation {
+            background: var(--ice);
+            padding: 1rem;
+            border-radius: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .data-sources {
+            background: var(--corn);
+            padding: 0.75rem;
+            border-radius: 0.5rem;
+            margin-bottom: 1rem;
+            font-size: 0.875rem;
+        }
+
+        .why-section {
+            font-size: 0.875rem;
+            color: rgba(40, 10, 74, 0.8);
+            margin-bottom: 1rem;
+        }
+
+        .score-badge {
+            display: inline-block;
+            background: #10B981;
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 1rem;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-left: 0.5rem;
+        }
+
+        @media (min-width: 768px) {
+            .container {
+                max-width: 900px;
+                padding: 2rem;
+            }
+
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            h2 {
+                font-size: 1.75rem;
+            }
+
+            .section, .play-card {
+                padding: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+
+        <!-- SECTION 1: Title & Jordan's Bio -->
+        <div class="section">
+            <h1>Blueprint GTM Playbook for Owner.com</h1>
+
+            <h2>Who the Hell is Jordan Crawford?</h2>
+
+            <p>Founder of Blueprint GTM. Built a business by scraping 25M+ job posts to find company pain points. Believes the Predictable Revenue model is dead. Thinks mounting an AI SDR on outdated methodology is like putting a legless robot on a horse—no one gets anywhere, and it still shits along the way.</p>
+
+            <p>The core philosophy is simple: The message isn't the problem. The LIST is the message. When you know exactly who to target and why they need you right now, the message writes itself.</p>
+        </div>
+
+        <!-- SECTION 2: The Old Way -->
+        <div class="section">
+            <h2>The Old Way (What Everyone Does)</h2>
+
+            <p>Let's be brutally honest about what your GTM team is doing right now. They're buying lists from ZoomInfo, adding some "personalization" like mentioning a LinkedIn post, then blasting generic messages about features. Here's what it actually looks like:</p>
+
+            <div class="old-way-example">
+                <p><strong>The Typical Owner.com SDR Email:</strong></p>
+                <div class="message-example">Subject: Quick Question about [Restaurant Name]
+
+Hi [Owner First Name],
+
+I noticed on LinkedIn that your restaurant recently expanded your menu. Congrats on the growth!
+
+I wanted to reach out because we work with restaurants like Talkin Tacos and Metro Pizza to help with online ordering and direct sales.
+
+Our platform helps you own your customer relationships, reduce third-party commissions, and grow your direct online orders. We've helped restaurants increase their direct sales by up to 970%.
+
+Would you have 15 minutes next week to explore how Owner.com might be able to help [Restaurant Name]?
+
+Best,
+Generic SDR
+Owner.com</div>
+            </div>
+
+            <p><strong>Why this fails:</strong> The prospect is an expert. They've seen this template 1,000 times. There's zero indication you actually understand their specific situation. It's interruption disguised as personalization. Delete.</p>
+        </div>
+
+        <!-- SECTION 3: The New Way -->
+        <div class="section">
+            <h2>The New Way: Intelligence-Driven GTM</h2>
+
+            <p>Blueprint GTM flips the entire approach. Instead of interrupting prospects with pitches, you deliver insights so valuable they'd pay consulting fees to receive them. You become the person who helps them see around corners, not another vendor in their inbox.</p>
+
+            <p>This requires two fundamental shifts:</p>
+
+            <div class="highlight-box">
+                <h3>1. Hard Data Over Soft Signals</h3>
+                <p><strong>Stop:</strong> "I see you recently expanded your menu" (LinkedIn activity - generic observation)</p>
+                <p><strong>Start:</strong> "Your Google Business shows 127 reviews in the past 30 days—top 12% activity in your metro—but your site has no native online ordering system" (verifiable review velocity + tech stack audit)</p>
+            </div>
+
+            <div class="highlight-box">
+                <h3>2. Mirror Situations, Don't Pitch Solutions</h3>
+                <p><strong>PQS (Pain-Qualified Segment):</strong> Reflect their exact situation with such specificity they think "how did you know?" Use verifiable data with exact numbers, growth rates, and infrastructure gaps.</p>
+                <p><strong>PVP (Permissionless Value Proposition):</strong> Deliver immediate value they can use today - analysis already done, growth trends already calculated, commission costs already estimated - whether they buy or not.</p>
+            </div>
+        </div>
+
+        <!-- SECTION 4: PQS Examples -->
+        <div class="section">
+            <h2>Owner.com PQS Plays: Mirroring Exact Situations</h2>
+
+            <p>These messages demonstrate such precise understanding of the prospect's current situation that they feel genuinely seen. Every claim traces to verifiable data sources: Google Maps review velocity, tech stack detection, and platform pricing analysis.</p>
+
+            <!-- PQS Play Card 1 -->
+            <div class="play-card">
+                <span class="play-type">STRONG PQS</span>
+                <span class="score-badge">7.6/10</span>
+                <h3>Play 1: High-Activity Infrastructure Gap</h3>
+
+                <div class="play-explanation">
+                    <p><strong>What's the play?</strong> Target high-activity restaurants (proven by Google review velocity in top percentiles) that lack native online ordering systems. These restaurants are 100% dependent on third-party platforms, meaning every order incurs 25-30% commission fees. They're bleeding margin on high volume.</p>
+                </div>
+
+                <div class="why-section">
+                    <p><strong>Why this works (Buyer Critique Score: 7.6/10):</strong> Restaurant owners know they're busy and know they use DoorDash, but they've never quantified their review velocity as a percentile rank or calculated exact monthly commission bleed. The specific numbers (127 reviews, 28.3% markup, $4,200/month) create credibility. The insight that high activity + zero direct ordering = maximum margin loss is a revelation. Easy one-word reply: "Yes" to "Worth exploring?"</p>
+                </div>
+
+                <div class="data-sources">
+                    <strong>Data source:</strong> Google Maps Places API (reviews[].time field for velocity), BuiltWith API (tech stack detection), DoorDash/Uber Eats menu scraping (pricing arbitrage). Confidence: 70% (hybrid approach with disclosed estimates).
+                </div>
+
+                <p><strong>The message:</strong></p>
+                <div class="message-example">Subject: Your ordering infrastructure
+
+I pulled your Google Business data—127 reviews in the past 30 days puts you in the top 12% of restaurants in your metro for customer activity. But your website has no native online ordering system (ran a BuiltWith scan). Your DoorDash menu shows a 28.3% average markup across 47 items, which at your review velocity likely means ~$4,200/month in platform fees.
+
+High-activity restaurants without direct ordering infrastructure are leaving the most margin on the table. Worth exploring?</div>
+            </div>
+
+            <!-- PQS Play Card 2 -->
+            <div class="play-card">
+                <span class="play-type">STRONG PQS</span>
+                <span class="score-badge">7.2/10</span>
+                <h3>Play 2: Platform Dependency Diagnosis</h3>
+
+                <div class="play-explanation">
+                    <p><strong>What's the play?</strong> Diagnose restaurants with 100% third-party platform dependency (present on DoorDash/Uber Eats but zero direct ordering capability). Use industry benchmarks showing that similar restaurants recapture 15-25% of orders within 90 days of adding direct ordering, keeping 100% of that revenue instead of paying platform commissions.</p>
+                </div>
+
+                <div class="why-section">
+                    <p><strong>Why this works (Buyer Critique Score: 7.2/10):</strong> The message mirrors their exact setup (high activity, both platforms, no direct capability) with specific data. The 15-25% recapture benchmark is credible and creates urgency—they're literally giving away 25-30% commission on orders they could be getting directly. The routing question ("Should this go to you or your operations lead?") makes reply easy and low-friction.</p>
+                </div>
+
+                <div class="data-sources">
+                    <strong>Data source:</strong> Google Maps API (review velocity), BuiltWith (tech detection), multi-platform menu scraping (DoorDash + Uber Eats pricing), Owner.com case studies (recapture benchmarks). Confidence: 70% (strong with disclosed benchmarks).
+                </div>
+
+                <p><strong>The message:</strong></p>
+                <div class="message-example">Subject: 100% third-party dependency
+
+Your restaurant shows 127 Google reviews in 30 days (high activity), but zero direct ordering capability on your site. I checked—you're on DoorDash and Uber Eats with an average 27-29% menu markup.
+
+That means every order goes through a platform taking 25-30% commission. Competitors with similar review velocity who added direct ordering typically recapture 15-25% of orders within 90 days, keeping 100% of that revenue. Should this go to you or your operations lead?</div>
+            </div>
+
+            <!-- PQS Play Card 3 (Former PVP) -->
+            <div class="play-card">
+                <span class="play-type">STRONG PQS</span>
+                <span class="score-badge">8.8/10</span>
+                <h3>Play 3: Growth Trajectory Analysis</h3>
+
+                <div class="play-explanation">
+                    <p><strong>What's the play?</strong> Target fast-growing restaurants (proven by 6-month review velocity growth of +100% or more) and show them how their commission bleed scaled linearly with their success. The insight: Your growth is creating a bigger problem—commission expense increases at the same rate as your order volume.</p>
+                </div>
+
+                <div class="why-section">
+                    <p><strong>Why this works (Buyer Critique Score: 8.8/10 - EXCELLENT):</strong> This message HITS. Restaurant owners feel proud of their growth (58 → 140 reviews = +141%) but have never visualized how commission bleed scales with success. The specific 6-month comparison ($1,750 → $4,200) creates visceral pain—they're paying $2,450 MORE per month in commissions simply because they're successful. The insight that "your success is creating a linearly growing expense" is a revelation. Highest emotional resonance of all PQS messages.</p>
+                </div>
+
+                <div class="data-sources">
+                    <strong>Data source:</strong> Google Maps Places API (historical reviews[].time data over 6 months), standard platform commission rates (25-30%, public knowledge). Confidence: 75% (highest confidence—verifiable review data with transparent commission math).
+                </div>
+
+                <p><strong>The message:</strong></p>
+                <div class="message-example">Subject: Your 6-month growth trajectory
+
+I pulled your Google Business review data over the past 6 months:
+- September 2024: 58 reviews
+- March 2025: 140 reviews
+- Growth rate: +141%
+
+That's top-quartile growth for independent restaurants. But here's the problem: if you're running 25-30% of orders through DoorDash/Uber Eats, your commission bleed just grew from ~$1,750/month to ~$4,200/month at the same rate.
+
+I'll send you the month-by-month breakdown if useful. Should this go to you or your finance lead?</div>
+            </div>
+        </div>
+
+        <!-- SECTION 5: PVP Examples -->
+        <div class="section">
+            <h2>Owner.com PVP Plays: Delivering Immediate Value</h2>
+
+            <p>These messages provide actionable intelligence before asking for anything. The prospect can use this value today whether they respond or not. That's the power of permissionless value.</p>
+
+            <!-- PVP Play Card 1 (TRUE PVP) -->
+            <div class="play-card">
+                <span class="play-type pvp">TRUE PVP</span>
+                <span class="score-badge">9.0/10</span>
+                <h3>Play 1: Commission Scaling Calculator</h3>
+
+                <div class="play-explanation">
+                    <p><strong>What's the play?</strong> Deliver a complete month-by-month analysis showing exactly how commission expense scaled with review velocity growth over 6 months. The full data table is provided IN the message—no reply needed. This is a TRUE PVP because it delivers complete actionable information the prospect can independently analyze and act on.</p>
+                </div>
+
+                <div class="why-section">
+                    <p><strong>Why this works (Buyer Critique Score: 9.0/10 - TRUE PVP):</strong> This table creates visceral anger and motivation. Seeing the LINEAR scaling in table format ($1,750 → $4,215 over 6 months) makes the commission bleed impossible to ignore. The restaurant owner can save this table, show their GM, and make decisions WITHOUT replying. The transparent methodology (Est. Orders = Reviews × 33.33, Est. Commission = Orders × $18 × 27%) builds trust. Highest situational recognition (10/10) and emotional resonance (10/10) of all messages. Passes the "Independently Useful Test"—complete value delivered, no reply required.</p>
+                </div>
+
+                <div class="data-sources">
+                    <strong>Data source:</strong> Google Maps Places API (historical reviews[].time field, 6-month time series), standard commission rates (27% disclosed in table). Confidence: 75% (highest confidence—all review counts verifiable, math fully transparent).
+                </div>
+
+                <p><strong>The message:</strong></p>
+                <div class="message-example">Subject: Your commission scaling
+
+Your Google review velocity grew +141% over the past 6 months (58 reviews/month → 140 reviews/month). If you're processing orders through DoorDash/Uber Eats, here's how your commission expense scaled with your growth:
+
+Month      | Reviews | Est. Orders | Est. Commission (27%)
+-----------|---------|-------------|---------------------
+Sept '24   | 58      | ~1,933      | ~$1,750
+Oct '24    | 71      | ~2,367      | ~$2,140
+Nov '24    | 89      | ~2,967      | ~$2,680
+Dec '24    | 102     | ~3,400      | ~$3,070
+Jan '25    | 118     | ~3,933      | ~$3,555
+Feb '25    | 131     | ~4,367      | ~$3,945
+Mar '25    | 140     | ~4,667      | ~$4,215
+
+Your success is creating a linearly growing expense. Fastest-growing restaurants see the highest ROI from direct ordering. Should this go to you or your GM?</div>
+            </div>
+        </div>
+
+        <!-- SECTION 6: The Transformation -->
+        <div class="section">
+            <h2>The Transformation</h2>
+
+            <p>Notice the difference? Traditional outreach talks about YOUR product and YOUR benefits. Blueprint GTM talks about THEIR situation and THEIR challenges using verifiable data they can look up themselves.</p>
+
+            <div class="highlight-box">
+                <p><strong>The shift is simple but profound:</strong></p>
+                <p>Stop sending messages about what you do. Start sending intelligence about what they need to know right now. When you lead with "127 reviews in 30 days—top 12% in your metro" instead of "I see you expanded your menu," you're not another sales email—you're the person who actually did the research.</p>
+            </div>
+
+            <p>This isn't about templates or tactics. It's about building a systematic way to identify prospects experiencing specific, urgent challenges where Owner.com's solutions provide unique value—and proving you've done the homework with Google Maps review data, tech stack audits, and commission calculations.</p>
+
+            <p>The companies that master this approach don't compete on features. They compete on intelligence.</p>
+
+            <div class="highlight-box">
+                <h3>Data Sources Used in This Playbook</h3>
+                <p><strong>HIGH Feasibility:</strong> Google Maps Places API (review velocity, timestamps), NYC/LA County Health Inspections (for future plays)</p>
+                <p><strong>MEDIUM Feasibility:</strong> BuiltWith API (tech stack detection), DoorDash/Uber Eats menu scraping, Industry benchmarks (Owner.com case studies)</p>
+                <p><strong>Confidence Levels:</strong> 65-75% (hybrid approach with disclosed estimates and transparent methodology)</p>
+            </div>
+        </div>
+
+    </div>
+</body>
+</html>

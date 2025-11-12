@@ -1,0 +1,46 @@
+{
+  "hooks": {
+    "postToolUse": [
+      {
+        "name": "blueprint-turbo-wave-1-complete",
+        "description": "Blueprint Turbo Wave 1 intelligence gathering complete",
+        "trigger": "context.blueprintWave === 1 && context.waveComplete === true",
+        "action": "console.log('✅ Wave 1/4: Company intelligence gathered (15-20 parallel calls complete)')"
+      },
+      {
+        "name": "blueprint-turbo-synthesis-complete",
+        "description": "Blueprint Turbo Sequential Thinking synthesis complete",
+        "trigger": "context.blueprintPhase === 'synthesis' && context.segmentsGenerated > 0",
+        "action": "console.log('🧠 Synthesis: Generated ' + context.segmentsGenerated + ' pain segment hypotheses (Sequential Thinking MCP complete)')"
+      },
+      {
+        "name": "blueprint-turbo-wave-2-complete",
+        "description": "Blueprint Turbo Wave 2 database validation complete",
+        "trigger": "context.blueprintWave === 2 && context.waveComplete === true",
+        "action": "console.log('🔍 Wave 2/4: Data sources validated (found ' + context.highFeasibilityCount + ' HIGH feasibility segments)')"
+      },
+      {
+        "name": "blueprint-turbo-wave-3-complete",
+        "description": "Blueprint Turbo Wave 3 message validation complete",
+        "trigger": "context.blueprintWave === 3 && context.waveComplete === true",
+        "action": "console.log('📝 Wave 3/4: Messages validated (' + context.keepCount + ' messages scored 8.0+/10)')"
+      },
+      {
+        "name": "blueprint-turbo-wave-4-complete",
+        "description": "Blueprint Turbo Wave 4 HTML generation complete",
+        "trigger": "tool === 'Write' && context.outputFile && context.outputFile.includes('blueprint-gtm-playbook')",
+        "action": "console.log('✅ Wave 4/4: HTML playbook ready! → ' + context.outputFile)"
+      }
+    ]
+  },
+  "allowedTools": [
+    "WebFetch",
+    "WebSearch",
+    "Read",
+    "Write",
+    "mcp__browser-mcp__chrome_navigate",
+    "mcp__browser-mcp__chrome_get_web_content",
+    "mcp__browser-mcp__get_windows_and_tabs",
+    "mcp__sequential-thinking__sequentialthinking"
+  ]
+}

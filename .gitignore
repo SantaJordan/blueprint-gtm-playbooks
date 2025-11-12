@@ -1,0 +1,36 @@
+# API Keys and Secrets
+*.env
+.env.*
+secrets.json
+credentials.json
+
+# OS Files
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Temporary files
+*.tmp
+temp/
+tmp/
+
+# Logs
+*.log
+logs/
+
+# Node modules (if any)
+node_modules/
+
+# Python
+__pycache__/
+*.pyc
+.pytest_cache/
+
+# Personal notes
+notes.md
+TODO.md
