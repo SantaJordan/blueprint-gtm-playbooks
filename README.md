@@ -4,6 +4,20 @@ Transform company URLs into data-driven GTM intelligence and mobile-responsive H
 
 **Built for consultants. Powered by Claude Code.**
 
+## 📦 Repository Setup
+
+This repository uses **dual remotes** for different purposes:
+
+- **`origin`** (private): https://github.com/SantaJordan/blueprint-gtm-skills.git
+  - Your main development repository
+  - Push all code changes here: `git push origin main`
+
+- **`publish`** (public): https://github.com/SantaJordan/blueprint-gtm-playbooks.git
+  - GitHub Pages for published artifacts
+  - Used by `publish-playbook.sh` to publish HTML playbooks
+
+**Note:** The repository excludes large data files (5GB+ of databases, downloads, exports). After cloning, run setup scripts to regenerate local data. See project READMEs for details.
+
 ---
 
 ## What This System Does
