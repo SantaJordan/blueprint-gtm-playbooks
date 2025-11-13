@@ -34,3 +34,28 @@ __pycache__/
 # Personal notes
 notes.md
 TODO.md
+
+# Database files
+*.db
+*.sqlite
+*.sqlite3
+
+# Large data files and downloads
+*.zip
+*.parquet
+regulatory-data/db/
+regulatory-data/downloads/
+regulatory-data/exports/
+regulatory-data/logs/
+
+# Generated outputs
+mimi-data-labs/outputs/
+outputs/
+
+# Large CSV files (allow examples)
+*.csv
+!examples/**/*.csv
+!**/examples/**/*.csv
+
+# Local settings (not global settings)
+.claude/settings.local.json
