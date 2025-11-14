@@ -29,12 +29,12 @@ fi
 echo -e "${BLUE}📤 Publishing playbook to GitHub Pages...${NC}"
 echo ""
 
-# Get GitHub username (will prompt for repo creation if needed)
-GH_REPO=$(git config --get remote.origin.url 2>/dev/null || echo "")
+# Get GitHub username from publish remote (for GitHub Pages)
+GH_REPO=$(git config --get remote.publish.url 2>/dev/null || echo "")
 
 if [ -z "$GH_REPO" ]; then
-    echo -e "${RED}Error: No GitHub remote configured${NC}"
-    echo "Please run: gh repo create blueprint-gtm-playbooks --public --source=. --remote=origin"
+    echo -e "${RED}Error: No 'publish' remote configured${NC}"
+    echo "Please configure the publish remote for GitHub Pages"
     exit 1
 fi
 
@@ -47,6 +47,13 @@ else
     exit 1
 fi
 
+# Ensure .nojekyll exists (disables Jekyll processing for faster deployment)
+if [ ! -f ".nojekyll" ]; then
+    echo -e "${BLUE}→ Creating .nojekyll file (first-time setup)...${NC}"
+    touch .nojekyll
+    git add .nojekyll
+fi
+
 # Add file to git
 echo -e "${BLUE}→ Adding $FILENAME to git...${NC}"
 git add "$FILENAME"
@@ -56,16 +63,20 @@ TIMESTAMP=$(date +"%Y-%m-%d %H:%M:%S")
 COMPANY_NAME=$(echo "$FILENAME" | sed -E 's/blueprint-gtm-playbook-(.*)\.html/\1/')
 git commit -m "Publish playbook: $COMPANY_NAME ($TIMESTAMP)"
 
-# Push to GitHub
-echo -e "${BLUE}→ Pushing to GitHub...${NC}"
-git push origin main 2>/dev/null || git push origin master 2>/dev/null || {
-    echo -e "${RED}Error: Could not push to GitHub${NC}"
-    echo "Make sure you've created the GitHub repository and enabled Pages"
+# Push to GitHub Pages (publish remote)
+echo -e "${BLUE}→ Pushing to GitHub Pages...${NC}"
+git push publish main 2>/dev/null || git push publish master 2>/dev/null || {
+    echo -e "${RED}Error: Could not push to GitHub Pages${NC}"
+    echo "Make sure the publish remote is configured and Pages are enabled"
     exit 1
 }
 
 # Generate GitHub Pages URL
 PAGES_URL="https://${GH_USERNAME}.github.io/${GH_REPONAME}/${FILENAME}"
+
+# Wait for GitHub Pages deployment (typically 10-15 seconds without Jekyll)
+echo -e "${BLUE}→ Waiting for GitHub Pages deployment (10-15 seconds)...${NC}"
+sleep 15
 
 echo ""
 echo -e "${GREEN}✅ Published successfully!${NC}"
@@ -73,6 +84,7 @@ echo ""
 echo -e "${GREEN}📎 Shareable URL:${NC}"
 echo -e "${BLUE}   $PAGES_URL${NC}"
 echo ""
-echo -e "${BLUE}Note: GitHub Pages may take 1-2 minutes to build and deploy.${NC}"
-echo -e "${BLUE}If the URL doesn't work immediately, wait a moment and try again.${NC}"
+echo -e "${BLUE}Note: GitHub Pages deployment usually completes within 10-15 seconds${NC}"
+echo -e "${BLUE}(.nojekyll file bypasses Jekyll for faster deployment).${NC}"
+echo -e "${BLUE}If the URL doesn't load, wait another 10 seconds and refresh.${NC}"
 echo ""

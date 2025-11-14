@@ -959,8 +959,19 @@ git rev-parse --git-dir 2>/dev/null
   Then end execution.
 
 **Step 2: Extract GitHub Remote Information**
+
+Check for `publish` remote first (preferred), fallback to `origin`:
+
 ```bash
-git config --get remote.origin.url
+# Try publish remote first (for blueprint-gtm-playbooks)
+REMOTE_URL=$(git config --get remote.publish.url 2>/dev/null)
+REMOTE_NAME="publish"
+
+# Fallback to origin if publish doesn't exist
+if [ -z "$REMOTE_URL" ]; then
+    REMOTE_URL=$(git config --get remote.origin.url 2>/dev/null)
+    REMOTE_NAME="origin"
+fi
 ```
 
 Parse the result to extract:
@@ -972,7 +983,17 @@ Use this logic:
 - If URL format is `git@github.com:[username]/[repo].git` → Extract username and repo
 - If no remote found → Skip publishing, output warning and local file path
 
-**Step 3: Commit and Push Playbook**
+**Step 3: Ensure .nojekyll Exists (Critical for Fast Deployment)**
+
+```bash
+# Create .nojekyll if it doesn't exist (disables Jekyll processing)
+if [ ! -f ".nojekyll" ]; then
+    touch .nojekyll
+    git add .nojekyll
+fi
+```
+
+**Step 4: Commit and Push Playbook**
 
 Execute these git commands sequentially:
 
@@ -983,8 +1004,8 @@ git add [filename]
 # Create commit with timestamp
 git commit -m "Publish playbook: [company-name] ($(date +"%Y-%m-%d %H:%M:%S"))"
 
-# Push to GitHub (try main first, fallback to master)
-git push origin main 2>/dev/null || git push origin master 2>/dev/null
+# Push to GitHub using detected remote (publish or origin)
+git push $REMOTE_NAME main 2>/dev/null || git push $REMOTE_NAME master 2>/dev/null
 ```
 
 **Error Handling:**
@@ -992,7 +1013,16 @@ git push origin main 2>/dev/null || git push origin master 2>/dev/null
 - If git commit fails (e.g., nothing to commit) → That's OK, continue (file was already committed in initial setup)
 - If git push fails → Output error, but still generate and show the URL (might already be published)
 
-**Step 4: Generate GitHub Pages URL**
+**Step 5: Wait for Deployment**
+
+After successful push, wait for GitHub Pages to deploy (much faster with .nojekyll):
+
+```bash
+# Wait 15 seconds for GitHub Pages deployment (no Jekyll processing)
+sleep 15
+```
+
+**Step 6: Generate GitHub Pages URL**
 
 Construct the URL:
 ```
@@ -1004,7 +1034,7 @@ Example:
 https://santajordan.github.io/blueprint-gtm-playbooks/blueprint-gtm-playbook-mirrorweb.html
 ```
 
-**Step 5: Output Final Results**
+**Step 7: Output Final Results**
 
 **Success Case (git operations succeeded):**
 ```
@@ -1015,7 +1045,8 @@ https://santajordan.github.io/blueprint-gtm-playbooks/blueprint-gtm-playbook-mir
 
 💾 Local file: [filename]
 
-Note: GitHub Pages may take 1-2 minutes to build. If URL doesn't work immediately, wait a moment and refresh.
+Note: GitHub Pages deployment completes in ~10-15 seconds (.nojekyll bypasses Jekyll).
+If URL doesn't load, wait another 10 seconds and refresh.
 ```
 
 **Failure Case (git operations failed):**
