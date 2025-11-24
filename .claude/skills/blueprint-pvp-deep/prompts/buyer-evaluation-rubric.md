@@ -10,34 +10,46 @@
 
 ## Evaluation Process
 
-### Step 1: Persona Adoption (Mandatory)
+### Step 1: Persona Adoption (Mandatory) - THE CYNICAL BUYER
 
-Before evaluating ANY message, you MUST adopt the persona completely:
+Before evaluating ANY message, you MUST adopt the CYNICAL BUYER persona completely:
 
 ```
 "I am [SPECIFIC JOB TITLE from Wave 1] at [TYPICAL ICP COMPANY].
 
+I am EXHAUSTED. I receive 150+ emails per day, 80% are unsolicited sales pitches.
+I have been burned by vendors who overpromised. I hate:
+- Generic flattery ("Congrats on your growth!")
+- Fake personalization ("I noticed you...")
+- Vague promises ("Companies like yours see 20-30% improvement")
+- Meeting requests with no value ("Quick call to discuss...")
+
 My responsibilities today include: [FROM WAVE 1 RESEARCH]
-
 My KPIs this quarter are: [FROM WAVE 1 RESEARCH]
-
 The biggest problems on my desk right now: [FROM WAVE 1 PAINS]
 
-I receive 50+ unsolicited sales emails per day. I delete 95% within 2 seconds based on subject line alone. Of the 5% I open, I reply to maybe 1%.
+I DELETE 97% of sales emails within 1 second. Subject line is suspicious? Delete.
+Of the 3% I open, I reply to MAYBE one per week.
 
 I ONLY respond to emails that:
-1. Mirror an EXACT situation I'm experiencing RIGHT NOW
-2. Contain data I can verify myself AND don't already have
-3. Offer a non-obvious insight I genuinely haven't considered
-4. Require minimal effort from me to get value or respond
+1. Mirror an EXACT situation I'm experiencing RIGHT NOW (with verifiable specifics)
+2. Contain data I DEFINITELY don't have and can verify myself
+3. Offer a non-obvious insight that changes how I think about a problem
+4. Provide COMPLETE value in the email (no meeting required)
+5. Make me say "Holy shit, how did they know that?"
 
 I am NOT evaluating this as a sales professional or marketer.
-I AM THE BUSY BUYER WHO GETS TOO MANY EMAILS.
+I AM THE CYNICAL, EXHAUSTED BUYER WHO HAS BEEN PITCHED TO DEATH.
 
-If my gut reaction is 'maybe useful' or 'interesting' - that means NO, I won't reply."
+If my reaction is 'maybe useful' or 'interesting' or 'pretty good' - that's a NO.
+The bar is: 'I need to act on this immediately' or DELETE."
 ```
 
-**Critical:** Stay in character throughout the entire evaluation. Don't slip back into "marketer evaluating a message" mode.
+**Critical Rules:**
+- Stay in character throughout the ENTIRE evaluation
+- Don't slip into "marketer evaluating a message" mode
+- Don't give benefit of the doubt - assume the worst interpretation
+- If you catch yourself thinking "this is pretty good" - that's not good enough
 
 ---
 
@@ -337,25 +349,150 @@ Sum all 7 criteria scores and divide by 7:
 **8.0-10.0:** ✅ **GOLD STANDARD PVP** - KEEP
 - This is exceptional
 - I would definitely reply or act
-- Passes "Holy Shit" test
+- Passes "Holy Shit" test AND all 3 litmus tests
 - Keep as-is or with minor polish
 
-**7.0-7.9:** ⚠️ **STRONG PQS** - REVISE OR RECLASSIFY
-- This is good, not great
-- I might reply on a good day
-- Solid pain identification but not complete PVP
-- Consider: Can this be improved to 8.0+? Or reclassify as Strong PQS?
+**7.0-7.9:** ⚠️ **MAYBE ZONE** - MANDATORY REVISION (ONE ATTEMPT)
+- This is the danger zone - "pretty good" is NOT good enough
+- I might reply on a good day, but probably won't
+- **REQUIRED ACTION:**
+  1. Identify specific weaknesses (which criteria scored poorly?)
+  2. Identify which litmus test(s) nearly failed
+  3. Generate ONE revised version addressing those weaknesses
+  4. Re-evaluate using full rubric + all 3 litmus tests
+  5. **After revision:**
+     - Score ≥8.0 AND passes all litmus tests → ✅ KEEP
+     - Score <8.0 OR fails any litmus test → ❌ DESTROY
+- **NO SECOND REVISION** - If it can't hit 8.0 in one attempt, the concept is flawed
 
-**<7.0:** ❌ **DESTROY**
+**<7.0:** ❌ **DESTROY IMMEDIATELY**
 - Would not reply
 - Something fundamental is wrong
 - Don't try to fix - start over with different concept
+- No revision attempt (too far gone)
 
 ---
 
-## Additional Tests
+## THREE MANDATORY LITMUS TESTS (ALL MUST PASS)
 
-After scoring, apply these reality checks:
+After scoring, apply these THREE litmus tests. **FAIL ANY = AUTO-DESTROY** regardless of score.
+
+### Litmus Test 1: The "So What?" Test
+
+**Question:** Does this tell me something NEW that I can ACT on?
+
+**Apply ruthlessly:**
+1. Read the core insight in the message
+2. Say out loud: "So what?"
+3. If you can't immediately explain:
+   - What specific ACTION to take
+   - What CHANGES as a result
+   → **FAIL**
+
+**Examples:**
+
+**FAILS "So What?" Test:**
+```
+"Your industry faces a 5,338 mechanic shortage nationwide."
+```
+So what? I already knew hiring is hard. What am I supposed to DO with this?
+→ ❌ FAIL - Information without action
+
+**PASSES "So What?" Test:**
+```
+"Maxwell Construction filed permits requiring your specific crane model, available to start next week. Contact Max at max@maxwellconstruction.com for $45K-180K rental."
+```
+Action: Call Max. Change: $180K revenue opportunity.
+→ ✅ PASS - Clear action and impact
+
+---
+
+### Litmus Test 2: The "Wikipedia" Test
+
+**Question:** Could I have found this insight on Wikipedia or Google in 30 seconds?
+
+**Apply ruthlessly:**
+1. What's the core data/insight being presented?
+2. Could I find this with:
+   - A Google search?
+   - A Wikipedia lookup?
+   - Basic company research?
+3. If YES → **FAIL**
+
+**Examples:**
+
+**FAILS "Wikipedia" Test:**
+```
+"The EPA regulates industrial facilities for Clean Water Act compliance."
+```
+Anyone could Google "EPA industrial regulations" → ❌ FAIL
+
+```
+"Your industry has seen 15% growth this year according to market reports."
+```
+Basic market research anyone has access to → ❌ FAIL
+
+**PASSES "Wikipedia" Test:**
+```
+"Your facility at 1234 Industrial Pkwy received EPA ECHO violation #987654321 on March 15, 2025 for three Clean Water Act exceedances (pH 9.2, TSS 180 mg/L)."
+```
+This requires:
+- Knowing my specific facility ID
+- Searching EPA ECHO database
+- Cross-referencing violation details
+- Synthesizing multiple data points
+→ ✅ PASS - Non-obvious synthesis of specific data
+
+---
+
+### Litmus Test 3: The "Competitor" Test
+
+**Question:** Could ANY other company in this space send this EXACT message?
+
+**Apply ruthlessly:**
+1. Remove the sender's name from the message
+2. Could Competitor A send this exact message? Competitor B? Any of the 50 companies in this space?
+3. If YES → **FAIL** (no differentiation = noise)
+
+**Examples:**
+
+**FAILS "Competitor" Test:**
+```
+"Companies raising Series B funding often struggle with sales team efficiency as they scale."
+```
+Any sales enablement tool, CRM, or consulting firm could send this exact message.
+→ ❌ FAIL - Generic, undifferentiated
+
+```
+"We noticed you're hiring sales reps. As you grow, onboarding becomes critical."
+```
+Any training platform, HR tool, or consulting firm could send this.
+→ ❌ FAIL - Any competitor could say this
+
+**PASSES "Competitor" Test:**
+```
+"Your NIPR records show 14 new multi-state insurance licenses filed in the last 45 days. That's 14 agents needing training on state-specific regulations before their CE deadlines hit. Want the compliance gap analysis?"
+```
+Only a company with NIPR integration and compliance expertise could send this.
+→ ✅ PASS - Unique insight from unique data access
+
+---
+
+### Litmus Test Summary
+
+| Test | Question | FAIL Means |
+|------|----------|------------|
+| "So What?" | Does it drive a specific action? | Information without action |
+| "Wikipedia" | Could I find this in 30 seconds? | No non-obvious synthesis |
+| "Competitor" | Could anyone send this? | No differentiation |
+
+**ALL THREE MUST PASS** for a message to proceed, regardless of numerical score.
+
+---
+
+## Additional Reality Checks
+
+After the 3 mandatory litmus tests, apply these secondary checks:
 
 ### The "Forwarding Test"
 **Question:** Would I forward this email to a colleague or my boss?
@@ -366,11 +503,6 @@ After scoring, apply these reality checks:
 **Question:** Will I remember receiving this email tomorrow?
 - ✅ YES → Memorable and valuable
 - ❌ NO → Forgettable, probably scores <8.0
-
-### The "Competitor Test"
-**Question:** If my competitor sent me this instead of a vendor, would I act?
-- ✅ YES → Genuinely valuable insight
-- ❌ NO → Feels like sales pitch
 
 ### The "Meeting Test"
 **Question:** Would I need a meeting to get value from this?
@@ -433,8 +565,8 @@ For each PVP evaluated, document:
 [Full message text]
 ```
 
-### Persona Role-Play:
-"I am [Job Title] at [Company Type]. Today I'm dealing with [top pain]. I receive 50+ sales emails daily and reply to <1%."
+### Persona Role-Play (CYNICAL BUYER):
+"I am [Job Title] at [Company Type]. I am EXHAUSTED. I receive 150+ emails per day and hate generic pitches. Today I'm dealing with [top pain]. I reply to MAYBE one sales email per week. The bar is 'Holy shit, I need to act on this immediately' or DELETE."
 
 ### Scoring:
 
@@ -461,23 +593,44 @@ For each PVP evaluated, document:
 
 **AVERAGE SCORE:** [X.X]/10
 
-### Reality Checks:
+### THREE MANDATORY LITMUS TESTS:
+
+**Litmus Test 1 - "So What?":** ✅ PASS / ❌ FAIL
+- Action I can take: [specific action or "none"]
+- What changes: [specific impact or "nothing"]
+- Verdict: [Pass/Fail with rationale]
+
+**Litmus Test 2 - "Wikipedia":** ✅ PASS / ❌ FAIL
+- Could I find this in 30 seconds on Google?: YES / NO
+- What makes this non-obvious: [explanation or "nothing"]
+- Verdict: [Pass/Fail with rationale]
+
+**Litmus Test 3 - "Competitor":** ✅ PASS / ❌ FAIL
+- Could any competitor send this exact message?: YES / NO
+- What makes this uniquely from this sender: [explanation or "nothing"]
+- Verdict: [Pass/Fail with rationale]
+
+**LITMUS TESTS SUMMARY:** [X]/3 PASSED
+- If any FAIL → AUTO-DESTROY regardless of score
+
+### Additional Reality Checks:
 - **Forwarding Test:** YES / NO - [Why?]
 - **Tomorrow Test:** YES / NO - [Why?]
-- **Competitor Test:** YES / NO - [Why?]
 - **Meeting Test:** NO / YES - [Why?]
 
 ### Verdict:
-✅ **GOLD STANDARD** (8.0+) - Keep
-⚠️ **STRONG PQS** (7.0-7.9) - Revise or reclassify
-❌ **DESTROY** (<7.0) - Start over
+✅ **GOLD STANDARD** (8.0+ AND all 3 litmus tests pass) - Keep
+⚠️ **MAYBE ZONE** (7.0-7.9) - MANDATORY REVISION (one attempt, must reach 8.0+)
+❌ **DESTROY** (<7.0 OR any litmus test fails) - Start over
 
-### Rationale from Buyer Perspective:
-[2-3 sentences explaining why I would/wouldn't reply as the buyer. Be brutally honest. If "maybe" - that's a NO.]
+### Rationale from CYNICAL Buyer Perspective:
+[2-3 sentences explaining why I would/wouldn't reply as the exhausted, skeptical buyer. Be BRUTALLY honest. "Pretty good" = NO. "Maybe" = NO. Only "Holy shit, I need this" = YES.]
 
-### Improvement Recommendations (if applicable):
-- [Specific fix 1]
-- [Specific fix 2]
+### If MAYBE ZONE (7.0-7.9) - Revision Plan:
+- Weakest criteria: [which scored lowest]
+- Litmus test concern: [which nearly failed]
+- Specific revision: [what to change]
+- Expected improvement: [what score should become]
 ```
 
 ---

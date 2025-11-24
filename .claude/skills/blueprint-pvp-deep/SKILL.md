@@ -25,14 +25,19 @@ description: Autonomous PVP generation agent that validates context, explores no
 - Explore weird data combinations
 - Generate 8-12 synthesis insights
 
+**Phase 1.5: Hard Gate Validation** (1-2 min) ⭐ NEW
+- Validate ALL insights against 4 mandatory hard gates
+- AUTO-DESTROY insights that fail any gate
+- Ensure only regulated niches with data moats proceed
+
 **Phase 2: PVP Concept & Message Drafting** (2-3 min)
-- Draft concept + 3-paragraph message for each insight
+- Draft concept + 3-paragraph message for each validated insight
 - Follow strict PVP format criteria
 
-**Phase 3: Immediate Buyer Evaluation** (2-3 min)
-- Role-play as persona AFTER EACH draft
-- Score against 7 criteria (1-10 scale)
-- Only advance 8.0+ concepts
+**Phase 3: Immediate Buyer Evaluation (CYNICAL BUYER)** (2-3 min)
+- Role-play as EXHAUSTED, SKEPTICAL persona AFTER EACH draft
+- Score against 7 criteria (1-10 scale) + 3 mandatory litmus tests
+- 8.0+ = KEEP, 7.0-7.9 = REVISE ONCE, <7.0 = DESTROY
 
 **Phase 4: Selection & Feasibility Validation** (1-2 min)
 - Select top 5 scoring 8.0+
@@ -243,7 +248,110 @@ For each of the 8-12 insights, verify:
 
 [Repeat for all 12 insights]
 
-## Proceeding to Phase 2: PVP Drafting
+## Proceeding to Phase 1.5: Hard Gate Validation
+```
+
+---
+
+## PHASE 1.5: Hard Gate Validation (MANDATORY)
+
+**Objective:** Validate ALL synthesis insights against 4 hard gates before drafting PVPs. AUTO-DESTROY any insight that fails.
+
+### Load Validators
+
+```
+Read: .claude/skills/blueprint-pvp-deep/prompts/hard-gate-validator.md
+Reference: .claude/skills/blueprint-pvp-deep/prompts/banned-patterns-registry.md
+```
+
+### Validate EACH Insight Against 4 Gates
+
+For EACH of the 8-12 insights from Phase 1:
+
+**Gate 1: Horizontal Disqualification**
+- Question: Is the ICP operationally specific?
+- FAIL if: "Any B2B company," "SaaS companies," "Sales teams" (generic)
+- PASS if: Specific industry with regulatory oversight + observable pain
+
+**Gate 2: Causal Link Constraint**
+- Question: Does the signal DIRECTLY PROVE the pain?
+- Test: "Could they have this signal but NOT have the pain?" If YES = FAIL
+- BANNED: Funding, hiring, expansion, M&A, job postings, tech stack
+- ALLOWED: EPA violations, CMS ratings, FMCSA ratings, license deadlines
+
+**Gate 3: No Aggregates Ban**
+- Question: Are ALL statistics company-specific?
+- FAIL if: "Industry average is X%," "Companies like yours typically..."
+- PASS if: "Your [specific metric] vs [benchmark]"
+
+**Gate 4: Technical Feasibility Audit**
+- Question: Can you explain MECHANICALLY how to detect this data?
+- Must answer: Data source? Specific field? Access method? Detection footprint?
+- FAIL if: Undetectable claims (CRM data, sales cycle, employee satisfaction)
+
+### Validation Output Format
+
+```markdown
+## Hard Gate Validation: Insight #[N]
+
+**Insight:** [Title]
+
+**Gate 1 (Horizontal):** ✅ PASS / ❌ FAIL
+- ICP: [specific description]
+- Rationale: [why]
+
+**Gate 2 (Causal Link):** ✅ PASS / ❌ FAIL
+- Signal: [what data signal]
+- "Could have signal without pain?": YES/NO
+- Rationale: [why]
+
+**Gate 3 (Aggregates):** ✅ PASS / ❌ FAIL
+- Statistics used: [list]
+- Company-specific?: YES/NO
+- Rationale: [why]
+
+**Gate 4 (Feasibility):** ✅ PASS / ❌ FAIL
+- Data claims: [list]
+- Detection mechanism: [API/selector for each]
+- Rationale: [why]
+
+**VERDICT:** ✅ PROCEED to Phase 2 / ❌ AUTO-DESTROY
+```
+
+### Decision Logic
+
+| Result | Action |
+|--------|--------|
+| All 4 gates PASS | ✅ Proceed to Phase 2 |
+| Gate 3 only fails | ONE revision attempt (add specific data) |
+| Gate 4 only fails | ONE revision attempt (substitute data source) |
+| Gate 1 or 2 fails | ❌ DESTROY immediately (fundamental flaw) |
+| 2+ gates fail | ❌ DESTROY immediately |
+| Still fails after revision | ❌ DESTROY (no second attempt) |
+
+### Phase 1.5 Output
+
+```markdown
+# Phase 1.5 Complete: Hard Gate Validation
+
+## Validation Results
+
+**Total Insights Evaluated:** 12
+**Passed All 4 Gates:** 8
+**Destroyed (Gate failures):** 4
+
+### Destroyed Insights:
+- Insight #3: Failed Gate 2 (signal = hiring, doesn't prove pain)
+- Insight #7: Failed Gate 4 (CRM data quality undetectable)
+- Insight #9: Failed Gate 1 (horizontal ICP "B2B companies")
+- Insight #11: Failed Gate 3 (used industry-wide stats)
+
+### Validated Insights Proceeding to Phase 2:
+1. [Insight #1] - All gates passed
+2. [Insight #2] - All gates passed
+...
+
+## Proceeding to Phase 2 with 8 validated insights
 ```
 
 ---
@@ -314,9 +422,9 @@ For EACH insight from Phase 1, create:
 
 ---
 
-## PHASE 3: Immediate Buyer Evaluation
+## PHASE 3: Immediate Buyer Evaluation (CYNICAL BUYER)
 
-**Objective:** Evaluate EACH PVP from buyer perspective immediately after drafting (not batched)
+**Objective:** Evaluate EACH PVP from CYNICAL buyer perspective immediately after drafting (not batched)
 
 ### Load Evaluation Rubric
 
@@ -324,25 +432,35 @@ Read: `.claude/skills/blueprint-pvp-deep/prompts/buyer-evaluation-rubric.md`
 
 ### Evaluation Process (Per PVP)
 
-**Step 1: Persona Adoption (Mandatory)**
+**Step 1: CYNICAL BUYER Persona Adoption (Mandatory)**
 
-Before evaluating, fully adopt the persona:
+Before evaluating, fully adopt the EXHAUSTED, SKEPTICAL persona:
 ```
 "I am [SPECIFIC JOB TITLE] at [TYPICAL ICP COMPANY].
+
+I am EXHAUSTED. I receive 150+ emails per day, 80% are unsolicited sales pitches.
+I have been burned by vendors who overpromised. I hate:
+- Generic flattery ("Congrats on your growth!")
+- Fake personalization ("I noticed you...")
+- Vague promises ("Companies like yours see 20-30% improvement")
+- Meeting requests with no value ("Quick call to discuss...")
 
 My responsibilities: [From Phase 0]
 My KPIs: [From Phase 0]
 My pains: [From Phase 0]
 
-I receive 50+ sales emails daily. I delete 95% within 2 seconds.
+I DELETE 97% of sales emails within 1 second. Subject line suspicious? Delete.
+Of the 3% I open, I reply to MAYBE one per week.
 
 I ONLY respond to emails that:
-1. Mirror an EXACT situation I'm in RIGHT NOW
-2. Contain data I can verify and don't already have
-3. Offer non-obvious insight I haven't considered
-4. Require minimal effort to reply
+1. Mirror an EXACT situation I'm in RIGHT NOW (with verifiable specifics)
+2. Contain data I DEFINITELY don't have and can verify myself
+3. Offer a non-obvious insight that changes how I think about a problem
+4. Provide COMPLETE value in the email (no meeting required)
+5. Make me say 'Holy shit, how did they know that?'
 
-If my reaction is 'maybe useful' - that's a NO."
+If my reaction is 'maybe useful' or 'interesting' or 'pretty good' - that's a NO.
+The bar is: 'I need to act on this immediately' or DELETE."
 ```
 
 **Step 2: Score on 7 Criteria (1-10 each)**
@@ -359,11 +477,27 @@ If my reaction is 'maybe useful' - that's a NO."
 
 Average = (S1 + S2 + S3 + S4 + S5 + S6 + S7) ÷ 7
 
-**Step 4: Apply Gold Standard Threshold**
+**Step 4: Apply THREE MANDATORY LITMUS TESTS**
 
-- **8.0-10.0:** ✅ GOLD STANDARD - Advance to Phase 4
-- **7.0-7.9:** ⚠️ STRONG PQS - Revise once OR reclassify as Strong PQS
-- **<7.0:** ❌ DESTROY - Discard, concept is fundamentally weak
+After scoring, apply these 3 litmus tests. **FAIL ANY = AUTO-DESTROY regardless of score.**
+
+**Litmus Test 1: "So What?" Test**
+- Question: Does this tell them something NEW they can ACT on?
+- If no specific action + no change → ❌ FAIL
+
+**Litmus Test 2: "Wikipedia" Test**
+- Question: Could they find this on Wikipedia/Google in 30 seconds?
+- If easily discoverable → ❌ FAIL
+
+**Litmus Test 3: "Competitor" Test**
+- Question: Could ANY competitor send this EXACT message?
+- If no differentiation → ❌ FAIL
+
+**Step 5: Apply Gold Standard Threshold**
+
+- **8.0-10.0 AND all 3 litmus tests pass:** ✅ GOLD STANDARD - Advance to Phase 4
+- **7.0-7.9 (MAYBE ZONE):** ⚠️ MANDATORY REVISION (see below)
+- **<7.0 OR any litmus test fails:** ❌ DESTROY immediately
 
 **Step 5: Document Evaluation**
 
@@ -398,17 +532,20 @@ Average = (S1 + S2 + S3 + S4 + S5 + S6 + S7) ÷ 7
 - [Specific fix 2]
 ```
 
-### Revision Cycle (For 7.0-7.9 Concepts)
+### MANDATORY Revision Cycle (For 7.0-7.9 MAYBE ZONE)
+
+**CRITICAL:** Scores 7.0-7.9 are NOT acceptable as-is. "Pretty good" = NOT good enough.
 
 For concepts scoring 7.0-7.9:
-1. Identify specific weaknesses (which criteria scored <7?)
-2. Generate ONE revised version addressing weaknesses
-3. Re-evaluate using same rubric
-4. New verdict:
-   - If ≥8.0: Advance to Phase 4
-   - If <7.0: Destroy
+1. Identify specific weaknesses (which criteria scored lowest?)
+2. Identify which litmus test(s) nearly failed
+3. Generate ONE revised version addressing weaknesses
+4. Re-evaluate using FULL rubric + ALL 3 litmus tests
+5. **After revision verdict:**
+   - Score ≥8.0 AND all litmus tests pass → ✅ Advance to Phase 4
+   - Score <8.0 OR any litmus test fails → ❌ DESTROY
 
-**NO second revision** - one chance to improve
+**NO SECOND REVISION** - If it can't hit 8.0 in one attempt, the concept is fundamentally flawed. DESTROY and move on.
 
 ### Phase 3 Output
 

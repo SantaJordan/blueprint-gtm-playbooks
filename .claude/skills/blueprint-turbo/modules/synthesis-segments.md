@@ -235,6 +235,136 @@ Each segment must meet ALL of these criteria:
 
 ---
 
+## HARD GATE VALIDATION (MANDATORY)
+
+**CRITICAL:** After generating segments, EACH segment MUST pass all 4 hard gates before proceeding to message generation.
+
+**Load Validator:**
+```
+Read: .claude/skills/blueprint-pvp-deep/prompts/hard-gate-validator.md
+Reference: .claude/skills/blueprint-pvp-deep/prompts/banned-patterns-registry.md
+```
+
+### Gate 1: Horizontal Disqualification
+
+**Question:** Is the ICP operationally specific, or could it be "any B2B company"?
+
+**FAIL if ICP can be described as:**
+- "Any B2B company"
+- "SaaS companies" (generic)
+- "Sales teams" (without regulated context like insurance/RE)
+- "Growing companies" or "Funded companies"
+- "Companies with [department]"
+
+**PASS if ICP includes:**
+- Specific industry with regulatory oversight
+- Operational context (processes, compliance requirements)
+- Observable pain tied to detectable data
+
+### Gate 2: Causal Link Constraint
+
+**Question:** Does the signal DIRECTLY PROVE the pain (not just correlate)?
+
+**The Test:** "Could a company have this signal but NOT have the pain?"
+- If YES → Weak causal link → ❌ FAIL
+- If NO → Strong causal link → ✅ PASS
+
+**BANNED signals (ALWAYS fail Gate 2):**
+- Recently raised funding
+- Hiring for [role type]
+- Growing headcount
+- Expanding to new markets
+- M&A activity
+- Job postings
+- Tech stack includes [tool]
+
+**STRONG signals (can PASS Gate 2):**
+- Open EPA violation → PROVES compliance pressure
+- CMS <3 star rating → PROVES quality mandate
+- FMCSA Conditional rating → PROVES safety intervention required
+- Health dept grade drop → PROVES operational failure
+- License expiration in 30 days → PROVES compliance deadline
+
+### Gate 3: No Aggregates Ban
+
+**Question:** Are statistics company-specific, or industry-wide aggregates?
+
+**FAIL if segment uses:**
+- "Industry average is X%" (without their specific data)
+- "Companies like yours typically..."
+- "Research shows that..."
+- "[N]% of [industry] faces..."
+
+**PASS if format is:**
+- "Your [specific metric] vs [benchmark]"
+- Their data point + comparison aggregate
+
+### Gate 4: Technical Feasibility Audit
+
+**Question:** Can you explain MECHANICALLY how to detect this data?
+
+**For EVERY data claim, must answer:**
+1. What is the data source? (API name, database, scraping target)
+2. What is the specific field/attribute? (Field name, CSS selector)
+3. How do we access it? (API call, web scrape, manual lookup)
+4. What's the detection footprint? (What makes this visible externally?)
+
+**FAIL if ANY claim is undetectable:**
+- CRM data quality (internal system)
+- Sales cycle length (internal metric)
+- Employee satisfaction (not systematic)
+- Budget constraints (not public)
+- "BuiltWith for [non-web technology]"
+
+### Validation Output Format
+
+For EACH segment, document:
+
+```markdown
+## Hard Gate Validation: [Segment Name]
+
+**Gate 1 (Horizontal):** ✅ PASS / ❌ FAIL
+- ICP: [description]
+- Rationale: [why passes/fails]
+
+**Gate 2 (Causal Link):** ✅ PASS / ❌ FAIL
+- Signal: [data signal used]
+- Pain: [what it proves]
+- "Could have signal without pain?": YES/NO
+- Rationale: [why passes/fails]
+
+**Gate 3 (Aggregates):** ✅ PASS / ❌ FAIL
+- Statistics used: [list]
+- Company-specific?: YES/NO
+- Rationale: [why passes/fails]
+
+**Gate 4 (Feasibility):** ✅ PASS / ❌ FAIL
+- Data claims: [list]
+- Detection mechanism for each: [API field/selector]
+- Rationale: [why passes/fails]
+
+**VERDICT:** ✅ VALIDATED / ❌ AUTO-DESTROY
+```
+
+### Decision Logic
+
+| Result | Action |
+|--------|--------|
+| All 4 gates PASS | ✅ Proceed to message generation |
+| Gate 3 only fails | ONE revision attempt (add specific data) |
+| Gate 4 only fails | ONE revision attempt (substitute data source) |
+| Gate 1 or 2 fails | ❌ DESTROY immediately (fundamental flaw) |
+| 2+ gates fail | ❌ DESTROY immediately |
+| Still fails after revision | ❌ DESTROY (no second attempt) |
+
+### Minimum Requirement
+
+- At least 2 segments MUST pass all 4 gates
+- If <2 pass: Generate 2 replacement segments, re-validate
+- If still <2 after retry: Proceed with 1 + warn user
+
+---
+
 ## Error Handling
 
 **No data source combinations pass Texada Test:**
