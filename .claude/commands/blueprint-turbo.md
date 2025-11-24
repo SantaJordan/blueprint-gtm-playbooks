@@ -95,6 +95,67 @@ Extract:
 
 ---
 
+### WAVE 1.5: Niche Conversion (AUTOMATIC)
+
+**CRITICAL:** This step executes AUTOMATICALLY after Wave 1 to convert generic verticals to regulated niches.
+
+**Objective:** Ensure Wave 2 searches for data moat sources, not generic signals.
+
+**Load Module:**
+```
+Read: .claude/skills/blueprint-turbo/modules/vertical-qualification.md
+Reference: .claude/skills/blueprint-turbo/references/data-moat-verticals.md
+```
+
+**Execute Niche Conversion:**
+
+For EACH generic vertical from Wave 1:
+
+1. **Check Auto-Reject List:**
+   - "SaaS companies" → REJECT, must convert
+   - "Tech startups" → REJECT, must convert
+   - "B2B companies" → REJECT, must convert
+   - "Sales teams" (generic) → REJECT, must convert
+   - "Growing companies" → REJECT, must convert
+   - "Professional services" → REJECT, must convert
+
+2. **Find Regulated Niche (if auto-rejected):**
+   ```
+   WebSearch: "[vertical] licensing board database"
+   WebSearch: "[vertical] government records public"
+   WebSearch: "[vertical] compliance violations database"
+   ```
+
+3. **Score Each Niche (4 criteria, max 40):**
+   - Regulatory Footprint (0-10)
+   - Compliance-Driven Pain (0-10)
+   - Data Accessibility (0-10)
+   - Specificity Potential (0-10)
+
+4. **Select Best Niche:**
+   - Score ≥30 → Tier 1 (proceed with HIGH confidence)
+   - Score 25-29 → Tier 2 (proceed with MEDIUM confidence)
+   - Score 20-24 → Try internal data combination
+   - Score <20 → Warn user, may not be Blueprint-compatible
+
+**Example Conversion (Blinq):**
+
+| Generic from Wave 1 | Auto-Reject? | Converted Niche | Score |
+|---------------------|--------------|-----------------|-------|
+| "Sales teams" | YES | Multi-state insurance agents | 35/40 |
+| "Professional services" | YES | Licensed real estate agents | 32/40 |
+
+**Selected:** Multi-state insurance agents (NIPR data)
+
+**Wave 1.5 Output:**
+- Selected niche(s) with scores
+- Specific data sources to search in Wave 2
+- Rejected generics with reasons
+
+**Progress Hook:** "🎯 Wave 1.5: Niche qualified ([Niche] @ [Score]/40)"
+
+---
+
 ### WAVE 2: Multi-Modal Data Landscape Scan (4-9 min)
 
 **CRITICAL:** This wave executes BEFORE segment generation to ensure segments are grounded in actually available data.
@@ -335,6 +396,90 @@ OUTPUT: 2-3 pain segment hypotheses with:
 - Guidance on which should be PQS vs PVP messages
 
 **Progress Hook:** "🧠 Synthesis: Generated [N] pain segments from available data sources (Sequential Thinking MCP complete)"
+
+---
+
+### HARD GATE CHECKPOINT (MANDATORY - 1-2 min)
+
+**CRITICAL:** This checkpoint executes AUTOMATICALLY after Synthesis. ALL segments MUST pass 4 gates before proceeding to Wave 3.
+
+**Load Validator:**
+```
+Read: .claude/skills/blueprint-pvp-deep/prompts/hard-gate-validator.md
+Reference: .claude/skills/blueprint-pvp-deep/prompts/banned-patterns-registry.md
+```
+
+**For EACH segment from Synthesis, validate:**
+
+**Gate 1: Horizontal Disqualification**
+- Is the ICP operationally specific?
+- NOT "any B2B company," "SaaS companies," "sales teams" (generic)
+- MUST have industry + regulatory/operational context
+- FAIL = AUTO-DESTROY segment
+
+**Gate 2: Causal Link Constraint**
+- Does the signal DIRECTLY PROVE the pain?
+- NOT growth proxies (funding, hiring, expansion, M&A)
+- Ask: "Could they have this signal but NOT have the pain?" If YES = FAIL
+- FAIL = AUTO-DESTROY segment
+
+**Gate 3: No Aggregates Ban**
+- Are ALL statistics company-specific?
+- NOT industry averages presented as insights
+- ALLOWED format: "Your [X] vs benchmark [Y]"
+- FAIL = AUTO-DESTROY segment (or revise once)
+
+**Gate 4: Technical Feasibility Audit**
+- Can you name the API field or scraping selector?
+- Can you explain the mechanical detection method?
+- NOT "we could infer" or "likely detectable"
+- FAIL = AUTO-DESTROY segment
+
+**Validation Output Format:**
+
+```
+SEGMENT: [Name]
+
+Gate 1 (Horizontal): ✅ PASS / ❌ FAIL
+- ICP: [specific description]
+- Rationale: [why passes/fails]
+
+Gate 2 (Causal Link): ✅ PASS / ❌ FAIL
+- Signal: [what data signal]
+- Pain: [what pain it proves]
+- "Could have signal without pain?": YES/NO
+- Rationale: [why passes/fails]
+
+Gate 3 (Aggregates): ✅ PASS / ❌ FAIL
+- Statistics used: [list]
+- Company-specific?: YES/NO
+- Rationale: [why passes/fails]
+
+Gate 4 (Feasibility): ✅ PASS / ❌ FAIL
+- Data claims: [list]
+- Detection mechanism: [API field/selector for each]
+- Rationale: [why passes/fails]
+
+VERDICT: ✅ PROCEED / ❌ DESTROY
+```
+
+**Decision Logic:**
+
+| Gates Passed | Action |
+|--------------|--------|
+| All 4 gates | ✅ PROCEED to Wave 3 |
+| Failed Gate 3 only | ONE revision attempt (add specific data) |
+| Failed Gate 4 only | ONE revision attempt (substitute data source) |
+| Failed Gate 1 or 2 | ❌ DESTROY immediately (fundamental flaw) |
+| Failed 2+ gates | ❌ DESTROY immediately |
+| Still fails after revision | ❌ DESTROY (no second revision) |
+
+**Minimum Requirement:**
+- At least 2 segments MUST pass all 4 gates
+- If <2 segments pass: Return to Synthesis, generate 2 more segments (+2 min)
+- If still <2 after retry: WARN user, proceed with 1 segment + disclaimer
+
+**Progress Hook:** "🚦 Hard Gates: [N]/[M] segments validated (passed 4 gates)"
 
 ---
 
