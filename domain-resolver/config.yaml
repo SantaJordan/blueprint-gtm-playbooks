@@ -1,0 +1,77 @@
+# API Configuration
+api_keys:
+  serper: "e69a4729139f6830beb880fc9ce91b78d3021c64"  # Serper.dev API key
+  zenrows: "a5fd077338296b1fc7d4fbdfa7f23a9023ebe69c"  # ZenRows API key
+  discolike: "2eda41e3-d3f9-4a53-a865-6d5f22b1d91f"  # Discolike API key
+  ocean: "237e396f-b42e-4b15-a16e-32235a973f8f"  # Ocean.io API key (for future use)
+
+# Processing Configuration
+processing:
+  max_workers: 10  # Concurrent async workers
+  timeout_seconds: 30  # Per-request timeout
+
+# Stage Configuration
+stages:
+  use_places: true  # Stage 1: Serper Places API
+  use_search: true  # Stage 2: Serper Search + KG
+  use_discolike: false  # Stage 3a: Discolike B2B enrichment (togglable)
+  use_ocean: false  # Stage 3b: Ocean.io B2B enrichment (togglable)
+  use_scraping: true  # Stage 4: Deep scrape + LLM
+
+# Confidence Thresholds
+thresholds:
+  auto_accept: 85  # Auto-accept if confidence >= this
+  needs_scraping: 50  # Trigger scraping if confidence between 50-84
+  manual_review: 70  # Flag for manual review if < this after all stages
+
+# Fuzzy Matching
+fuzzy_matching:
+  exact_match_threshold: 90  # Fuzzy ratio for auto-accept
+  good_match_threshold: 70  # Fuzzy ratio requiring context confirmation
+  min_context_hits: 2  # Minimum context word matches in snippet
+
+# LLM Configuration
+llm:
+  endpoint: "http://localhost:11434/api/generate"
+  model: "llama3.2:3b"  # Using installed model
+  timeout: 30
+
+# Blacklist
+blacklist_domains:
+  # Social media
+  - linkedin.com
+  - facebook.com
+  - instagram.com
+  - twitter.com
+
+  # Business directories
+  - crunchbase.com
+  - yellowpages.com
+  - yelp.com
+  - bbb.org
+  - manta.com
+  - whitepages.com
+  - superpages.com
+
+  # Healthcare directories and ranking sites
+  - medicare.gov
+  - cms.gov
+  - usnews.com  # US News healthcare rankings
+  - caring.com  # Senior care directory
+  - seniorliving.org
+  - aplaceformom.com
+  - nursa.com  # Healthcare staffing directory
+  - greatcall.com
+
+  # Healthcare associations (not facility websites)
+  - hanys.org  # Healthcare Association of NY State
+  - ahca.org  # American Health Care Association
+  - leadingage.org
+  - aahsa.org
+  - argentum.org
+
+# Logging
+logging:
+  level: INFO  # DEBUG, INFO, WARNING, ERROR
+  log_file: logs/domain_resolver.log
+  save_lookups: true  # Save detailed lookup logs to JSONL
