@@ -1,0 +1,21 @@
+# Config with secrets
+config.yaml
+config.local.yaml
+.env
+
+# Logs and output
+logs/
+output/
+test/results/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+
+# OS
+.DS_Store
+
+# IDE
+.idea/
+.vscode/

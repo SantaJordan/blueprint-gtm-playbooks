@@ -251,10 +251,10 @@ def calculate_advanced_score(company_name: str, url: str,
 
     # Boost score if phone number appears in snippet
     if phone and snippet:
-        # Extract digits from phone
+        # Extract digits from phone (convert to string first for numeric inputs)
         import re
-        phone_digits = re.sub(r'\D', '', phone)
-        snippet_digits = re.sub(r'\D', '', snippet)
+        phone_digits = re.sub(r'\D', '', str(phone))
+        snippet_digits = re.sub(r'\D', '', str(snippet))
 
         if phone_digits and phone_digits[-4:] in snippet_digits:
             result['score'] = min(result['score'] + 10, 95)

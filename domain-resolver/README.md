@@ -7,7 +7,7 @@
 This tool resolves company names to their official domains with 95%+ accuracy using:
 - **Serper Places API** (Google Maps verified data)
 - **Serper Search API** (Google Knowledge Graph + fuzzy matching)
-- **Local LLM** (Ollama for intelligent verification)
+- **OpenAI GPT-4o-mini** (Cloud LLM for intelligent verification)
 - **Smart scraping** (Trafilatura for content extraction)
 
 ### Performance Targets
@@ -32,7 +32,7 @@ This tool resolves company names to their official domains with 95%+ accuracy us
 
 **Required:**
 - Serper.dev API key (free tier: 2,500 queries)
-- Ollama installed locally
+- OpenAI API key (GPT-4o-mini ~$1.30 per 1,000 companies)
 
 **Optional:**
 - ZenRows API key (for anti-bot sites)
@@ -46,36 +46,23 @@ cd domain-resolver
 
 # Install dependencies
 pip install -r requirements.txt
-
-# Install and configure Ollama
-# Visit: https://ollama.com
-brew install ollama  # macOS
-ollama pull qwen2.5:14b  # Download model (~8GB)
 ```
 
 ### 3. Configuration
 
-Edit `config.yaml`:
+Set environment variables for API keys:
 
-```yaml
-api_keys:
-  serper: "your_serper_api_key_here"  # Required
-  zenrows: "your_zenrows_key"         # Optional
-  discolike: "your_discolike_key"     # Optional
-
-processing:
-  max_workers: 10  # Concurrent requests
-
-thresholds:
-  auto_accept: 85        # Auto-accept if confidence ≥85
-  needs_scraping: 50     # Trigger scraping if 50-84
-  manual_review: 70      # Flag for review if <70
-
-llm:
-  model: "qwen2.5:14b"   # Or qwen2.5:7b for faster inference
+```bash
+export OPENAI_API_KEY="your_openai_api_key"
+export SERPER_API_KEY="your_serper_api_key"
+export ZENROWS_API_KEY="your_zenrows_key"      # Optional
+export DISCOLIKE_API_KEY="your_discolike_key"  # Optional
 ```
 
+Or copy `config.yaml.example` to `config.yaml` and add your keys there.
+
 **Get API Keys:**
+- **OpenAI**: [Sign up](https://platform.openai.com) → Create API key
 - **Serper.dev**: [Sign up](https://serper.dev) → Get free tier (2,500 queries)
 - **ZenRows** (optional): [Sign up](https://zenrows.com)
 
@@ -102,9 +89,6 @@ Summit Roofing,Boston,(617) 555-0123,,roofing contractor
 ### 5. Run the Resolver
 
 ```bash
-# Start Ollama server (in separate terminal)
-ollama serve
-
 # Run resolver
 python domain_resolver.py companies.csv
 
@@ -153,8 +137,8 @@ INPUT: Company Name + Context
 ┌─────────────────────────────────────────┐
 │ STAGE 3: Deep Scraping + LLM Judge      │  ~5% additional
 │ - Fetch HTML (requests → ZenRows)       │  Confidence: 70-90
-│ - Extract text (Trafilatura)            │  Cost: $0.15/1k
-│ - LLM verification (Ollama local)       │
+│ - Extract text (Trafilatura)            │  Cost: ~$1.30/1k
+│ - LLM verification (OpenAI GPT-4o-mini) │
 │ - Phone/address matching                │
 └─────────────────────────────────────────┘
     ↓
@@ -167,8 +151,8 @@ OUTPUT: Domain + Confidence + Evidence
 2. **Knowledge Graph Detection** - Google pre-verified entities
 3. **Fuzzy Matching Heuristics** - Avoid LLM calls for obvious matches (10x faster)
 4. **Parking Domain Detection** - Filter "domain for sale" pages
-5. **Local LLM** - FREE inference on M4 Mac (vs $1-2 for cloud LLM)
-6. **Lightweight Model** - 14B params sufficient (vs 32B overkill)
+5. **GPT-4o-mini** - Cost-effective cloud LLM (~$1.30 per 1,000 companies)
+6. **Full Content Analysis** - Pass complete webpage to LLM for accurate verification
 
 ---
 
@@ -239,21 +223,9 @@ thresholds:
   manual_review: 80    # Higher bar for auto-acceptance
 ```
 
-### Using Faster LLM Model
+### LLM Model
 
-For speed over accuracy:
-
-```yaml
-llm:
-  model: "qwen2.5:7b"  # Or llama3.2:3b (very fast)
-```
-
-**Model comparison:**
-| Model | Size | Speed (M4) | Accuracy | Use Case |
-|-------|------|------------|----------|----------|
-| `qwen2.5:14b` | 8GB | ~2s | Best | Recommended |
-| `qwen2.5:7b` | 4GB | ~1s | Good | Speed priority |
-| `llama3.2:3b` | 2GB | ~0.5s | Fair | Maximum speed |
+The resolver uses OpenAI GPT-4o-mini by default, which provides excellent accuracy at low cost (~$1.30 per 1,000 companies with full content analysis).
 
 ### Enabling Discolike Verification
 
@@ -280,27 +252,16 @@ api_keys:
   serper: "your_actual_key_here"
 ```
 
-**2. "Ollama connection refused"**
+**2. "OpenAI API error"**
 ```bash
-# Start Ollama server
-ollama serve
+# Verify your API key is set
+echo $OPENAI_API_KEY
 
-# In another terminal, verify it's running
-curl http://localhost:11434/api/generate
+# Check your OpenAI account has credits
+# Visit: https://platform.openai.com/usage
 ```
 
-**3. "Model not found: qwen2.5:14b"**
-```bash
-# Download the model
-ollama pull qwen2.5:14b
-
-# Or use a different model
-# Edit config.yaml:
-llm:
-  model: "qwen2.5:7b"  # Smaller, faster
-```
-
-**4. Low accuracy on generic company names**
+**3. Low accuracy on generic company names**
 
 Add more context:
 ```csv
@@ -309,7 +270,7 @@ Delta,Indianapolis,,"faucet plumbing"  # Not the airline
 Summit,Boston,,"roofing contractor"   # Not consulting
 ```
 
-**5. High rate limit errors**
+**4. High rate limit errors**
 
 Reduce workers:
 ```yaml
@@ -346,27 +307,27 @@ cat logs/lookups.jsonl | jq 'select(.result.domain == null)'
 | Serper Places | 60% | $0 | $0 |
 | Serper Search | 40% | $0.0003 | $0.12 |
 | ZenRows (10% fallback) | 4% | $0.003 | $0.12 |
-| LLM (local) | 5% | $0 | $0 |
-| **Total** | | | **$0.24** |
+| OpenAI GPT-4o-mini | 100% | $0.0013 | $1.30 |
+| **Total** | | | **$1.54** |
 
 **Scenario B: With Discolike**
 | Addition | Cost |
 |----------|------|
-| Base (above) | $0.24 |
+| Base (above) | $1.54 |
 | Discolike (10% usage) | $0.50-5.00 |
-| **Total** | **$0.74-5.24** |
+| **Total** | **$2.04-6.54** |
 
 **Scenario C: High scraping rate (anti-bot sites)**
 | Stage | Cost |
 |-------|------|
-| Base | $0.24 |
+| Base | $1.54 |
 | ZenRows Premium (20% usage) | $0.60 |
-| **Total** | **$0.84** |
+| **Total** | **$2.14** |
 
 ### Free Tier Limits
 
 - **Serper**: 2,500 free queries (good for 2,500 companies)
-- **Ollama**: Unlimited (runs locally)
+- **OpenAI**: Pay-as-you-go (~$1.30 per 1,000 companies)
 - **Trafilatura**: Unlimited (open source)
 
 ---
@@ -381,11 +342,8 @@ processing:
   max_workers: 20  # Default: 10
 ```
 
-**2. Use faster LLM model**:
-```yaml
-llm:
-  model: "qwen2.5:7b"  # 2x faster than 14B
-```
+**2. Reduce LLM usage**:
+Skip LLM verification for high-confidence Serper results by adjusting thresholds.
 
 **3. Disable optional stages**:
 ```yaml
@@ -418,11 +376,7 @@ thresholds:
   manual_review: 80
 ```
 
-**3. Use better LLM model**:
-```yaml
-llm:
-  model: "qwen2.5:32b"  # Best accuracy (slower)
-```
+**3. Use OpenAI GPT-4o-mini** (already configured): Best cost/accuracy balance.
 
 ---
 
@@ -440,7 +394,7 @@ domain-resolver/
 │   ├── fuzzy_matcher.py       # Heuristic matching
 │   ├── parking_detector.py    # Parked domain filter
 │   ├── scraper.py             # Web scraping (Trafilatura)
-│   ├── llm_judge.py           # Ollama LLM client
+│   ├── openai_judge.py        # OpenAI GPT-4o-mini LLM client
 │   └── utils.py               # Helper functions
 │
 ├── test/                       # Testing framework
@@ -575,17 +529,12 @@ MIT License - See LICENSE file for details
 
 **Built with:**
 - [Serper.dev](https://serper.dev) - Google Search API
-- [Ollama](https://ollama.com) - Local LLM inference
+- [OpenAI](https://openai.com) - GPT-4o-mini for LLM verification
 - [Trafilatura](https://trafilatura.readthedocs.io) - Web content extraction
 - [RapidFuzz](https://github.com/maxbachmann/RapidFuzz) - Fuzzy string matching
 
-**Architecture inspired by:**
-- Feedback from domain resolution research
-- Cost optimization principles
-- M4 Mac local-first computing
-
 ---
 
-**Last Updated:** 2025-11-23
+**Last Updated:** 2025-11-27
 
-**Version:** 1.0.0
+**Version:** 2.0.0

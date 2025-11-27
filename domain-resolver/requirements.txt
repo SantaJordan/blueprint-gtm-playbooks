@@ -18,5 +18,8 @@ requests==2.31.0
 # YAML config
 pyyaml==6.0.1
 
-# HTTP client for Ollama
+# HTTP client
 httpx==0.25.2
+
+# OpenAI API for LLM validation
+openai>=1.0.0

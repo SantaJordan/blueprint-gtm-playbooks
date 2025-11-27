@@ -4,6 +4,7 @@ Domain Resolver - High-Confidence Company Domain Resolution
 Waterfall architecture: Places → Search+KG → Scrape+LLM
 """
 import asyncio
+import os
 import pandas as pd
 import yaml
 import logging
@@ -15,13 +16,13 @@ from tqdm.asyncio import tqdm
 from datetime import datetime
 
 # Import modules
-from modules.serper import SerperClient, resolve_company
+from modules.serper import SerperClient, resolve_company, resolve_deep_link
 from modules.scraper import scrape_url
-from modules.llm_judge import verify_with_llm
+from modules.openai_judge import OpenAIJudge, verify_with_openai
 from modules.parking_detector import is_parked_domain, get_parking_confidence
 from modules.discolike import DiscolikeClient, resolve_via_discolike
 from modules.ocean import OceanClient, resolve_via_ocean
-from modules.utils import verify_dns
+from modules.utils import verify_dns, detect_government_site_type
 
 # Setup logging
 def setup_logging(config: Dict):
@@ -56,20 +57,29 @@ class DomainResolver:
         """
         self.config = config
 
-        # Initialize Serper client
-        serper_key = config['api_keys']['serper']
-        if not serper_key or serper_key == "YOUR_SERPER_API_KEY":
-            raise ValueError("Serper API key not configured in config.yaml")
+        # Get API keys from environment variables (preferred) or config file (fallback)
+        def get_api_key(env_var: str, config_key: str) -> str:
+            """Get API key from env var or config, with env var taking precedence"""
+            return os.environ.get(env_var) or config.get('api_keys', {}).get(config_key, '')
+
+        serper_key = get_api_key('SERPER_API_KEY', 'serper')
+        if not serper_key or serper_key.startswith('YOUR_'):
+            raise ValueError("Serper API key not configured. Set SERPER_API_KEY env var or add to config.yaml")
 
         self.serper_client = SerperClient(
             api_key=serper_key,
             timeout=config['processing']['timeout_seconds']
         )
 
-        # Optional API keys
-        self.zenrows_key = config['api_keys'].get('zenrows')
-        self.discolike_key = config['api_keys'].get('discolike')
-        self.ocean_key = config['api_keys'].get('ocean')
+        # Optional API keys (from env vars or config)
+        self.zenrows_key = get_api_key('ZENROWS_API_KEY', 'zenrows')
+        self.discolike_key = get_api_key('DISCOLIKE_API_KEY', 'discolike')
+        self.ocean_key = get_api_key('OCEAN_API_KEY', 'ocean')
+
+        # OpenAI API key for LLM verification
+        openai_key = get_api_key('OPENAI_API_KEY', 'openai_api_key')
+        if openai_key:
+            self.config.setdefault('llm', {})['openai_api_key'] = openai_key
 
         # Initialize Discolike client if API key provided
         self.discolike_client = None
@@ -152,9 +162,9 @@ class DomainResolver:
 
                 logger.info(f"✓ Serper result: {domain} (confidence: {confidence}, source: {source})")
 
-                # ALWAYS trigger LLM verification (Ollama is free, no reason to skip)
+                # ALWAYS trigger LLM verification (GPT-4o-mini for accuracy)
                 if self.config['stages'].get('use_scraping', True):
-                    logger.info(f"→ Triggering LLM verification for all results (confidence: {confidence})")
+                    logger.info(f"→ Triggering GPT-4o-mini verification (confidence: {confidence})")
                     scrape_result = await self._verify_with_scraping(company_data, domain)
 
                     if scrape_result:
@@ -241,6 +251,19 @@ class DomainResolver:
         """
         url = f"https://{domain}"
 
+        # Pre-check: detect government site type before scraping
+        gov_check = detect_government_site_type(domain)
+        if gov_check['is_federal_oversight']:
+            logger.warning(f"⚠ Federal oversight site detected: {domain} - rejecting as facility website")
+            return {
+                'domain': None,
+                'confidence': 0,
+                'source': 'pre_filter',
+                'method': 'federal_oversight_rejected',
+                'error': f"Federal oversight/registry site ({domain}) - not a facility website",
+                'is_government_oversight_site': True
+            }
+
         try:
             # Scrape website
             logger.info(f"Scraping {url}...")
@@ -272,17 +295,53 @@ class DomainResolver:
                     'error': f'Parked domain: {parking_reason}'
                 }
 
-            # LLM verification
-            logger.info(f"Verifying with LLM...")
-            llm_result = await verify_with_llm(
+            # LLM verification with OpenAI GPT-4o-mini (full content)
+            logger.info(f"Verifying with GPT-4o-mini (full content: {len(webpage_text)} chars)...")
+            llm_result = await verify_with_openai(
                 company_data,
                 url,
-                webpage_text,
+                webpage_text,  # Pass full content - GPT-4o-mini has 128K context
                 self.config
             )
 
             logger.info(f"LLM judgment: match={llm_result['match']}, confidence={llm_result['confidence']}")
             logger.info(f"Evidence: {llm_result['evidence']}")
+
+            # Check if LLM detected government oversight site
+            if llm_result.get('is_government_oversight_site'):
+                logger.warning(f"⚠ LLM detected government oversight site: {domain}")
+                return {
+                    'domain': None,
+                    'confidence': 0,
+                    'source': 'llm_verified',
+                    'method': 'government_oversight_rejected',
+                    'error': f'Government oversight/registry site - not facility website',
+                    'llm_evidence': llm_result['evidence'],
+                    'is_government_oversight_site': True
+                }
+
+            # Check if LLM flagged this as needing deep link discovery
+            if llm_result.get('needs_deep_link') and llm_result.get('is_government_portal'):
+                logger.info(f"→ Government portal detected, attempting deep link discovery for {domain}")
+                deep_link_result = await self._discover_deep_link(
+                    company_data,
+                    domain,
+                    llm_result.get('suggested_deep_link_search')
+                )
+                if deep_link_result:
+                    logger.info(f"✓ Deep link found: {deep_link_result['domain']}")
+                    return deep_link_result
+                else:
+                    logger.warning(f"⚠ No deep link found on portal {domain}")
+                    return {
+                        'domain': None,
+                        'confidence': 0,
+                        'source': 'llm_verified',
+                        'method': 'government_portal_no_deep_link',
+                        'error': f'Government portal without specific facility page',
+                        'llm_evidence': llm_result['evidence'],
+                        'is_government_portal': True
+                    }
 
             if llm_result['match'] and llm_result['confidence'] >= 70:
                 # LLM confirmed match
@@ -307,6 +366,33 @@ class DomainResolver:
 
         except Exception as e:
             logger.error(f"Scraping/LLM error for {domain}: {e}")
+            return None
+
+    async def _discover_deep_link(self, company_data: Dict[str, Any],
+                                  portal_domain: str,
+                                  suggested_query: Optional[str] = None) -> Optional[Dict[str, Any]]:
+        """
+        Discover a deep link on a government portal for a specific facility.
+
+        Args:
+            company_data: Company information
+            portal_domain: The portal domain to search within
+            suggested_query: Optional LLM-suggested search query
+
+        Returns:
+            Deep link result or None
+        """
+        try:
+            result = await resolve_deep_link(
+                self.serper_client,
+                company_data,
+                portal_domain,
+                suggested_query,
+                self.config
+            )
+            return result
+        except Exception as e:
+            logger.error(f"Deep link discovery error: {e}")
             return None
 
     def _log_lookup(self, company_data: Dict, result: Dict, duration: float):

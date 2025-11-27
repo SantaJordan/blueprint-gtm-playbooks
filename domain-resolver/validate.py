@@ -6,6 +6,7 @@ Runs comprehensive tests on domain resolver and generates detailed reports
 import asyncio
 import subprocess
 import sys
+import os
 import logging
 from pathlib import Path
 from datetime import datetime
@@ -95,20 +96,15 @@ async def validate_environment():
             logger.error(f"  ✗ {package_name} not installed")
             checks.append(('package', package_name, False))
 
-    # Check Ollama service
-    logger.info("\nChecking Ollama service...")
-    success, output, error = run_command(
-        ['curl', '-s', 'http://localhost:11434/api/tags'],
-        "Checking Ollama API",
-        timeout=10
-    )
-
-    if success and 'llama3.2:3b' in output:
-        logger.info("  ✓ Ollama is running with llama3.2:3b")
-        checks.append(('service', 'Ollama', True))
+    # Check OpenAI API key
+    logger.info("\nChecking OpenAI API key...")
+    openai_key = os.environ.get('OPENAI_API_KEY', '')
+    if openai_key and openai_key.startswith('sk-'):
+        logger.info("  ✓ OPENAI_API_KEY environment variable is set")
+        checks.append(('service', 'OpenAI', True))
     else:
-        logger.error("  ✗ Ollama not available or llama3.2:3b not loaded")
-        checks.append(('service', 'Ollama', False))
+        logger.warning("  ⚠ OPENAI_API_KEY not set (will check config.yaml)")
+        checks.append(('service', 'OpenAI', False))
 
     # Check config file
     logger.info("\nChecking configuration...")

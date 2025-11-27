@@ -1,0 +1,81 @@
+# API Configuration
+# Set these via environment variables (recommended) or fill in directly
+api_keys:
+  serper: ""  # SERPER_API_KEY - Serper.dev API key
+  zenrows: ""  # ZENROWS_API_KEY - ZenRows API key (optional)
+  discolike: ""  # DISCOLIKE_API_KEY - Discolike API key (optional)
+  ocean: ""  # OCEAN_API_KEY - Ocean.io API key (optional)
+
+# Processing Configuration
+processing:
+  max_workers: 10  # Concurrent requests - OpenAI API handles this well
+  timeout_seconds: 30  # Per-request timeout
+
+# Stage Configuration
+stages:
+  use_places: true  # Stage 1: Serper Places API
+  use_search: true  # Stage 2: Serper Search + KG
+  use_discolike: false  # Stage 3a: Discolike B2B enrichment (togglable)
+  use_ocean: false  # Stage 3b: Ocean.io B2B enrichment (togglable)
+  use_scraping: true  # Stage 4: Deep scrape + LLM
+
+# Confidence Thresholds
+thresholds:
+  auto_accept: 85  # Auto-accept if confidence >= this
+  needs_scraping: 50  # Trigger scraping if confidence between 50-84
+  manual_review: 70  # Flag for manual review if < this after all stages
+
+# Fuzzy Matching
+fuzzy_matching:
+  exact_match_threshold: 90  # Fuzzy ratio for auto-accept
+  good_match_threshold: 70  # Fuzzy ratio requiring context confirmation
+  min_context_hits: 2  # Minimum context word matches in snippet
+
+# LLM Configuration - OpenAI GPT-4o-mini (cloud-based validation)
+# Set OPENAI_API_KEY environment variable (recommended) or fill in below
+llm:
+  provider: "openai"
+  openai_api_key: ""  # OPENAI_API_KEY - leave empty to use env var
+  model: "gpt-4o-mini"  # GPT-4o-mini for cost-effective validation
+  timeout: 30  # Request timeout in seconds
+  max_tokens: 500  # Max tokens for response
+
+# Blacklist
+blacklist_domains:
+  # Social media
+  - linkedin.com
+  - facebook.com
+  - instagram.com
+  - twitter.com
+
+  # Business directories
+  - crunchbase.com
+  - yellowpages.com
+  - yelp.com
+  - bbb.org
+  - manta.com
+  - whitepages.com
+  - superpages.com
+
+  # Healthcare directories and ranking sites
+  - medicare.gov
+  - cms.gov
+  - usnews.com
+  - caring.com
+  - seniorliving.org
+  - aplaceformom.com
+  - nursa.com
+  - greatcall.com
+
+  # Healthcare associations (not facility websites)
+  - hanys.org
+  - ahca.org
+  - leadingage.org
+  - aahsa.org
+  - argentum.org
+
+# Logging
+logging:
+  level: INFO  # DEBUG, INFO, WARNING, ERROR
+  log_file: logs/domain_resolver.log
+  save_lookups: true  # Save detailed lookup logs to JSONL

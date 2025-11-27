@@ -102,6 +102,11 @@ async def resolve_via_places(client: SerperClient, company_data: Dict[str, Any],
     city = company_data.get('city')
     phone = company_data.get('phone')
 
+    # Convert to strings (pandas may read these as floats/ints)
+    if name: name = str(name)
+    if city: city = str(city)
+    if phone: phone = str(phone)
+
     if not name:
         return None
 
@@ -202,6 +207,12 @@ async def resolve_via_search(client: SerperClient, company_data: Dict[str, Any],
     city = company_data.get('city')
     context = company_data.get('context')
     phone = company_data.get('phone')
+
+    # Convert to strings (pandas may read these as floats/ints)
+    if name: name = str(name)
+    if city: city = str(city)
+    if context: context = str(context)
+    if phone: phone = str(phone)
 
     if not name:
         return None
@@ -349,3 +360,114 @@ async def resolve_company(client: SerperClient, company_data: Dict[str, Any],
                 result = search_result
 
     return result
+
+
+async def resolve_deep_link(client: SerperClient, company_data: Dict[str, Any],
+                            portal_domain: str, suggested_query: Optional[str] = None,
+                            config: Optional[Dict[str, Any]] = None) -> Optional[Dict[str, Any]]:
+    """
+    Search for a specific page/deep link on a government portal for an organization.
+
+    When an organization (like a county hospital) has its website hosted on a
+    government portal (like dallascounty.org), this function searches for the
+    specific page or subdomain where the facility lives.
+
+    Args:
+        client: SerperClient instance
+        company_data: Dict with name, city, etc.
+        portal_domain: The government portal domain (e.g., "dallascounty.org")
+        suggested_query: Optional LLM-suggested search query
+        config: Configuration dict
+
+    Returns:
+        Result dict with deep link URL or None if not found
+    """
+    name = company_data.get('name', '')
+    city = company_data.get('city', '')
+
+    if not name or not portal_domain:
+        return None
+
+    # Build site-specific search query
+    if suggested_query:
+        query = suggested_query
+    else:
+        # Default: search within the portal for the organization name
+        query = f'site:{portal_domain} "{name}"'
+
+    logger.info(f"Deep link search: {query}")
+
+    try:
+        response = await client.search(query, num_results=10)
+
+        if not response:
+            return None
+
+        organic_results = response.get('organic', [])
+
+        if not organic_results:
+            logger.debug(f"No deep link results for: {name} on {portal_domain}")
+            return None
+
+        # Look for results that are on the portal domain with a specific path
+        for result in organic_results[:5]:
+            url = result.get('link', '')
+            snippet = result.get('snippet', '')
+            title = result.get('title', '')
+
+            if not url:
+                continue
+
+            # Must be on the target portal domain
+            result_domain = clean_domain(url)
+            if result_domain != portal_domain:
+                continue
+
+            # Must have a meaningful path (not just root domain)
+            from urllib.parse import urlparse
+            parsed = urlparse(url)
+            path = parsed.path.strip('/')
+
+            if not path or path in ['index.html', 'index.htm', 'home']:
+                # This is still the root - not a deep link
+                continue
+
+            # Check if company name appears in title, URL path, or snippet
+            name_lower = name.lower()
+            name_words = [w for w in name_lower.split() if len(w) > 3]
+
+            name_in_title = any(word in title.lower() for word in name_words)
+            name_in_path = any(word in path.lower() for word in name_words)
+            name_in_snippet = any(word in snippet.lower() for word in name_words)
+
+            match_signals = sum([name_in_title, name_in_path, name_in_snippet])
+
+            if match_signals >= 1:
+                # Calculate confidence based on signals
+                confidence = 60 + (match_signals * 10)  # 70-90 based on signals
+
+                logger.info(f"✓ Deep link found: {url} (confidence: {confidence})")
+
+                return {
+                    'domain': url,  # Return full URL, not just domain
+                    'is_deep_link': True,
+                    'portal_domain': portal_domain,
+                    'confidence': confidence,
+                    'source': 'deep_link_search',
+                    'method': 'site_specific_search',
+                    'details': {
+                        'path': path,
+                        'title': title,
+                        'name_in_title': name_in_title,
+                        'name_in_path': name_in_path,
+                        'name_in_snippet': name_in_snippet,
+                        'snippet': snippet[:200]
+                    }
+                }
+
+        logger.debug(f"No matching deep link found for {name} on {portal_domain}")
+        return None
+
+    except Exception as e:
+        logger.error(f"Deep link search error for {name}: {e}")
+        return None

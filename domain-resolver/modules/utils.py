@@ -18,6 +18,9 @@ def normalize_company_name(name: str) -> str:
     if not name:
         return ""
 
+    # Convert to string if not already (handles float/int inputs from pandas)
+    name = str(name)
+
     stopwords = [
         'inc', 'incorporated', 'llc', 'corp', 'corporation', 'ltd', 'limited',
         'company', 'co', 'the', 'and', '&', 'l.l.c.', 'l.p.', 'lp', 'plc',
@@ -170,6 +173,11 @@ def create_search_query(name: str, city: Optional[str] = None,
         context: Additional context (industry, keywords)
         query_type: "official", "places", or "generic"
     """
+    # Convert to strings (pandas may read these as floats/ints)
+    name = str(name) if name else ""
+    city = str(city) if city else None
+    context = str(context) if context else None
+
     parts = [name]
 
     if city:
@@ -186,3 +194,106 @@ def create_search_query(name: str, city: Optional[str] = None,
         pass
 
     return ' '.join(parts)
+
+
+def detect_government_site_type(domain: str) -> dict:
+    """
+    Detect if domain is a government oversight/portal site
+    Uses heuristics to identify federal oversight, state gov, and county portals
+
+    Args:
+        domain: Domain to analyze (e.g., "hrsa.gov", "dallascounty.org")
+
+    Returns:
+        {
+            'is_federal_oversight': bool,  # hrsa.gov, hhs.gov, cms.gov
+            'is_state_gov': bool,          # *.state.*.us, etc
+            'is_county_portal': bool,      # dallascounty.org type
+            'site_type': str,              # 'federal_oversight', 'state_gov', 'county_portal', 'none'
+            'confidence': float            # 0.0-1.0
+        }
+    """
+    if not domain:
+        return {
+            'is_federal_oversight': False,
+            'is_state_gov': False,
+            'is_county_portal': False,
+            'site_type': 'none',
+            'confidence': 0.0
+        }
+
+    domain_lower = domain.lower()
+
+    # Federal oversight/registry sites - high confidence rejection
+    federal_oversight_domains = [
+        'hrsa.gov',      # Health Resources & Services Administration
+        'hhs.gov',       # Health & Human Services
+        'cms.gov',       # Centers for Medicare & Medicaid
+        'medicare.gov',  # Medicare
+        'medicaid.gov',  # Medicaid
+        'cdc.gov',       # Centers for Disease Control
+        'nih.gov',       # National Institutes of Health
+        'fda.gov',       # Food and Drug Administration
+        'samhsa.gov',    # Substance Abuse and Mental Health Services
+    ]
+
+    for fed_domain in federal_oversight_domains:
+        if domain_lower == fed_domain or domain_lower.endswith('.' + fed_domain):
+            return {
+                'is_federal_oversight': True,
+                'is_state_gov': False,
+                'is_county_portal': False,
+                'site_type': 'federal_oversight',
+                'confidence': 0.95
+            }
+
+    # State government patterns
+    state_patterns = [
+        r'\.state\.[a-z]{2}\.us$',  # state.tx.us
+        r'^[a-z]{2}\.gov$',          # tx.gov (state abbreviation)
+        r'health\.[a-z]{2}\.gov$',   # health.ny.gov
+        r'dshs\.[a-z]{2}\.gov$',     # dshs.tx.gov (state health services)
+    ]
+
+    for pattern in state_patterns:
+        if re.search(pattern, domain_lower):
+            return {
+                'is_federal_oversight': False,
+                'is_state_gov': True,
+                'is_county_portal': False,
+                'site_type': 'state_gov',
+                'confidence': 0.85
+            }
+
+    # County/city portal patterns
+    county_keywords = ['county', 'parish', 'borough', 'city', 'town', 'village', 'municipal']
+    for keyword in county_keywords:
+        if keyword in domain_lower:
+            # Check if it ends with .org or .gov (common for local govt)
+            if domain_lower.endswith('.org') or domain_lower.endswith('.gov') or domain_lower.endswith('.us'):
+                return {
+                    'is_federal_oversight': False,
+                    'is_state_gov': False,
+                    'is_county_portal': True,
+                    'site_type': 'county_portal',
+                    'confidence': 0.75
+                }
+
+    # Check for generic .gov that's not federal (likely local)
+    if domain_lower.endswith('.gov') and not any(domain_lower == d for d in federal_oversight_domains):
+        # Could be county/city government
+        return {
+            'is_federal_oversight': False,
+            'is_state_gov': False,
+            'is_county_portal': True,
+            'site_type': 'county_portal',
+            'confidence': 0.60
+        }
+
+    return {
+        'is_federal_oversight': False,
+        'is_state_gov': False,
+        'is_county_portal': False,
+        'site_type': 'none',
+        'confidence': 0.0
+    }
