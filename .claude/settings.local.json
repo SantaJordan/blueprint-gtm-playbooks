@@ -56,7 +56,13 @@
       "mcp__databricks-mimi__query_databricks",
       "mcp__databricks-mimi__list_tables",
       "mcp__databricks-mimi__describe_table",
-      "Skill(blueprint-pvp-deep)"
+      "Skill(blueprint-pvp-deep)",
+      "WebFetch(domain:beta.blitz-api.ai)",
+      "WebFetch(domain:docs.scrapin.io)",
+      "WebFetch(domain:rapidapi.com)",
+      "WebFetch(domain:leadmagic.io)",
+      "WebFetch(domain:docs.leadmagic.io)",
+      "WebFetch(domain:www.openwebninja.com)"
     ],
     "deny": [],
     "ask": []

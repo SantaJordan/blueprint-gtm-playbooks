@@ -1,0 +1,748 @@
+[
+  {
+    "ground_truth": {
+      "name": "\ud83e\udde0 Sridhar Ranganathan",
+      "company": "B2Brain",
+      "title": "Cofounder and CEO",
+      "linkedin_url": "https://www.linkedin.com/in/sridharnathan"
+    },
+    "enrichments": {
+      "rapidapi": {
+        "success": true,
+        "name": "\ud83e\udde0 Sridhar Ranganathan",
+        "title": "Go from Offline to Pipeline",
+        "company": "B2Brain \u00b7 Full-time",
+        "experiences": [
+          {
+            "title": "Cofounder and CEO",
+            "company": "B2Brain \u00b7 Full-time",
+            "duration": "Nov 2020 - Present \u00b7 5 yrs 1 mo",
+            "company_url": "https://www.linkedin.com/company/22485531/"
+          },
+          {
+            "title": "Advisor & Board Member",
+            "company": "Innoventes Technologies India Private Limited",
+            "duration": "Nov 2012 - Present \u00b7 13 yrs 1 mo",
+            "company_url": "https://www.linkedin.com/company/3253185/"
+          },
+          {
+            "title": "Cofounder and CEO",
+            "company": "Credibase",
+            "duration": "Sep 2013 - Oct 2020 \u00b7 7 yrs 2 mos",
+            "company_url": "https://www.linkedin.com/company/3556379/"
+          }
+        ],
+        "error": null
+      },
+      "scrapin": {
+        "success": true,
+        "name": "\ud83e\udde0 Sridhar Ranganathan",
+        "title": "Go from Offline to Pipeline",
+        "company": "B2Brain",
+        "experiences": [
+          {
+            "title": "Cofounder and CEO",
+            "company": "B2Brain",
+            "duration": null,
+            "is_current": false
+          },
+          {
+            "title": "Advisor & Board Member",
+            "company": "Innoventes Technologies India Private Limited",
+            "duration": null,
+            "is_current": false
+          },
+          {
+            "title": "Cofounder and CEO",
+            "company": "Credibase",
+            "duration": null,
+            "is_current": false
+          }
+        ],
+        "error": null
+      }
+    },
+    "verification": {
+      "is_same_person": true,
+      "currently_employed": true,
+      "confidence": 100,
+      "reasoning": "Rule-based verification",
+      "red_flags": []
+    },
+    "sources_agree_on_name": true,
+    "sources_agree_on_company": true,
+    "any_source_found_data": true,
+    "total_latency_ms": 12863
+  },
+  {
+    "ground_truth": {
+      "name": "Todd Schmidt",
+      "company": "Google",
+      "title": "Technical Program Manager",
+      "linkedin_url": "https://www.linkedin.com/in/todd-schmidt"
+    },
+    "enrichments": {
+      "rapidapi": {
+        "success": true,
+        "name": "Todd Schmidt",
+        "title": "Technical Program Manager at Google",
+        "company": "Google \u00b7 Full-time",
+        "experiences": [
+          {
+            "title": "Technical Program Manager",
+            "company": "Google \u00b7 Full-time",
+            "duration": "Nov 2024 - Present \u00b7 1 yr 1 mo",
+            "company_url": "https://www.linkedin.com/company/1441/"
+          },
+          {
+            "title": "Vice President Operations",
+            "company": "Slip Robotics \u00b7 Full-time",
+            "duration": "May 2022 - Nov 2024 \u00b7 2 yrs 7 mos",
+            "company_url": "https://www.linkedin.com/company/42279643/"
+          },
+          {
+            "title": "CTO, co-founder",
+            "company": "The Home Dispatch \u00b7 Full-time",
+            "duration": "Dec 2021 - Jul 2023 \u00b7 1 yr 8 mos",
+            "company_url": "https://www.linkedin.com/company/70022226/"
+          }
+        ],
+        "error": null
+      },
+      "scrapin": {
+        "success": true,
+        "name": "Todd Schmidt",
+        "title": "Technical Program Manager at Google",
+        "company": "Google",
+        "experiences": [
+          {
+            "title": "Technical Program Manager",
+            "company": "Google",
+            "duration": null,
+            "is_current": false
+          },
+          {
+            "title": "Vice President Operations",
+            "company": "Slip Robotics",
+            "duration": null,
+            "is_current": false
+          },
+          {
+            "title": "CTO, co-founder",
+            "company": "The Home Dispatch",
+            "duration": null,
+            "is_current": false
+          }
+        ],
+        "error": null
+      }
+    },
+    "verification": {
+      "is_same_person": true,
+      "currently_employed": true,
+      "confidence": 100,
+      "reasoning": "Rule-based verification",
+      "red_flags": []
+    },
+    "sources_agree_on_name": true,
+    "sources_agree_on_company": true,
+    "any_source_found_data": true,
+    "total_latency_ms": 5443
+  },
+  {
+    "ground_truth": {
+      "name": "Eric Duncan",
+      "company": "Salesforce",
+      "title": "Senior Director, Marketing Strategy and Operations | All Products",
+      "linkedin_url": "https://www.linkedin.com/in/ericduncan1"
+    },
+    "enrichments": {
+      "rapidapi": {
+        "success": true,
+        "name": "Eric Duncan",
+        "title": "Senior Director, Marketing Strategy & Operations at Salesforce",
+        "company": "12 yrs 1 mo",
+        "experiences": [
+          {
+            "title": "Salesforce",
+            "company": "12 yrs 1 mo",
+            "duration": null,
+            "company_url": "https://www.linkedin.com/company/3185/"
+          },
+          {
+            "title": "Project Manager",
+            "company": "CBRE",
+            "duration": "Jul 2012 - Oct 2013 \u00b7 1 yr 4 mos",
+            "company_url": "https://www.linkedin.com/company/2319/"
+          }
+        ],
+        "error": null
+      },
+      "scrapin": {
+        "success": true,
+        "name": "Eric Duncan",
+        "title": "Senior Director, Marketing Strategy & Operations at Salesforce",
+        "company": "Salesforce",
+        "experiences": [
+          {
+            "title": "Senior Director, Marketing Strategy and Operations | All Products",
+            "company": "Salesforce",
+            "duration": null,
+            "is_current": false
+          },
+          {
+            "title": "Director, Marketing Strategy & Operations | Tableau ",
+            "company": "Salesforce",
+            "duration": null,
+            "is_current": false
+          },
+          {
+            "title": "Senior Manager, Marketing Strategy & Operations | Brand ",
+            "company": "Salesforce",
+            "duration": null,
+            "is_current": false
+          }
+        ],
+        "error": null
+      }
+    },
+    "verification": {
+      "is_same_person": true,
+      "currently_employed": true,
+      "confidence": 100,
+      "reasoning": "Rule-based verification",
+      "red_flags": []
+    },
+    "sources_agree_on_name": true,
+    "sources_agree_on_company": false,
+    "any_source_found_data": true,
+    "total_latency_ms": 12247
+  },
+  {
+    "ground_truth": {
+      "name": "Josh Fialkoff",
+      "company": "High Speed ATV Corporation",
+      "title": "Chief Executive Officer",
+      "linkedin_url": "https://www.linkedin.com/in/joshfialkoff"
+    },
+    "enrichments": {
+      "rapidapi": {
+        "success": true,
+        "name": "Josh Fialkoff",
+        "title": "Chief Executive Officer | building the future of eco-friendly off-road transportation",
+        "company": "High Speed ATV Corporation \u00b7 Full-time",
+        "experiences": [
+          {
+            "title": "Chief Executive Officer",
+            "company": "High Speed ATV Corporation \u00b7 Full-time",
+            "duration": "Mar 2025 - Present \u00b7 9 mos",
+            "company_url": "https://www.linkedin.com/company/91046290/"
+          },
+          {
+            "title": "Chief Marketing Officer",
+            "company": "ForwardJump Marketing \u00b7 Full-time",
+            "duration": "Feb 2012 - Apr 2025 \u00b7 13 yrs 3 mos",
+            "company_url": "https://www.linkedin.com/company/2820044/"
+          },
+          {
+            "title": "Director of Online Marketing",
+            "company": "Baldwin Clancy Rogan Advertising",
+            "duration": "Apr 2008 - Jan 2012 \u00b7 3 yrs 10 mos",
+            "company_url": "https://www.linkedin.com/search/results/all/?keywords=Baldwin+Clancy+Rogan+Advertising"
+          }
+        ],
+        "error": null
+      },
+      "scrapin": {
+        "success": true,
+        "name": "Josh Fialkoff",
+        "title": "Chief Executive Officer | building the future of eco-friendly off-road transportation",
+        "company": "High Speed ATV Corporation",
+        "experiences": [
+          {
+            "title": "Chief Executive Officer",
+            "company": "High Speed ATV Corporation",
+            "duration": null,
+            "is_current": false
+          },
+          {
+            "title": "Chief Marketing Officer",
+            "company": "ForwardJump Marketing",
+            "duration": null,
+            "is_current": false
+          },
+          {
+            "title": "Director of Online Marketing",
+            "company": "Baldwin Clancy Rogan Advertising",
+            "duration": null,
+            "is_current": false
+          }
+        ],
+        "error": null
+      }
+    },
+    "verification": {
+      "is_same_person": true,
+      "currently_employed": true,
+      "confidence": 100,
+      "reasoning": "Rule-based verification",
+      "red_flags": []
+    },
+    "sources_agree_on_name": true,
+    "sources_agree_on_company": true,
+    "any_source_found_data": true,
+    "total_latency_ms": 10436
+  },
+  {
+    "ground_truth": {
+      "name": "Felix Meng",
+      "company": "Zip",
+      "title": "Co-Founder",
+      "linkedin_url": "https://www.linkedin.com/in/felixmeng"
+    },
+    "enrichments": {
+      "rapidapi": {
+        "success": true,
+        "name": "Felix M.",
+        "title": "Co-founder @ Zip",
+        "company": "Zip \u00b7 Full-time",
+        "experiences": [
+          {
+            "title": "Co-Founder",
+            "company": "Zip \u00b7 Full-time",
+            "duration": "2021 - Present \u00b7 4 yrs 11 mos",
+            "company_url": "https://www.linkedin.com/company/42784537/"
+          },
+          {
+            "title": "Salesforce",
+            "company": "6 yrs 10 mos",
+            "duration": "San Francisco Bay Area",
+            "company_url": "https://www.linkedin.com/company/3185/"
+          },
+          {
+            "title": "Restaurateur",
+            "company": "Asia Express",
+            "duration": "Jan 2000 - Jun 2015 \u00b7 15 yrs 6 mos",
+            "company_url": "https://www.linkedin.com/search/results/all/?keywords=Asia+Express"
+          }
+        ],
+        "error": null
+      },
+      "scrapin": {
+        "success": true,
+        "name": "Felix M.",
+        "title": "Co-founder @ Zip",
+        "company": "Zip",
+        "experiences": [
+          {
+            "title": "Co-Founder",
+            "company": "Zip",
+            "duration": null,
+            "is_current": false
+          },
+          {
+            "title": "Senior Manager, GTM Strategy & Programs",
+            "company": "Salesforce",
+            "duration": null,
+            "is_current": false
+          },
+          {
+            "title": "Sales",
+            "company": "Salesforce",
+            "duration": null,
+            "is_current": false
+          }
+        ],
+        "error": null
+      }
+    },
+    "verification": {
+      "is_same_person": false,
+      "currently_employed": true,
+      "confidence": 100,
+      "reasoning": "Rule-based verification",
+      "red_flags": [
+        "Name does not match"
+      ]
+    },
+    "sources_agree_on_name": true,
+    "sources_agree_on_company": true,
+    "any_source_found_data": true,
+    "total_latency_ms": 4424
+  },
+  {
+    "ground_truth": {
+      "name": "Victor De Mite",
+      "company": "Affluent Digital | B2B LeadGen Agency",
+      "title": "Founder",
+      "linkedin_url": "https://www.linkedin.com/in/victor-de-mite-2a8911148"
+    },
+    "enrichments": {
+      "rapidapi": {
+        "success": true,
+        "name": "Victor De Mite",
+        "title": "Founder @ Affluent | Angel Investor | Ex-Mountain Partners",
+        "company": "Affluent Digital | B2B LeadGen Agency \u00b7 Self-employed",
+        "experiences": [
+          {
+            "title": "Founder",
+            "company": "Affluent Digital | B2B LeadGen Agency \u00b7 Self-employed",
+            "duration": "Oct 2024 - Present \u00b7 1 yr 2 mos",
+            "company_url": "https://www.linkedin.com/company/78470315/"
+          },
+          {
+            "title": "Venture Scout ",
+            "company": "Picus Capital \u00b7 Part-time",
+            "duration": "Aug 2023 - Mar 2025 \u00b7 1 yr 8 mos",
+            "company_url": "https://www.linkedin.com/company/10904844/"
+          },
+          {
+            "title": "Managing Director",
+            "company": "LemonAds",
+            "duration": "Mar 2024 - Nov 2024 \u00b7 9 mos",
+            "company_url": "https://www.linkedin.com/company/99225893/"
+          }
+        ],
+        "error": null
+      },
+      "scrapin": {
+        "success": true,
+        "name": "Victor De Mite",
+        "title": "Founder @ Affluent | Angel Investor | Ex-Mountain Partners",
+        "company": "Affluent Digital | B2B LeadGen Agency",
+        "experiences": [
+          {
+            "title": "Founder",
+            "company": "Affluent Digital | B2B LeadGen Agency",
+            "duration": null,
+            "is_current": false
+          },
+          {
+            "title": "Venture Scout ",
+            "company": "Picus Capital",
+            "duration": null,
+            "is_current": false
+          },
+          {
+            "title": "Managing Director",
+            "company": "LemonAds",
+            "duration": null,
+            "is_current": false
+          }
+        ],
+        "error": null
+      }
+    },
+    "verification": {
+      "is_same_person": true,
+      "currently_employed": true,
+      "confidence": 100,
+      "reasoning": "Rule-based verification",
+      "red_flags": []
+    },
+    "sources_agree_on_name": true,
+    "sources_agree_on_company": true,
+    "any_source_found_data": true,
+    "total_latency_ms": 3884
+  },
+  {
+    "ground_truth": {
+      "name": "Bonnie A. Chen",
+      "company": "PackageX",
+      "title": "Account Manager",
+      "linkedin_url": "https://www.linkedin.com/in/bachen"
+    },
+    "enrichments": {
+      "rapidapi": {
+        "success": true,
+        "name": "Bonnie A. Chen",
+        "title": "Customer Success nerd | ex-Clearbit (acquired by HubSpot), Loom & Google",
+        "company": "PackageX \u00b7 Full-time",
+        "experiences": [
+          {
+            "title": "Account Manager",
+            "company": "PackageX \u00b7 Full-time",
+            "duration": "Jul 2025 - Present \u00b7 5 mos",
+            "company_url": "https://www.linkedin.com/company/11812255/"
+          },
+          {
+            "title": "Sr. Strategic Customer Success Manager",
+            "company": "PlayPlay \u00b7 Full-time",
+            "duration": "Jan 2023 - Jan 2025 \u00b7 2 yrs 1 mo",
+            "company_url": "https://www.linkedin.com/company/18108892/"
+          },
+          {
+            "title": "Sr. Strategic Customer Success Manager",
+            "company": "Loom \u00b7 Full-time",
+            "duration": "Jun 2022 - Oct 2022 \u00b7 5 mos",
+            "company_url": "https://www.linkedin.com/company/10224913/"
+          }
+        ],
+        "error": null
+      },
+      "scrapin": {
+        "success": true,
+        "name": "Bonnie A. Chen",
+        "title": "Customer Success nerd | ex-Clearbit (acquired by HubSpot), Loom & Google",
+        "company": "PackageX",
+        "experiences": [
+          {
+            "title": "Account Manager",
+            "company": "PackageX",
+            "duration": null,
+            "is_current": false
+          },
+          {
+            "title": "Sr. Strategic Customer Success Manager",
+            "company": "PlayPlay",
+            "duration": null,
+            "is_current": false
+          },
+          {
+            "title": "Sr. Strategic Customer Success Manager",
+            "company": "Loom",
+            "duration": null,
+            "is_current": false
+          }
+        ],
+        "error": null
+      }
+    },
+    "verification": {
+      "is_same_person": true,
+      "currently_employed": true,
+      "confidence": 100,
+      "reasoning": "Rule-based verification",
+      "red_flags": []
+    },
+    "sources_agree_on_name": true,
+    "sources_agree_on_company": true,
+    "any_source_found_data": true,
+    "total_latency_ms": 4665
+  },
+  {
+    "ground_truth": {
+      "name": "Shoshanah Posner",
+      "company": "NoFraud",
+      "title": "Advisor",
+      "linkedin_url": "https://www.linkedin.com/in/shoshanah-posner-249aa55"
+    },
+    "enrichments": {
+      "rapidapi": {
+        "success": true,
+        "name": "Shoshanah Posner",
+        "title": "Losing money to credit card fraud? NoFraud will \ud83d\uded1 fraud while increasing your order approval rate.",
+        "company": "10 yrs 5 mos",
+        "experiences": [
+          {
+            "title": "NoFraud",
+            "company": "10 yrs 5 mos",
+            "duration": null,
+            "company_url": "https://www.linkedin.com/company/10383851/"
+          },
+          {
+            "title": "Director of Marketing",
+            "company": "Aluminyze",
+            "duration": "Oct 2014 - Dec 2015 \u00b7 1 yr 3 mos",
+            "company_url": "https://www.linkedin.com/search/results/all/?keywords=Aluminyze"
+          },
+          {
+            "title": "Director of  Marketing",
+            "company": "Shadora",
+            "duration": "Apr 2011 - Nov 2013 \u00b7 2 yrs 8 mos",
+            "company_url": "https://www.linkedin.com/search/results/all/?keywords=Shadora"
+          }
+        ],
+        "error": null
+      },
+      "scrapin": {
+        "success": true,
+        "name": "Shoshanah Posner",
+        "title": "Losing money to credit card fraud? NoFraud will \ud83d\uded1 fraud while increasing your order approval rate.",
+        "company": "NoFraud",
+        "experiences": [
+          {
+            "title": "Advisor",
+            "company": "NoFraud",
+            "duration": null,
+            "is_current": false
+          },
+          {
+            "title": "Director Of Business Development",
+            "company": "NoFraud",
+            "duration": null,
+            "is_current": false
+          },
+          {
+            "title": "Director of Marketing",
+            "company": "Aluminyze",
+            "duration": null,
+            "is_current": false
+          }
+        ],
+        "error": null
+      }
+    },
+    "verification": {
+      "is_same_person": true,
+      "currently_employed": true,
+      "confidence": 100,
+      "reasoning": "Rule-based verification",
+      "red_flags": []
+    },
+    "sources_agree_on_name": true,
+    "sources_agree_on_company": false,
+    "any_source_found_data": true,
+    "total_latency_ms": 6507
+  },
+  {
+    "ground_truth": {
+      "name": "Santiago Suarez Ordo\u00f1ez",
+      "company": "Momentum",
+      "title": "Co-Founder, CEO",
+      "linkedin_url": "https://www.linkedin.com/in/santiycr"
+    },
+    "enrichments": {
+      "rapidapi": {
+        "success": true,
+        "name": "Santiago Suarez Ordo\u00f1ez",
+        "title": "Co-Founder, CEO at Momentum  | Enterprise Listening + Automation",
+        "company": "Momentum \u00b7 Full-time",
+        "experiences": [
+          {
+            "title": "Co-Founder, CEO",
+            "company": "Momentum \u00b7 Full-time",
+            "duration": "May 2020 - Present \u00b7 5 yrs 7 mos",
+            "company_url": "https://www.linkedin.com/company/68873367/"
+          },
+          {
+            "title": "Member",
+            "company": "South Park Commons",
+            "duration": "May 2020 - Present \u00b7 5 yrs 7 mos",
+            "company_url": "https://www.linkedin.com/company/18169310/"
+          },
+          {
+            "title": "Committer",
+            "company": "Selenium",
+            "duration": "Jan 2008 - Present \u00b7 17 yrs 11 mos",
+            "company_url": "https://www.linkedin.com/company/4826427/"
+          }
+        ],
+        "error": null
+      },
+      "scrapin": {
+        "success": true,
+        "name": "Santiago Suarez Ordo\u00f1ez",
+        "title": "Co-Founder, CEO at Momentum  | Enterprise Listening + Automation",
+        "company": "Momentum",
+        "experiences": [
+          {
+            "title": "Co-Founder, CEO",
+            "company": "Momentum",
+            "duration": null,
+            "is_current": false
+          },
+          {
+            "title": "Member",
+            "company": "South Park Commons",
+            "duration": null,
+            "is_current": false
+          },
+          {
+            "title": "Committer",
+            "company": "Selenium",
+            "duration": null,
+            "is_current": false
+          }
+        ],
+        "error": null
+      }
+    },
+    "verification": {
+      "is_same_person": true,
+      "currently_employed": true,
+      "confidence": 100,
+      "reasoning": "Rule-based verification",
+      "red_flags": []
+    },
+    "sources_agree_on_name": true,
+    "sources_agree_on_company": true,
+    "any_source_found_data": true,
+    "total_latency_ms": 8636
+  },
+  {
+    "ground_truth": {
+      "name": "Jason Weinstein",
+      "company": "Keep What You Earn",
+      "title": "Director of Analytics",
+      "linkedin_url": "https://www.linkedin.com/in/jasondweinstein"
+    },
+    "enrichments": {
+      "rapidapi": {
+        "success": true,
+        "name": "Jason Weinstein",
+        "title": "Serial Entrepreneur, Part Time Sun Worshiper, Inept Fisherman, Below Grade Waterproofing Expert",
+        "company": "Keep What You Earn \u00b7 Part-time",
+        "experiences": [
+          {
+            "title": "Director of Analytics",
+            "company": "Keep What You Earn \u00b7 Part-time",
+            "duration": "Feb 2025 - Present \u00b7 10 mos",
+            "company_url": "https://www.linkedin.com/company/10571884/"
+          },
+          {
+            "title": "Sales Specialist",
+            "company": "Basement Products USA \u00b7 Self-employed",
+            "duration": "Nov 2023 - Present \u00b7 2 yrs 1 mo",
+            "company_url": "https://www.linkedin.com/search/results/all/?keywords=Basement+Products+USA"
+          },
+          {
+            "title": "President",
+            "company": "Budget Dry Waterproofing, Inc.",
+            "duration": "Apr 2007 - Nov 2023 \u00b7 16 yrs 8 mos",
+            "company_url": "https://www.linkedin.com/company/3009529/"
+          }
+        ],
+        "error": null
+      },
+      "scrapin": {
+        "success": true,
+        "name": "Jason Weinstein",
+        "title": "Serial Entrepreneur, Part Time Sun Worshiper, Inept Fisherman, Below Grade Waterproofing Expert",
+        "company": "Keep What You Earn",
+        "experiences": [
+          {
+            "title": "Director of Analytics",
+            "company": "Keep What You Earn",
+            "duration": null,
+            "is_current": false
+          },
+          {
+            "title": "Sales Specialist",
+            "company": "Basement Products USA",
+            "duration": null,
+            "is_current": false
+          },
+          {
+            "title": "President",
+            "company": "Budget Dry Waterproofing, Inc.",
+            "duration": null,
+            "is_current": false
+          }
+        ],
+        "error": null
+      }
+    },
+    "verification": {
+      "is_same_person": true,
+      "currently_employed": true,
+      "confidence": 100,
+      "reasoning": "Rule-based verification",
+      "red_flags": []
+    },
+    "sources_agree_on_name": true,
+    "sources_agree_on_company": true,
+    "any_source_found_data": true,
+    "total_latency_ms": 4885
+  }
+]

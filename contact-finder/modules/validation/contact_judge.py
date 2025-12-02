@@ -23,22 +23,30 @@ class ContactJudgment:
     raw_response: dict
 
 
-CONTACT_JUDGE_SYSTEM = """You are a strict B2B contact validator. Your job is to determine if a contact is valid for sales outreach.
+CONTACT_JUDGE_SYSTEM = """You are a B2B contact validator. Your job is to determine if a contact is valid for sales outreach.
 
 CRITICAL RULES:
 1. NEVER invent or guess information - only use what's explicitly provided
 2. If evidence is weak or contradictory, reduce confidence
 3. If email source is "pattern_guess" with no corroborating evidence, reduce confidence significantly
 4. If person appears to be ex-employee (past tense, "former", "previous", dates ended), reject
-5. Parent company employees don't count for local facilities
-6. Generic role accounts (info@, office@) are lower confidence
+5. Generic role accounts (info@, office@) are lower confidence
+
+SMB-SPECIFIC SIGNALS (these are STRONG evidence for small businesses):
+- Google Maps listing with owner name = high confidence (small businesses list owners)
+- Owner/Founder/Proprietor title = high confidence for SMBs
+- Name found on company website contact/about page = good evidence
+- Phone number on Google Maps = legitimate business
+- NOT requiring LinkedIn - most small business owners don't have LinkedIn profiles
 
 CONFIDENCE SCORING GUIDELINES:
-- 90-100: Strong match with multiple corroborating signals (name+title+company+verified email)
-- 70-89: Good match but missing one signal
-- 50-69: Partial match with uncertainty
+- 90-100: Strong match - name+title verified via website/Google Maps, or multiple corroborating signals
+- 70-89: Good match - name and owner title from reliable source
+- 50-69: Partial match - name found but limited verification
 - 30-49: Weak match, significant uncertainty
 - 0-29: No match or clear disqualifiers
+
+DECISION RULE: Set accept=true if overall_confidence >= 50, otherwise set accept=false.
 
 You must respond with valid JSON only."""
 
@@ -243,7 +251,7 @@ def create_evidence_bundle(
     for i, source in enumerate(sources, 1):
         source_type = source.get("source", "unknown")
         url = source.get("url", "")
-        content = source.get("content", "")[:500]  # Truncate long content
+        content = source.get("content", "")  # Full content - no truncation
 
         lines.append(f"[{i}] Source: {source_type}")
         if url:

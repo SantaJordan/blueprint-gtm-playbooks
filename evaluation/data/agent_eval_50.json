@@ -1,0 +1,502 @@
+[
+  {
+    "company_name": "West Pavilion Dialysis",
+    "domain": "henryford.com",
+    "vertical": "dialysis_centers",
+    "address": "2799 E Grand Blvd #1, Detroit, MI 48202",
+    "phone": "(313) 916-7062",
+    "place_id": "ChIJy_iXHWTNJIgR3VU79mzpHBI",
+    "rating": 3.0,
+    "reviews": 2
+  },
+  {
+    "company_name": "Westbridge Veterinary Referral Hospital",
+    "domain": "westbridgevets.com",
+    "vertical": "dialysis_centers",
+    "address": "595 W Center St, West Bridgewater, MA 02379",
+    "phone": "(508) 584-1600",
+    "place_id": "ChIJJ5I38qmP5IkRWOYVWqATTxA",
+    "rating": 4.2,
+    "reviews": 913
+  },
+  {
+    "company_name": "Fresenius Kidney Care Leawood",
+    "domain": "freseniuskidneycare.com",
+    "vertical": "dialysis_centers",
+    "address": "6751 W 119th St, Overland Park, KS 66209",
+    "phone": "(800) 881-5101",
+    "place_id": "ChIJs7HtKCfqwIcRbB0dncTeMMI",
+    "rating": 5.0,
+    "reviews": 1
+  },
+  {
+    "company_name": "U.S. Renal Care",
+    "domain": "usrenalcare.com",
+    "vertical": "dialysis_centers",
+    "address": "2055 N King St # 100, Honolulu, HI 96819",
+    "phone": "(808) 909-2065",
+    "place_id": "ChIJFzQTf2RvAHwR2Tk6o-Xhu-I",
+    "rating": 5.0,
+    "reviews": 1
+  },
+  {
+    "company_name": "Veterinary Specialty Center of Sturbridge",
+    "domain": "vscsturbridge.com",
+    "vertical": "dialysis_centers",
+    "address": "175 &, 173 Charlton Rd, Sturbridge, MA 01566",
+    "phone": "(774) 241-3111",
+    "place_id": "ChIJowMgmxmj5okRuoqHst-ZNJY",
+    "rating": 4.8,
+    "reviews": 178
+  },
+  {
+    "company_name": "Innovative Renal Care Titusville Dialysis and Kidney Center",
+    "domain": "innovativerenal.com",
+    "vertical": "dialysis_centers",
+    "address": "801 Garden St Suite B, Titusville, FL 32796",
+    "phone": "(321) 567-0122",
+    "place_id": "ChIJh8T9NcpM54gRdDO3k1p5L_U",
+    "rating": 4.3,
+    "reviews": 8
+  },
+  {
+    "company_name": "Pacific Renal Care",
+    "domain": "pacificrenalcareoc.com",
+    "vertical": "dialysis_centers",
+    "address": "11180 Warner Ave # 463, Fountain Valley, CA 92708",
+    "phone": "(714) 241-9200",
+    "place_id": "ChIJf74P_mYn3YARoaLtgS1alCY",
+    "rating": 0.0,
+    "reviews": 0
+  },
+  {
+    "company_name": "Fresenius Kidney Care Kew Gardens At Silver Lake Snf",
+    "domain": "freseniuskidneycare.com",
+    "vertical": "dialysis_centers",
+    "address": "275 Castleton Ave, Staten Island, NY 10301",
+    "phone": "(800) 881-5101",
+    "place_id": "ChIJudCnM3NPwokR8ixHQzYP6rc",
+    "rating": 0.0,
+    "reviews": 0
+  },
+  {
+    "company_name": "Stacked | A Montana Grill",
+    "domain": "stackedamontanagrill.com",
+    "vertical": "bakeries",
+    "address": "106 N Broadway, Billings, MT 59101",
+    "phone": "(406) 534-8702",
+    "place_id": "ChIJ3RKHjDB7SFMRbiOT3d__vJI",
+    "rating": 4.4,
+    "reviews": 910
+  },
+  {
+    "company_name": "Baldwin Bagels",
+    "domain": "baldwinbagels.com",
+    "vertical": "bakeries",
+    "address": "134 Baldwin Rd, Parsippany, NJ 07054",
+    "phone": "(973) 335-1217",
+    "place_id": "ChIJ09eM2eQHw4kRWFjsK_Qslkw",
+    "rating": 4.1,
+    "reviews": 484
+  },
+  {
+    "company_name": "Range Cafe Downtown",
+    "domain": "rangecafe.com",
+    "vertical": "bakeries",
+    "address": "320 Central Ave SE, Albuquerque, NM 87102",
+    "phone": "(505) 243-1440",
+    "place_id": "ChIJUf6P97wMIocR9cWf1zprUIg",
+    "rating": 4.4,
+    "reviews": 3447
+  },
+  {
+    "company_name": "Tractor Supply Co.",
+    "domain": "tractorsupply.com",
+    "vertical": "bakeries",
+    "address": "2335 W Airline Hwy, Laplace, LA 70068",
+    "phone": "(985) 652-8808",
+    "place_id": "ChIJmRxCvOXTIIYRhfVqfedWWQo",
+    "rating": 4.5,
+    "reviews": 219
+  },
+  {
+    "company_name": "Woods Coffee",
+    "domain": "woodscoffee.com",
+    "vertical": "bakeries",
+    "address": "1901 King St, Bellingham, WA 98225",
+    "phone": "(360) 738-3260",
+    "place_id": "ChIJhfjwqJGjhVQRfD-Xh1xFV4c",
+    "rating": 4.5,
+    "reviews": 292
+  },
+  {
+    "company_name": "Organic Remedies Dispensary",
+    "domain": "organicremediespa.com",
+    "vertical": "bakeries",
+    "address": "900 Wayne Ave, Chambersburg, PA 17201",
+    "phone": "(717) 251-2321",
+    "place_id": "ChIJrTCYYSCcyYkRJO6Q-1jHNIY",
+    "rating": 4.8,
+    "reviews": 1010
+  },
+  {
+    "company_name": "PCC Community Markets - Edmonds Co-op",
+    "domain": "pccmarkets.com",
+    "vertical": "bakeries",
+    "address": "9803 Edmonds Way, Edmonds, WA 98020",
+    "phone": "(425) 275-9036",
+    "place_id": "ChIJeeRsIogakFQRIbVTsaVRfZU",
+    "rating": 4.5,
+    "reviews": 1219
+  },
+  {
+    "company_name": "Adjudicake",
+    "domain": "adjudicake.com",
+    "vertical": "bakeries",
+    "address": "9221 Hidden Water Cir, Riverview, FL 33578",
+    "phone": "(813) 313-6292",
+    "place_id": "ChIJ17hVPNDPwogRqml_CwdNhbU",
+    "rating": 5.0,
+    "reviews": 87
+  },
+  {
+    "company_name": "American RV Technology, Inc.",
+    "domain": "americanrvtechnology.com",
+    "vertical": "auto_body_shops",
+    "address": "11155 S Tamiami Trl, North Port, FL 34287",
+    "phone": "(941) 429-0298",
+    "place_id": "ChIJmwBTWSY23YgRjB2G6ZpTzhs",
+    "rating": 4.5,
+    "reviews": 59
+  },
+  {
+    "company_name": "1 Stop Complete Auto Glass",
+    "domain": "1stopcompleteautoglass.com",
+    "vertical": "auto_body_shops",
+    "address": "31951 Corydon Rd #120, Lake Elsinore, CA 92530",
+    "phone": "(951) 457-1854",
+    "place_id": "ChIJBQ2IRqib3IARsQg1Vp50ITs",
+    "rating": 5.0,
+    "reviews": 50
+  },
+  {
+    "company_name": "Brandon Collision",
+    "domain": "brandoncollision.com",
+    "vertical": "auto_body_shops",
+    "address": "8700 E Adamo Dr, Tampa, FL 33619",
+    "phone": "(813) 327-6632",
+    "place_id": "ChIJB7FbPAnPwogRcf1jfnpBnfc",
+    "rating": 4.1,
+    "reviews": 494
+  },
+  {
+    "company_name": "Bentley Cadillac Collision Repair Center",
+    "domain": "bentleycadillac.com",
+    "vertical": "auto_body_shops",
+    "address": "2118 Drake Ave SW, Huntsville, AL 35805",
+    "phone": "(256) 382-3310",
+    "place_id": "ChIJM1fCsIhtYogR08urqsfaKos",
+    "rating": 5.0,
+    "reviews": 4
+  },
+  {
+    "company_name": "Oil Changers",
+    "domain": "oilchangers.com",
+    "vertical": "auto_body_shops",
+    "address": "1874 US-60, Huntington, WV 25705",
+    "phone": "(304) 733-6121",
+    "place_id": "ChIJ1ahyfAMHRogReveoR0h5Shc",
+    "rating": 5.0,
+    "reviews": 391
+  },
+  {
+    "company_name": "CAR FIX Walker Springs",
+    "domain": "teamcarfix.com",
+    "vertical": "auto_body_shops",
+    "address": "8858 Kingston Pike, Knoxville, TN 37923",
+    "phone": "(865) 270-0050",
+    "place_id": "ChIJ41Ad6dglXIgRwfPSNANS2xk",
+    "rating": 4.7,
+    "reviews": 222
+  },
+  {
+    "company_name": "Spencer Auto Repair",
+    "domain": "spencerautorepair.com",
+    "vertical": "auto_body_shops",
+    "address": "1270 W Chandler Blvd, Chandler, AZ 85224",
+    "phone": "(480) 722-1700",
+    "place_id": "ChIJQ42zPyMBK4cROAc-KPdUxDI",
+    "rating": 4.6,
+    "reviews": 410
+  },
+  {
+    "company_name": "Brookside 66 Services",
+    "domain": "brookside66.com",
+    "vertical": "auto_body_shops",
+    "address": "6244 Main St, Kansas City, MO 64113",
+    "phone": "(816) 333-0565",
+    "place_id": "ChIJ1StaeA7vwIcR23WzALqf0d4",
+    "rating": 3.9,
+    "reviews": 84
+  },
+  {
+    "company_name": "Pocatello Free Clinic",
+    "domain": "pocatellofreeclinic.com",
+    "vertical": "fertility_and_ivf_clinics",
+    "address": "1001 N 7th Ave Suite 155, Pocatello, ID 83201",
+    "phone": "(208) 233-6245",
+    "place_id": "ChIJbTKG-URPVVMRirKFcuCOoSA",
+    "rating": 4.5,
+    "reviews": 131
+  },
+  {
+    "company_name": "Fayetteville Woman's Care",
+    "domain": "fwc.net",
+    "vertical": "fertility_and_ivf_clinics",
+    "address": "2029 Valleygate Dr STE 101, Fayetteville, NC 28304",
+    "phone": "(910) 323-2103",
+    "place_id": "ChIJ26wrV0ETq4kRjIbr3nCN_Uk",
+    "rating": 3.1,
+    "reviews": 241
+  },
+  {
+    "company_name": "Northeastern Health System Tahlequah : Emergency Room",
+    "domain": "alwaysnhs.org",
+    "vertical": "fertility_and_ivf_clinics",
+    "address": "1400 E Downing St, Tahlequah, OK 74464",
+    "phone": "(918) 456-0641",
+    "place_id": "ChIJP8NthsT7yYcROcRCflezCYU",
+    "rating": 3.9,
+    "reviews": 166
+  },
+  {
+    "company_name": "Minnesota Perinatal Physicians - Coon Rapids",
+    "domain": "account.allinahealth.org",
+    "vertical": "fertility_and_ivf_clinics",
+    "address": "3960 Coon Rapids Blvd NW STE 220, Coon Rapids, MN 55433",
+    "phone": "(612) 863-4502",
+    "place_id": "ChIJee1brwM8s1IRw9EiVq1ObiQ",
+    "rating": 2.9,
+    "reviews": 11
+  },
+  {
+    "company_name": "Crossroads Care Clinic",
+    "domain": "crossroadscareclinic.net",
+    "vertical": "fertility_and_ivf_clinics",
+    "address": "530 Wabash Ave, Terre Haute, IN 47807",
+    "phone": "(812) 234-8059",
+    "place_id": "ChIJeWVFIzBlbYgRReB4KjVwCW0",
+    "rating": 4.1,
+    "reviews": 44
+  },
+  {
+    "company_name": "Maternal-Fetal Medicine Specialists of South Florida",
+    "domain": "toplinemd.com",
+    "vertical": "fertility_and_ivf_clinics",
+    "address": "7300 SW 62nd Pl, Miami, FL 33143",
+    "phone": "(305) 662-6367",
+    "place_id": "ChIJrWiDuO3H2YgRIb5780F0z_U",
+    "rating": 4.0,
+    "reviews": 478
+  },
+  {
+    "company_name": "River City OB/GYN",
+    "domain": "rivercityobgyn.com",
+    "vertical": "fertility_and_ivf_clinics",
+    "address": "13710 St Francis Blvd #603, Midlothian, VA 23114",
+    "phone": "(804) 362-0808",
+    "place_id": "ChIJZ66wUFdxsYkRWcO2WR8Le-c",
+    "rating": 4.4,
+    "reviews": 40
+  },
+  {
+    "company_name": "HaysMed DeBakey Heart Institute",
+    "domain": "haysmed.com",
+    "vertical": "fertility_and_ivf_clinics",
+    "address": "Bickle Family Tower, 2220 Canterbury Dr 2nd Floor, Hays, KS 67601",
+    "phone": "(785) 625-4699",
+    "place_id": "ChIJt8xP6kJ5oYcRkaLhVheP8i4",
+    "rating": 4.6,
+    "reviews": 29
+  },
+  {
+    "company_name": "BJ's Restaurant & Brewhouse",
+    "domain": "bjsrestaurants.com",
+    "vertical": "breweries_and_brewpubs",
+    "address": "925 Blossom Hill Rd, San Jose, CA 95123",
+    "phone": "(408) 284-4260",
+    "place_id": "ChIJjUmd4NUzjoARRmw-xKGmJmY",
+    "rating": 4.4,
+    "reviews": 1766
+  },
+  {
+    "company_name": "Brewskis Oak Ridge",
+    "domain": "brewskis-oak-ridge.edan.io",
+    "vertical": "breweries_and_brewpubs",
+    "address": "144 Randolph Rd, Oak Ridge, TN 37830",
+    "phone": "(865) 272-3205",
+    "place_id": "ChIJKQB5STQzXIgR0SS_XwgrHF4",
+    "rating": 4.3,
+    "reviews": 224
+  },
+  {
+    "company_name": "Bull Island Brewing Company",
+    "domain": "bullislandbrewing.com",
+    "vertical": "breweries_and_brewpubs",
+    "address": "758 Settlers Landing Rd, Hampton, VA 23669",
+    "phone": "(757) 884-8884",
+    "place_id": "ChIJeRbN3beEuokRhbKWBFLSk3o",
+    "rating": 4.4,
+    "reviews": 508
+  },
+  {
+    "company_name": "River Rock Brewery",
+    "domain": "riverrockbrewery.com",
+    "vertical": "breweries_and_brewpubs",
+    "address": "608 N Lincoln Way, Galt, CA 95632",
+    "phone": "(209) 331-6071",
+    "place_id": "ChIJ5zxEjtCimoARK316qFZAm1Q",
+    "rating": 4.2,
+    "reviews": 60
+  },
+  {
+    "company_name": "The Friendly Fermenter, LLC",
+    "domain": "friendlyfermenter.com",
+    "vertical": "breweries_and_brewpubs",
+    "address": "20 S Mason St Suite B10, Harrisonburg, VA 22801",
+    "phone": "(540) 217-2614",
+    "place_id": "ChIJhZs0K8mStIkR6WIE4qB4VH4",
+    "rating": 4.9,
+    "reviews": 222
+  },
+  {
+    "company_name": "Calapooia Brewing",
+    "domain": "calapooiabrewing.com",
+    "vertical": "breweries_and_brewpubs",
+    "address": "140 Hill St SE, Albany, OR 97321",
+    "phone": "(541) 928-1931",
+    "place_id": "ChIJ3wia87JswFQRwd5whCDjty8",
+    "rating": 4.5,
+    "reviews": 461
+  },
+  {
+    "company_name": "Rockfish Brewing Company Preston",
+    "domain": "rockfishbrewcompany.com",
+    "vertical": "breweries_and_brewpubs",
+    "address": "900 Preston Ave, Charlottesville, VA 22903",
+    "phone": "(434) 566-0969",
+    "place_id": "ChIJbfFldNeHs4kRr_tRRhjShtw",
+    "rating": 4.6,
+    "reviews": 94
+  },
+  {
+    "company_name": "Artillery Brewing",
+    "domain": "artillerybrewing.com",
+    "vertical": "breweries_and_brewpubs",
+    "address": "4221 Ferne Blvd, Drexel Hill, PA 19026",
+    "phone": "(610) 626-2937",
+    "place_id": "ChIJS4hOTGnBxokRX4stybsnGqc",
+    "rating": 4.5,
+    "reviews": 191
+  },
+  {
+    "company_name": "Starbucks",
+    "domain": "starbucks.com",
+    "vertical": "coffee_shops_in_the_usa",
+    "address": "10777 Belleville Rd, Belleville, MI 48111",
+    "phone": "(734) 735-3835",
+    "place_id": "ChIJLXBvCpZQO4gR7fcWbXHp09k",
+    "rating": 4.0,
+    "reviews": 991
+  },
+  {
+    "company_name": "Bean Traders",
+    "domain": "beantraderscoffee.com",
+    "vertical": "coffee_shops_in_the_usa",
+    "address": "105 W Nc 54 Hwy, 249, Durham, NC 27713",
+    "phone": "(919) 484-2499",
+    "place_id": "ChIJo51lvLDorIkRWul-hUawTc4",
+    "rating": 4.6,
+    "reviews": 1407
+  },
+  {
+    "company_name": "Dunkin'",
+    "domain": "locations.dunkindonuts.com",
+    "vertical": "coffee_shops_in_the_usa",
+    "address": "325 Elsbree St, Fall River, MA 02720",
+    "phone": "(774) 488-3388",
+    "place_id": "ChIJO_WM_wn55IkRKQ_5lP62YFg",
+    "rating": 3.9,
+    "reviews": 298
+  },
+  {
+    "company_name": "G Cafe Bakery East Rock",
+    "domain": "gcafebakery.com",
+    "vertical": "coffee_shops_in_the_usa",
+    "address": "534 Orange St, New Haven, CT 06511",
+    "phone": "(475) 241-3901",
+    "place_id": "ChIJW1TksCzZ54kRnGQIozQMTy0",
+    "rating": 4.1,
+    "reviews": 130
+  },
+  {
+    "company_name": "Coffee Klatch",
+    "domain": "coffeecateringgreenville.com",
+    "vertical": "coffee_shops_in_the_usa",
+    "address": "2 Longfellow Wy, Simpsonville, SC 29681",
+    "phone": "(864) 501-4050",
+    "place_id": "ChIJEzD33DknWIgRd5iJ9av2Hjw",
+    "rating": 5.0,
+    "reviews": 46
+  },
+  {
+    "company_name": "Le Pain Quotidien",
+    "domain": "lepainquotidien.com",
+    "vertical": "coffee_shops_in_the_usa",
+    "address": "1425 Walnut St, Philadelphia, PA 19102",
+    "phone": "(215) 751-0570",
+    "place_id": "ChIJO4Ha9i_GxokRO4_EV730UZA",
+    "rating": 4.3,
+    "reviews": 813
+  },
+  {
+    "company_name": "Dunkin'",
+    "domain": "locations.dunkindonuts.com",
+    "vertical": "coffee_shops_in_the_usa",
+    "address": "3350 Kirchoff Rd, Rolling Meadows, IL 60008",
+    "phone": "(847) 818-9675",
+    "place_id": "ChIJ4Qcz2EelD4gRkrME5wOSYng",
+    "rating": 2.5,
+    "reviews": 178
+  },
+  {
+    "company_name": "Robin's Nest Cafe at KEZF",
+    "domain": "therobinsnestcafe.com",
+    "vertical": "coffee_shops_in_the_usa",
+    "address": "3380 Shannon Airport Cir, Fredericksburg, VA 22408",
+    "phone": "(540) 642-4394",
+    "place_id": "ChIJazJPncrDtokRplRoJ02IAcU",
+    "rating": 4.5,
+    "reviews": 89
+  },
+  {
+    "company_name": "Plymwr Plumbing",
+    "domain": "plymwrplumbing.com",
+    "vertical": "plumbers",
+    "address": "6150 Rutland Ave suite 9, Riverside, CA 92503, Vereinigte Staaten",
+    "phone": "+1 951-223-5668",
+    "place_id": "ChIJrTJj-ki23IAR6V26xZVFHJs",
+    "rating": 4.1,
+    "reviews": 583
+  },
+  {
+    "company_name": "L. Richards Plumbing & Heating, Inc.",
+    "domain": "lrichardsplumbing.com",
+    "vertical": "plumbers",
+    "address": "185-04 Williamson Ave, Springfield Gardens, NY 11413, Vereinigte Staaten",
+    "phone": "+1 718-949-3567",
+    "place_id": "ChIJlZ6Uuq1mwokRD21_ENMlow4",
+    "rating": 4.3,
+    "reviews": 57
+  }
+]

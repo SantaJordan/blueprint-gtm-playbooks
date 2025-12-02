@@ -20,6 +20,11 @@ class OpenAIProvider(LLMProvider):
         default_temperature: float = 0.1,
         default_max_tokens: int = 500
     ):
+        # Handle ${VAR} syntax in api_key from config files
+        if api_key and api_key.startswith("${") and api_key.endswith("}"):
+            env_var = api_key[2:-1]
+            api_key = os.getenv(env_var)
+
         self.api_key = api_key or os.getenv("OPENAI_API_KEY")
         if not self.api_key:
             raise ValueError("OpenAI API key not provided")

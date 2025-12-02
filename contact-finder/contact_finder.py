@@ -347,11 +347,19 @@ class ContactFinder:
                 contact = enriched.contact
                 result.total_cost_credits += contact.cost_credits
 
-                # Create evidence bundle for judge
-                evidence = create_evidence_bundle([
-                    {"source": src, "content": ev}
-                    for src, ev in zip(contact.enrichment_sources, contact.evidence)
-                ])
+                # Create evidence bundle for judge - include ALL evidence
+                # Discovery evidence comes FIRST, then enrichment appends to END
+                # So: evidence = [discovery1, ..., discoveryN, enrichment1, ..., enrichmentM]
+                # And: enrichment_sources = [enrichment1, ..., enrichmentM]
+                num_discovery = len(contact.evidence) - len(contact.enrichment_sources)
+                evidence_items = []
+                for i, ev in enumerate(contact.evidence):
+                    if i < num_discovery:
+                        source = "discovery"
+                    else:
+                        source = contact.enrichment_sources[i - num_discovery]
+                    evidence_items.append({"source": source, "content": ev})
+                evidence = create_evidence_bundle(evidence_items)
 
                 # LLM validation
                 judgment = None

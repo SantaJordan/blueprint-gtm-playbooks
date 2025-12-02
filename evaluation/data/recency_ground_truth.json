@@ -1,0 +1,119 @@
+[
+  {
+    "name": "Michael Bender",
+    "title": "CEO",
+    "company": "Kohl's",
+    "domain": "kohls.com",
+    "date": "2025-11-24",
+    "source": "Bloomberg",
+    "days_since": 4
+  },
+  {
+    "name": "Shivani Sharma",
+    "title": "CMO",
+    "company": "Chatha Foods",
+    "domain": "chathafoods.com",
+    "date": "2025-11-24",
+    "source": "MarketScreener",
+    "days_since": 4
+  },
+  {
+    "name": "Allison Cerra",
+    "title": "CMO",
+    "company": "Veeam",
+    "domain": "veeam.com",
+    "date": "2025-11-11",
+    "source": "Yahoo Finance",
+    "days_since": 17
+  },
+  {
+    "name": "Ronald J. Lewis",
+    "title": "CEO",
+    "company": "Ball Corporation",
+    "domain": "ball.com",
+    "date": "2025-11-10",
+    "source": "TipRanks",
+    "days_since": 18
+  },
+  {
+    "name": "Rachelle Alexis Lim",
+    "title": "CEO",
+    "company": "MultiSafepay",
+    "domain": "multisafepay.com",
+    "date": "2025-11-07",
+    "source": "BusinessWire",
+    "days_since": 21
+  },
+  {
+    "name": "Jonny Mason",
+    "title": "CEO",
+    "company": "Convatec",
+    "domain": "convatec.com",
+    "date": "2025-11-06",
+    "source": "Investegate",
+    "days_since": 22
+  },
+  {
+    "name": "Fiona Ryder",
+    "title": "CFO",
+    "company": "Convatec",
+    "domain": "convatec.com",
+    "date": "2025-11-06",
+    "source": "Investegate",
+    "days_since": 22
+  },
+  {
+    "name": "Karla Cruz-Jusino",
+    "title": "CFO",
+    "company": "Evertec",
+    "domain": "evertecinc.com",
+    "date": "2025-11-01",
+    "source": "BusinessWire",
+    "days_since": 27
+  },
+  {
+    "name": "James G. Mackey",
+    "title": "CFO",
+    "company": "BankUnited",
+    "domain": "bankunited.com",
+    "date": "2025-11-01",
+    "source": "BusinessWire",
+    "days_since": 27
+  },
+  {
+    "name": "Anthony J. Parkinson",
+    "title": "CFO",
+    "company": "OXbyEL",
+    "domain": "oxbyel.com",
+    "date": "2025-10-15",
+    "source": "PRNewswire",
+    "days_since": 44
+  },
+  {
+    "name": "Kevin Willis",
+    "title": "CFO",
+    "company": "Valvoline",
+    "domain": "valvoline.com",
+    "date": "2025-05-19",
+    "source": "PRNewswire",
+    "days_since": 193
+  },
+  {
+    "name": "Peggy Alford",
+    "title": "CFO",
+    "company": "eBay",
+    "domain": "ebay.com",
+    "date": "2025-05-12",
+    "source": "PRNewswire",
+    "days_since": 200
+  },
+  {
+    "name": "Navam Welihinda",
+    "title": "CFO",
+    "company": "Elastic",
+    "domain": "elastic.co",
+    "date": "2025-02-28",
+    "source": "BusinessWire",
+    "days_since": 273
+  }
+]

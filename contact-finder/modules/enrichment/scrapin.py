@@ -71,7 +71,7 @@ class ScrapinClient:
         if self._session is None or self._session.closed:
             self._session = aiohttp.ClientSession(
                 headers={
-                    "Authorization": f"Bearer {self.api_key}",
+                    "x-api-key": self.api_key,
                     "Content-Type": "application/json"
                 },
                 timeout=aiohttp.ClientTimeout(total=self.timeout)
@@ -108,30 +108,52 @@ class ScrapinClient:
         Cost: 1 credit (0.5 if cached)
         """
         try:
-            result = await self._request("GET", "/person/profile", {"linkedInUrl": linkedin_url})
+            # API v1 uses POST /v1/enrichment/profile with includes object
+            payload = {
+                "linkedInUrl": linkedin_url,
+                "includes": {
+                    "includeCompany": True,
+                    "includeExperience": True,
+                    "includeSummary": True
+                }
+            }
+            result = await self._request("POST", "/v1/enrichment/profile", payload)
 
-            # Extract current position
+            # Response is nested under "person" key
+            person = result.get("person", result)
+
+            # Extract current position from positions.positionHistory
             current_title = None
             current_company = None
-            experience = result.get("experience", [])
-            if experience:
-                current = experience[0]
+            positions_data = person.get("positions", {})
+            if isinstance(positions_data, dict):
+                position_history = positions_data.get("positionHistory", [])
+            else:
+                position_history = positions_data if isinstance(positions_data, list) else []
+
+            if position_history:
+                current = position_history[0]
                 current_title = current.get("title")
                 current_company = current.get("companyName")
 
+            # Location can be a dict
+            location = person.get("location")
+            if isinstance(location, dict):
+                location = f"{location.get('city', '')}, {location.get('state', '')}".strip(", ")
+
             return ScrapinPersonProfile(
-                full_name=result.get("fullName"),
-                first_name=result.get("firstName"),
-                last_name=result.get("lastName"),
-                headline=result.get("headline"),
+                full_name=f"{person.get('firstName', '')} {person.get('lastName', '')}".strip(),
+                first_name=person.get("firstName"),
+                last_name=person.get("lastName"),
+                headline=person.get("headline"),
                 title=current_title,
                 company=current_company,
-                location=result.get("location"),
-                linkedin_url=result.get("linkedInUrl"),
-                profile_picture=result.get("profilePicture"),
-                summary=result.get("summary"),
-                experience=experience,
-                education=result.get("education", []),
+                location=location,
+                linkedin_url=person.get("linkedInUrl"),
+                profile_picture=person.get("profilePicture"),
+                summary=person.get("summary"),
+                experience=position_history,
+                education=person.get("schools", []),
                 raw_response=result
             )
 
@@ -254,28 +276,42 @@ class ScrapinClient:
 
         Either provide linkedin_url OR (first_name + company info)
         """
-        if linkedin_url:
-            data = {"linkedInUrl": linkedin_url}
-        elif first_name:
-            data = {"firstName": first_name}
-            if last_name:
-                data["lastName"] = last_name
-            if company_domain:
-                data["companyDomain"] = company_domain
-        else:
-            return ScrapinEmailResult(
-                email=None,
-                email_type=None,
-                confidence=0,
-                raw_response={"error": "Either linkedin_url or first_name required"}
-            )
-
         try:
-            result = await self._request("POST", "/person/email", data)
+            if linkedin_url:
+                # Use URL-based email finder (API uses "url" field)
+                data = {"url": linkedin_url}
+                result = await self._request("POST", "/v1/enrichment/emails/finder/url", data)
+            elif first_name:
+                # Use name/company-based email finder
+                data = {"firstName": first_name}
+                if last_name:
+                    data["lastName"] = last_name
+                if company_domain:
+                    data["companyDomain"] = company_domain
+                result = await self._request("POST", "/v1/enrichment/emails/finder", data)
+            else:
+                return ScrapinEmailResult(
+                    email=None,
+                    email_type=None,
+                    confidence=0,
+                    raw_response={"error": "Either linkedin_url or first_name required"}
+                )
 
+            # Response may have emails as a list with {value, type} objects
+            emails = result.get("emails", [])
+            if emails and isinstance(emails, list) and len(emails) > 0:
+                best_email = emails[0]
+                return ScrapinEmailResult(
+                    email=best_email.get("value") or best_email.get("email"),
+                    email_type=best_email.get("type"),
+                    confidence=1.0 if best_email.get("type") == "professional" else 0.8,
+                    raw_response=result
+                )
+
+            # Fallback to direct fields
             return ScrapinEmailResult(
                 email=result.get("email"),
-                email_type=result.get("emailType"),
+                email_type=result.get("emailType") or result.get("type"),
                 confidence=result.get("confidence", 0),
                 raw_response=result
             )

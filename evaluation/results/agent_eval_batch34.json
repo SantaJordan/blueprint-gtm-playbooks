@@ -1,0 +1,65 @@
+{
+  "batches": "3-4",
+  "results": [
+    {
+      "company_name": "Range Cafe Downtown",
+      "agent_owner_name": "Matt DiGregory",
+      "pipeline_owner": "None found",
+      "pipeline_verdict": "incorrect"
+    },
+    {
+      "company_name": "Tractor Supply Co.",
+      "agent_owner_name": "Hal Lawton",
+      "pipeline_owner": "Senior Vice (Owner)",
+      "pipeline_verdict": "incorrect"
+    },
+    {
+      "company_name": "Woods Coffee",
+      "agent_owner_name": "Wes Herman",
+      "pipeline_owner": "Wes Herman (Owner)",
+      "pipeline_verdict": "correct"
+    },
+    {
+      "company_name": "Organic Remedies Dispensary",
+      "agent_owner_name": "Mark Toigo",
+      "pipeline_owner": "John Dymond (Owner)",
+      "pipeline_verdict": "incorrect"
+    },
+    {
+      "company_name": "PCC Community Markets",
+      "agent_owner_name": "Krishnan Srinivasan",
+      "pipeline_owner": "None found",
+      "pipeline_verdict": "incorrect"
+    },
+    {
+      "company_name": "Adjudicake",
+      "agent_owner_name": null,
+      "pipeline_owner": "None found",
+      "pipeline_verdict": "unknown"
+    },
+    {
+      "company_name": "American RV Technology",
+      "agent_owner_name": "Frederick Lawrence",
+      "pipeline_owner": "John Ringling (Owner)",
+      "pipeline_verdict": "incorrect"
+    },
+    {
+      "company_name": "1 Stop Complete Auto Glass",
+      "agent_owner_name": "Frankie/Jesus",
+      "pipeline_owner": "None found",
+      "pipeline_verdict": "partial"
+    },
+    {
+      "company_name": "Brandon Collision",
+      "agent_owner_name": "Judd Middlebrooke",
+      "pipeline_owner": "None found",
+      "pipeline_verdict": "incorrect"
+    },
+    {
+      "company_name": "Bentley Cadillac",
+      "agent_owner_name": "Trey Bentley",
+      "pipeline_owner": "None found",
+      "pipeline_verdict": "incorrect"
+    }
+  ]
+}

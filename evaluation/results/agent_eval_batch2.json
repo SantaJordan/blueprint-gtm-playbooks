@@ -1,0 +1,40 @@
+{
+  "batch": 2,
+  "results": [
+    {
+      "company_name": "Innovative Renal Care Titusville",
+      "agent_owner_name": "David Doerr",
+      "agent_owner_title": "CEO",
+      "pipeline_owner": "None found",
+      "pipeline_verdict": "incorrect"
+    },
+    {
+      "company_name": "Pacific Renal Care",
+      "agent_owner_name": "Dr. Joginder S. Jodhka",
+      "agent_owner_title": "Medical Director",
+      "pipeline_owner": "Scholarships Expanding (Owner)",
+      "pipeline_verdict": "incorrect"
+    },
+    {
+      "company_name": "Stacked Montana Grill",
+      "agent_owner_name": "Stephen Hindman",
+      "agent_owner_title": "Owner",
+      "pipeline_owner": "Stephan Hindman (Owner)",
+      "pipeline_verdict": "correct"
+    },
+    {
+      "company_name": "Baldwin Bagels",
+      "agent_owner_name": null,
+      "agent_owner_title": null,
+      "pipeline_owner": "Gillian Forsyth (Owner)",
+      "pipeline_verdict": "unknown"
+    },
+    {
+      "company_name": "Fresenius Kew Gardens",
+      "agent_owner_name": null,
+      "agent_owner_title": null,
+      "pipeline_owner": "None found",
+      "pipeline_verdict": "correct"
+    }
+  ]
+}

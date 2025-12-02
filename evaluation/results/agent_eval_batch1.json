@@ -1,0 +1,77 @@
+{
+  "batch": 1,
+  "entities_evaluated": 5,
+  "results": [
+    {
+      "company_name": "West Pavilion Dialysis",
+      "domain": "henryford.com",
+      "agent_owner_name": null,
+      "agent_owner_title": null,
+      "agent_sources": [
+        "WebSearch - Greenfield Health Systems",
+        "WebSearch - Henry Ford Health leadership"
+      ],
+      "agent_confidence": "none",
+      "pipeline_owner": "Report Project (Owner)",
+      "pipeline_verdict": "incorrect",
+      "reasoning": "West Pavilion Dialysis is a dialysis clinic operated by Greenfield Health Systems, which is a division of Henry Ford Health. The pipeline result 'Report Project (Owner)' appears to be incorrect/fabricated."
+    },
+    {
+      "company_name": "Westbridge Veterinary Referral Hospital",
+      "domain": "westbridgevets.com",
+      "agent_owner_name": "Neal C Andelman",
+      "agent_owner_title": "President",
+      "agent_sources": [
+        "BBB Business Profile",
+        "WebSearch about ownership"
+      ],
+      "agent_confidence": "high",
+      "pipeline_owner": "None found",
+      "pipeline_verdict": "incorrect",
+      "reasoning": "Found Neal C Andelman as President per BBB listing. Pipeline failed to discover this publicly available ownership information."
+    },
+    {
+      "company_name": "Fresenius Kidney Care Leawood",
+      "domain": "freseniuskidneycare.com",
+      "agent_owner_name": null,
+      "agent_owner_title": null,
+      "agent_sources": [
+        "WebSearch",
+        "Company website"
+      ],
+      "agent_confidence": "none",
+      "pipeline_owner": "None found",
+      "pipeline_verdict": "correct",
+      "reasoning": "This is a corporate-owned dialysis center. No individual owner exists. Pipeline correctly identified that no owner information could be found."
+    },
+    {
+      "company_name": "U.S. Renal Care",
+      "domain": "usrenalcare.com",
+      "agent_owner_name": "Chris Brengard (Founder), Mark Caputo (Current CEO)",
+      "agent_owner_title": "Founder/Investor (Brengard), Chairman & CEO (Caputo)",
+      "agent_sources": [
+        "websearch_leadership_page",
+        "websearch_press_releases",
+        "linkedin"
+      ],
+      "agent_confidence": "high",
+      "pipeline_owner": "Chris Brengard (Owner)",
+      "pipeline_verdict": "partial",
+      "reasoning": "Chris Brengard is indeed the founder but no longer the active CEO. Mark Caputo has been Chairman & CEO since June 2020."
+    },
+    {
+      "company_name": "Veterinary Specialty Center of Sturbridge",
+      "domain": "vscsturbridge.com",
+      "agent_owner_name": "Paul McCarthy",
+      "agent_owner_title": "CEO and Practice Owner",
+      "agent_sources": [
+        "WebSearch",
+        "Company website team page"
+      ],
+      "agent_confidence": "high",
+      "pipeline_owner": "ACVIM Forum (Owner)",
+      "pipeline_verdict": "incorrect",
+      "reasoning": "ACVIM is a professional organization, not a person. The actual owner is Paul McCarthy, DVM, DACVS."
+    }
+  ]
+}

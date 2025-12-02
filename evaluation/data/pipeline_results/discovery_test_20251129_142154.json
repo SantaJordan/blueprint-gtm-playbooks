@@ -1,0 +1,592 @@
+[
+  {
+    "ground_truth": {
+      "name": "Jason Miele",
+      "title": "Chief Financial Officer",
+      "company": "Parksite",
+      "role_duration_months": 2
+    },
+    "discovery": {
+      "serper": {
+        "success": true,
+        "url": "https://www.linkedin.com/in/jason-miele-385a5985",
+        "confidence": 0.9,
+        "error": null,
+        "latency_ms": 780
+      },
+      "scrapin": {
+        "success": false,
+        "url": null,
+        "error": "No match found",
+        "latency_ms": 387
+      },
+      "best_url": "https://www.linkedin.com/in/jason-miele-385a5985",
+      "best_method": "serper"
+    },
+    "enrichments": {
+      "rapidapi": {
+        "success": false,
+        "name": null,
+        "title": null,
+        "company": null,
+        "error": "error: rate_limited"
+      },
+      "scrapin": {
+        "success": true,
+        "name": "Jason Miele",
+        "title": "Chief Financial Officer",
+        "company": "Parksite",
+        "error": null
+      },
+      "leadmagic": {
+        "success": true,
+        "name": "Jason Miele",
+        "title": "Chief Financial Officer",
+        "company": "Parksite",
+        "error": null
+      }
+    },
+    "matches": {
+      "name": true,
+      "company": true,
+      "title": true
+    },
+    "verification": {
+      "is_same_person": true,
+      "currently_employed": true,
+      "confidence": 100
+    },
+    "total_latency_ms": 4557
+  },
+  {
+    "ground_truth": {
+      "name": "Adam Greer",
+      "title": "Chief Financial Officer",
+      "company": "Heath Consultants Incorporated",
+      "role_duration_months": 2
+    },
+    "discovery": {
+      "serper": {
+        "success": true,
+        "url": "https://www.linkedin.com/in/adam-d-greer",
+        "confidence": 0.9,
+        "error": null,
+        "latency_ms": 702
+      },
+      "scrapin": {
+        "success": false,
+        "url": null,
+        "error": "No match found",
+        "latency_ms": 388
+      },
+      "best_url": "https://www.linkedin.com/in/adam-d-greer",
+      "best_method": "serper"
+    },
+    "enrichments": {
+      "rapidapi": {
+        "success": false,
+        "name": null,
+        "title": null,
+        "company": null,
+        "error": "error: rate_limited"
+      },
+      "scrapin": {
+        "success": true,
+        "name": "Adam Greer",
+        "title": "Strategic Finance | Operational Excellence | Transformational Leadership",
+        "company": "Heath Consultants Incorporated",
+        "error": null
+      },
+      "leadmagic": {
+        "success": true,
+        "name": "Adam Greer",
+        "title": "Strategic Finance | Operational Excellence | Transformational Leadership",
+        "company": "Heath Consultants Incorporated",
+        "error": null
+      }
+    },
+    "matches": {
+      "name": true,
+      "company": true,
+      "title": false
+    },
+    "verification": {
+      "is_same_person": true,
+      "currently_employed": true,
+      "confidence": 100
+    },
+    "total_latency_ms": 12521
+  },
+  {
+    "ground_truth": {
+      "name": "Dan Cishek",
+      "title": "Executive Vice President, Creative Director",
+      "company": "Arc Worldwide",
+      "role_duration_months": 2
+    },
+    "discovery": {
+      "serper": {
+        "success": true,
+        "url": "https://www.linkedin.com/in/dan-cishek-b949644",
+        "confidence": 0.9,
+        "error": null,
+        "latency_ms": 854
+      },
+      "scrapin": {
+        "success": false,
+        "url": null,
+        "error": "No match found",
+        "latency_ms": 198
+      },
+      "best_url": "https://www.linkedin.com/in/dan-cishek-b949644",
+      "best_method": "serper"
+    },
+    "enrichments": {
+      "rapidapi": {
+        "success": false,
+        "name": null,
+        "title": null,
+        "company": null,
+        "error": "error: rate_limited"
+      },
+      "scrapin": {
+        "success": true,
+        "name": "Dan Cishek",
+        "title": "Executive Vice President, Creative Director",
+        "company": "Arc Worldwide",
+        "error": null
+      },
+      "leadmagic": {
+        "success": true,
+        "name": "Dan Cishek",
+        "title": "Executive Vice President, Creative Director",
+        "company": "Arc Worldwide",
+        "error": null
+      }
+    },
+    "matches": {
+      "name": true,
+      "company": true,
+      "title": true
+    },
+    "verification": {
+      "is_same_person": true,
+      "currently_employed": true,
+      "confidence": 100
+    },
+    "total_latency_ms": 5645
+  },
+  {
+    "ground_truth": {
+      "name": "Chris Hardwick \ud83d\udce6",
+      "title": "Vice President, The Manufacturing Forge Alliance Chapter, SCN",
+      "company": "Success Champion Networking (SCN)",
+      "role_duration_months": 1
+    },
+    "discovery": {
+      "serper": {
+        "success": true,
+        "url": "https://www.linkedin.com/in/saverio-scriva-045b1562",
+        "confidence": 0.5,
+        "error": null,
+        "latency_ms": 2012
+      },
+      "scrapin": {
+        "success": false,
+        "url": null,
+        "error": "No match found",
+        "latency_ms": 189
+      },
+      "best_url": "https://www.linkedin.com/in/saverio-scriva-045b1562",
+      "best_method": "serper"
+    },
+    "enrichments": {
+      "rapidapi": {
+        "success": false,
+        "name": null,
+        "title": null,
+        "company": null,
+        "error": "error: rate_limited"
+      },
+      "scrapin": {
+        "success": true,
+        "name": "Saverio Scriva",
+        "title": "Quality Manager at Western Diagnostic Pathology and Vetpath",
+        "company": "Western Diagnostic Pathology",
+        "error": null
+      },
+      "leadmagic": {
+        "success": true,
+        "name": "Saverio Scriva",
+        "title": "Quality Manager at Western Diagnostic Pathology and Vetpath",
+        "company": "41 yrs 10 mos",
+        "error": null
+      }
+    },
+    "matches": {
+      "name": false,
+      "company": false,
+      "title": false
+    },
+    "verification": {
+      "is_same_person": false,
+      "currently_employed": false,
+      "confidence": 0
+    },
+    "total_latency_ms": 7811
+  },
+  {
+    "ground_truth": {
+      "name": "Nancy Marcucci",
+      "title": "Owner and Principal",
+      "company": "The Alternative Board (Worldwide)",
+      "role_duration_months": 2
+    },
+    "discovery": {
+      "serper": {
+        "success": true,
+        "url": "https://www.linkedin.com/in/nancy-marcucci-5b5baa3",
+        "confidence": 0.9,
+        "error": null,
+        "latency_ms": 720
+      },
+      "scrapin": {
+        "success": false,
+        "url": null,
+        "error": "No match found",
+        "latency_ms": 190
+      },
+      "best_url": "https://www.linkedin.com/in/nancy-marcucci-5b5baa3",
+      "best_method": "serper"
+    },
+    "enrichments": {
+      "rapidapi": {
+        "success": false,
+        "name": null,
+        "title": null,
+        "company": null,
+        "error": "error: rate_limited"
+      },
+      "scrapin": {
+        "success": true,
+        "name": "Nancy Marcucci",
+        "title": "Facilitator of Peer Advisory Boards in Greater Boston | Business Executive Coach | The Alternative Board | Guiding Business Owners to Better Decisions, Stronger Teams & Sustainable Growth",
+        "company": "The Alternative Board (Worldwide) ",
+        "error": null
+      },
+      "leadmagic": {
+        "success": true,
+        "name": "Nancy Marcucci",
+        "title": "Facilitator of Peer Advisory Boards in Greater Boston | Business Executive Coach | The Alternative Board | Guiding Business Owners to Better Decisions, Stronger Teams & Sustainable Growth",
+        "company": "The Alternative Board (Worldwide)",
+        "error": null
+      }
+    },
+    "matches": {
+      "name": true,
+      "company": true,
+      "title": false
+    },
+    "verification": {
+      "is_same_person": true,
+      "currently_employed": true,
+      "confidence": 100
+    },
+    "total_latency_ms": 16345
+  },
+  {
+    "ground_truth": {
+      "name": "Carl Shrom",
+      "title": "Chief Executive Officer",
+      "company": "Legacy Healthcare Services",
+      "role_duration_months": 1
+    },
+    "discovery": {
+      "serper": {
+        "success": true,
+        "url": "https://www.linkedin.com/in/carl-shrom-9271b046",
+        "confidence": 0.9,
+        "error": null,
+        "latency_ms": 585
+      },
+      "scrapin": {
+        "success": false,
+        "url": null,
+        "error": "No match found",
+        "latency_ms": 188
+      },
+      "best_url": "https://www.linkedin.com/in/carl-shrom-9271b046",
+      "best_method": "serper"
+    },
+    "enrichments": {
+      "rapidapi": {
+        "success": false,
+        "name": null,
+        "title": null,
+        "company": null,
+        "error": "error: rate_limited"
+      },
+      "scrapin": {
+        "success": true,
+        "name": "Carl Shrom",
+        "title": "Founder / Chief Executive Officer at Legacy Healthcare, Former Chief Executive Officer at Powerback / President / COO / Innovation / Private Equity / Rapid Growth / Advisory Consultant / Board Member / Team Culture",
+        "company": "Legacy Healthcare Services",
+        "error": null
+      },
+      "leadmagic": {
+        "success": true,
+        "name": "Carl Shrom",
+        "title": "Founder / Chief Executive Officer at Legacy Healthcare, Former Chief Executive Officer at Powerback / President / COO / Innovation / Private Equity / Rapid Growth / Advisory Consultant / Board Member / Team Culture",
+        "company": "Legacy Healthcare Services",
+        "error": null
+      }
+    },
+    "matches": {
+      "name": true,
+      "company": true,
+      "title": true
+    },
+    "verification": {
+      "is_same_person": true,
+      "currently_employed": true,
+      "confidence": 100
+    },
+    "total_latency_ms": 18742
+  },
+  {
+    "ground_truth": {
+      "name": "Mark Stevenson",
+      "title": "Senior Talent Acquisition Partner",
+      "company": "Hiya Inc.",
+      "role_duration_months": 1
+    },
+    "discovery": {
+      "serper": {
+        "success": true,
+        "url": "https://www.linkedin.com/in/thedataagent",
+        "confidence": 0.9,
+        "error": null,
+        "latency_ms": 797
+      },
+      "scrapin": {
+        "success": false,
+        "url": null,
+        "error": "No match found",
+        "latency_ms": 224
+      },
+      "best_url": "https://www.linkedin.com/in/thedataagent",
+      "best_method": "serper"
+    },
+    "enrichments": {
+      "rapidapi": {
+        "success": false,
+        "name": null,
+        "title": null,
+        "company": null,
+        "error": "error: rate_limited"
+      },
+      "scrapin": {
+        "success": true,
+        "name": "Mark Stevenson",
+        "title": "Talent Acquisition Partner at Hiya (Via AJ FLX)",
+        "company": "Hiya Inc.",
+        "error": null
+      },
+      "leadmagic": {
+        "success": true,
+        "name": "Mark Stevenson",
+        "title": "Talent Acquisition Partner at Hiya (Via AJ FLX)",
+        "company": "Hiya Inc.",
+        "error": null
+      }
+    },
+    "matches": {
+      "name": true,
+      "company": true,
+      "title": false
+    },
+    "verification": {
+      "is_same_person": true,
+      "currently_employed": true,
+      "confidence": 100
+    },
+    "total_latency_ms": 19278
+  },
+  {
+    "ground_truth": {
+      "name": "Brian H. Munroe",
+      "title": "Executive Director - Las Vegas & Nationwide Business Operations Communities",
+      "company": "M3Linked",
+      "role_duration_months": 2
+    },
+    "discovery": {
+      "serper": {
+        "success": true,
+        "url": "https://www.linkedin.com/in/iambrianmunroe",
+        "confidence": 0.9,
+        "error": null,
+        "latency_ms": 745
+      },
+      "scrapin": {
+        "success": false,
+        "url": null,
+        "error": "No match found",
+        "latency_ms": 187
+      },
+      "best_url": "https://www.linkedin.com/in/iambrianmunroe",
+      "best_method": "serper"
+    },
+    "enrichments": {
+      "rapidapi": {
+        "success": true,
+        "name": "Brian H. Munroe",
+        "title": "Founder@MTI | Fractional COO Healthcare Specialized | Clinical AI Implementation Expert | Fixing multi-site clinical operations to improve profitability.",
+        "company": "MTI Global Group LLC \u00b7 Self-employed",
+        "error": null
+      },
+      "scrapin": {
+        "success": true,
+        "name": "Brian H. Munroe",
+        "title": "Founder@MTI | Fractional COO Healthcare Specialized | Clinical AI Implementation Expert | Fixing multi-site clinical operations to improve profitability.",
+        "company": "MTI Global Group LLC",
+        "error": null
+      },
+      "leadmagic": {
+        "success": true,
+        "name": "Brian H. Munroe",
+        "title": "Founder@MTI | Fractional COO Healthcare Specialized | Clinical AI Implementation Expert | Fixing multi-site clinical operations to improve profitability.",
+        "company": "MTI Global Group LLC",
+        "error": null
+      }
+    },
+    "matches": {
+      "name": true,
+      "company": false,
+      "title": false
+    },
+    "verification": {
+      "is_same_person": true,
+      "currently_employed": true,
+      "confidence": 100
+    },
+    "total_latency_ms": 22033
+  },
+  {
+    "ground_truth": {
+      "name": "Ray Owais",
+      "title": "Director of Business Development",
+      "company": "Dash.fi",
+      "role_duration_months": 2
+    },
+    "discovery": {
+      "serper": {
+        "success": true,
+        "url": "https://www.linkedin.com/in/rimounowais",
+        "confidence": 0.9,
+        "error": null,
+        "latency_ms": 848
+      },
+      "scrapin": {
+        "success": false,
+        "url": null,
+        "error": "No match found",
+        "latency_ms": 231
+      },
+      "best_url": "https://www.linkedin.com/in/rimounowais",
+      "best_method": "serper"
+    },
+    "enrichments": {
+      "rapidapi": {
+        "success": true,
+        "name": "Ray Owais",
+        "title": "Director of Business Development @ Dash.fi ",
+        "company": "Permanent Full-time \u00b7 5 mos",
+        "error": null
+      },
+      "scrapin": {
+        "success": true,
+        "name": "Ray Owais",
+        "title": "Director of Business Development @ Dash.fi ",
+        "company": "Dash.fi",
+        "error": null
+      },
+      "leadmagic": {
+        "success": true,
+        "name": "Ray Owais",
+        "title": "Director of Business Development @ Dash.fi ",
+        "company": "Permanent Full-time",
+        "error": null
+      }
+    },
+    "matches": {
+      "name": true,
+      "company": true,
+      "title": true
+    },
+    "verification": {
+      "is_same_person": true,
+      "currently_employed": true,
+      "confidence": 100
+    },
+    "total_latency_ms": 21548
+  },
+  {
+    "ground_truth": {
+      "name": "Brenda Erwin",
+      "title": "VP of Sales",
+      "company": "Risse Brothers School Uniforms",
+      "role_duration_months": 3
+    },
+    "discovery": {
+      "serper": {
+        "success": true,
+        "url": "https://www.linkedin.com/in/brenda-erwin-42612528",
+        "confidence": 0.9,
+        "error": null,
+        "latency_ms": 509
+      },
+      "scrapin": {
+        "success": false,
+        "url": null,
+        "error": "No match found",
+        "latency_ms": 193
+      },
+      "best_url": "https://www.linkedin.com/in/brenda-erwin-42612528",
+      "best_method": "serper"
+    },
+    "enrichments": {
+      "rapidapi": {
+        "success": false,
+        "name": null,
+        "title": null,
+        "company": null,
+        "error": "error: rate_limited"
+      },
+      "scrapin": {
+        "success": true,
+        "name": "Brenda Erwin",
+        "title": "Brand Innovation | Loyalty programming | Sales Strategy | Demand Generation | PepsiCo Founders Award Winner | Problem Solver | Forward Thinker & Team player !",
+        "company": "Risse Brothers School Uniforms",
+        "error": null
+      },
+      "leadmagic": {
+        "success": true,
+        "name": "Brenda Erwin",
+        "title": "Brand Innovation | Loyalty programming | Sales Strategy | Demand Generation | PepsiCo Founders Award Winner | Problem Solver | Forward Thinker & Team player !",
+        "company": "Risse Brothers School Uniforms",
+        "error": null
+      }
+    },
+    "matches": {
+      "name": true,
+      "company": true,
+      "title": false
+    },
+    "verification": {
+      "is_same_person": true,
+      "currently_employed": true,
+      "confidence": 100
+    },
+    "total_latency_ms": 16023
+  }
+]

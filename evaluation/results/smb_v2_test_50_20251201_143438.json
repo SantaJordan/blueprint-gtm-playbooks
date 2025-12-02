@@ -1,0 +1,1066 @@
+{
+  "metadata": {
+    "input_file": "evaluation/data/smb_sample_1400.json",
+    "limit": 50,
+    "concurrency": 5,
+    "skip_stages": [
+      "enrichment"
+    ],
+    "timestamp": "2025-12-01T14:35:06.853187"
+  },
+  "summary": {
+    "total_companies": 50,
+    "companies_processed": 50,
+    "contacts_found": 19,
+    "contacts_validated": 18,
+    "serper_queries": 85,
+    "leadmagic_credits": 0,
+    "zenrows_requests": 68,
+    "estimated_cost": 0.765
+  },
+  "stage_stats": {
+    "input_analysis": {
+      "total_rows": 1400,
+      "companies_loaded": 50,
+      "detected_fields": [
+        "company_name",
+        "domain",
+        "vertical",
+        "address",
+        "phone",
+        "rating",
+        "reviews_count"
+      ],
+      "missing_fields": [],
+      "has_domain": "100.0%",
+      "has_owner": "0.0%"
+    }
+  },
+  "results": [
+    {
+      "company_name": "West Pavilion Dialysis",
+      "domain": "henryford.com",
+      "vertical": "dialysis_centers",
+      "stages_completed": [
+        "data_fill",
+        "website",
+        "validation"
+      ],
+      "errors": [],
+      "processing_time_ms": 3053.723096847534,
+      "contacts": [
+        {
+          "name": "Report Project",
+          "email": null,
+          "phone": null,
+          "title": "Owner",
+          "linkedin_url": null,
+          "sources": [
+            "serper_osint"
+          ],
+          "is_valid": true,
+          "confidence": 55,
+          "validation_reasons": [
+            "Strong owner title: Owner",
+            "Found in 1 source: serper_osint",
+            "Has full name"
+          ]
+        }
+      ]
+    },
+    {
+      "company_name": "Stacked | A Montana Grill",
+      "domain": "stackedamontanagrill.com",
+      "vertical": "bakeries",
+      "stages_completed": [
+        "data_fill",
+        "website",
+        "validation"
+      ],
+      "errors": [],
+      "processing_time_ms": 2867.744207382202,
+      "contacts": [
+        {
+          "name": "Stephan Hindman",
+          "email": null,
+          "phone": null,
+          "title": "Owner",
+          "linkedin_url": null,
+          "sources": [
+            "serper_osint"
+          ],
+          "is_valid": true,
+          "confidence": 55,
+          "validation_reasons": [
+            "Strong owner title: Owner",
+            "Found in 1 source: serper_osint",
+            "Has full name"
+          ]
+        }
+      ]
+    },
+    {
+      "company_name": "American RV Technology, Inc.",
+      "domain": "americanrvtechnology.com",
+      "vertical": "auto_body_shops",
+      "stages_completed": [
+        "data_fill",
+        "website",
+        "serper_osint",
+        "validation"
+      ],
+      "errors": [],
+      "processing_time_ms": 5443.629026412964,
+      "contacts": []
+    },
+    {
+      "company_name": "Pocatello Free Clinic",
+      "domain": "pocatellofreeclinic.com",
+      "vertical": "fertility_and_ivf_clinics",
+      "stages_completed": [
+        "data_fill",
+        "website",
+        "serper_osint",
+        "validation"
+      ],
+      "errors": [],
+      "processing_time_ms": 4155.562162399292,
+      "contacts": []
+    },
+    {
+      "company_name": "1 Stop Complete Auto Glass",
+      "domain": "1stopcompleteautoglass.com",
+      "vertical": "auto_body_shops",
+      "stages_completed": [
+        "data_fill",
+        "website",
+        "serper_osint",
+        "validation"
+      ],
+      "errors": [],
+      "processing_time_ms": 4088.7601375579834,
+      "contacts": []
+    },
+    {
+      "company_name": "Brandon Collision",
+      "domain": "brandoncollision.com",
+      "vertical": "auto_body_shops",
+      "stages_completed": [
+        "data_fill",
+        "website",
+        "serper_osint",
+        "validation"
+      ],
+      "errors": [],
+      "processing_time_ms": 6712.8331661224365,
+      "contacts": []
+    },
+    {
+      "company_name": "Bentley Cadillac Collision Repair Center",
+      "domain": "bentleycadillac.com",
+      "vertical": "auto_body_shops",
+      "stages_completed": [
+        "data_fill",
+        "website",
+        "serper_osint",
+        "validation"
+      ],
+      "errors": [],
+      "processing_time_ms": 3299.290895462036,
+      "contacts": []
+    },
+    {
+      "company_name": "Fayetteville Woman's Care",
+      "domain": "fwc.net",
+      "vertical": "fertility_and_ivf_clinics",
+      "stages_completed": [
+        "data_fill",
+        "website",
+        "validation"
+      ],
+      "errors": [],
+      "processing_time_ms": 2079.944133758545,
+      "contacts": [
+        {
+          "name": "Sidney Gardner",
+          "email": null,
+          "phone": null,
+          "title": "Owner",
+          "linkedin_url": null,
+          "sources": [
+            "serper_osint"
+          ],
+          "is_valid": true,
+          "confidence": 55,
+          "validation_reasons": [
+            "Strong owner title: Owner",
+            "Found in 1 source: serper_osint",
+            "Has full name"
+          ]
+        }
+      ]
+    },
+    {
+      "company_name": "BJ's Restaurant & Brewhouse",
+      "domain": "bjsrestaurants.com",
+      "vertical": "breweries_and_brewpubs",
+      "stages_completed": [
+        "data_fill",
+        "website",
+        "serper_osint",
+        "validation"
+      ],
+      "errors": [],
+      "processing_time_ms": 3168.4060096740723,
+      "contacts": [
+        {
+          "name": "Greg Levin",
+          "email": null,
+          "phone": null,
+          "title": "Owner",
+          "linkedin_url": null,
+          "sources": [
+            "serper_osint"
+          ],
+          "is_valid": true,
+          "confidence": 55,
+          "validation_reasons": [
+            "Strong owner title: Owner",
+            "Found in 1 source: serper_osint",
+            "Has full name"
+          ]
+        }
+      ]
+    },
+    {
+      "company_name": "BN Plumbing",
+      "domain": "sites.google.com",
+      "vertical": "plumbers",
+      "stages_completed": [
+        "data_fill",
+        "website",
+        "validation"
+      ],
+      "errors": [],
+      "processing_time_ms": 2930.070161819458,
+      "contacts": [
+        {
+          "name": "Andrew Bradshaw",
+          "email": null,
+          "phone": null,
+          "title": "Owner",
+          "linkedin_url": null,
+          "sources": [
+            "serper_osint"
+          ],
+          "is_valid": true,
+          "confidence": 55,
+          "validation_reasons": [
+            "Strong owner title: Owner",
+            "Found in 1 source: serper_osint",
+            "Has full name"
+          ]
+        }
+      ]
+    },
+    {
+      "company_name": "Baldwin Bagels",
+      "domain": "baldwinbagels.com",
+      "vertical": "bakeries",
+      "stages_completed": [
+        "data_fill",
+        "website",
+        "serper_osint",
+        "validation"
+      ],
+      "errors": [],
+      "processing_time_ms": 5411.7491245269775,
+      "contacts": [
+        {
+          "name": "Gillian Forsyth",
+          "email": null,
+          "phone": null,
+          "title": "Owner",
+          "linkedin_url": null,
+          "sources": [
+            "serper_osint"
+          ],
+          "is_valid": true,
+          "confidence": 55,
+          "validation_reasons": [
+            "Strong owner title: Owner",
+            "Found in 1 source: serper_osint",
+            "Has full name"
+          ]
+        }
+      ]
+    },
+    {
+      "company_name": "Westbridge Veterinary Referral Hospital",
+      "domain": "westbridgevets.com",
+      "vertical": "dialysis_centers",
+      "stages_completed": [
+        "data_fill",
+        "website",
+        "serper_osint",
+        "validation"
+      ],
+      "errors": [],
+      "processing_time_ms": 4809.529066085815,
+      "contacts": []
+    },
+    {
+      "company_name": "Fresenius Kidney Care Leawood",
+      "domain": "freseniuskidneycare.com",
+      "vertical": "dialysis_centers",
+      "stages_completed": [
+        "data_fill",
+        "website",
+        "serper_osint",
+        "validation"
+      ],
+      "errors": [],
+      "processing_time_ms": 5256.612062454224,
+      "contacts": []
+    },
+    {
+      "company_name": "Starbucks",
+      "domain": "starbucks.com",
+      "vertical": "coffee_shops_in_the_usa",
+      "stages_completed": [
+        "data_fill",
+        "website",
+        "validation"
+      ],
+      "errors": [],
+      "processing_time_ms": 4092.4980640411377,
+      "contacts": [
+        {
+          "name": "Howard Schultz",
+          "email": null,
+          "phone": null,
+          "title": "Owner",
+          "linkedin_url": null,
+          "sources": [
+            "serper_osint"
+          ],
+          "is_valid": true,
+          "confidence": 55,
+          "validation_reasons": [
+            "Strong owner title: Owner",
+            "Found in 1 source: serper_osint",
+            "Has full name"
+          ]
+        }
+      ]
+    },
+    {
+      "company_name": "Brewskis Oak Ridge",
+      "domain": "brewskis-oak-ridge.edan.io",
+      "vertical": "breweries_and_brewpubs",
+      "stages_completed": [
+        "data_fill",
+        "website",
+        "serper_osint",
+        "validation"
+      ],
+      "errors": [],
+      "processing_time_ms": 2887.1068954467773,
+      "contacts": []
+    },
+    {
+      "company_name": "Plymwr Plumbing",
+      "domain": "plymwrplumbing.com",
+      "vertical": "plumbers",
+      "stages_completed": [
+        "data_fill",
+        "website",
+        "serper_osint",
+        "validation"
+      ],
+      "errors": [],
+      "processing_time_ms": 5211.664915084839,
+      "contacts": []
+    },
+    {
+      "company_name": "Bull Island Brewing Company",
+      "domain": "bullislandbrewing.com",
+      "vertical": "breweries_and_brewpubs",
+      "stages_completed": [
+        "data_fill",
+        "website",
+        "validation"
+      ],
+      "errors": [],
+      "processing_time_ms": 3063.704013824463,
+      "contacts": [
+        {
+          "name": "Doug Reier",
+          "email": null,
+          "phone": null,
+          "title": "Owner",
+          "linkedin_url": null,
+          "sources": [
+            "serper_osint"
+          ],
+          "is_valid": true,
+          "confidence": 55,
+          "validation_reasons": [
+            "Strong owner title: Owner",
+            "Found in 1 source: serper_osint",
+            "Has full name"
+          ]
+        }
+      ]
+    },
+    {
+      "company_name": "Northeastern Health System Tahlequah : Emergency Room",
+      "domain": "alwaysnhs.org",
+      "vertical": "fertility_and_ivf_clinics",
+      "stages_completed": [
+        "data_fill",
+        "website",
+        "serper_osint",
+        "validation"
+      ],
+      "errors": [],
+      "processing_time_ms": 5258.3630084991455,
+      "contacts": []
+    },
+    {
+      "company_name": "Range Cafe Downtown",
+      "domain": "rangecafe.com",
+      "vertical": "bakeries",
+      "stages_completed": [
+        "data_fill",
+        "website",
+        "serper_osint",
+        "validation"
+      ],
+      "errors": [],
+      "processing_time_ms": 5257.268905639648,
+      "contacts": []
+    },
+    {
+      "company_name": "Minnesota Perinatal Physicians - Coon Rapids",
+      "domain": "account.allinahealth.org",
+      "vertical": "fertility_and_ivf_clinics",
+      "stages_completed": [
+        "data_fill",
+        "website",
+        "serper_osint",
+        "validation"
+      ],
+      "errors": [],
+      "processing_time_ms": 5145.19190788269,
+      "contacts": []
+    },
+    {
+      "company_name": "Brooklyn Bodega Bagels And Deli",
+      "domain": "m.facebook.com",
+      "vertical": "bakeries",
+      "stages_completed": [
+        "data_fill",
+        "website",
+        "validation"
+      ],
+      "errors": [],
+      "processing_time_ms": 3079.7319412231445,
+      "contacts": [
+        {
+          "name": "Steven Martinez",
+          "email": null,
+          "phone": null,
+          "title": "Owner",
+          "linkedin_url": null,
+          "sources": [
+            "serper_osint"
+          ],
+          "is_valid": true,
+          "confidence": 55,
+          "validation_reasons": [
+            "Strong owner title: Owner",
+            "Found in 1 source: serper_osint",
+            "Has full name"
+          ]
+        }
+      ]
+    },
+    {
+      "company_name": "Oil Changers",
+      "domain": "oilchangers.com",
+      "vertical": "auto_body_shops",
+      "stages_completed": [
+        "data_fill",
+        "website",
+        "validation"
+      ],
+      "errors": [],
+      "processing_time_ms": 2095.451831817627,
+      "contacts": [
+        {
+          "name": "Eric Frankenberger",
+          "email": null,
+          "phone": null,
+          "title": "Owner",
+          "linkedin_url": null,
+          "sources": [
+            "serper_osint"
+          ],
+          "is_valid": true,
+          "confidence": 55,
+          "validation_reasons": [
+            "Strong owner title: Owner",
+            "Found in 1 source: serper_osint",
+            "Has full name"
+          ]
+        }
+      ]
+    },
+    {
+      "company_name": "Crossroads Care Clinic",
+      "domain": "crossroadscareclinic.net",
+      "vertical": "fertility_and_ivf_clinics",
+      "stages_completed": [
+        "data_fill",
+        "website",
+        "validation"
+      ],
+      "errors": [],
+      "processing_time_ms": 1809.6251487731934,
+      "contacts": [
+        {
+          "name": "Rotary Club",
+          "email": null,
+          "phone": null,
+          "title": "Owner",
+          "linkedin_url": null,
+          "sources": [
+            "serper_osint"
+          ],
+          "is_valid": true,
+          "confidence": 55,
+          "validation_reasons": [
+            "Strong owner title: Owner",
+            "Found in 1 source: serper_osint",
+            "Has full name"
+          ]
+        },
+        {
+          "name": "CMSTeam",
+          "email": null,
+          "phone": null,
+          "title": null,
+          "linkedin_url": null,
+          "sources": [
+            "schema_org"
+          ],
+          "is_valid": false,
+          "confidence": 10,
+          "validation_reasons": [
+            "Found in 1 source: schema_org"
+          ]
+        }
+      ]
+    },
+    {
+      "company_name": "U.S. Renal Care",
+      "domain": "usrenalcare.com",
+      "vertical": "dialysis_centers",
+      "stages_completed": [
+        "data_fill",
+        "website",
+        "validation"
+      ],
+      "errors": [],
+      "processing_time_ms": 2679.8510551452637,
+      "contacts": [
+        {
+          "name": "Chris Brengard",
+          "email": null,
+          "phone": null,
+          "title": "Owner",
+          "linkedin_url": null,
+          "sources": [
+            "serper_osint"
+          ],
+          "is_valid": true,
+          "confidence": 55,
+          "validation_reasons": [
+            "Strong owner title: Owner",
+            "Found in 1 source: serper_osint",
+            "Has full name"
+          ]
+        }
+      ]
+    },
+    {
+      "company_name": "L. Richards Plumbing & Heating, Inc.",
+      "domain": "lrichardsplumbing.com",
+      "vertical": "plumbers",
+      "stages_completed": [
+        "data_fill",
+        "website",
+        "serper_osint",
+        "validation"
+      ],
+      "errors": [],
+      "processing_time_ms": 6058.010101318359,
+      "contacts": []
+    },
+    {
+      "company_name": "River Rock Brewery",
+      "domain": "riverrockbrewery.com",
+      "vertical": "breweries_and_brewpubs",
+      "stages_completed": [
+        "data_fill",
+        "website",
+        "validation"
+      ],
+      "errors": [],
+      "processing_time_ms": 2003.2289028167725,
+      "contacts": [
+        {
+          "name": "Ed Mason",
+          "email": null,
+          "phone": null,
+          "title": "Owner",
+          "linkedin_url": null,
+          "sources": [
+            "serper_osint"
+          ],
+          "is_valid": true,
+          "confidence": 55,
+          "validation_reasons": [
+            "Strong owner title: Owner",
+            "Found in 1 source: serper_osint",
+            "Has full name"
+          ]
+        }
+      ]
+    },
+    {
+      "company_name": "Maternal-Fetal Medicine Specialists of South Florida",
+      "domain": "toplinemd.com",
+      "vertical": "fertility_and_ivf_clinics",
+      "stages_completed": [
+        "data_fill",
+        "website",
+        "serper_osint",
+        "validation"
+      ],
+      "errors": [],
+      "processing_time_ms": 3687.628984451294,
+      "contacts": []
+    },
+    {
+      "company_name": "The Friendly Fermenter, LLC",
+      "domain": "friendlyfermenter.com",
+      "vertical": "breweries_and_brewpubs",
+      "stages_completed": [
+        "data_fill",
+        "website",
+        "serper_osint",
+        "validation"
+      ],
+      "errors": [],
+      "processing_time_ms": 3337.4459743499756,
+      "contacts": []
+    },
+    {
+      "company_name": "Veterinary Specialty Center of Sturbridge",
+      "domain": "vscsturbridge.com",
+      "vertical": "dialysis_centers",
+      "stages_completed": [
+        "data_fill",
+        "website",
+        "serper_osint",
+        "validation"
+      ],
+      "errors": [],
+      "processing_time_ms": 4279.0398597717285,
+      "contacts": [
+        {
+          "name": "ACVIM Forum",
+          "email": null,
+          "phone": null,
+          "title": "Owner",
+          "linkedin_url": null,
+          "sources": [
+            "serper_osint"
+          ],
+          "is_valid": true,
+          "confidence": 55,
+          "validation_reasons": [
+            "Strong owner title: Owner",
+            "Found in 1 source: serper_osint",
+            "Has full name"
+          ]
+        }
+      ]
+    },
+    {
+      "company_name": "Bean Traders",
+      "domain": "beantraderscoffee.com",
+      "vertical": "coffee_shops_in_the_usa",
+      "stages_completed": [
+        "data_fill",
+        "website",
+        "validation"
+      ],
+      "errors": [],
+      "processing_time_ms": 2465.257167816162,
+      "contacts": [
+        {
+          "name": "David Chapman",
+          "email": null,
+          "phone": null,
+          "title": "Owner",
+          "linkedin_url": null,
+          "sources": [
+            "serper_osint"
+          ],
+          "is_valid": true,
+          "confidence": 55,
+          "validation_reasons": [
+            "Strong owner title: Owner",
+            "Found in 1 source: serper_osint",
+            "Has full name"
+          ]
+        }
+      ]
+    },
+    {
+      "company_name": "CAR FIX Walker Springs",
+      "domain": "teamcarfix.com",
+      "vertical": "auto_body_shops",
+      "stages_completed": [
+        "data_fill",
+        "website",
+        "serper_osint",
+        "validation"
+      ],
+      "errors": [],
+      "processing_time_ms": 2528.762102127075,
+      "contacts": []
+    },
+    {
+      "company_name": "Calapooia Brewing",
+      "domain": "calapooiabrewing.com",
+      "vertical": "breweries_and_brewpubs",
+      "stages_completed": [
+        "data_fill",
+        "website",
+        "validation"
+      ],
+      "errors": [],
+      "processing_time_ms": 1426.1128902435303,
+      "contacts": [
+        {
+          "name": "Chris Neumann",
+          "email": null,
+          "phone": null,
+          "title": "Owner",
+          "linkedin_url": null,
+          "sources": [
+            "serper_osint"
+          ],
+          "is_valid": true,
+          "confidence": 55,
+          "validation_reasons": [
+            "Strong owner title: Owner",
+            "Found in 1 source: serper_osint",
+            "Has full name"
+          ]
+        }
+      ]
+    },
+    {
+      "company_name": "Dunkin'",
+      "domain": "locations.dunkindonuts.com",
+      "vertical": "coffee_shops_in_the_usa",
+      "stages_completed": [
+        "data_fill",
+        "validation"
+      ],
+      "errors": [
+        "Website extraction failed: 'NoneType' object has no attribute 'get'"
+      ],
+      "processing_time_ms": 2666.0380363464355,
+      "contacts": [
+        {
+          "name": "Passes Away",
+          "email": null,
+          "phone": null,
+          "title": "Owner",
+          "linkedin_url": null,
+          "sources": [
+            "serper_osint"
+          ],
+          "is_valid": true,
+          "confidence": 55,
+          "validation_reasons": [
+            "Strong owner title: Owner",
+            "Found in 1 source: serper_osint",
+            "Has full name"
+          ]
+        }
+      ]
+    },
+    {
+      "company_name": "River City OB/GYN",
+      "domain": "rivercityobgyn.com",
+      "vertical": "fertility_and_ivf_clinics",
+      "stages_completed": [
+        "data_fill",
+        "website",
+        "serper_osint",
+        "validation"
+      ],
+      "errors": [],
+      "processing_time_ms": 82.53097534179688,
+      "contacts": []
+    },
+    {
+      "company_name": "Rockfish Brewing Company Preston",
+      "domain": "rockfishbrewcompany.com",
+      "vertical": "breweries_and_brewpubs",
+      "stages_completed": [
+        "data_fill",
+        "website",
+        "serper_osint",
+        "validation"
+      ],
+      "errors": [],
+      "processing_time_ms": 131.3309669494629,
+      "contacts": []
+    },
+    {
+      "company_name": "HaysMed DeBakey Heart Institute",
+      "domain": "haysmed.com",
+      "vertical": "fertility_and_ivf_clinics",
+      "stages_completed": [
+        "data_fill",
+        "website",
+        "serper_osint",
+        "validation"
+      ],
+      "errors": [],
+      "processing_time_ms": 143.42403411865234,
+      "contacts": []
+    },
+    {
+      "company_name": "Innovative Renal Care Titusville Dialysis and Kidney Center",
+      "domain": "innovativerenal.com",
+      "vertical": "dialysis_centers",
+      "stages_completed": [
+        "data_fill",
+        "website",
+        "serper_osint",
+        "validation"
+      ],
+      "errors": [],
+      "processing_time_ms": 127.47001647949219,
+      "contacts": []
+    },
+    {
+      "company_name": "Los Angeles Surrogacy Center",
+      "domain": "losangelessurrogacycenter.com",
+      "vertical": "fertility_and_ivf_clinics",
+      "stages_completed": [
+        "data_fill",
+        "website",
+        "serper_osint",
+        "validation"
+      ],
+      "errors": [],
+      "processing_time_ms": 88.1190299987793,
+      "contacts": []
+    },
+    {
+      "company_name": "The Bread Barn",
+      "domain": "facebook.com",
+      "vertical": "bakeries",
+      "stages_completed": [
+        "data_fill",
+        "website",
+        "serper_osint",
+        "validation"
+      ],
+      "errors": [],
+      "processing_time_ms": 1437.669038772583,
+      "contacts": []
+    },
+    {
+      "company_name": "Artillery Brewing",
+      "domain": "artillerybrewing.com",
+      "vertical": "breweries_and_brewpubs",
+      "stages_completed": [
+        "data_fill",
+        "website",
+        "serper_osint",
+        "validation"
+      ],
+      "errors": [],
+      "processing_time_ms": 109.22408103942871,
+      "contacts": []
+    },
+    {
+      "company_name": "Spencer Auto Repair",
+      "domain": "spencerautorepair.com",
+      "vertical": "auto_body_shops",
+      "stages_completed": [
+        "data_fill",
+        "website",
+        "serper_osint",
+        "validation"
+      ],
+      "errors": [],
+      "processing_time_ms": 433.0720901489258,
+      "contacts": []
+    },
+    {
+      "company_name": "JSquad Services",
+      "domain": "jsquadservices.com",
+      "vertical": "plumbers",
+      "stages_completed": [
+        "data_fill",
+        "website",
+        "serper_osint",
+        "validation"
+      ],
+      "errors": [],
+      "processing_time_ms": 113.20328712463379,
+      "contacts": []
+    },
+    {
+      "company_name": "Southwest Center for Reproductive Health: Noble Luis S MD",
+      "domain": "ivfelpaso.com",
+      "vertical": "fertility_and_ivf_clinics",
+      "stages_completed": [
+        "data_fill",
+        "website",
+        "serper_osint",
+        "validation"
+      ],
+      "errors": [],
+      "processing_time_ms": 355.4089069366455,
+      "contacts": []
+    },
+    {
+      "company_name": "Tractor Supply Co.",
+      "domain": "tractorsupply.com",
+      "vertical": "bakeries",
+      "stages_completed": [
+        "data_fill",
+        "website",
+        "serper_osint",
+        "validation"
+      ],
+      "errors": [],
+      "processing_time_ms": 127.61187553405762,
+      "contacts": []
+    },
+    {
+      "company_name": "Brookside 66 Services",
+      "domain": "brookside66.com",
+      "vertical": "auto_body_shops",
+      "stages_completed": [
+        "data_fill",
+        "website",
+        "serper_osint",
+        "validation"
+      ],
+      "errors": [],
+      "processing_time_ms": 1378.3819675445557,
+      "contacts": []
+    },
+    {
+      "company_name": "G Cafe Bakery East Rock",
+      "domain": "gcafebakery.com",
+      "vertical": "coffee_shops_in_the_usa",
+      "stages_completed": [
+        "data_fill",
+        "website",
+        "serper_osint",
+        "validation"
+      ],
+      "errors": [],
+      "processing_time_ms": 1440.1018619537354,
+      "contacts": []
+    },
+    {
+      "company_name": "Gentle Giant Brewing Company",
+      "domain": "gentlegiantbrewing.com",
+      "vertical": "breweries_and_brewpubs",
+      "stages_completed": [
+        "data_fill",
+        "website",
+        "serper_osint",
+        "validation"
+      ],
+      "errors": [],
+      "processing_time_ms": 1897.414207458496,
+      "contacts": []
+    },
+    {
+      "company_name": "Pacific Renal Care",
+      "domain": "pacificrenalcareoc.com",
+      "vertical": "dialysis_centers",
+      "stages_completed": [
+        "data_fill",
+        "website",
+        "validation"
+      ],
+      "errors": [],
+      "processing_time_ms": 2378.0150413513184,
+      "contacts": [
+        {
+          "name": "Scholarships Expanding",
+          "email": null,
+          "phone": null,
+          "title": "Owner",
+          "linkedin_url": null,
+          "sources": [
+            "serper_osint"
+          ],
+          "is_valid": true,
+          "confidence": 55,
+          "validation_reasons": [
+            "Strong owner title: Owner",
+            "Found in 1 source: serper_osint",
+            "Has full name"
+          ]
+        }
+      ]
+    },
+    {
+      "company_name": "Martel's Foreign Car Center",
+      "domain": "martelsforeigncar.com",
+      "vertical": "auto_body_shops",
+      "stages_completed": [
+        "data_fill",
+        "website",
+        "serper_osint",
+        "validation"
+      ],
+      "errors": [],
+      "processing_time_ms": 849.7190475463867,
+      "contacts": []
+    },
+    {
+      "company_name": "Coffee Klatch",
+      "domain": "coffeecateringgreenville.com",
+      "vertical": "coffee_shops_in_the_usa",
+      "stages_completed": [
+        "data_fill",
+        "website",
+        "serper_osint",
+        "validation"
+      ],
+      "errors": [],
+      "processing_time_ms": 127.01272964477539,
+      "contacts": []
+    }
+  ]
+}

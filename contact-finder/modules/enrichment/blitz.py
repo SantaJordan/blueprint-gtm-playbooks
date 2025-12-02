@@ -92,7 +92,7 @@ class BlitzClient:
         Cost: 1 credit on success
         """
         try:
-            result = await self._post("/enrichment/email", {"linkedin_url": linkedin_url})
+            result = await self._post("/enrichment/email", {"linkedin_profile_url": linkedin_url})
 
             return BlitzEmailResult(
                 email=result.get("email"),
@@ -114,7 +114,7 @@ class BlitzClient:
         Cost: 3 credits on success
         """
         try:
-            result = await self._post("/enrichment/phone", {"linkedin_url": linkedin_url})
+            result = await self._post("/enrichment/phone", {"linkedin_profile_url": linkedin_url})
 
             return BlitzPhoneResult(
                 phone=result.get("phone"),
@@ -165,18 +165,29 @@ class BlitzClient:
         """
         Find contacts at a company matching specified titles
         Cost: 1 credit/result (regular) or 3 credits/result (real-time)
+
+        API Params (per OpenAPI spec):
+        - company_linkedin_url: LinkedIn company URL
+        - cascade: Array of filter objects with include_title, exclude_title, location
+        - max_results: Max results to return
         """
         endpoint = "/search/waterfall-icp-real-time" if real_time else "/search/waterfall-icp"
 
-        data = {
-            "linkedin_company_url": linkedin_company_url,
-            "cascade_filters": {
-                "titles": titles
-            }
+        # Build cascade filter per OpenAPI spec
+        cascade_filter = {
+            "include_title": titles,
+            "exclude_title": [],
+            "include_headline_search": True
         }
 
         if locations:
-            data["cascade_filters"]["locations"] = locations
+            cascade_filter["location"] = locations
+
+        data = {
+            "company_linkedin_url": linkedin_company_url,
+            "cascade": [cascade_filter],
+            "max_results": max_results
+        }
 
         try:
             result = await self._post(endpoint, data)
@@ -184,10 +195,10 @@ class BlitzClient:
 
             for contact_data in result.get("results", []):
                 contacts.append(BlitzContactResult(
-                    name=contact_data.get("name"),
-                    title=contact_data.get("title"),
-                    linkedin_url=contact_data.get("linkedin_url"),
-                    email=contact_data.get("email"),
+                    name=contact_data.get("full_name"),
+                    title=contact_data.get("job_title"),
+                    linkedin_url=contact_data.get("person_linkedin_url"),
+                    email=contact_data.get("email"),  # Not returned by waterfall-icp
                     confidence=contact_data.get("ranking", 0),
                     raw_response=contact_data
                 ))

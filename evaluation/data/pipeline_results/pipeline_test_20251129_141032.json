@@ -1,0 +1,5060 @@
+[
+  {
+    "ground_truth": {
+      "name": "Steve Bartel",
+      "company": "Gem",
+      "title": "Founder / CEO",
+      "linkedin_url": "https://www.linkedin.com/in/steve-bartel"
+    },
+    "enrichments": {
+      "rapidapi": {
+        "success": true,
+        "name": "Steve Bartel",
+        "title": "Founder & CEO of Gem ($150M Accel, Greylock, ICONIQ, Sapphire, Meritech, YC) | Author of startuphiring101.com",
+        "company": "Gem",
+        "experiences": [
+          {
+            "title": "Founder / CEO",
+            "company": "Gem",
+            "duration": "2017 - Present \u00b7 8 yrs 11 mos",
+            "company_url": "https://www.linkedin.com/company/18373097/"
+          },
+          {
+            "title": "Angel Investor & Advisor",
+            "company": "Self-employed",
+            "duration": "Sep 2012 - Present \u00b7 13 yrs 3 mos",
+            "company_url": "https://www.linkedin.com/search/results/all/?keywords=Self-employed"
+          },
+          {
+            "title": "Engineering Manager",
+            "company": "Dropbox",
+            "duration": "Sep 2010 - Jul 2015 \u00b7 4 yrs 11 mos",
+            "company_url": "https://www.linkedin.com/company/167251/"
+          }
+        ],
+        "error": null
+      },
+      "scrapin": {
+        "success": true,
+        "name": "Steve Bartel",
+        "title": "Founder & CEO of Gem ($150M Accel, Greylock, ICONIQ, Sapphire, Meritech, YC) | Author of startuphiring101.com",
+        "company": "Gem",
+        "experiences": [
+          {
+            "title": "Founder / CEO",
+            "company": "Gem",
+            "duration": null,
+            "is_current": false
+          },
+          {
+            "title": "Angel Investor & Advisor",
+            "company": "",
+            "duration": null,
+            "is_current": false
+          },
+          {
+            "title": "Engineering Manager",
+            "company": "Dropbox",
+            "duration": null,
+            "is_current": false
+          }
+        ],
+        "error": null
+      },
+      "leadmagic": {
+        "success": true,
+        "name": "Steve Bartel",
+        "title": "Founder & CEO of Gem ($150M Accel, Greylock, ICONIQ, Sapphire, Meritech, YC) | Author of startuphiring101.com",
+        "company": "Gem",
+        "experiences": [
+          {
+            "title": null,
+            "company": "Gem",
+            "duration": null,
+            "is_current": false
+          },
+          {
+            "title": null,
+            "company": "Self-employed",
+            "duration": null,
+            "is_current": false
+          },
+          {
+            "title": null,
+            "company": "Dropbox",
+            "duration": null,
+            "is_current": false
+          }
+        ],
+        "error": null
+      }
+    },
+    "verification": {
+      "is_same_person": true,
+      "currently_employed": true,
+      "confidence": 100,
+      "reasoning": "Rule-based verification",
+      "red_flags": []
+    },
+    "sources_agree_on_name": true,
+    "sources_agree_on_company": true,
+    "any_source_found_data": true,
+    "total_latency_ms": 4347
+  },
+  {
+    "ground_truth": {
+      "name": "Mike Hamberg",
+      "company": "YuLife",
+      "title": "Head of Pipeline",
+      "linkedin_url": "https://www.linkedin.com/in/mhamberg"
+    },
+    "enrichments": {
+      "rapidapi": {
+        "success": true,
+        "name": "Mike Hamberg",
+        "title": "Building Outbound Sales Teams and Coaching New Managers \ud83d\ude80",
+        "company": "YuLife",
+        "experiences": [
+          {
+            "title": "Head of Pipeline",
+            "company": "YuLife",
+            "duration": "Jul 2024 - Present \u00b7 1 yr 5 mos",
+            "company_url": "https://www.linkedin.com/company/10847316/"
+          },
+          {
+            "title": "On-Demand Sales Coach",
+            "company": "Hard Skill Exchange \u00b7 Freelance",
+            "duration": "Nov 2023 - Present \u00b7 2 yrs 1 mo",
+            "company_url": "https://www.linkedin.com/company/88691659/"
+          },
+          {
+            "title": "Executive Member",
+            "company": "Pavilion \u00b7 Full-time",
+            "duration": "Nov 2022 - Present \u00b7 3 yrs 1 mo",
+            "company_url": "https://www.linkedin.com/company/27062956/"
+          }
+        ],
+        "error": null
+      },
+      "scrapin": {
+        "success": true,
+        "name": "Mike Hamberg",
+        "title": "Building Outbound Sales Teams and Coaching New Managers \ud83d\ude80",
+        "company": "YuLife",
+        "experiences": [
+          {
+            "title": "Head of Pipeline",
+            "company": "YuLife",
+            "duration": null,
+            "is_current": false
+          },
+          {
+            "title": "On-Demand Sales Coach",
+            "company": "Hard Skill Exchange",
+            "duration": null,
+            "is_current": false
+          },
+          {
+            "title": "Executive Member",
+            "company": "Pavilion",
+            "duration": null,
+            "is_current": false
+          }
+        ],
+        "error": null
+      },
+      "leadmagic": {
+        "success": true,
+        "name": "Mike Hamberg",
+        "title": "Building Outbound Sales Teams and Coaching New Managers \ud83d\ude80",
+        "company": "YuLife",
+        "experiences": [
+          {
+            "title": null,
+            "company": "YuLife",
+            "duration": null,
+            "is_current": false
+          },
+          {
+            "title": null,
+            "company": "Hard Skill Exchange",
+            "duration": null,
+            "is_current": false
+          },
+          {
+            "title": null,
+            "company": "Pavilion",
+            "duration": null,
+            "is_current": false
+          }
+        ],
+        "error": null
+      }
+    },
+    "verification": {
+      "is_same_person": true,
+      "currently_employed": true,
+      "confidence": 100,
+      "reasoning": "Rule-based verification",
+      "red_flags": []
+    },
+    "sources_agree_on_name": true,
+    "sources_agree_on_company": true,
+    "any_source_found_data": true,
+    "total_latency_ms": 6610
+  },
+  {
+    "ground_truth": {
+      "name": "Hanafi Issahnane",
+      "company": "Inflowpay",
+      "title": "Co-Founder",
+      "linkedin_url": "https://www.linkedin.com/in/hanafi-issahnane"
+    },
+    "enrichments": {
+      "rapidapi": {
+        "success": true,
+        "name": "Hanafi Issahnane",
+        "title": "Co-Founder @ Inflowpay",
+        "company": "Inflowpay",
+        "experiences": [
+          {
+            "title": "Co-Founder",
+            "company": "Inflowpay",
+            "duration": "Jun 2024 - Present \u00b7 1 yr 6 mos",
+            "company_url": "https://www.linkedin.com/company/103474478/"
+          },
+          {
+            "title": "Co-Founder and President KryptoSphere Sorbonne",
+            "company": "KRYPTOSPHERE\u00ae",
+            "duration": "Apr 2023 - Dec 2024 \u00b7 1 yr 9 mos",
+            "company_url": "https://www.linkedin.com/company/18364688/"
+          },
+          {
+            "title": "Research Assistant",
+            "company": "Sorbonne University \u00b7 Internship",
+            "duration": "Jan 2024 - Feb 2024 \u00b7 2 mos",
+            "company_url": "https://www.linkedin.com/company/10290332/"
+          }
+        ],
+        "error": null
+      },
+      "scrapin": {
+        "success": true,
+        "name": "Hanafi Issahnane",
+        "title": "Co-Founder @ Inflowpay",
+        "company": "Inflowpay",
+        "experiences": [
+          {
+            "title": "Co-Founder",
+            "company": "Inflowpay",
+            "duration": null,
+            "is_current": false
+          },
+          {
+            "title": "Co-Founder and President KryptoSphere Sorbonne",
+            "company": "KRYPTOSPHERE\u00ae",
+            "duration": null,
+            "is_current": false
+          },
+          {
+            "title": "Research Assistant",
+            "company": "Sorbonne University",
+            "duration": null,
+            "is_current": false
+          }
+        ],
+        "error": null
+      },
+      "leadmagic": {
+        "success": true,
+        "name": "Hanafi Issahnane",
+        "title": "Co-Founder @ Inflowpay",
+        "company": "Inflowpay",
+        "experiences": [
+          {
+            "title": null,
+            "company": "Inflowpay",
+            "duration": null,
+            "is_current": false
+          },
+          {
+            "title": null,
+            "company": "KRYPTOSPHERE\u00ae",
+            "duration": null,
+            "is_current": false
+          },
+          {
+            "title": null,
+            "company": "Sorbonne University",
+            "duration": null,
+            "is_current": false
+          }
+        ],
+        "error": null
+      }
+    },
+    "verification": {
+      "is_same_person": true,
+      "currently_employed": true,
+      "confidence": 100,
+      "reasoning": "Rule-based verification",
+      "red_flags": []
+    },
+    "sources_agree_on_name": true,
+    "sources_agree_on_company": true,
+    "any_source_found_data": true,
+    "total_latency_ms": 4004
+  },
+  {
+    "ground_truth": {
+      "name": "Bryan Durkin",
+      "company": "MVP Team Pro",
+      "title": "Founder & Advisor",
+      "linkedin_url": "https://www.linkedin.com/in/bryandurkin"
+    },
+    "enrichments": {
+      "rapidapi": {
+        "success": true,
+        "name": "Bryan D.",
+        "title": "Helping growth-minded business owners get unstuck, build referral & reactivation machines, and market smarter\u2014not louder. \ud83d\udc49 Powered by systems, AI, automation, and the PowerLi network. Results not fluff",
+        "company": "DriveWay Marketing Podcast \u00b7 Full-time",
+        "experiences": [
+          {
+            "title": "Podcast Host",
+            "company": "DriveWay Marketing Podcast \u00b7 Full-time",
+            "duration": "Apr 2024 - Present \u00b7 1 yr 8 mos",
+            "company_url": "https://www.linkedin.com/search/results/all/?keywords=DriveWay+Marketing+Podcast"
+          },
+          {
+            "title": "Founder & Advisor",
+            "company": "MVP Team Pro \u00b7 Full-time",
+            "duration": "Dec 2021 - Present \u00b7 4 yrs",
+            "company_url": "https://www.linkedin.com/search/results/all/?keywords=MVP+Team+Pro"
+          },
+          {
+            "title": "Founder & CEO",
+            "company": "MVP Inner Circle \u00b7 Full-time",
+            "duration": "Oct 2019 - Present \u00b7 6 yrs 2 mos",
+            "company_url": "https://www.linkedin.com/company/40766016/"
+          }
+        ],
+        "error": null
+      },
+      "scrapin": {
+        "success": true,
+        "name": "Bryan D.",
+        "title": "Helping growth-minded business owners get unstuck, build referral & reactivation machines, and market smarter\u2014not louder. \ud83d\udc49 Powered by systems, AI, automation, and the PowerLi network. Results not fluff",
+        "company": "MVP Team Pro",
+        "experiences": [
+          {
+            "title": "Founder & Advisor",
+            "company": "MVP Team Pro",
+            "duration": null,
+            "is_current": false
+          },
+          {
+            "title": "Podcast Host",
+            "company": "DriveWay Marketing Podcast",
+            "duration": null,
+            "is_current": false
+          },
+          {
+            "title": "Founder & CEO",
+            "company": "MVP Inner Circle",
+            "duration": null,
+            "is_current": false
+          }
+        ],
+        "error": null
+      },
+      "leadmagic": {
+        "success": true,
+        "name": "Bryan D.",
+        "title": "Helping growth-minded business owners get unstuck, build referral & reactivation machines, and market smarter\u2014not louder. \ud83d\udc49 Powered by systems, AI, automation, and the PowerLi network. Results not fluff",
+        "company": "DriveWay Marketing Podcast",
+        "experiences": [
+          {
+            "title": null,
+            "company": "DriveWay Marketing Podcast",
+            "duration": null,
+            "is_current": false
+          },
+          {
+            "title": null,
+            "company": "MVP Team Pro",
+            "duration": null,
+            "is_current": false
+          },
+          {
+            "title": null,
+            "company": "MVP Inner Circle",
+            "duration": null,
+            "is_current": false
+          }
+        ],
+        "error": null
+      }
+    },
+    "verification": {
+      "is_same_person": false,
+      "currently_employed": true,
+      "confidence": 100,
+      "reasoning": "Rule-based verification",
+      "red_flags": [
+        "Name does not match"
+      ]
+    },
+    "sources_agree_on_name": true,
+    "sources_agree_on_company": false,
+    "any_source_found_data": true,
+    "total_latency_ms": 4227
+  },
+  {
+    "ground_truth": {
+      "name": "Adam Jarczyn",
+      "company": "Shoppers Drug Mart",
+      "title": "Sr. Director, Product - PC Health",
+      "linkedin_url": "https://www.linkedin.com/in/adamjarczyn"
+    },
+    "enrichments": {
+      "rapidapi": {
+        "success": true,
+        "name": "Adam J.",
+        "title": "I build revenue generating PLG/user onboarding programs through data, accountability, and scale | Shopify-alum, KOHO-alum | Dad | Founder, CEO | Product & Ops Leader",
+        "company": "Shoppers Drug Mart \u00b7 Permanent Full-time",
+        "experiences": [
+          {
+            "title": "Sr. Director, Product - PC Health",
+            "company": "Shoppers Drug Mart \u00b7 Permanent Full-time",
+            "duration": "May 2023 - Present \u00b7 2 yrs 7 mos",
+            "company_url": "https://www.linkedin.com/company/165948/"
+          },
+          {
+            "title": "Venture Partner",
+            "company": "Ripple Ventures",
+            "duration": "Oct 2022 - Present \u00b7 3 yrs 2 mos",
+            "company_url": "https://www.linkedin.com/company/11171763/"
+          },
+          {
+            "title": "ProductLed Coach",
+            "company": "ProductLed",
+            "duration": "Jul 2022 - Present \u00b7 3 yrs 5 mos",
+            "company_url": "https://www.linkedin.com/company/16048433/"
+          }
+        ],
+        "error": null
+      },
+      "scrapin": {
+        "success": true,
+        "name": "Adam J.",
+        "title": "I build revenue generating PLG/user onboarding programs through data, accountability, and scale | Shopify-alum, KOHO-alum | Dad | Founder, CEO | Product & Ops Leader",
+        "company": "Shoppers Drug Mart",
+        "experiences": [
+          {
+            "title": "Sr. Director, Product - PC Health",
+            "company": "Shoppers Drug Mart",
+            "duration": null,
+            "is_current": false
+          },
+          {
+            "title": "Venture Partner",
+            "company": "Ripple Ventures",
+            "duration": null,
+            "is_current": false
+          },
+          {
+            "title": "ProductLed Coach",
+            "company": "ProductLed",
+            "duration": null,
+            "is_current": false
+          }
+        ],
+        "error": null
+      },
+      "leadmagic": {
+        "success": true,
+        "name": "Adam J.",
+        "title": "I build revenue generating PLG/user onboarding programs through data, accountability, and scale | Shopify-alum, KOHO-alum | Dad | Founder, CEO | Product & Ops Leader",
+        "company": "Shoppers Drug Mart",
+        "experiences": [
+          {
+            "title": null,
+            "company": "Shoppers Drug Mart",
+            "duration": null,
+            "is_current": false
+          },
+          {
+            "title": null,
+            "company": "Ripple Ventures",
+            "duration": null,
+            "is_current": false
+          },
+          {
+            "title": null,
+            "company": "ProductLed",
+            "duration": null,
+            "is_current": false
+          }
+        ],
+        "error": null
+      }
+    },
+    "verification": {
+      "is_same_person": false,
+      "currently_employed": true,
+      "confidence": 100,
+      "reasoning": "Rule-based verification",
+      "red_flags": [
+        "Name does not match"
+      ]
+    },
+    "sources_agree_on_name": true,
+    "sources_agree_on_company": true,
+    "any_source_found_data": true,
+    "total_latency_ms": 4094
+  },
+  {
+    "ground_truth": {
+      "name": "John Bachmann",
+      "company": "Horizonn AI",
+      "title": "Founder @horizonnAI",
+      "linkedin_url": "https://www.linkedin.com/in/john-bachmann-844978301"
+    },
+    "enrichments": {
+      "rapidapi": {
+        "success": true,
+        "name": "John Bachmann",
+        "title": "Founder at HorizonnAI\u2122",
+        "company": "Horizonn AI",
+        "experiences": [
+          {
+            "title": "Founder @horizonnAI",
+            "company": "Horizonn AI",
+            "duration": "Oct 2025 - Present \u00b7 2 mos",
+            "company_url": "https://www.linkedin.com/company/104773393/"
+          }
+        ],
+        "error": null
+      },
+      "scrapin": {
+        "success": true,
+        "name": "John Bachmann",
+        "title": "Founder at HorizonnAI\u2122",
+        "company": "Horizonn AI",
+        "experiences": [
+          {
+            "title": "Founder @horizonnAI",
+            "company": "Horizonn AI",
+            "duration": null,
+            "is_current": false
+          }
+        ],
+        "error": null
+      },
+      "leadmagic": {
+        "success": true,
+        "name": "John Bachmann",
+        "title": "Founder at HorizonnAI\u2122",
+        "company": "Horizonn AI",
+        "experiences": [
+          {
+            "title": null,
+            "company": "Horizonn AI",
+            "duration": null,
+            "is_current": false
+          }
+        ],
+        "error": null
+      }
+    },
+    "verification": {
+      "is_same_person": true,
+      "currently_employed": true,
+      "confidence": 100,
+      "reasoning": "Rule-based verification",
+      "red_flags": []
+    },
+    "sources_agree_on_name": true,
+    "sources_agree_on_company": true,
+    "any_source_found_data": true,
+    "total_latency_ms": 4097
+  },
+  {
+    "ground_truth": {
+      "name": "Jon Emminizer",
+      "company": "Inverta",
+      "title": "Strategic Account Executive",
+      "linkedin_url": "https://www.linkedin.com/in/jon-emminizer"
+    },
+    "enrichments": {
+      "rapidapi": {
+        "success": true,
+        "name": "Jon Emminizer",
+        "title": "Strategic Account Executive at Inverta | Enterprise and Mid-Market Sales | Consultative Deal Leadership | Martech, SaaS, Data and AI-Enabled GTM",
+        "company": "Inverta",
+        "experiences": [
+          {
+            "title": "Strategic Account Executive",
+            "company": "Inverta",
+            "duration": "May 2024 - Present \u00b7 1 yr 7 mos",
+            "company_url": "https://www.linkedin.com/company/10398012/"
+          },
+          {
+            "title": "Spear Marketing Group",
+            "company": "6 yrs 11 mos",
+            "duration": "Remote",
+            "company_url": "https://www.linkedin.com/company/908912/"
+          },
+          {
+            "title": "Yeti LLC",
+            "company": "1 yr 5 mos",
+            "duration": null,
+            "company_url": "https://www.linkedin.com/company/2033980/"
+          }
+        ],
+        "error": null
+      },
+      "scrapin": {
+        "success": true,
+        "name": "Jon Emminizer",
+        "title": "Strategic Account Executive at Inverta | Enterprise and Mid-Market Sales | Consultative Deal Leadership | Martech, SaaS, Data and AI-Enabled GTM",
+        "company": "Inverta",
+        "experiences": [
+          {
+            "title": "Strategic Account Executive",
+            "company": "Inverta",
+            "duration": null,
+            "is_current": false
+          },
+          {
+            "title": "Vice President Of Business Development",
+            "company": "Spear Marketing Group",
+            "duration": null,
+            "is_current": false
+          },
+          {
+            "title": "Director, Business Development",
+            "company": "Spear Marketing Group",
+            "duration": null,
+            "is_current": false
+          }
+        ],
+        "error": null
+      },
+      "leadmagic": {
+        "success": true,
+        "name": "Jon Emminizer",
+        "title": "Strategic Account Executive at Inverta | Enterprise and Mid-Market Sales | Consultative Deal Leadership | Martech, SaaS, Data and AI-Enabled GTM",
+        "company": "Inverta",
+        "experiences": [
+          {
+            "title": null,
+            "company": "Inverta",
+            "duration": null,
+            "is_current": false
+          },
+          {
+            "title": null,
+            "company": "6 yrs 11 mos",
+            "duration": null,
+            "is_current": false
+          },
+          {
+            "title": null,
+            "company": "1 yr 5 mos",
+            "duration": null,
+            "is_current": false
+          }
+        ],
+        "error": null
+      }
+    },
+    "verification": {
+      "is_same_person": true,
+      "currently_employed": true,
+      "confidence": 100,
+      "reasoning": "Rule-based verification",
+      "red_flags": []
+    },
+    "sources_agree_on_name": true,
+    "sources_agree_on_company": true,
+    "any_source_found_data": true,
+    "total_latency_ms": 6524
+  },
+  {
+    "ground_truth": {
+      "name": "Riley Soward",
+      "company": "Orbital",
+      "title": "Co-Founder, Co-CEO",
+      "linkedin_url": "https://www.linkedin.com/in/rileysoward"
+    },
+    "enrichments": {
+      "rapidapi": {
+        "success": true,
+        "name": "Riley Soward",
+        "title": "Co-founder of Orbital | For companies underserved by ZoomInfo",
+        "company": "Orbital \u00b7 Full-time",
+        "experiences": [
+          {
+            "title": "Co-Founder, Co-CEO",
+            "company": "Orbital \u00b7 Full-time",
+            "duration": "Jan 2022 - Present \u00b7 3 yrs 11 mos",
+            "company_url": "https://www.linkedin.com/company/89996332/"
+          },
+          {
+            "title": "Advisor",
+            "company": "Aryeo",
+            "duration": "Jan 2019 - Aug 2023 \u00b7 4 yrs 8 mos",
+            "company_url": "https://www.linkedin.com/company/18284561/"
+          },
+          {
+            "title": "Product",
+            "company": "Nuro",
+            "duration": "Aug 2018 - Jun 2021 \u00b7 2 yrs 11 mos",
+            "company_url": "https://www.linkedin.com/company/12957486/"
+          }
+        ],
+        "error": null
+      },
+      "scrapin": {
+        "success": true,
+        "name": "Riley Soward",
+        "title": "Co-founder of Orbital | For companies underserved by ZoomInfo",
+        "company": "Orbital",
+        "experiences": [
+          {
+            "title": "Co-Founder, Co-CEO",
+            "company": "Orbital",
+            "duration": null,
+            "is_current": false
+          },
+          {
+            "title": "Advisor",
+            "company": "Aryeo",
+            "duration": null,
+            "is_current": false
+          },
+          {
+            "title": "Product",
+            "company": "Nuro",
+            "duration": null,
+            "is_current": false
+          }
+        ],
+        "error": null
+      },
+      "leadmagic": {
+        "success": true,
+        "name": "Riley Soward",
+        "title": "Co-founder of Orbital | For companies underserved by ZoomInfo",
+        "company": "Orbital",
+        "experiences": [
+          {
+            "title": null,
+            "company": "Orbital",
+            "duration": null,
+            "is_current": false
+          },
+          {
+            "title": null,
+            "company": "Aryeo",
+            "duration": null,
+            "is_current": false
+          },
+          {
+            "title": null,
+            "company": "Nuro",
+            "duration": null,
+            "is_current": false
+          }
+        ],
+        "error": null
+      }
+    },
+    "verification": {
+      "is_same_person": true,
+      "currently_employed": true,
+      "confidence": 100,
+      "reasoning": "Rule-based verification",
+      "red_flags": []
+    },
+    "sources_agree_on_name": true,
+    "sources_agree_on_company": true,
+    "any_source_found_data": true,
+    "total_latency_ms": 6278
+  },
+  {
+    "ground_truth": {
+      "name": "Timmy Corini",
+      "company": "Promethify",
+      "title": "Owner",
+      "linkedin_url": "https://www.linkedin.com/in/timmycorini"
+    },
+    "enrichments": {
+      "rapidapi": {
+        "success": true,
+        "name": "Timmy Corini",
+        "title": "Chemical Engineering to Marketing Engineering",
+        "company": "Promethify",
+        "experiences": [
+          {
+            "title": "Owner",
+            "company": "Promethify",
+            "duration": "Dec 2017 - Present \u00b7 8 yrs",
+            "company_url": "https://www.linkedin.com/search/results/all/?keywords=Promethify"
+          },
+          {
+            "title": "Fractional Head of Growth",
+            "company": "SmythOS \u00b7 Contract",
+            "duration": "Mar 2025 - Nov 2025 \u00b7 9 mos",
+            "company_url": "https://www.linkedin.com/company/94826262/"
+          },
+          {
+            "title": "Executive Instructor",
+            "company": "BusinessMentor.com",
+            "duration": "Nov 2015 - Nov 2021 \u00b7 6 yrs 1 mo",
+            "company_url": "https://www.linkedin.com/company/14008536/"
+          }
+        ],
+        "error": null
+      },
+      "scrapin": {
+        "success": true,
+        "name": "Timmy Corini",
+        "title": "Chemical Engineering to Marketing Engineering",
+        "company": "Promethify",
+        "experiences": [
+          {
+            "title": "Owner",
+            "company": "Promethify",
+            "duration": null,
+            "is_current": false
+          },
+          {
+            "title": "Fractional Head of Growth",
+            "company": "SmythOS",
+            "duration": null,
+            "is_current": false
+          },
+          {
+            "title": "Executive Instructor",
+            "company": "BusinessMentor.com",
+            "duration": null,
+            "is_current": false
+          }
+        ],
+        "error": null
+      },
+      "leadmagic": {
+        "success": true,
+        "name": "Timmy Corini",
+        "title": "Chemical Engineering to Marketing Engineering",
+        "company": "Promethify",
+        "experiences": [
+          {
+            "title": null,
+            "company": "Promethify",
+            "duration": null,
+            "is_current": false
+          },
+          {
+            "title": null,
+            "company": "SmythOS",
+            "duration": null,
+            "is_current": false
+          },
+          {
+            "title": null,
+            "company": "BusinessMentor.com",
+            "duration": null,
+            "is_current": false
+          }
+        ],
+        "error": null
+      }
+    },
+    "verification": {
+      "is_same_person": true,
+      "currently_employed": true,
+      "confidence": 100,
+      "reasoning": "Rule-based verification",
+      "red_flags": []
+    },
+    "sources_agree_on_name": true,
+    "sources_agree_on_company": true,
+    "any_source_found_data": true,
+    "total_latency_ms": 3447
+  },
+  {
+    "ground_truth": {
+      "name": "Paul Chute",
+      "company": "VinciWorks",
+      "title": "SDR",
+      "linkedin_url": "https://www.linkedin.com/in/paul-chute"
+    },
+    "enrichments": {
+      "rapidapi": {
+        "success": true,
+        "name": "Paul Chute",
+        "title": "The regulatory landscape isn't static, and your training shouldn't be either | e-Learning and automated compliance workflows | Middle of the pack runner \ud83c\udfc3\ud83c\udffd\u200d\u2642\ufe0f | Long suffering Evertonian \ud83d\udc99\u26bd\ufe0f",
+        "company": "VinciWorks \u00b7 Full-time",
+        "experiences": [
+          {
+            "title": "SDR",
+            "company": "VinciWorks \u00b7 Full-time",
+            "duration": "Nov 2024 - Present \u00b7 1 yr 1 mo",
+            "company_url": "https://www.linkedin.com/company/149455/"
+          },
+          {
+            "title": "Head of Partnerships",
+            "company": "Leadoo Marketing Technologies \u00b7 Full-time",
+            "duration": "Apr 2024 - Nov 2024 \u00b7 8 mos",
+            "company_url": "https://www.linkedin.com/company/33225419/"
+          },
+          {
+            "title": "Partnerships Manager",
+            "company": "Allego \u00b7 Full-time",
+            "duration": "Dec 2020 - Apr 2024 \u00b7 3 yrs 5 mos",
+            "company_url": "https://www.linkedin.com/company/4994402/"
+          }
+        ],
+        "error": null
+      },
+      "scrapin": {
+        "success": true,
+        "name": "Paul Chute",
+        "title": "The regulatory landscape isn't static, and your training shouldn't be either | e-Learning and automated compliance workflows | Middle of the pack runner \ud83c\udfc3\ud83c\udffd\u200d\u2642\ufe0f | Long suffering Evertonian \ud83d\udc99\u26bd\ufe0f",
+        "company": "VinciWorks",
+        "experiences": [
+          {
+            "title": "SDR",
+            "company": "VinciWorks",
+            "duration": null,
+            "is_current": false
+          },
+          {
+            "title": "Head of Partnerships",
+            "company": "Leadoo Marketing Technologies",
+            "duration": null,
+            "is_current": false
+          },
+          {
+            "title": "Partnerships Manager",
+            "company": "Allego",
+            "duration": null,
+            "is_current": false
+          }
+        ],
+        "error": null
+      },
+      "leadmagic": {
+        "success": true,
+        "name": "Paul Chute",
+        "title": "The regulatory landscape isn't static, and your training shouldn't be either | e-Learning and automated compliance workflows | Middle of the pack runner \ud83c\udfc3\ud83c\udffd\u200d\u2642\ufe0f | Long suffering Evertonian \ud83d\udc99\u26bd\ufe0f",
+        "company": "VinciWorks",
+        "experiences": [
+          {
+            "title": null,
+            "company": "VinciWorks",
+            "duration": null,
+            "is_current": false
+          },
+          {
+            "title": null,
+            "company": "Leadoo Marketing Technologies",
+            "duration": null,
+            "is_current": false
+          },
+          {
+            "title": null,
+            "company": "Allego",
+            "duration": null,
+            "is_current": false
+          }
+        ],
+        "error": null
+      }
+    },
+    "verification": {
+      "is_same_person": true,
+      "currently_employed": true,
+      "confidence": 100,
+      "reasoning": "Rule-based verification",
+      "red_flags": []
+    },
+    "sources_agree_on_name": true,
+    "sources_agree_on_company": true,
+    "any_source_found_data": true,
+    "total_latency_ms": 3702
+  },
+  {
+    "ground_truth": {
+      "name": "Aubrey Washington",
+      "company": "Active Parks",
+      "title": "Full Cycle Account Executive",
+      "linkedin_url": "https://www.linkedin.com/in/aubrey-washington"
+    },
+    "enrichments": {
+      "rapidapi": {
+        "success": true,
+        "name": "Aubrey Washington",
+        "title": "Businesses hire me to cold call for them.",
+        "company": "Active Parks \u00b7 Full-time",
+        "experiences": [
+          {
+            "title": "Full Cycle Account Executive",
+            "company": "Active Parks \u00b7 Full-time",
+            "duration": "Jul 2025 - Present \u00b7 5 mos",
+            "company_url": "https://www.linkedin.com/company/105509265/"
+          },
+          {
+            "title": "Full Cycle Account Executive.",
+            "company": "Truckpedia \u00b7 Full-time",
+            "duration": "Oct 2024 - Aug 2025 \u00b7 11 mos",
+            "company_url": "https://www.linkedin.com/company/77757169/"
+          },
+          {
+            "title": "Pipes.AI",
+            "company": "Contract \u00b7 2 yrs 2 mos",
+            "duration": "Remote",
+            "company_url": "https://www.linkedin.com/company/18928405/"
+          }
+        ],
+        "error": null
+      },
+      "scrapin": {
+        "success": true,
+        "name": "Aubrey Washington",
+        "title": "Businesses hire me to cold call for them.",
+        "company": "Active Parks",
+        "experiences": [
+          {
+            "title": "Full Cycle Account Executive",
+            "company": "Active Parks",
+            "duration": null,
+            "is_current": false
+          },
+          {
+            "title": "Full Cycle Account Executive.",
+            "company": "Truckpedia",
+            "duration": null,
+            "is_current": false
+          },
+          {
+            "title": "Full Cycle Account Executive.",
+            "company": "Pipes.AI",
+            "duration": null,
+            "is_current": false
+          }
+        ],
+        "error": null
+      },
+      "leadmagic": {
+        "success": true,
+        "name": "Aubrey Washington",
+        "title": "Businesses hire me to cold call for them.",
+        "company": "Active Parks",
+        "experiences": [
+          {
+            "title": null,
+            "company": "Active Parks",
+            "duration": null,
+            "is_current": false
+          },
+          {
+            "title": null,
+            "company": "Truckpedia",
+            "duration": null,
+            "is_current": false
+          },
+          {
+            "title": null,
+            "company": "Contract",
+            "duration": null,
+            "is_current": false
+          }
+        ],
+        "error": null
+      }
+    },
+    "verification": {
+      "is_same_person": true,
+      "currently_employed": true,
+      "confidence": 100,
+      "reasoning": "Rule-based verification",
+      "red_flags": []
+    },
+    "sources_agree_on_name": true,
+    "sources_agree_on_company": true,
+    "any_source_found_data": true,
+    "total_latency_ms": 3730
+  },
+  {
+    "ground_truth": {
+      "name": "Seha Okudan",
+      "company": "CueGrowth Labs",
+      "title": "Account Executive",
+      "linkedin_url": "https://www.linkedin.com/in/sehaokudan"
+    },
+    "enrichments": {
+      "rapidapi": {
+        "success": true,
+        "name": "Seha Okudan",
+        "title": "Helping B2B founders turn LinkedIn into deals | GTM Strategist",
+        "company": "CueGrowth Labs",
+        "experiences": [
+          {
+            "title": "Account Executive",
+            "company": "CueGrowth Labs",
+            "duration": "Sep 2025 - Present \u00b7 3 mos",
+            "company_url": "https://www.linkedin.com/company/105597987/"
+          },
+          {
+            "title": "Founder",
+            "company": "Growth Wisdom \u00b7 Self-employed",
+            "duration": "Mar 2023 - Present \u00b7 2 yrs 9 mos",
+            "company_url": "https://www.linkedin.com/company/101972388/"
+          },
+          {
+            "title": "Growth Consultant",
+            "company": "AI Track Mate \u00b7 Freelance",
+            "duration": "Aug 2025 - Present \u00b7 4 mos",
+            "company_url": "https://www.linkedin.com/company/107237262/"
+          }
+        ],
+        "error": null
+      },
+      "scrapin": {
+        "success": true,
+        "name": "Seha Okudan",
+        "title": "Helping B2B founders turn LinkedIn into deals | GTM Strategist",
+        "company": "CueGrowth Labs",
+        "experiences": [
+          {
+            "title": "Account Executive",
+            "company": "CueGrowth Labs",
+            "duration": null,
+            "is_current": false
+          },
+          {
+            "title": "Founder",
+            "company": "Growth Wisdom",
+            "duration": null,
+            "is_current": false
+          },
+          {
+            "title": "Growth Consultant",
+            "company": "AI Track Mate",
+            "duration": null,
+            "is_current": false
+          }
+        ],
+        "error": null
+      },
+      "leadmagic": {
+        "success": true,
+        "name": "Seha Okudan",
+        "title": "Helping B2B founders turn LinkedIn into deals | GTM Strategist",
+        "company": "CueGrowth Labs",
+        "experiences": [
+          {
+            "title": null,
+            "company": "CueGrowth Labs",
+            "duration": null,
+            "is_current": false
+          },
+          {
+            "title": null,
+            "company": "Growth Wisdom",
+            "duration": null,
+            "is_current": false
+          },
+          {
+            "title": null,
+            "company": "AI Track Mate",
+            "duration": null,
+            "is_current": false
+          }
+        ],
+        "error": null
+      }
+    },
+    "verification": {
+      "is_same_person": true,
+      "currently_employed": true,
+      "confidence": 100,
+      "reasoning": "Rule-based verification",
+      "red_flags": []
+    },
+    "sources_agree_on_name": true,
+    "sources_agree_on_company": true,
+    "any_source_found_data": true,
+    "total_latency_ms": 7760
+  },
+  {
+    "ground_truth": {
+      "name": "Himanshu Bamoria",
+      "company": "Athina AI (YC W23)",
+      "title": "Co-Founder",
+      "linkedin_url": "https://www.linkedin.com/in/hbamoria"
+    },
+    "enrichments": {
+      "rapidapi": {
+        "success": true,
+        "name": "Himanshu Bamoria",
+        "title": "Co-founder Athina AI (Y Combinator W23)",
+        "company": "Athina AI (YC W23) \u00b7 Full-time",
+        "experiences": [
+          {
+            "title": "Co-Founder",
+            "company": "Athina AI (YC W23) \u00b7 Full-time",
+            "duration": "Apr 2022 - Present \u00b7 3 yrs 8 mos",
+            "company_url": "https://www.linkedin.com/company/80237601/"
+          },
+          {
+            "title": "Program Manager, Fintech Investments'21",
+            "company": "GSF Accelerator \u00b7 Part-time",
+            "duration": "Jul 2021 - Dec 2021 \u00b7 6 mos",
+            "company_url": "https://www.linkedin.com/company/2740400/"
+          },
+          {
+            "title": "Co-Founder",
+            "company": "Atcost  \u00b7 Full-time",
+            "duration": "Apr 2017 - Sep 2021 \u00b7 4 yrs 6 mos",
+            "company_url": "https://www.linkedin.com/search/results/all/?keywords=Atcost+"
+          }
+        ],
+        "error": null
+      },
+      "scrapin": {
+        "success": true,
+        "name": "Himanshu Bamoria",
+        "title": "Co-founder Athina AI (Y Combinator W23)",
+        "company": "Athina AI (YC W23)",
+        "experiences": [
+          {
+            "title": "Co-Founder",
+            "company": "Athina AI (YC W23)",
+            "duration": null,
+            "is_current": false
+          },
+          {
+            "title": "Program Manager, Fintech Investments'21",
+            "company": "GSF Accelerator",
+            "duration": null,
+            "is_current": false
+          },
+          {
+            "title": "Co-Founder",
+            "company": "Atcost ",
+            "duration": null,
+            "is_current": false
+          }
+        ],
+        "error": null
+      },
+      "leadmagic": {
+        "success": true,
+        "name": "Himanshu Bamoria",
+        "title": "Co-founder Athina AI (Y Combinator W23)",
+        "company": "Athina AI (YC W23)",
+        "experiences": [
+          {
+            "title": null,
+            "company": "Athina AI (YC W23)",
+            "duration": null,
+            "is_current": false
+          },
+          {
+            "title": null,
+            "company": "GSF Accelerator",
+            "duration": null,
+            "is_current": false
+          },
+          {
+            "title": null,
+            "company": "Atcost",
+            "duration": null,
+            "is_current": false
+          }
+        ],
+        "error": null
+      }
+    },
+    "verification": {
+      "is_same_person": true,
+      "currently_employed": true,
+      "confidence": 100,
+      "reasoning": "Rule-based verification",
+      "red_flags": []
+    },
+    "sources_agree_on_name": true,
+    "sources_agree_on_company": true,
+    "any_source_found_data": true,
+    "total_latency_ms": 4850
+  },
+  {
+    "ground_truth": {
+      "name": "\ud835\udc0f\ud835\udc2b\ud835\udc1a\ud835\udc27\ud835\udc23\ud835\udc1a\ud835\udc25 \ud835\udc06\ud835\udc28\ud835\udc1e\ud835\udc25  - \ud835\udc01\ud835\udc2e\ud835\udc2c\ud835\udc22\ud835\udc27\ud835\udc1e\ud835\udc2c\ud835\udc2c \ud835\udc13\ud835\udc1e\ud835\udc1c\ud835\udc21 \ud835\udc00\ud835\udc1d\ud835\udc2f\ud835\udc22\ud835\udc2c\ud835\udc28\ud835\udc2b",
+      "company": "VcareAll Solution Pvt. Ltd.",
+      "title": "Co-Founder & Director",
+      "linkedin_url": "https://www.linkedin.com/in/iampranjalgoel"
+    },
+    "enrichments": {
+      "rapidapi": {
+        "success": true,
+        "name": "\ud835\udc0f\ud835\udc2b\ud835\udc1a\ud835\udc27\ud835\udc23\ud835\udc1a\ud835\udc25 \ud835\udc06\ud835\udc28\ud835\udc1e\ud835\udc25 -.",
+        "title": "\ud835\udc02\u1d0f-\ud835\udc05\u1d0f\u1d1c\u0274\u1d05\u1d07\u0280 \ud835\udc15\u1d04\u1d00\u0280\u1d07\ud835\udc00\u029f\u029f & \ud835\udc13\u1d1c\u1d1b\u1d07\u1d07\ud835\udc07\ud835\udc14\ud835\udc01  | \ud835\udc04\u0274\u1d1b\u0280\u1d07\u1d18\u0280\u1d07\u0274\u1d07\u1d1c\u0280 | \ud835\udc01\u1d1c\ud835\udc2c\u026a\u0274\u1d07\ud835\udc2c\ud835\udc2c \ud835\udc06\u0280\u1d0f\u1d21\u1d1b\u029c & \ud835\udc13\u1d07\u1d04\u029c\u0274\u1d0f\u029f\u1d0f\u0262\u028f \ud835\udc04\ud835\udc31\u1d18\u1d07\u0280\u1d1b | \ud835\udc00\ud835\udc1d\ud835\udc2f\ud835\udc22\ud835\udc2c\ud835\udc28\ud835\udc2b | \ud835\udc04\ud835\udc27\ud835\udc20\ud835\udc22\ud835\udc27\ud835\udc1e\ud835\udc1e\ud835\udc2b | \u1d0d\u1d00\u026a\u029f\u1d07\u0280\u0280\u1d0f\u1d04\u1d0b\u1d07\u1d1b | \u1d00\ua730\ua730\u026a\u029f\u026a\u1d00\u1d1b\u1d07 \u1d0d\u1d00\u0280\u1d0b\u1d07\u1d1b\u026a\u0274\u0262",
+        "company": "VcareAll Solution Pvt. Ltd.",
+        "experiences": [
+          {
+            "title": "Co-Founder & Director",
+            "company": "VcareAll Solution Pvt. Ltd.",
+            "duration": "Mar 2014 - Present \u00b7 11 yrs 9 mos",
+            "company_url": "https://www.linkedin.com/company/2236728/"
+          },
+          {
+            "title": "Co-Founder & Director",
+            "company": "TuteeHUB Platform",
+            "duration": "Sep 2017 - Present \u00b7 8 yrs 3 mos",
+            "company_url": "https://www.linkedin.com/company/20293449/"
+          },
+          {
+            "title": "Franchise Co-Owner",
+            "company": "Baskin Robin's",
+            "duration": "Jan 2017 - Aug 2018 \u00b7 1 yr 8 mos",
+            "company_url": "https://www.linkedin.com/company/5855128/"
+          }
+        ],
+        "error": null
+      },
+      "scrapin": {
+        "success": true,
+        "name": "\ud835\udc0f\ud835\udc2b\ud835\udc1a\ud835\udc27\ud835\udc23\ud835\udc1a\ud835\udc25 \ud835\udc06\ud835\udc28\ud835\udc1e\ud835\udc25 -.",
+        "title": "\ud835\udc02\u1d0f-\ud835\udc05\u1d0f\u1d1c\u0274\u1d05\u1d07\u0280 \ud835\udc15\u1d04\u1d00\u0280\u1d07\ud835\udc00\u029f\u029f & \ud835\udc13\u1d1c\u1d1b\u1d07\u1d07\ud835\udc07\ud835\udc14\ud835\udc01  | \ud835\udc04\u0274\u1d1b\u0280\u1d07\u1d18\u0280\u1d07\u0274\u1d07\u1d1c\u0280 | \ud835\udc01\u1d1c\ud835\udc2c\u026a\u0274\u1d07\ud835\udc2c\ud835\udc2c \ud835\udc06\u0280\u1d0f\u1d21\u1d1b\u029c & \ud835\udc13\u1d07\u1d04\u029c\u0274\u1d0f\u029f\u1d0f\u0262\u028f \ud835\udc04\ud835\udc31\u1d18\u1d07\u0280\u1d1b | \ud835\udc00\ud835\udc1d\ud835\udc2f\ud835\udc22\ud835\udc2c\ud835\udc28\ud835\udc2b | \ud835\udc04\ud835\udc27\ud835\udc20\ud835\udc22\ud835\udc27\ud835\udc1e\ud835\udc1e\ud835\udc2b | \u1d0d\u1d00\u026a\u029f\u1d07\u0280\u0280\u1d0f\u1d04\u1d0b\u1d07\u1d1b | \u1d00\ua730\ua730\u026a\u029f\u026a\u1d00\u1d1b\u1d07 \u1d0d\u1d00\u0280\u1d0b\u1d07\u1d1b\u026a\u0274\u0262",
+        "company": "VcareAll Solution Pvt. Ltd.",
+        "experiences": [
+          {
+            "title": "Co-Founder & Director",
+            "company": "VcareAll Solution Pvt. Ltd.",
+            "duration": null,
+            "is_current": false
+          },
+          {
+            "title": "Co-Founder & Director",
+            "company": "TuteeHUB Platform",
+            "duration": null,
+            "is_current": false
+          },
+          {
+            "title": "Franchise Co-Owner",
+            "company": "Baskin Robin's",
+            "duration": null,
+            "is_current": false
+          }
+        ],
+        "error": null
+      },
+      "leadmagic": {
+        "success": true,
+        "name": "\ud835\udc0f\ud835\udc2b\ud835\udc1a\ud835\udc27\ud835\udc23\ud835\udc1a\ud835\udc25 \ud835\udc06\ud835\udc28\ud835\udc1e\ud835\udc25 -.",
+        "title": "\ud835\udc02\u1d0f-\ud835\udc05\u1d0f\u1d1c\u0274\u1d05\u1d07\u0280 \ud835\udc15\u1d04\u1d00\u0280\u1d07\ud835\udc00\u029f\u029f & \ud835\udc13\u1d1c\u1d1b\u1d07\u1d07\ud835\udc07\ud835\udc14\ud835\udc01  | \ud835\udc04\u0274\u1d1b\u0280\u1d07\u1d18\u0280\u1d07\u0274\u1d07\u1d1c\u0280 | \ud835\udc01\u1d1c\ud835\udc2c\u026a\u0274\u1d07\ud835\udc2c\ud835\udc2c \ud835\udc06\u0280\u1d0f\u1d21\u1d1b\u029c & \ud835\udc13\u1d07\u1d04\u029c\u0274\u1d0f\u029f\u1d0f\u0262\u028f \ud835\udc04\ud835\udc31\u1d18\u1d07\u0280\u1d1b | \ud835\udc00\ud835\udc1d\ud835\udc2f\ud835\udc22\ud835\udc2c\ud835\udc28\ud835\udc2b | \ud835\udc04\ud835\udc27\ud835\udc20\ud835\udc22\ud835\udc27\ud835\udc1e\ud835\udc1e\ud835\udc2b | \u1d0d\u1d00\u026a\u029f\u1d07\u0280\u0280\u1d0f\u1d04\u1d0b\u1d07\u1d1b | \u1d00\ua730\ua730\u026a\u029f\u026a\u1d00\u1d1b\u1d07 \u1d0d\u1d00\u0280\u1d0b\u1d07\u1d1b\u026a\u0274\u0262",
+        "company": "VcareAll Solution Pvt. Ltd.",
+        "experiences": [
+          {
+            "title": null,
+            "company": "VcareAll Solution Pvt. Ltd.",
+            "duration": null,
+            "is_current": false
+          },
+          {
+            "title": null,
+            "company": "TuteeHUB Platform",
+            "duration": null,
+            "is_current": false
+          },
+          {
+            "title": null,
+            "company": "Baskin Robin's",
+            "duration": null,
+            "is_current": false
+          }
+        ],
+        "error": null
+      }
+    },
+    "verification": {
+      "is_same_person": false,
+      "currently_employed": true,
+      "confidence": 100,
+      "reasoning": "Rule-based verification",
+      "red_flags": [
+        "Name does not match"
+      ]
+    },
+    "sources_agree_on_name": true,
+    "sources_agree_on_company": true,
+    "any_source_found_data": true,
+    "total_latency_ms": 4211
+  },
+  {
+    "ground_truth": {
+      "name": "Jay Garside",
+      "company": "ROC Venture Group",
+      "title": "Investor Relations",
+      "linkedin_url": "https://www.linkedin.com/in/jay-garside-4ab18218a"
+    },
+    "enrichments": {
+      "rapidapi": {
+        "success": true,
+        "name": "Jay Garside",
+        "title": "Capital Formation || Leader of Key SFO Relationships - Husband",
+        "company": "THE REAL Mental Health Foundation",
+        "experiences": [
+          {
+            "title": "Ambassador",
+            "company": "THE REAL Mental Health Foundation",
+            "duration": "Jul 2025 - Present \u00b7 5 mos",
+            "company_url": "https://www.linkedin.com/company/91432716/"
+          },
+          {
+            "title": "Investor Relations",
+            "company": "ROC Venture Group \u00b7 Full-time",
+            "duration": "Feb 2025 - Present \u00b7 10 mos",
+            "company_url": "https://www.linkedin.com/company/72702155/"
+          },
+          {
+            "title": "SourceWhale",
+            "company": "Full-time \u00b7 1 yr 9 mos",
+            "duration": "Charleston, South Carolina Metropolitan Area",
+            "company_url": "https://www.linkedin.com/company/36998168/"
+          }
+        ],
+        "error": null
+      },
+      "scrapin": {
+        "success": true,
+        "name": "Jay Garside",
+        "title": "Capital Formation || Leader of Key SFO Relationships - Husband",
+        "company": "ROC Venture Group",
+        "experiences": [
+          {
+            "title": "Investor Relations",
+            "company": "ROC Venture Group",
+            "duration": null,
+            "is_current": false
+          },
+          {
+            "title": "Ambassador",
+            "company": "THE REAL Mental Health Foundation",
+            "duration": null,
+            "is_current": false
+          },
+          {
+            "title": "Enterprise Sales Director - US",
+            "company": "SourceWhale",
+            "duration": null,
+            "is_current": false
+          }
+        ],
+        "error": null
+      },
+      "leadmagic": {
+        "success": true,
+        "name": "Jay Garside",
+        "title": "Capital Formation || Leader of Key SFO Relationships - Husband",
+        "company": "THE REAL Mental Health Foundation",
+        "experiences": [
+          {
+            "title": null,
+            "company": "THE REAL Mental Health Foundation",
+            "duration": null,
+            "is_current": false
+          },
+          {
+            "title": null,
+            "company": "ROC Venture Group",
+            "duration": null,
+            "is_current": false
+          },
+          {
+            "title": null,
+            "company": "Full-time",
+            "duration": null,
+            "is_current": false
+          }
+        ],
+        "error": null
+      }
+    },
+    "verification": {
+      "is_same_person": true,
+      "currently_employed": true,
+      "confidence": 100,
+      "reasoning": "Rule-based verification",
+      "red_flags": []
+    },
+    "sources_agree_on_name": true,
+    "sources_agree_on_company": false,
+    "any_source_found_data": true,
+    "total_latency_ms": 6133
+  },
+  {
+    "ground_truth": {
+      "name": "John Lahr",
+      "company": "webAI",
+      "title": "Product Management Team Lead",
+      "linkedin_url": "https://www.linkedin.com/in/jrlahr"
+    },
+    "enrichments": {
+      "rapidapi": {
+        "success": true,
+        "name": "John Lahr",
+        "title": "Product @ webAI, CSPO",
+        "company": "Full-time \u00b7 2 yrs 2 mos",
+        "experiences": [
+          {
+            "title": "webAI",
+            "company": "Full-time \u00b7 2 yrs 2 mos",
+            "duration": null,
+            "company_url": "https://www.linkedin.com/company/30756874/"
+          },
+          {
+            "title": "Growth Marketing",
+            "company": "WorldQuant Predictive \u00b7 Full-time",
+            "duration": "Dec 2022 - Oct 2023 \u00b7 11 mos",
+            "company_url": "https://www.linkedin.com/company/33276389/"
+          },
+          {
+            "title": "Sr. Growth Marketing Manager",
+            "company": "Broadlume \u00b7 Full-time",
+            "duration": "Nov 2021 - Nov 2022 \u00b7 1 yr 1 mo",
+            "company_url": "https://www.linkedin.com/company/54074433/"
+          }
+        ],
+        "error": null
+      },
+      "scrapin": {
+        "success": true,
+        "name": "John Lahr",
+        "title": "Product @ webAI, CSPO",
+        "company": "webAI",
+        "experiences": [
+          {
+            "title": "Product Management Team Lead",
+            "company": "webAI",
+            "duration": null,
+            "is_current": false
+          },
+          {
+            "title": "Growth Product Manager",
+            "company": "webAI",
+            "duration": null,
+            "is_current": false
+          },
+          {
+            "title": "Growth Marketing",
+            "company": "WorldQuant Predictive",
+            "duration": null,
+            "is_current": false
+          }
+        ],
+        "error": null
+      },
+      "leadmagic": {
+        "success": true,
+        "name": "John Lahr",
+        "title": "Product @ webAI, CSPO",
+        "company": "Full-time",
+        "experiences": [
+          {
+            "title": null,
+            "company": "Full-time",
+            "duration": null,
+            "is_current": false
+          },
+          {
+            "title": null,
+            "company": "WorldQuant Predictive",
+            "duration": null,
+            "is_current": false
+          },
+          {
+            "title": null,
+            "company": "Broadlume",
+            "duration": null,
+            "is_current": false
+          }
+        ],
+        "error": null
+      }
+    },
+    "verification": {
+      "is_same_person": true,
+      "currently_employed": true,
+      "confidence": 100,
+      "reasoning": "Rule-based verification",
+      "red_flags": []
+    },
+    "sources_agree_on_name": true,
+    "sources_agree_on_company": false,
+    "any_source_found_data": true,
+    "total_latency_ms": 4228
+  },
+  {
+    "ground_truth": {
+      "name": "Lamont Wray-Watson, Jr., M.S., MBA, CFRE",
+      "company": "Bowery Residents' Committee",
+      "title": "Vice President, Donor Relations",
+      "linkedin_url": "https://www.linkedin.com/in/lamontwray"
+    },
+    "enrichments": {
+      "rapidapi": {
+        "success": true,
+        "name": "Lamont Wray-Watson, Jr., M.S., MBA, CFRE",
+        "title": "Fundraiser for Social Change Causes",
+        "company": "Bowery Residents'\u200b Committee \u00b7 Full-time",
+        "experiences": [
+          {
+            "title": "Vice President, Donor Relations",
+            "company": "Bowery Residents'\u200b Committee \u00b7 Full-time",
+            "duration": "Jan 2025 - Present \u00b7 11 mos",
+            "company_url": "https://www.linkedin.com/company/858215/"
+          },
+          {
+            "title": "Food Bank For New York City",
+            "company": "Full-time \u00b7 5 yrs",
+            "duration": null,
+            "company_url": "https://www.linkedin.com/company/52016/"
+          },
+          {
+            "title": "Individual Giving Manager",
+            "company": "Food Bank For New York City \u00b7 Full-time",
+            "duration": "Jun 2016 - Dec 2019 \u00b7 3 yrs 7 mos",
+            "company_url": "https://www.linkedin.com/company/52016/"
+          }
+        ],
+        "error": null
+      },
+      "scrapin": {
+        "success": true,
+        "name": "Lamont Wray-Watson, Jr., M.S., MBA, CFRE",
+        "title": "Fundraiser for Social Change Causes",
+        "company": "Bowery Residents'\u200b Committee",
+        "experiences": [
+          {
+            "title": "Vice President, Donor Relations",
+            "company": "Bowery Residents'\u200b Committee",
+            "duration": null,
+            "is_current": false
+          },
+          {
+            "title": "Director, Philanthropy and Leadership Giving",
+            "company": "Food Bank For New York City",
+            "duration": null,
+            "is_current": false
+          },
+          {
+            "title": "Individual Giving Officer",
+            "company": "Food Bank For New York City",
+            "duration": null,
+            "is_current": false
+          }
+        ],
+        "error": null
+      },
+      "leadmagic": {
+        "success": true,
+        "name": "Lamont Wray-Watson, Jr., M.S., MBA, CFRE",
+        "title": "Fundraiser for Social Change Causes",
+        "company": "Bowery Residents'\u200b Committee",
+        "experiences": [
+          {
+            "title": null,
+            "company": "Bowery Residents'\u200b Committee",
+            "duration": null,
+            "is_current": false
+          },
+          {
+            "title": null,
+            "company": "Full-time",
+            "duration": null,
+            "is_current": false
+          },
+          {
+            "title": null,
+            "company": "Food Bank For New York City",
+            "duration": null,
+            "is_current": false
+          }
+        ],
+        "error": null
+      }
+    },
+    "verification": {
+      "is_same_person": true,
+      "currently_employed": false,
+      "confidence": 90,
+      "reasoning": "Rule-based verification",
+      "red_flags": [
+        "Company not found in recent experiences"
+      ]
+    },
+    "sources_agree_on_name": true,
+    "sources_agree_on_company": true,
+    "any_source_found_data": true,
+    "total_latency_ms": 4459
+  },
+  {
+    "ground_truth": {
+      "name": "Hendrik Krack",
+      "company": "CodeRabbit",
+      "title": "Developer Advocate",
+      "linkedin_url": "https://www.linkedin.com/in/climateadvocateaienthusiast"
+    },
+    "enrichments": {
+      "rapidapi": {
+        "success": true,
+        "name": "Hendrik Krack",
+        "title": "Developer Advocate @ CodeRabbit | Co-Founder @ n-aible | Software Engineer | Data Scientist | EdTech | GreenTech | AI",
+        "company": "CodeRabbit \u00b7 Full-time",
+        "experiences": [
+          {
+            "title": "Developer Advocate",
+            "company": "CodeRabbit \u00b7 Full-time",
+            "duration": "Oct 2025 - Present \u00b7 2 mos",
+            "company_url": "https://www.linkedin.com/company/97023698/"
+          },
+          {
+            "title": "Organizer, SF Chapter and DACH Region",
+            "company": "The AI Collective \u00b7 Part-time",
+            "duration": "Aug 2025 - Present \u00b7 4 mos",
+            "company_url": "https://www.linkedin.com/company/90534204/"
+          },
+          {
+            "title": "Co-Founder | Board Member ",
+            "company": "n-aible \u00b7 Part-time",
+            "duration": "Sep 2023 - Present \u00b7 2 yrs 3 mos",
+            "company_url": "https://www.linkedin.com/company/100765424/"
+          }
+        ],
+        "error": null
+      },
+      "scrapin": {
+        "success": true,
+        "name": "Hendrik Krack",
+        "title": "Developer Advocate @ CodeRabbit | Co-Founder @ n-aible | Software Engineer | Data Scientist | EdTech | GreenTech | AI",
+        "company": "CodeRabbit",
+        "experiences": [
+          {
+            "title": "Developer Advocate",
+            "company": "CodeRabbit",
+            "duration": null,
+            "is_current": false
+          },
+          {
+            "title": "Organizer, SF Chapter and DACH Region",
+            "company": "The AI Collective",
+            "duration": null,
+            "is_current": false
+          },
+          {
+            "title": "Co-Founder | Board Member ",
+            "company": "n-aible",
+            "duration": null,
+            "is_current": false
+          }
+        ],
+        "error": null
+      },
+      "leadmagic": {
+        "success": true,
+        "name": "Hendrik Krack",
+        "title": "Developer Advocate @ CodeRabbit | Co-Founder @ n-aible | Software Engineer | Data Scientist | EdTech | GreenTech | AI",
+        "company": "CodeRabbit",
+        "experiences": [
+          {
+            "title": null,
+            "company": "CodeRabbit",
+            "duration": null,
+            "is_current": false
+          },
+          {
+            "title": null,
+            "company": "The AI Collective",
+            "duration": null,
+            "is_current": false
+          },
+          {
+            "title": null,
+            "company": "n-aible",
+            "duration": null,
+            "is_current": false
+          }
+        ],
+        "error": null
+      }
+    },
+    "verification": {
+      "is_same_person": true,
+      "currently_employed": true,
+      "confidence": 100,
+      "reasoning": "Rule-based verification",
+      "red_flags": []
+    },
+    "sources_agree_on_name": true,
+    "sources_agree_on_company": true,
+    "any_source_found_data": true,
+    "total_latency_ms": 4107
+  },
+  {
+    "ground_truth": {
+      "name": "Jacob Straube\ud83c\udf53",
+      "company": "Orbital",
+      "title": "Founding GTM",
+      "linkedin_url": "https://www.linkedin.com/in/jacob-straube"
+    },
+    "enrichments": {
+      "rapidapi": {
+        "success": true,
+        "name": "Jacob Straube\ud83c\udf53",
+        "title": "AI agents are eating software - I'm hungry",
+        "company": "Orbital",
+        "experiences": [
+          {
+            "title": "Founding GTM",
+            "company": "Orbital",
+            "duration": "Jun 2025 - Present \u00b7 6 mos",
+            "company_url": "https://www.linkedin.com/company/89996332/"
+          },
+          {
+            "title": "Founding Partner",
+            "company": "Rice Student Venture Fund",
+            "duration": "Aug 2023 - Present \u00b7 2 yrs 4 mos",
+            "company_url": "https://www.linkedin.com/company/96908704/"
+          },
+          {
+            "title": "Founder",
+            "company": "Stealth Startup",
+            "duration": "Jan 2025 - Jun 2025 \u00b7 6 mos",
+            "company_url": "https://www.linkedin.com/company/18583501/"
+          }
+        ],
+        "error": null
+      },
+      "scrapin": {
+        "success": true,
+        "name": "Jacob Straube\ud83c\udf53",
+        "title": "AI agents are eating software - I'm hungry",
+        "company": "Orbital",
+        "experiences": [
+          {
+            "title": "Founding GTM",
+            "company": "Orbital",
+            "duration": null,
+            "is_current": false
+          },
+          {
+            "title": "Founding Partner",
+            "company": "Rice Student Venture Fund",
+            "duration": null,
+            "is_current": false
+          },
+          {
+            "title": "Founder",
+            "company": "Stealth Startup",
+            "duration": null,
+            "is_current": false
+          }
+        ],
+        "error": null
+      },
+      "leadmagic": {
+        "success": true,
+        "name": "Jacob Straube\ud83c\udf53",
+        "title": "AI agents are eating software - I'm hungry",
+        "company": "Orbital",
+        "experiences": [
+          {
+            "title": null,
+            "company": "Orbital",
+            "duration": null,
+            "is_current": false
+          },
+          {
+            "title": null,
+            "company": "Rice Student Venture Fund",
+            "duration": null,
+            "is_current": false
+          },
+          {
+            "title": null,
+            "company": "Stealth Startup",
+            "duration": null,
+            "is_current": false
+          }
+        ],
+        "error": null
+      }
+    },
+    "verification": {
+      "is_same_person": true,
+      "currently_employed": true,
+      "confidence": 100,
+      "reasoning": "Rule-based verification",
+      "red_flags": []
+    },
+    "sources_agree_on_name": true,
+    "sources_agree_on_company": true,
+    "any_source_found_data": true,
+    "total_latency_ms": 4168
+  },
+  {
+    "ground_truth": {
+      "name": "Alexandra Griffon",
+      "company": "BlueCargo (YC S18)",
+      "title": "Co-founder & CEO",
+      "linkedin_url": "https://www.linkedin.com/in/alexandra-griffon-bluecargo"
+    },
+    "enrichments": {
+      "rapidapi": {
+        "success": true,
+        "name": "Alexandra Griffon",
+        "title": "Co-founder & CEO @ BlueCargo | YC S18 | Forbes 30 under 30 | Bringing trust & transparency to the port, intermodal and rail supply chain                 | Always hiring great people!",
+        "company": "BlueCargo (YC S18) \u00b7 Full-time",
+        "experiences": [
+          {
+            "title": "Co-founder & CEO",
+            "company": "BlueCargo (YC S18) \u00b7 Full-time",
+            "duration": "Dec 2018 - Present \u00b7 7 yrs",
+            "company_url": "https://www.linkedin.com/company/18812939/"
+          },
+          {
+            "title": "Sales & Stock Analyst",
+            "company": "Guerlain",
+            "duration": "Jan 2017 - Jul 2017 \u00b7 7 mos",
+            "company_url": "https://www.linkedin.com/company/10328/"
+          },
+          {
+            "title": "M&A Analyst",
+            "company": "Lazard",
+            "duration": "Oct 2015 - Mar 2016 \u00b7 6 mos",
+            "company_url": "https://www.linkedin.com/company/4757/"
+          }
+        ],
+        "error": null
+      },
+      "scrapin": {
+        "success": true,
+        "name": "Alexandra Griffon",
+        "title": "Co-founder & CEO @ BlueCargo | YC S18 | Forbes 30 under 30 | Bringing trust & transparency to the port, intermodal and rail supply chain                 | Always hiring great people!",
+        "company": "BlueCargo (YC S18)",
+        "experiences": [
+          {
+            "title": "Co-founder & CEO",
+            "company": "BlueCargo (YC S18)",
+            "duration": null,
+            "is_current": false
+          },
+          {
+            "title": "Sales & Stock Analyst",
+            "company": "Guerlain",
+            "duration": null,
+            "is_current": false
+          },
+          {
+            "title": "M&A Analyst",
+            "company": "Lazard",
+            "duration": null,
+            "is_current": false
+          }
+        ],
+        "error": null
+      },
+      "leadmagic": {
+        "success": true,
+        "name": "Alexandra Griffon",
+        "title": "Co-founder & CEO @ BlueCargo | YC S18 | Forbes 30 under 30 | Bringing trust & transparency to the port, intermodal and rail supply chain                 | Always hiring great people!",
+        "company": "BlueCargo (YC S18)",
+        "experiences": [
+          {
+            "title": null,
+            "company": "BlueCargo (YC S18)",
+            "duration": null,
+            "is_current": false
+          },
+          {
+            "title": null,
+            "company": "Guerlain",
+            "duration": null,
+            "is_current": false
+          },
+          {
+            "title": null,
+            "company": "Lazard",
+            "duration": null,
+            "is_current": false
+          }
+        ],
+        "error": null
+      }
+    },
+    "verification": {
+      "is_same_person": true,
+      "currently_employed": true,
+      "confidence": 100,
+      "reasoning": "Rule-based verification",
+      "red_flags": []
+    },
+    "sources_agree_on_name": true,
+    "sources_agree_on_company": true,
+    "any_source_found_data": true,
+    "total_latency_ms": 4353
+  },
+  {
+    "ground_truth": {
+      "name": "Scott Swanson",
+      "company": "Character",
+      "title": "Founder",
+      "linkedin_url": "https://www.linkedin.com/in/scottswansonii"
+    },
+    "enrichments": {
+      "rapidapi": {
+        "success": true,
+        "name": "Scott Swanson",
+        "title": "Founder at Character",
+        "company": "Character",
+        "experiences": [
+          {
+            "title": "Founder",
+            "company": "Character",
+            "duration": "Oct 2020 - Present \u00b7 5 yrs 2 mos",
+            "company_url": "https://www.linkedin.com/company/71304979/"
+          },
+          {
+            "title": "Founder",
+            "company": "Swanson + Co",
+            "duration": "Jun 2019 - Present \u00b7 6 yrs 6 mos",
+            "company_url": "https://www.linkedin.com/company/53491883/"
+          },
+          {
+            "title": "Investor",
+            "company": "Haus",
+            "duration": "Oct 2019 - Present \u00b7 6 yrs 2 mos",
+            "company_url": "https://www.linkedin.com/company/19185431/"
+          }
+        ],
+        "error": null
+      },
+      "scrapin": {
+        "success": true,
+        "name": "Scott Swanson",
+        "title": "Founder at Character",
+        "company": "Character",
+        "experiences": [
+          {
+            "title": "Founder",
+            "company": "Character",
+            "duration": null,
+            "is_current": false
+          },
+          {
+            "title": "Founder",
+            "company": "Swanson + Co",
+            "duration": null,
+            "is_current": false
+          },
+          {
+            "title": "Investor",
+            "company": "Haus",
+            "duration": null,
+            "is_current": false
+          }
+        ],
+        "error": null
+      },
+      "leadmagic": {
+        "success": true,
+        "name": "Scott Swanson",
+        "title": "Founder at Character",
+        "company": "Character",
+        "experiences": [
+          {
+            "title": null,
+            "company": "Character",
+            "duration": null,
+            "is_current": false
+          },
+          {
+            "title": null,
+            "company": "Swanson + Co",
+            "duration": null,
+            "is_current": false
+          },
+          {
+            "title": null,
+            "company": "Haus",
+            "duration": null,
+            "is_current": false
+          }
+        ],
+        "error": null
+      }
+    },
+    "verification": {
+      "is_same_person": true,
+      "currently_employed": true,
+      "confidence": 100,
+      "reasoning": "Rule-based verification",
+      "red_flags": []
+    },
+    "sources_agree_on_name": true,
+    "sources_agree_on_company": true,
+    "any_source_found_data": true,
+    "total_latency_ms": 5709
+  },
+  {
+    "ground_truth": {
+      "name": "Jacob Gillon",
+      "company": "JWP Connatix",
+      "title": "Director of Enterprise Sales",
+      "linkedin_url": "https://www.linkedin.com/in/jacobgillon"
+    },
+    "enrichments": {
+      "rapidapi": {
+        "success": true,
+        "name": "Jacob Gillon",
+        "title": "powering video growth\ud83d\udcf1\ud83d\udda5\ufe0f | sales leadership enthusiast",
+        "company": "9 yrs 4 mos",
+        "experiences": [
+          {
+            "title": "JWP Connatix",
+            "company": "9 yrs 4 mos",
+            "duration": null,
+            "company_url": "https://www.linkedin.com/company/1907786/"
+          },
+          {
+            "title": "Member",
+            "company": "Alluviance",
+            "duration": "Aug 2025 - Present \u00b7 4 mos",
+            "company_url": "https://www.linkedin.com/company/88170971/"
+          },
+          {
+            "title": "Inside Sales Associate",
+            "company": "Yext",
+            "duration": "Jun 2015 - Jul 2016 \u00b7 1 yr 2 mos",
+            "company_url": "https://www.linkedin.com/company/515401/"
+          }
+        ],
+        "error": null
+      },
+      "scrapin": {
+        "success": true,
+        "name": "Jacob Gillon",
+        "title": "powering video growth\ud83d\udcf1\ud83d\udda5\ufe0f | sales leadership enthusiast",
+        "company": "JWP Connatix",
+        "experiences": [
+          {
+            "title": "Director of Enterprise Sales",
+            "company": "JWP Connatix",
+            "duration": null,
+            "is_current": false
+          },
+          {
+            "title": "Manager of Enterprise Sales",
+            "company": "JWP Connatix",
+            "duration": null,
+            "is_current": false
+          },
+          {
+            "title": "Team Lead, Strategic Account Executive",
+            "company": "JWP Connatix",
+            "duration": null,
+            "is_current": false
+          }
+        ],
+        "error": null
+      },
+      "leadmagic": {
+        "success": true,
+        "name": "Jacob Gillon",
+        "title": "powering video growth\ud83d\udcf1\ud83d\udda5\ufe0f | sales leadership enthusiast",
+        "company": "9 yrs 4 mos",
+        "experiences": [
+          {
+            "title": null,
+            "company": "9 yrs 4 mos",
+            "duration": null,
+            "is_current": false
+          },
+          {
+            "title": null,
+            "company": "Alluviance",
+            "duration": null,
+            "is_current": false
+          },
+          {
+            "title": null,
+            "company": "Yext",
+            "duration": null,
+            "is_current": false
+          }
+        ],
+        "error": null
+      }
+    },
+    "verification": {
+      "is_same_person": true,
+      "currently_employed": true,
+      "confidence": 100,
+      "reasoning": "Rule-based verification",
+      "red_flags": []
+    },
+    "sources_agree_on_name": true,
+    "sources_agree_on_company": false,
+    "any_source_found_data": true,
+    "total_latency_ms": 5595
+  },
+  {
+    "ground_truth": {
+      "name": "Damien Duguet",
+      "company": "SOCOMORE",
+      "title": "Digital Marketing & Ebusiness Manager",
+      "linkedin_url": "https://www.linkedin.com/in/damienduguet"
+    },
+    "enrichments": {
+      "rapidapi": {
+        "success": true,
+        "name": "Damien Duguet",
+        "title": "B2B | Marketing Digital | IA | E-commerce",
+        "company": "Permanent \u00b7 7 yrs 2 mos",
+        "experiences": [
+          {
+            "title": "SOCOMORE",
+            "company": "Permanent \u00b7 7 yrs 2 mos",
+            "duration": "R\u00e9gion de Vannes, France",
+            "company_url": "https://www.linkedin.com/company/1115290/"
+          },
+          {
+            "title": "Directeur Marketing Digital",
+            "company": "Forest \u00b7 Permanent",
+            "duration": "May 2016 - Oct 2018 \u00b7 2 yrs 6 mos",
+            "company_url": "https://www.linkedin.com/search/results/all/?keywords=Forest"
+          },
+          {
+            "title": "SpecialChem",
+            "company": "2 yrs 4 mos",
+            "duration": "Paris Area, France",
+            "company_url": "https://www.linkedin.com/company/33541/"
+          }
+        ],
+        "error": null
+      },
+      "scrapin": {
+        "success": true,
+        "name": "Damien Duguet",
+        "title": "B2B | Marketing Digital | IA | E-commerce",
+        "company": "SOCOMORE",
+        "experiences": [
+          {
+            "title": "Digital Marketing & Ebusiness Manager ",
+            "company": "SOCOMORE",
+            "duration": null,
+            "is_current": false
+          },
+          {
+            "title": "Digital Marketing Manager ",
+            "company": "SOCOMORE",
+            "duration": null,
+            "is_current": false
+          },
+          {
+            "title": "Directeur Marketing Digital",
+            "company": "Forest",
+            "duration": null,
+            "is_current": false
+          }
+        ],
+        "error": null
+      },
+      "leadmagic": {
+        "success": true,
+        "name": "Damien Duguet",
+        "title": "B2B | Marketing Digital | IA | E-commerce",
+        "company": "Permanent",
+        "experiences": [
+          {
+            "title": null,
+            "company": "Permanent",
+            "duration": null,
+            "is_current": false
+          },
+          {
+            "title": null,
+            "company": "Forest",
+            "duration": null,
+            "is_current": false
+          },
+          {
+            "title": null,
+            "company": "2 yrs 4 mos",
+            "duration": null,
+            "is_current": false
+          }
+        ],
+        "error": null
+      }
+    },
+    "verification": {
+      "is_same_person": true,
+      "currently_employed": true,
+      "confidence": 100,
+      "reasoning": "Rule-based verification",
+      "red_flags": []
+    },
+    "sources_agree_on_name": true,
+    "sources_agree_on_company": false,
+    "any_source_found_data": true,
+    "total_latency_ms": 4240
+  },
+  {
+    "ground_truth": {
+      "name": "Brenda Somich",
+      "company": "HSO",
+      "title": "Global Marketing Director, Industry and Portfolio",
+      "linkedin_url": "https://www.linkedin.com/in/brendasomich"
+    },
+    "enrichments": {
+      "rapidapi": {
+        "success": true,
+        "name": "Brenda Somich",
+        "title": "Marketing leader empowering business transformation through cloud technologies",
+        "company": "HSO \u00b7 Full-time",
+        "experiences": [
+          {
+            "title": "Global Marketing Director, Industry and Portfolio",
+            "company": "HSO \u00b7 Full-time",
+            "duration": "May 2023 - Present \u00b7 2 yrs 7 mos",
+            "company_url": "https://www.linkedin.com/company/164235/"
+          },
+          {
+            "title": "Regional Head of Marketing (Americas, Discrete)",
+            "company": "Infor \u00b7 Full-time",
+            "duration": "Mar 2023 - May 2023 \u00b7 3 mos",
+            "company_url": "https://www.linkedin.com/company/1711/"
+          },
+          {
+            "title": "Director of Field Marketing (NA, MFG)",
+            "company": "HSO \u00b7 Full-time",
+            "duration": "Sep 2016 - Mar 2023 \u00b7 6 yrs 7 mos",
+            "company_url": "https://www.linkedin.com/company/164235/"
+          }
+        ],
+        "error": null
+      },
+      "scrapin": {
+        "success": true,
+        "name": "Brenda Somich",
+        "title": "Marketing leader empowering business transformation through cloud technologies",
+        "company": "HSO",
+        "experiences": [
+          {
+            "title": "Global Marketing Director, Industry and Portfolio",
+            "company": "HSO",
+            "duration": null,
+            "is_current": false
+          },
+          {
+            "title": "Regional Head of Marketing (Americas, Discrete)",
+            "company": "Infor",
+            "duration": null,
+            "is_current": false
+          },
+          {
+            "title": "Director of Field Marketing (NA, MFG)",
+            "company": "HSO",
+            "duration": null,
+            "is_current": false
+          }
+        ],
+        "error": null
+      },
+      "leadmagic": {
+        "success": true,
+        "name": "Brenda Somich",
+        "title": "Marketing leader empowering business transformation through cloud technologies",
+        "company": "HSO",
+        "experiences": [
+          {
+            "title": null,
+            "company": "HSO",
+            "duration": null,
+            "is_current": false
+          },
+          {
+            "title": null,
+            "company": "Infor",
+            "duration": null,
+            "is_current": false
+          },
+          {
+            "title": null,
+            "company": "HSO",
+            "duration": null,
+            "is_current": false
+          }
+        ],
+        "error": null
+      }
+    },
+    "verification": {
+      "is_same_person": true,
+      "currently_employed": true,
+      "confidence": 100,
+      "reasoning": "Rule-based verification",
+      "red_flags": []
+    },
+    "sources_agree_on_name": true,
+    "sources_agree_on_company": true,
+    "any_source_found_data": true,
+    "total_latency_ms": 3885
+  },
+  {
+    "ground_truth": {
+      "name": "Eyar Zilberman",
+      "company": "Stealth",
+      "title": "Co-Founder & CPO",
+      "linkedin_url": "https://www.linkedin.com/in/eyar-zilberman"
+    },
+    "enrichments": {
+      "rapidapi": {
+        "success": true,
+        "name": "Eyar Zilberman",
+        "title": "Co-founder & CPO \ud83e\udd13 || GitHub Star \u2b50\ufe0f || YAML Engineer \ud83d\udd27",
+        "company": "Stealth",
+        "experiences": [
+          {
+            "title": "Co-Founder & CPO",
+            "company": "Stealth",
+            "duration": "Apr 2024 - Present \u00b7 1 yr 8 mos",
+            "company_url": "https://www.linkedin.com/company/91313799/"
+          },
+          {
+            "title": "Community Organizer",
+            "company": "GitHub User Group IL",
+            "duration": "May 2019 - Present \u00b7 6 yrs 7 mos",
+            "company_url": "https://www.linkedin.com/company/71693242/"
+          },
+          {
+            "title": "Podcaster",
+            "company": "\u05e0\u05d9\u05d4\u05d5\u05dc \u05de\u05d5\u05e6\u05e8 - \u05d2\u05e8\u05e1\u05ea \u05d4\u05d1\u05de\u05d0\u05d9",
+            "duration": "Dec 2018 - Aug 2024 \u00b7 5 yrs 9 mos",
+            "company_url": "https://www.linkedin.com/company/13007142/"
+          }
+        ],
+        "error": null
+      },
+      "scrapin": {
+        "success": true,
+        "name": "Eyar Zilberman",
+        "title": "Co-founder & CPO \ud83e\udd13 || GitHub Star \u2b50\ufe0f || YAML Engineer \ud83d\udd27",
+        "company": "Stealth",
+        "experiences": [
+          {
+            "title": "Co-Founder & CPO",
+            "company": "Stealth",
+            "duration": null,
+            "is_current": false
+          },
+          {
+            "title": "Community Organizer",
+            "company": "GitHub User Group IL",
+            "duration": null,
+            "is_current": false
+          },
+          {
+            "title": "Podcaster",
+            "company": "\u05e0\u05d9\u05d4\u05d5\u05dc \u05de\u05d5\u05e6\u05e8 - \u05d2\u05e8\u05e1\u05ea \u05d4\u05d1\u05de\u05d0\u05d9",
+            "duration": null,
+            "is_current": false
+          }
+        ],
+        "error": null
+      },
+      "leadmagic": {
+        "success": true,
+        "name": "Eyar Zilberman",
+        "title": "Co-founder & CPO \ud83e\udd13 || GitHub Star \u2b50\ufe0f || YAML Engineer \ud83d\udd27",
+        "company": "Stealth",
+        "experiences": [
+          {
+            "title": null,
+            "company": "Stealth",
+            "duration": null,
+            "is_current": false
+          },
+          {
+            "title": null,
+            "company": "GitHub User Group IL",
+            "duration": null,
+            "is_current": false
+          },
+          {
+            "title": null,
+            "company": "\u05e0\u05d9\u05d4\u05d5\u05dc \u05de\u05d5\u05e6\u05e8 - \u05d2\u05e8\u05e1\u05ea \u05d4\u05d1\u05de\u05d0\u05d9",
+            "duration": null,
+            "is_current": false
+          }
+        ],
+        "error": null
+      }
+    },
+    "verification": {
+      "is_same_person": true,
+      "currently_employed": true,
+      "confidence": 100,
+      "reasoning": "Rule-based verification",
+      "red_flags": []
+    },
+    "sources_agree_on_name": true,
+    "sources_agree_on_company": true,
+    "any_source_found_data": true,
+    "total_latency_ms": 3429
+  },
+  {
+    "ground_truth": {
+      "name": "Natu Lauchande",
+      "company": "Sanlam",
+      "title": "Tech Lead - Sanlam Fintech Cluster - Data,ML,AI Products Eng",
+      "linkedin_url": "https://www.linkedin.com/in/natu-lauchande-0955714"
+    },
+    "enrichments": {
+      "rapidapi": {
+        "success": true,
+        "name": "Natu Lauchande",
+        "title": "Data/ML Engineering |Ex- Amazon, Jumo, Cartrack, CTO|Machine Learning Engineering Book Author|Patent Co-Inventor",
+        "company": "1 yr 11 mos",
+        "experiences": [
+          {
+            "title": "Sanlam",
+            "company": "1 yr 11 mos",
+            "duration": null,
+            "company_url": "https://www.linkedin.com/company/165844/"
+          },
+          {
+            "title": "Credrails",
+            "company": "2 yrs 6 mos",
+            "duration": null,
+            "company_url": "https://www.linkedin.com/company/76526821/"
+          },
+          {
+            "title": "Chief Data Engineer (R&D)",
+            "company": "Cartrack \u00b7 Full-time",
+            "duration": "Mar 2021 - Mar 2022 \u00b7 1 yr 1 mo",
+            "company_url": "https://www.linkedin.com/company/303528/"
+          }
+        ],
+        "error": null
+      },
+      "scrapin": {
+        "success": true,
+        "name": "Natu Lauchande",
+        "title": "Data/ML Engineering |Ex- Amazon, Jumo, Cartrack, CTO|Machine Learning Engineering Book Author|Patent Co-Inventor",
+        "company": "Sanlam",
+        "experiences": [
+          {
+            "title": "Tech Lead - Sanlam Fintech Cluster - Data,ML,AI Products Eng ",
+            "company": "Sanlam",
+            "duration": null,
+            "is_current": false
+          },
+          {
+            "title": "Tech Lead - Sanlam Fintech Cluster - Growth Tech (Interim)",
+            "company": "Sanlam",
+            "duration": null,
+            "is_current": false
+          },
+          {
+            "title": "Chief Technology Officer",
+            "company": "Credrails",
+            "duration": null,
+            "is_current": false
+          }
+        ],
+        "error": null
+      },
+      "leadmagic": {
+        "success": true,
+        "name": "Natu Lauchande",
+        "title": "Data/ML Engineering |Ex- Amazon, Jumo, Cartrack, CTO|Machine Learning Engineering Book Author|Patent Co-Inventor",
+        "company": "1 yr 11 mos",
+        "experiences": [
+          {
+            "title": null,
+            "company": "1 yr 11 mos",
+            "duration": null,
+            "is_current": false
+          },
+          {
+            "title": null,
+            "company": "2 yrs 6 mos",
+            "duration": null,
+            "is_current": false
+          },
+          {
+            "title": null,
+            "company": "Cartrack",
+            "duration": null,
+            "is_current": false
+          }
+        ],
+        "error": null
+      }
+    },
+    "verification": {
+      "is_same_person": true,
+      "currently_employed": true,
+      "confidence": 100,
+      "reasoning": "Rule-based verification",
+      "red_flags": []
+    },
+    "sources_agree_on_name": true,
+    "sources_agree_on_company": false,
+    "any_source_found_data": true,
+    "total_latency_ms": 3568
+  },
+  {
+    "ground_truth": {
+      "name": "Jason Vana",
+      "company": "SHFT Agency",
+      "title": "Founder & CEO",
+      "linkedin_url": "https://www.linkedin.com/in/jasonvana"
+    },
+    "enrichments": {
+      "rapidapi": {
+        "success": true,
+        "name": "Jason Vana",
+        "title": "Become the ONLY choice. I build b2b service brands that stand out + drive revenue. Founder/CEO at Shft.Agency. Known as #SassyJason",
+        "company": "SHFT Agency \u00b7 Full-time",
+        "experiences": [
+          {
+            "title": "Founder & CEO",
+            "company": "SHFT Agency \u00b7 Full-time",
+            "duration": "Oct 2019 - Present \u00b7 6 yrs 2 mos",
+            "company_url": "https://www.linkedin.com/company/28171467/"
+          },
+          {
+            "title": "Founder / Executive Director",
+            "company": "Ignite Student Ministries, Inc.",
+            "duration": "Oct 2010 - Present \u00b7 15 yrs 2 mos",
+            "company_url": "https://www.linkedin.com/company/1594152/"
+          },
+          {
+            "title": "Marketing Director",
+            "company": "Fusion Tech Integrated Inc.",
+            "duration": "Feb 2014 - Nov 2021 \u00b7 7 yrs 10 mos",
+            "company_url": "https://www.linkedin.com/company/1927468/"
+          }
+        ],
+        "error": null
+      },
+      "scrapin": {
+        "success": true,
+        "name": "Jason Vana",
+        "title": "Become the ONLY choice. I build b2b service brands that stand out + drive revenue. Founder/CEO at Shft.Agency. Known as #SassyJason",
+        "company": "SHFT Agency",
+        "experiences": [
+          {
+            "title": "Founder & CEO",
+            "company": "SHFT Agency",
+            "duration": null,
+            "is_current": false
+          },
+          {
+            "title": "Founder / Executive Director",
+            "company": "Ignite Student Ministries, Inc.",
+            "duration": null,
+            "is_current": false
+          },
+          {
+            "title": "Marketing Director",
+            "company": "Fusion Tech Integrated Inc.",
+            "duration": null,
+            "is_current": false
+          }
+        ],
+        "error": null
+      },
+      "leadmagic": {
+        "success": true,
+        "name": "Jason Vana",
+        "title": "Become the ONLY choice. I build b2b service brands that stand out + drive revenue. Founder/CEO at Shft.Agency. Known as #SassyJason",
+        "company": "SHFT Agency",
+        "experiences": [
+          {
+            "title": null,
+            "company": "SHFT Agency",
+            "duration": null,
+            "is_current": false
+          },
+          {
+            "title": null,
+            "company": "Ignite Student Ministries, Inc.",
+            "duration": null,
+            "is_current": false
+          },
+          {
+            "title": null,
+            "company": "Fusion Tech Integrated Inc.",
+            "duration": null,
+            "is_current": false
+          }
+        ],
+        "error": null
+      }
+    },
+    "verification": {
+      "is_same_person": true,
+      "currently_employed": true,
+      "confidence": 100,
+      "reasoning": "Rule-based verification",
+      "red_flags": []
+    },
+    "sources_agree_on_name": true,
+    "sources_agree_on_company": true,
+    "any_source_found_data": true,
+    "total_latency_ms": 4609
+  },
+  {
+    "ground_truth": {
+      "name": "Carla Andre-Brown",
+      "company": "Luma Health",
+      "title": "Learning Designer",
+      "linkedin_url": "https://www.linkedin.com/in/carlaandrebrown"
+    },
+    "enrichments": {
+      "rapidapi": {
+        "success": true,
+        "name": "Carla Andre-Brown",
+        "title": "Engaging Learning Activities for Health Tech / SaaS",
+        "company": "Contract Full-time \u00b7 3 yrs",
+        "experiences": [
+          {
+            "title": "Luma Health",
+            "company": "Contract Full-time \u00b7 3 yrs",
+            "duration": null,
+            "company_url": "https://www.linkedin.com/company/6403362/"
+          },
+          {
+            "title": "Instructor - School of Business + Media",
+            "company": "British Columbia Institute of Technology \u00b7 Part-time",
+            "duration": "Jan 2020 - Jun 2023 \u00b7 3 yrs 6 mos",
+            "company_url": "https://www.linkedin.com/company/8344/"
+          },
+          {
+            "title": "Mailbird",
+            "company": "2 yrs",
+            "duration": null,
+            "company_url": "https://www.linkedin.com/company/2694769/"
+          }
+        ],
+        "error": null
+      },
+      "scrapin": {
+        "success": true,
+        "name": "Carla Andre-Brown",
+        "title": "Engaging Learning Activities for Health Tech / SaaS",
+        "company": "Luma Health",
+        "experiences": [
+          {
+            "title": "Learning Designer",
+            "company": "Luma Health",
+            "duration": null,
+            "is_current": false
+          },
+          {
+            "title": "Product Trainer",
+            "company": "Luma Health",
+            "duration": null,
+            "is_current": false
+          },
+          {
+            "title": "Instructor - School of Business + Media",
+            "company": "British Columbia Institute of Technology",
+            "duration": null,
+            "is_current": false
+          }
+        ],
+        "error": null
+      },
+      "leadmagic": {
+        "success": true,
+        "name": "Carla Andre-Brown",
+        "title": "Engaging Learning Activities for Health Tech / SaaS",
+        "company": "Contract Full-time",
+        "experiences": [
+          {
+            "title": null,
+            "company": "Contract Full-time",
+            "duration": null,
+            "is_current": false
+          },
+          {
+            "title": null,
+            "company": "British Columbia Institute of Technology",
+            "duration": null,
+            "is_current": false
+          },
+          {
+            "title": null,
+            "company": "2 yrs",
+            "duration": null,
+            "is_current": false
+          }
+        ],
+        "error": null
+      }
+    },
+    "verification": {
+      "is_same_person": true,
+      "currently_employed": true,
+      "confidence": 100,
+      "reasoning": "Rule-based verification",
+      "red_flags": []
+    },
+    "sources_agree_on_name": true,
+    "sources_agree_on_company": false,
+    "any_source_found_data": true,
+    "total_latency_ms": 4531
+  },
+  {
+    "ground_truth": {
+      "name": "Glenn Todd",
+      "company": "Get EZER",
+      "title": "president",
+      "linkedin_url": "https://www.linkedin.com/in/getezer"
+    },
+    "enrichments": {
+      "rapidapi": {
+        "success": true,
+        "name": "Glenn Todd",
+        "title": "President and CEO",
+        "company": "Get EZER",
+        "experiences": [
+          {
+            "title": "president",
+            "company": "Get EZER",
+            "duration": "2015 - Present \u00b7 10 yrs 11 mos",
+            "company_url": "https://www.linkedin.com/company/7792901/"
+          },
+          {
+            "title": "President",
+            "company": "Todd Construction Services",
+            "duration": "Apr 1977 - Present \u00b7 48 yrs 8 mos",
+            "company_url": "https://www.linkedin.com/company/7086145/"
+          }
+        ],
+        "error": null
+      },
+      "scrapin": {
+        "success": true,
+        "name": "Glenn Todd",
+        "title": "President and CEO",
+        "company": "Get EZER",
+        "experiences": [
+          {
+            "title": "president",
+            "company": "Get EZER",
+            "duration": null,
+            "is_current": false
+          },
+          {
+            "title": "President",
+            "company": "Todd Construction Services",
+            "duration": null,
+            "is_current": false
+          }
+        ],
+        "error": null
+      },
+      "leadmagic": {
+        "success": true,
+        "name": "Glenn Todd",
+        "title": "President and CEO",
+        "company": "Get EZER",
+        "experiences": [
+          {
+            "title": null,
+            "company": "Get EZER",
+            "duration": null,
+            "is_current": false
+          },
+          {
+            "title": null,
+            "company": "Todd Construction Services",
+            "duration": null,
+            "is_current": false
+          }
+        ],
+        "error": null
+      }
+    },
+    "verification": {
+      "is_same_person": true,
+      "currently_employed": true,
+      "confidence": 100,
+      "reasoning": "Rule-based verification",
+      "red_flags": []
+    },
+    "sources_agree_on_name": true,
+    "sources_agree_on_company": true,
+    "any_source_found_data": true,
+    "total_latency_ms": 3989
+  },
+  {
+    "ground_truth": {
+      "name": "Beau Holappa",
+      "company": "Sezzle",
+      "title": "Director of Sales",
+      "linkedin_url": "https://www.linkedin.com/in/beau-holappa"
+    },
+    "enrichments": {
+      "rapidapi": {
+        "success": true,
+        "name": "Beau Holappa",
+        "title": "Financially empowering shoppers @ Sezzle | Director of Sales",
+        "company": "6 yrs 1 mo",
+        "experiences": [
+          {
+            "title": "Sezzle",
+            "company": "6 yrs 1 mo",
+            "duration": null,
+            "company_url": "https://www.linkedin.com/company/7581873/"
+          },
+          {
+            "title": "Member",
+            "company": "RevGenius \u00b7 Part-time",
+            "duration": "Aug 2022 - Present \u00b7 3 yrs 4 mos",
+            "company_url": "https://www.linkedin.com/company/11701026/"
+          },
+          {
+            "title": "Technical Sales Intern",
+            "company": "Clarage",
+            "duration": "May 2019 - Nov 2019 \u00b7 7 mos",
+            "company_url": "https://www.linkedin.com/company/795234/"
+          }
+        ],
+        "error": null
+      },
+      "scrapin": {
+        "success": true,
+        "name": "Beau Holappa",
+        "title": "Financially empowering shoppers @ Sezzle | Director of Sales",
+        "company": "Sezzle",
+        "experiences": [
+          {
+            "title": "Director of Sales",
+            "company": "Sezzle",
+            "duration": null,
+            "is_current": false
+          },
+          {
+            "title": "Senior Account Executive",
+            "company": "Sezzle",
+            "duration": null,
+            "is_current": false
+          },
+          {
+            "title": "Account Executive",
+            "company": "Sezzle",
+            "duration": null,
+            "is_current": false
+          }
+        ],
+        "error": null
+      },
+      "leadmagic": {
+        "success": true,
+        "name": "Beau Holappa",
+        "title": "Financially empowering shoppers @ Sezzle | Director of Sales",
+        "company": "6 yrs 1 mo",
+        "experiences": [
+          {
+            "title": null,
+            "company": "6 yrs 1 mo",
+            "duration": null,
+            "is_current": false
+          },
+          {
+            "title": null,
+            "company": "RevGenius",
+            "duration": null,
+            "is_current": false
+          },
+          {
+            "title": null,
+            "company": "Clarage",
+            "duration": null,
+            "is_current": false
+          }
+        ],
+        "error": null
+      }
+    },
+    "verification": {
+      "is_same_person": true,
+      "currently_employed": true,
+      "confidence": 100,
+      "reasoning": "Rule-based verification",
+      "red_flags": []
+    },
+    "sources_agree_on_name": true,
+    "sources_agree_on_company": false,
+    "any_source_found_data": true,
+    "total_latency_ms": 7852
+  },
+  {
+    "ground_truth": {
+      "name": "Seth Gandara",
+      "company": "early.vc",
+      "title": "GTM Strategy & Startup Advisor",
+      "linkedin_url": "https://www.linkedin.com/in/sethgandara"
+    },
+    "enrichments": {
+      "rapidapi": {
+        "success": true,
+        "name": "Seth Gandara",
+        "title": "GTM Expert & Revenue Ops Leader | ex-Apple, ex-Mixpanel",
+        "company": "early.vc",
+        "experiences": [
+          {
+            "title": "GTM Strategy & Startup Advisor ",
+            "company": "early.vc",
+            "duration": "Sep 2015 - Present \u00b7 10 yrs 3 mos",
+            "company_url": "https://www.linkedin.com/company/76241899/"
+          },
+          {
+            "title": "EOA Owner Member",
+            "company": "Entrepreneurs' Organization (EO) Fort Worth \u00b7 Part-time",
+            "duration": "Jan 2023 - Dec 2024 \u00b7 2 yrs",
+            "company_url": "https://www.linkedin.com/company/67102730/"
+          },
+          {
+            "title": "Interim-CEO | Owner, Head of Sales & Marketing",
+            "company": "NorthBuilt \u00b7 Full-time",
+            "duration": "Nov 2022 - Dec 2023 \u00b7 1 yr 2 mos",
+            "company_url": "https://www.linkedin.com/company/89997917/"
+          }
+        ],
+        "error": null
+      },
+      "scrapin": {
+        "success": true,
+        "name": "Seth Gandara",
+        "title": "GTM Expert & Revenue Ops Leader | ex-Apple, ex-Mixpanel",
+        "company": "early.vc",
+        "experiences": [
+          {
+            "title": "GTM Strategy & Startup Advisor ",
+            "company": "early.vc",
+            "duration": null,
+            "is_current": false
+          },
+          {
+            "title": "EOA Owner Member",
+            "company": "Entrepreneurs' Organization (EO) Fort Worth",
+            "duration": null,
+            "is_current": false
+          },
+          {
+            "title": "Interim-CEO | Owner, Head of Sales & Marketing",
+            "company": "NorthBuilt",
+            "duration": null,
+            "is_current": false
+          }
+        ],
+        "error": null
+      },
+      "leadmagic": {
+        "success": true,
+        "name": "Seth Gandara",
+        "title": "GTM Expert & Revenue Ops Leader | ex-Apple, ex-Mixpanel",
+        "company": "early.vc",
+        "experiences": [
+          {
+            "title": null,
+            "company": "early.vc",
+            "duration": null,
+            "is_current": false
+          },
+          {
+            "title": null,
+            "company": "Entrepreneurs' Organization (EO) Fort Worth",
+            "duration": null,
+            "is_current": false
+          },
+          {
+            "title": null,
+            "company": "NorthBuilt",
+            "duration": null,
+            "is_current": false
+          }
+        ],
+        "error": null
+      }
+    },
+    "verification": {
+      "is_same_person": true,
+      "currently_employed": true,
+      "confidence": 100,
+      "reasoning": "Rule-based verification",
+      "red_flags": []
+    },
+    "sources_agree_on_name": true,
+    "sources_agree_on_company": true,
+    "any_source_found_data": true,
+    "total_latency_ms": 4695
+  },
+  {
+    "ground_truth": {
+      "name": "JR Butler",
+      "company": "Shift Group",
+      "title": "CEO and Founder",
+      "linkedin_url": "https://www.linkedin.com/in/jrbutler"
+    },
+    "enrichments": {
+      "rapidapi": {
+        "success": true,
+        "name": "JR Butler",
+        "title": "Getting Athletes And Veterans Dialed In as Business Professionals",
+        "company": "Shift Group \u00b7 Full-time",
+        "experiences": [
+          {
+            "title": "CEO and Founder ",
+            "company": "Shift Group \u00b7 Full-time",
+            "duration": "Jan 2022 - Present \u00b7 3 yrs 11 mos",
+            "company_url": "https://www.linkedin.com/company/82707282/"
+          },
+          {
+            "title": "Limited Partner",
+            "company": "GTMfund \u00b7 Part-time",
+            "duration": "Feb 2023 - Present \u00b7 2 yrs 10 mos",
+            "company_url": "https://www.linkedin.com/company/70877533/"
+          },
+          {
+            "title": "Founding Member",
+            "company": "The Post \u00b7 Part-time",
+            "duration": "Jan 2023 - Present \u00b7 2 yrs 11 mos",
+            "company_url": "https://www.linkedin.com/company/79890240/"
+          }
+        ],
+        "error": null
+      },
+      "scrapin": {
+        "success": true,
+        "name": "JR Butler",
+        "title": "Getting Athletes And Veterans Dialed In as Business Professionals",
+        "company": "Shift Group",
+        "experiences": [
+          {
+            "title": "CEO and Founder ",
+            "company": "Shift Group",
+            "duration": null,
+            "is_current": false
+          },
+          {
+            "title": "Founding Member",
+            "company": "The Post",
+            "duration": null,
+            "is_current": false
+          },
+          {
+            "title": "Limited Partner",
+            "company": "GTMfund",
+            "duration": null,
+            "is_current": false
+          }
+        ],
+        "error": null
+      },
+      "leadmagic": {
+        "success": true,
+        "name": "JR Butler",
+        "title": "Getting Athletes And Veterans Dialed In as Business Professionals",
+        "company": "Shift Group",
+        "experiences": [
+          {
+            "title": null,
+            "company": "Shift Group",
+            "duration": null,
+            "is_current": false
+          },
+          {
+            "title": null,
+            "company": "GTMfund",
+            "duration": null,
+            "is_current": false
+          },
+          {
+            "title": null,
+            "company": "The Post",
+            "duration": null,
+            "is_current": false
+          }
+        ],
+        "error": null
+      }
+    },
+    "verification": {
+      "is_same_person": true,
+      "currently_employed": true,
+      "confidence": 100,
+      "reasoning": "Rule-based verification",
+      "red_flags": []
+    },
+    "sources_agree_on_name": true,
+    "sources_agree_on_company": true,
+    "any_source_found_data": true,
+    "total_latency_ms": 4246
+  },
+  {
+    "ground_truth": {
+      "name": "Shadab Riaz",
+      "company": "RevGenius",
+      "title": "Member",
+      "linkedin_url": "https://www.linkedin.com/in/shadab-riaz-9022a9a3"
+    },
+    "enrichments": {
+      "rapidapi": {
+        "success": true,
+        "name": "Shadab Riaz",
+        "title": "TARS\u200b \u200b> Terminator; AI is to assist, not to lead",
+        "company": "RevGenius",
+        "experiences": [
+          {
+            "title": "Member",
+            "company": "RevGenius",
+            "duration": "Nov 2025 - Present \u00b7 1 mo",
+            "company_url": "https://www.linkedin.com/company/11701026/"
+          },
+          {
+            "title": "Member",
+            "company": "CommUnityX",
+            "duration": "Nov 2025 - Present \u00b7 1 mo",
+            "company_url": "https://www.linkedin.com/company/108660322/"
+          },
+          {
+            "title": "Member",
+            "company": "Clay Cafe",
+            "duration": "Oct 2025 - Present \u00b7 2 mos",
+            "company_url": "https://www.linkedin.com/company/108138264/"
+          }
+        ],
+        "error": null
+      },
+      "scrapin": {
+        "success": true,
+        "name": "Shadab Riaz",
+        "title": "TARS\u200b \u200b> Terminator; AI is to assist, not to lead",
+        "company": "RevGenius",
+        "experiences": [
+          {
+            "title": "Member",
+            "company": "RevGenius",
+            "duration": null,
+            "is_current": false
+          },
+          {
+            "title": "Member",
+            "company": "CommUnityX",
+            "duration": null,
+            "is_current": false
+          },
+          {
+            "title": "Member",
+            "company": "Clay Cafe",
+            "duration": null,
+            "is_current": false
+          }
+        ],
+        "error": null
+      },
+      "leadmagic": {
+        "success": true,
+        "name": "Shadab Riaz",
+        "title": "TARS\u200b \u200b> Terminator; AI is to assist, not to lead",
+        "company": "RevGenius",
+        "experiences": [
+          {
+            "title": null,
+            "company": "RevGenius",
+            "duration": null,
+            "is_current": false
+          },
+          {
+            "title": null,
+            "company": "CommUnityX",
+            "duration": null,
+            "is_current": false
+          },
+          {
+            "title": null,
+            "company": "Clay Cafe",
+            "duration": null,
+            "is_current": false
+          }
+        ],
+        "error": null
+      }
+    },
+    "verification": {
+      "is_same_person": true,
+      "currently_employed": true,
+      "confidence": 100,
+      "reasoning": "Rule-based verification",
+      "red_flags": []
+    },
+    "sources_agree_on_name": true,
+    "sources_agree_on_company": true,
+    "any_source_found_data": true,
+    "total_latency_ms": 6678
+  },
+  {
+    "ground_truth": {
+      "name": "Nick Cheetany",
+      "company": "Infillion",
+      "title": "SVP, Client Partnerships | MediaMath",
+      "linkedin_url": "https://www.linkedin.com/in/nickcheetany"
+    },
+    "enrichments": {
+      "rapidapi": {
+        "success": true,
+        "name": "Nick Cheetany",
+        "title": "AdTech Enthusiast | Advertising Revenue Growth | Team Leadership | Sales Optimization | Business Development | Client Strategy & Development | Culture Builder | Mentor | Speaker",
+        "company": "Infillion \u00b7 Full-time",
+        "experiences": [
+          {
+            "title": "SVP, Client Partnerships | MediaMath",
+            "company": "Infillion \u00b7 Full-time",
+            "duration": "Apr 2025 - Present \u00b7 8 mos",
+            "company_url": "https://www.linkedin.com/company/78297670/"
+          },
+          {
+            "title": "Vice President of Sales",
+            "company": "Causal \u00b7 Full-time",
+            "duration": "May 2024 - Mar 2025 \u00b7 11 mos",
+            "company_url": "https://www.linkedin.com/company/18759010/"
+          },
+          {
+            "title": "AdTheorent",
+            "company": "Full-time \u00b7 8 yrs 7 mos",
+            "duration": "On-site",
+            "company_url": "https://www.linkedin.com/company/2413577/"
+          }
+        ],
+        "error": null
+      },
+      "scrapin": {
+        "success": true,
+        "name": "Nick Cheetany",
+        "title": "AdTech Enthusiast | Advertising Revenue Growth | Team Leadership | Sales Optimization | Business Development | Client Strategy & Development | Culture Builder | Mentor | Speaker",
+        "company": "Infillion",
+        "experiences": [
+          {
+            "title": "SVP, Client Partnerships | MediaMath",
+            "company": "Infillion",
+            "duration": null,
+            "is_current": false
+          },
+          {
+            "title": "Vice President of Sales",
+            "company": "Causal",
+            "duration": null,
+            "is_current": false
+          },
+          {
+            "title": "Senior Vice President, National Sales",
+            "company": "AdTheorent",
+            "duration": null,
+            "is_current": false
+          }
+        ],
+        "error": null
+      },
+      "leadmagic": {
+        "success": true,
+        "name": "Nick Cheetany",
+        "title": "AdTech Enthusiast | Advertising Revenue Growth | Team Leadership | Sales Optimization | Business Development | Client Strategy & Development | Culture Builder | Mentor | Speaker",
+        "company": "Infillion",
+        "experiences": [
+          {
+            "title": null,
+            "company": "Infillion",
+            "duration": null,
+            "is_current": false
+          },
+          {
+            "title": null,
+            "company": "Causal",
+            "duration": null,
+            "is_current": false
+          },
+          {
+            "title": null,
+            "company": "Full-time",
+            "duration": null,
+            "is_current": false
+          }
+        ],
+        "error": null
+      }
+    },
+    "verification": {
+      "is_same_person": true,
+      "currently_employed": true,
+      "confidence": 100,
+      "reasoning": "Rule-based verification",
+      "red_flags": []
+    },
+    "sources_agree_on_name": true,
+    "sources_agree_on_company": true,
+    "any_source_found_data": true,
+    "total_latency_ms": 6941
+  },
+  {
+    "ground_truth": {
+      "name": "Michael Murphy",
+      "company": "Banner Personnel Service, Inc",
+      "title": "Managing Director - Direct Hire Division",
+      "linkedin_url": "https://www.linkedin.com/in/michael-murphy-8b41a22b"
+    },
+    "enrichments": {
+      "rapidapi": {
+        "success": true,
+        "name": "Michael Murphy",
+        "title": "Managing Director at Banner Personnel Service, Inc",
+        "company": "Banner Personnel Service, Inc \u00b7 Full-time",
+        "experiences": [
+          {
+            "title": "Managing Director - Direct Hire Division",
+            "company": "Banner Personnel Service, Inc \u00b7 Full-time",
+            "duration": "Oct 2019 - Present \u00b7 6 yrs 2 mos",
+            "company_url": "https://www.linkedin.com/company/33174/"
+          },
+          {
+            "title": "Practice Director - Perm Placement",
+            "company": "Randstad USA",
+            "duration": "Jan 2018 - Oct 2019 \u00b7 1 yr 10 mos",
+            "company_url": "https://www.linkedin.com/company/2396310/"
+          },
+          {
+            "title": "Adecco Staffing, USA",
+            "company": "3 yrs 10 mos",
+            "duration": "Greater Chicago Area",
+            "company_url": "https://www.linkedin.com/company/1104359/"
+          }
+        ],
+        "error": null
+      },
+      "scrapin": {
+        "success": true,
+        "name": "Michael Murphy",
+        "title": "Managing Director at Banner Personnel Service, Inc",
+        "company": "Banner Personnel Service, Inc",
+        "experiences": [
+          {
+            "title": "Managing Director - Direct Hire Division",
+            "company": "Banner Personnel Service, Inc",
+            "duration": null,
+            "is_current": false
+          },
+          {
+            "title": "Practice Director - Perm Placement",
+            "company": "Randstad USA",
+            "duration": null,
+            "is_current": false
+          },
+          {
+            "title": "Manager, Executive Recruiter",
+            "company": "Adecco Staffing, USA",
+            "duration": null,
+            "is_current": false
+          }
+        ],
+        "error": null
+      },
+      "leadmagic": {
+        "success": true,
+        "name": "Michael Murphy",
+        "title": "Managing Director at Banner Personnel Service, Inc",
+        "company": "Banner Personnel Service, Inc",
+        "experiences": [
+          {
+            "title": null,
+            "company": "Banner Personnel Service, Inc",
+            "duration": null,
+            "is_current": false
+          },
+          {
+            "title": null,
+            "company": "Randstad USA",
+            "duration": null,
+            "is_current": false
+          },
+          {
+            "title": null,
+            "company": "3 yrs 10 mos",
+            "duration": null,
+            "is_current": false
+          }
+        ],
+        "error": null
+      }
+    },
+    "verification": {
+      "is_same_person": true,
+      "currently_employed": true,
+      "confidence": 100,
+      "reasoning": "Rule-based verification",
+      "red_flags": []
+    },
+    "sources_agree_on_name": true,
+    "sources_agree_on_company": true,
+    "any_source_found_data": true,
+    "total_latency_ms": 5046
+  },
+  {
+    "ground_truth": {
+      "name": "Marc Stiglitz",
+      "company": "HAND in HAND Thriving\u2120",
+      "title": "Head Coach, Life-Family-Relationship-Health-Wellness-Medical-Trauma Navigation Solutions",
+      "linkedin_url": "https://www.linkedin.com/in/marc-stiglitz-47b4612"
+    },
+    "enrichments": {
+      "rapidapi": {
+        "success": true,
+        "name": "Marc Stiglitz",
+        "title": "Deeply experienced Life, Family, Relationship, Medical, Trauma Navigation, Health, Wellness, Sports coach. I\u2019m open to all opportunities & speaking engagements to drive as much positive human impact together",
+        "company": "HAND in HAND Thriving\u2120 \u00b7 Self-employed",
+        "experiences": [
+          {
+            "title": "Head Coach, Life-Family-Relationship-Health-Wellness-Medical-Trauma Navigation Solutions",
+            "company": "HAND in HAND Thriving\u2120 \u00b7 Self-employed",
+            "duration": "Oct 2011 - Present \u00b7 14 yrs 2 mos",
+            "company_url": "https://www.linkedin.com/company/107536746/"
+          },
+          {
+            "title": "Global Ambassador",
+            "company": "Impact Africa Network ",
+            "duration": "Apr 2019 - Present \u00b7 6 yrs 8 mos",
+            "company_url": "https://www.linkedin.com/company/12617911/"
+          },
+          {
+            "title": "Co-Founder - Brand Strategy, Partnerships & Revenue Consultant",
+            "company": "Concussion Network www.concussionetwork.com",
+            "duration": "Jun 2016 - Jun 2025 \u00b7 9 yrs 1 mo",
+            "company_url": "https://www.linkedin.com/search/results/all/?keywords=Concussion+Network+www%2Econcussionetwork%2Ecom"
+          }
+        ],
+        "error": null
+      },
+      "scrapin": {
+        "success": true,
+        "name": "Marc Stiglitz",
+        "title": "Deeply experienced Life, Family, Relationship, Medical, Trauma Navigation, Health, Wellness, Sports coach. I\u2019m open to all opportunities & speaking engagements to drive as much positive human impact together",
+        "company": "HAND in HAND Thriving\u2120",
+        "experiences": [
+          {
+            "title": "Head Coach, Life-Family-Relationship-Health-Wellness-Medical-Trauma Navigation Solutions",
+            "company": "HAND in HAND Thriving\u2120",
+            "duration": null,
+            "is_current": false
+          },
+          {
+            "title": "Global Ambassador",
+            "company": "Impact Africa Network ",
+            "duration": null,
+            "is_current": false
+          },
+          {
+            "title": "Co-Founder - Brand Strategy, Partnerships & Revenue Consultant",
+            "company": "Concussion Network www.concussionetwork.com",
+            "duration": null,
+            "is_current": false
+          }
+        ],
+        "error": null
+      },
+      "leadmagic": {
+        "success": true,
+        "name": "Marc Stiglitz",
+        "title": "Deeply experienced Life, Family, Relationship, Medical, Trauma Navigation, Health, Wellness, Sports coach. I\u2019m open to all opportunities & speaking engagements to drive as much positive human impact together",
+        "company": "HAND in HAND Thriving\u2120",
+        "experiences": [
+          {
+            "title": null,
+            "company": "HAND in HAND Thriving\u2120",
+            "duration": null,
+            "is_current": false
+          },
+          {
+            "title": null,
+            "company": "Impact Africa Network",
+            "duration": null,
+            "is_current": false
+          },
+          {
+            "title": null,
+            "company": "Concussion Network www.concussionetwork.com",
+            "duration": null,
+            "is_current": false
+          }
+        ],
+        "error": null
+      }
+    },
+    "verification": {
+      "is_same_person": true,
+      "currently_employed": true,
+      "confidence": 100,
+      "reasoning": "Rule-based verification",
+      "red_flags": []
+    },
+    "sources_agree_on_name": true,
+    "sources_agree_on_company": true,
+    "any_source_found_data": true,
+    "total_latency_ms": 3701
+  },
+  {
+    "ground_truth": {
+      "name": "Ron Duarte",
+      "company": "Neurogrowth Consulting LLC",
+      "title": "Co-Founder",
+      "linkedin_url": "https://www.linkedin.com/in/ronnduarte"
+    },
+    "enrichments": {
+      "rapidapi": {
+        "success": true,
+        "name": "Ron D.",
+        "title": "ex-Cisco ex-OCI | Engineering intelligent GTM Solutions for B2B Startups | Creator of the Message-Market Fit Protocol",
+        "company": "Full-time \u00b7 3 yrs 2 mos",
+        "experiences": [
+          {
+            "title": "Neurogrowth Consulting LLC",
+            "company": "Full-time \u00b7 3 yrs 2 mos",
+            "duration": "Las Vegas, Nevada, United States",
+            "company_url": "https://www.linkedin.com/company/100719239/"
+          },
+          {
+            "title": "Growth Consultant",
+            "company": "True Positives \u00b7 Contract",
+            "duration": "Jun 2025 - Present \u00b7 6 mos",
+            "company_url": "https://www.linkedin.com/company/64950392/"
+          },
+          {
+            "title": "Growth Consultant",
+            "company": "Softon Digital",
+            "duration": "May 2024 - Present \u00b7 1 yr 7 mos",
+            "company_url": "https://www.linkedin.com/company/860516/"
+          }
+        ],
+        "error": null
+      },
+      "scrapin": {
+        "success": true,
+        "name": "Ron D.",
+        "title": "ex-Cisco ex-OCI | Engineering intelligent GTM Solutions for B2B Startups | Creator of the Message-Market Fit Protocol",
+        "company": "Neurogrowth Consulting LLC",
+        "experiences": [
+          {
+            "title": "Co-Founder",
+            "company": "Neurogrowth Consulting LLC",
+            "duration": null,
+            "is_current": false
+          },
+          {
+            "title": "Sales Business Development",
+            "company": "Neurogrowth Consulting LLC",
+            "duration": null,
+            "is_current": false
+          },
+          {
+            "title": "Growth Consultant",
+            "company": "True Positives",
+            "duration": null,
+            "is_current": false
+          }
+        ],
+        "error": null
+      },
+      "leadmagic": {
+        "success": true,
+        "name": "Ron D.",
+        "title": "ex-Cisco ex-OCI | Engineering intelligent GTM Solutions for B2B Startups | Creator of the Message-Market Fit Protocol",
+        "company": "Full-time",
+        "experiences": [
+          {
+            "title": null,
+            "company": "Full-time",
+            "duration": null,
+            "is_current": false
+          },
+          {
+            "title": null,
+            "company": "True Positives",
+            "duration": null,
+            "is_current": false
+          },
+          {
+            "title": null,
+            "company": "Softon Digital",
+            "duration": null,
+            "is_current": false
+          }
+        ],
+        "error": null
+      }
+    },
+    "verification": {
+      "is_same_person": false,
+      "currently_employed": true,
+      "confidence": 60,
+      "reasoning": "Rule-based verification",
+      "red_flags": [
+        "Name does not match"
+      ]
+    },
+    "sources_agree_on_name": true,
+    "sources_agree_on_company": false,
+    "any_source_found_data": true,
+    "total_latency_ms": 4338
+  },
+  {
+    "ground_truth": {
+      "name": "Hilary Lane",
+      "company": "Hilary Lane Media",
+      "title": "Emmy-Award-Winning Reporter/Producer",
+      "linkedin_url": "https://www.linkedin.com/in/hilarylane16"
+    },
+    "enrichments": {
+      "rapidapi": {
+        "success": true,
+        "name": "Hilary Lane",
+        "title": "Emmy-Award-Winning Producer / Reporter",
+        "company": "Hilary Lane Media \u00b7 Full-time",
+        "experiences": [
+          {
+            "title": "Emmy-Award-Winning Reporter/Producer",
+            "company": "Hilary Lane Media \u00b7 Full-time",
+            "duration": "Jul 2022 - Present \u00b7 3 yrs 5 mos",
+            "company_url": "https://www.linkedin.com/company/100572452/"
+          },
+          {
+            "title": "Reporter",
+            "company": "NBC 6 South Florida \u00b7 Freelance",
+            "duration": "Jan 2022 - Jul 2022 \u00b7 7 mos",
+            "company_url": "https://www.linkedin.com/company/35544727/"
+          },
+          {
+            "title": "Supervising Producer",
+            "company": "Fox Corporation \u00b7 Full-time",
+            "duration": "Dec 2020 - Aug 2021 \u00b7 9 mos",
+            "company_url": "https://www.linkedin.com/company/14014026/"
+          }
+        ],
+        "error": null
+      },
+      "scrapin": {
+        "success": true,
+        "name": "Hilary Lane",
+        "title": "Emmy-Award-Winning Producer / Reporter",
+        "company": "Hilary Lane Media",
+        "experiences": [
+          {
+            "title": "Emmy-Award-Winning Reporter/Producer",
+            "company": "Hilary Lane Media",
+            "duration": null,
+            "is_current": false
+          },
+          {
+            "title": "Reporter",
+            "company": "NBC 6 South Florida",
+            "duration": null,
+            "is_current": false
+          },
+          {
+            "title": "Supervising Producer",
+            "company": "Fox Corporation",
+            "duration": null,
+            "is_current": false
+          }
+        ],
+        "error": null
+      },
+      "leadmagic": {
+        "success": true,
+        "name": "Hilary Lane",
+        "title": "Emmy-Award-Winning Producer / Reporter",
+        "company": "Hilary Lane Media",
+        "experiences": [
+          {
+            "title": null,
+            "company": "Hilary Lane Media",
+            "duration": null,
+            "is_current": false
+          },
+          {
+            "title": null,
+            "company": "NBC 6 South Florida",
+            "duration": null,
+            "is_current": false
+          },
+          {
+            "title": null,
+            "company": "Fox Corporation",
+            "duration": null,
+            "is_current": false
+          }
+        ],
+        "error": null
+      }
+    },
+    "verification": {
+      "is_same_person": true,
+      "currently_employed": true,
+      "confidence": 100,
+      "reasoning": "Rule-based verification",
+      "red_flags": []
+    },
+    "sources_agree_on_name": true,
+    "sources_agree_on_company": true,
+    "any_source_found_data": true,
+    "total_latency_ms": 3788
+  },
+  {
+    "ground_truth": {
+      "name": "Lachlan Trinh",
+      "company": "Trinh Digital",
+      "title": "Founder and CEO",
+      "linkedin_url": "https://www.linkedin.com/in/lachlan-trinh-635629177"
+    },
+    "enrichments": {
+      "rapidapi": {
+        "success": true,
+        "name": "Lachlan Trinh",
+        "title": "Building Profitable X Content Funnels for 7-8 fig. Online Coaches & Experts | $220k+ Generated In The Last 90 Days",
+        "company": "Trinh Digital \u00b7 Full-time",
+        "experiences": [
+          {
+            "title": "Founder and CEO",
+            "company": "Trinh Digital \u00b7 Full-time",
+            "duration": "Jan 2025 - Present \u00b7 11 mos",
+            "company_url": "https://www.linkedin.com/search/results/all/?keywords=Trinh+Digital"
+          },
+          {
+            "title": "Marketing & Outobund",
+            "company": "Echelonn \u00b7 Freelance",
+            "duration": "May 2024 - Jan 2025 \u00b7 9 mos",
+            "company_url": "https://www.linkedin.com/company/99942982/"
+          },
+          {
+            "title": "LinkedIn & X Content & Outbound",
+            "company": "SaaS Lead Flow \u00b7 Freelance",
+            "duration": "Dec 2023 - May 2024 \u00b7 6 mos",
+            "company_url": "https://www.linkedin.com/company/100238781/"
+          }
+        ],
+        "error": null
+      },
+      "scrapin": {
+        "success": true,
+        "name": "Lachlan Trinh",
+        "title": "Building Profitable X Content Funnels for 7-8 fig. Online Coaches & Experts | $220k+ Generated In The Last 90 Days",
+        "company": "Trinh Digital",
+        "experiences": [
+          {
+            "title": "Founder and CEO",
+            "company": "Trinh Digital",
+            "duration": null,
+            "is_current": false
+          },
+          {
+            "title": "Marketing & Outobund",
+            "company": "Echelonn",
+            "duration": null,
+            "is_current": false
+          },
+          {
+            "title": "LinkedIn & X Content & Outbound",
+            "company": "SaaS Lead Flow",
+            "duration": null,
+            "is_current": false
+          }
+        ],
+        "error": null
+      },
+      "leadmagic": {
+        "success": true,
+        "name": "Lachlan Trinh",
+        "title": "Building Profitable X Content Funnels for 7-8 fig. Online Coaches & Experts | $220k+ Generated In The Last 90 Days",
+        "company": "Trinh Digital",
+        "experiences": [
+          {
+            "title": null,
+            "company": "Trinh Digital",
+            "duration": null,
+            "is_current": false
+          },
+          {
+            "title": null,
+            "company": "Echelonn",
+            "duration": null,
+            "is_current": false
+          },
+          {
+            "title": null,
+            "company": "SaaS Lead Flow",
+            "duration": null,
+            "is_current": false
+          }
+        ],
+        "error": null
+      }
+    },
+    "verification": {
+      "is_same_person": true,
+      "currently_employed": true,
+      "confidence": 100,
+      "reasoning": "Rule-based verification",
+      "red_flags": []
+    },
+    "sources_agree_on_name": true,
+    "sources_agree_on_company": true,
+    "any_source_found_data": true,
+    "total_latency_ms": 4477
+  },
+  {
+    "ground_truth": {
+      "name": "Katie Lutz",
+      "company": "Freelance",
+      "title": "Virtual Assistant",
+      "linkedin_url": "https://www.linkedin.com/in/katiebarthlutz"
+    },
+    "enrichments": {
+      "rapidapi": {
+        "success": true,
+        "name": "Katie Lutz",
+        "title": "ABX + Events Professional | Creator of Experiences",
+        "company": "Freelance",
+        "experiences": [
+          {
+            "title": "Virtual Assistant",
+            "company": "Freelance",
+            "duration": "Dec 2022 - Present \u00b7 3 yrs",
+            "company_url": "https://www.linkedin.com/search/results/all/?keywords=Freelance"
+          },
+          {
+            "title": "Caregiving",
+            "company": "Career Break",
+            "duration": "Aug 2022 - Present \u00b7 3 yrs 4 mos",
+            "company_url": null
+          },
+          {
+            "title": "Senior Events Manager",
+            "company": "DataGrail \u00b7 Full-time",
+            "duration": "Apr 2022 - Jul 2022 \u00b7 4 mos",
+            "company_url": "https://www.linkedin.com/company/18472666/"
+          }
+        ],
+        "error": null
+      },
+      "scrapin": {
+        "success": true,
+        "name": "Katie Lutz",
+        "title": "ABX + Events Professional | Creator of Experiences",
+        "company": "",
+        "experiences": [
+          {
+            "title": "Virtual Assistant",
+            "company": "",
+            "duration": null,
+            "is_current": false
+          },
+          {
+            "title": "Senior Events Manager",
+            "company": "DataGrail",
+            "duration": null,
+            "is_current": false
+          },
+          {
+            "title": "Senior Enterprise Marketing Manager",
+            "company": "SalesLoft",
+            "duration": null,
+            "is_current": false
+          }
+        ],
+        "error": null
+      },
+      "leadmagic": {
+        "success": true,
+        "name": "Katie Lutz",
+        "title": "ABX + Events Professional | Creator of Experiences",
+        "company": "Freelance",
+        "experiences": [
+          {
+            "title": null,
+            "company": "Freelance",
+            "duration": null,
+            "is_current": false
+          },
+          {
+            "title": null,
+            "company": "Career Break",
+            "duration": null,
+            "is_current": false
+          },
+          {
+            "title": null,
+            "company": "DataGrail",
+            "duration": null,
+            "is_current": false
+          }
+        ],
+        "error": null
+      }
+    },
+    "verification": {
+      "is_same_person": true,
+      "currently_employed": true,
+      "confidence": 100,
+      "reasoning": "Rule-based verification",
+      "red_flags": []
+    },
+    "sources_agree_on_name": true,
+    "sources_agree_on_company": true,
+    "any_source_found_data": true,
+    "total_latency_ms": 4696
+  },
+  {
+    "ground_truth": {
+      "name": "Kristin Beery",
+      "company": "Freelance",
+      "title": "Freelance/Contract",
+      "linkedin_url": "https://www.linkedin.com/in/kristin-beery-a3b46b22"
+    },
+    "enrichments": {
+      "rapidapi": {
+        "success": true,
+        "name": "Kristin Beery",
+        "title": "Digital/Direct Marketing leader specializing in digital marketing, project management, campaign development/maintenance, account management, and traffic generation",
+        "company": "Self-employed",
+        "experiences": [
+          {
+            "title": "Freelance/Contract",
+            "company": "Self-employed",
+            "duration": "Jun 2023 - Present \u00b7 2 yrs 6 mos",
+            "company_url": "https://www.linkedin.com/search/results/all/?keywords=Freelance"
+          },
+          {
+            "title": "Vice President, Marketing Operations Manager",
+            "company": "MUFG \u00b7 Full-time",
+            "duration": "Oct 2021 - Jun 2023 \u00b7 1 yr 9 mos",
+            "company_url": "https://www.linkedin.com/company/3795888/"
+          },
+          {
+            "title": "Marketing Operations Manager",
+            "company": "Quontic Bank \u00b7 Full-time",
+            "duration": "Nov 2020 - Oct 2021 \u00b7 1 yr",
+            "company_url": "https://www.linkedin.com/company/1996696/"
+          }
+        ],
+        "error": null
+      },
+      "scrapin": {
+        "success": true,
+        "name": "Kristin Beery",
+        "title": "Digital/Direct Marketing leader specializing in digital marketing, project management, campaign development/maintenance, account management, and traffic generation",
+        "company": "",
+        "experiences": [
+          {
+            "title": "Freelance/Contract",
+            "company": "",
+            "duration": null,
+            "is_current": false
+          },
+          {
+            "title": "Vice President, Marketing Operations Manager",
+            "company": "MUFG",
+            "duration": null,
+            "is_current": false
+          },
+          {
+            "title": "Marketing Operations Manager",
+            "company": "Quontic Bank",
+            "duration": null,
+            "is_current": false
+          }
+        ],
+        "error": null
+      },
+      "leadmagic": {
+        "success": true,
+        "name": "Kristin Beery",
+        "title": "Digital/Direct Marketing leader specializing in digital marketing, project management, campaign development/maintenance, account management, and traffic generation",
+        "company": "Self-employed",
+        "experiences": [
+          {
+            "title": null,
+            "company": "Self-employed",
+            "duration": null,
+            "is_current": false
+          },
+          {
+            "title": null,
+            "company": "MUFG",
+            "duration": null,
+            "is_current": false
+          },
+          {
+            "title": null,
+            "company": "Quontic Bank",
+            "duration": null,
+            "is_current": false
+          }
+        ],
+        "error": null
+      }
+    },
+    "verification": {
+      "is_same_person": true,
+      "currently_employed": false,
+      "confidence": 90,
+      "reasoning": "Rule-based verification",
+      "red_flags": [
+        "Company not found in recent experiences"
+      ]
+    },
+    "sources_agree_on_name": true,
+    "sources_agree_on_company": true,
+    "any_source_found_data": true,
+    "total_latency_ms": 4898
+  },
+  {
+    "ground_truth": {
+      "name": "Saurabh Srivastava",
+      "company": "Essential AI",
+      "title": "Scientist",
+      "linkedin_url": "https://www.linkedin.com/in/saurabh-sriv"
+    },
+    "enrichments": {
+      "rapidapi": {
+        "success": true,
+        "name": "Saurabh Srivastava",
+        "title": "Building the next stage of AI @ Essential AI",
+        "company": "Essential AI",
+        "experiences": [
+          {
+            "title": "Scientist",
+            "company": "Essential AI",
+            "duration": "Sep 2024 - Present \u00b7 1 yr 3 mos",
+            "company_url": "https://www.linkedin.com/company/99112759/"
+          },
+          {
+            "title": "Founder",
+            "company": "Consequent AI \u00b7 Full-time",
+            "duration": "2023 - Sep 2024 \u00b7 1 yr 9 mos",
+            "company_url": "https://www.linkedin.com/search/results/all/?keywords=Consequent+AI"
+          },
+          {
+            "title": "Founder, CEO",
+            "company": "Warpdrive",
+            "duration": "Oct 2017 - Dec 2022 \u00b7 5 yrs 3 mos",
+            "company_url": "https://www.linkedin.com/company/18696552/"
+          }
+        ],
+        "error": null
+      },
+      "scrapin": {
+        "success": true,
+        "name": "Saurabh Srivastava",
+        "title": "Building the next stage of AI @ Essential AI",
+        "company": "Essential AI",
+        "experiences": [
+          {
+            "title": "Scientist",
+            "company": "Essential AI",
+            "duration": null,
+            "is_current": false
+          },
+          {
+            "title": "Founder",
+            "company": "Consequent AI",
+            "duration": null,
+            "is_current": false
+          },
+          {
+            "title": "Founder, CEO",
+            "company": "Warpdrive",
+            "duration": null,
+            "is_current": false
+          }
+        ],
+        "error": null
+      },
+      "leadmagic": {
+        "success": true,
+        "name": "Saurabh Srivastava",
+        "title": "Building the next stage of AI @ Essential AI",
+        "company": "Essential AI",
+        "experiences": [
+          {
+            "title": null,
+            "company": "Essential AI",
+            "duration": null,
+            "is_current": false
+          },
+          {
+            "title": null,
+            "company": "Consequent AI",
+            "duration": null,
+            "is_current": false
+          },
+          {
+            "title": null,
+            "company": "Warpdrive",
+            "duration": null,
+            "is_current": false
+          }
+        ],
+        "error": null
+      }
+    },
+    "verification": {
+      "is_same_person": true,
+      "currently_employed": true,
+      "confidence": 100,
+      "reasoning": "Rule-based verification",
+      "red_flags": []
+    },
+    "sources_agree_on_name": true,
+    "sources_agree_on_company": true,
+    "any_source_found_data": true,
+    "total_latency_ms": 4607
+  },
+  {
+    "ground_truth": {
+      "name": "Thato Sethebe",
+      "company": "Swapcard",
+      "title": "Business Development",
+      "linkedin_url": "https://www.linkedin.com/in/thato-sethebe"
+    },
+    "enrichments": {
+      "rapidapi": {
+        "success": true,
+        "name": "Thato Sethebe",
+        "title": "SaaS Sales | Tech Sales",
+        "company": "Swapcard \u00b7 Full-time",
+        "experiences": [
+          {
+            "title": "Business Development ",
+            "company": "Swapcard \u00b7 Full-time",
+            "duration": "Feb 2023 - Present \u00b7 2 yrs 10 mos",
+            "company_url": "https://www.linkedin.com/company/3177729/"
+          },
+          {
+            "title": "Member",
+            "company": "RevGenius",
+            "duration": "2022 - Present \u00b7 3 yrs 11 mos",
+            "company_url": "https://www.linkedin.com/company/11701026/"
+          },
+          {
+            "title": "Member",
+            "company": "HYPCCCYCL",
+            "duration": "2021 - Present \u00b7 4 yrs 11 mos",
+            "company_url": "https://www.linkedin.com/company/88691659/"
+          }
+        ],
+        "error": null
+      },
+      "scrapin": {
+        "success": true,
+        "name": "Thato Sethebe",
+        "title": "SaaS Sales | Tech Sales",
+        "company": "Swapcard",
+        "experiences": [
+          {
+            "title": "Business Development ",
+            "company": "Swapcard",
+            "duration": null,
+            "is_current": false
+          },
+          {
+            "title": "Member",
+            "company": "RevGenius",
+            "duration": null,
+            "is_current": false
+          },
+          {
+            "title": "Member",
+            "company": "HYPCCCYCL",
+            "duration": null,
+            "is_current": false
+          }
+        ],
+        "error": null
+      },
+      "leadmagic": {
+        "success": true,
+        "name": "Thato Sethebe",
+        "title": "SaaS Sales | Tech Sales",
+        "company": "Swapcard",
+        "experiences": [
+          {
+            "title": null,
+            "company": "Swapcard",
+            "duration": null,
+            "is_current": false
+          },
+          {
+            "title": null,
+            "company": "RevGenius",
+            "duration": null,
+            "is_current": false
+          },
+          {
+            "title": null,
+            "company": "HYPCCCYCL",
+            "duration": null,
+            "is_current": false
+          }
+        ],
+        "error": null
+      }
+    },
+    "verification": {
+      "is_same_person": true,
+      "currently_employed": true,
+      "confidence": 100,
+      "reasoning": "Rule-based verification",
+      "red_flags": []
+    },
+    "sources_agree_on_name": true,
+    "sources_agree_on_company": true,
+    "any_source_found_data": true,
+    "total_latency_ms": 3711
+  },
+  {
+    "ground_truth": {
+      "name": "John Wright",
+      "company": "StatsDrone",
+      "title": "Co-Founder",
+      "linkedin_url": "https://www.linkedin.com/in/alwayslookright"
+    },
+    "enrichments": {
+      "rapidapi": {
+        "success": true,
+        "name": "John Wright",
+        "title": "StatsDrone: a tool for iGaming affiliates! Host of Affiliate BI podcast",
+        "company": "StatsDrone \u00b7 Permanent Full-time",
+        "experiences": [
+          {
+            "title": "Co-Founder",
+            "company": "StatsDrone \u00b7 Permanent Full-time",
+            "duration": "Dec 2017 - Present \u00b7 8 yrs",
+            "company_url": "https://www.linkedin.com/company/11381880/"
+          },
+          {
+            "title": "Podcast Host & Producer",
+            "company": "Affiliate BI \u00b7 Permanent Full-time",
+            "duration": "Aug 2023 - Present \u00b7 2 yrs 4 mos",
+            "company_url": "https://www.linkedin.com/company/91709632/"
+          },
+          {
+            "title": "Domainer",
+            "company": "Gambling Domains \u00b7 Self-employed",
+            "duration": "Aug 2015 - Dec 2021 \u00b7 6 yrs 5 mos",
+            "company_url": "https://www.linkedin.com/company/10158987/"
+          }
+        ],
+        "error": null
+      },
+      "scrapin": {
+        "success": true,
+        "name": "John Wright",
+        "title": "StatsDrone: a tool for iGaming affiliates! Host of Affiliate BI podcast",
+        "company": "StatsDrone",
+        "experiences": [
+          {
+            "title": "Co-Founder",
+            "company": "StatsDrone",
+            "duration": null,
+            "is_current": false
+          },
+          {
+            "title": "Podcast Host & Producer",
+            "company": "Affiliate BI",
+            "duration": null,
+            "is_current": false
+          },
+          {
+            "title": "Domainer",
+            "company": "Gambling Domains",
+            "duration": null,
+            "is_current": false
+          }
+        ],
+        "error": null
+      },
+      "leadmagic": {
+        "success": true,
+        "name": "John Wright",
+        "title": "StatsDrone: a tool for iGaming affiliates! Host of Affiliate BI podcast",
+        "company": "StatsDrone",
+        "experiences": [
+          {
+            "title": null,
+            "company": "StatsDrone",
+            "duration": null,
+            "is_current": false
+          },
+          {
+            "title": null,
+            "company": "Affiliate BI",
+            "duration": null,
+            "is_current": false
+          },
+          {
+            "title": null,
+            "company": "Gambling Domains",
+            "duration": null,
+            "is_current": false
+          }
+        ],
+        "error": null
+      }
+    },
+    "verification": {
+      "is_same_person": true,
+      "currently_employed": true,
+      "confidence": 100,
+      "reasoning": "Rule-based verification",
+      "red_flags": []
+    },
+    "sources_agree_on_name": true,
+    "sources_agree_on_company": true,
+    "any_source_found_data": true,
+    "total_latency_ms": 3976
+  },
+  {
+    "ground_truth": {
+      "name": "Zachary Senvisky",
+      "company": "Kanbar Digital, LLC",
+      "title": "Director, Business Growth",
+      "linkedin_url": "https://www.linkedin.com/in/zachary-senvisky"
+    },
+    "enrichments": {
+      "rapidapi": {
+        "success": true,
+        "name": "Zachary Senvisky",
+        "title": "Director, Business Growth @ Kanbar Digital, IPP AMA San Diego",
+        "company": "Kanbar Digital, LLC \u00b7 Full-time",
+        "experiences": [
+          {
+            "title": "Director, Business Growth",
+            "company": "Kanbar Digital, LLC \u00b7 Full-time",
+            "duration": "Nov 2025 - Present \u00b7 1 mo",
+            "company_url": "https://www.linkedin.com/company/76584171/"
+          },
+          {
+            "title": "AMA San Diego",
+            "company": "Part-time \u00b7 2 yrs 5 mos",
+            "duration": "San Diego, California, United States \u00b7 Hybrid",
+            "company_url": "https://www.linkedin.com/company/1075446/"
+          },
+          {
+            "title": "Director, Business Growth",
+            "company": "Modifly \u00b7 Full-time",
+            "duration": "Jan 2025 - Oct 2025 \u00b7 10 mos",
+            "company_url": "https://www.linkedin.com/company/18261204/"
+          }
+        ],
+        "error": null
+      },
+      "scrapin": {
+        "success": true,
+        "name": "Zachary Senvisky",
+        "title": "Director, Business Growth @ Kanbar Digital, IPP AMA San Diego",
+        "company": "Kanbar Digital, LLC",
+        "experiences": [
+          {
+            "title": "Director, Business Growth",
+            "company": "Kanbar Digital, LLC",
+            "duration": null,
+            "is_current": false
+          },
+          {
+            "title": "Immediate Past President (IPP)",
+            "company": "AMA San Diego",
+            "duration": null,
+            "is_current": false
+          },
+          {
+            "title": "President",
+            "company": "AMA San Diego",
+            "duration": null,
+            "is_current": false
+          }
+        ],
+        "error": null
+      },
+      "leadmagic": {
+        "success": true,
+        "name": "Zachary Senvisky",
+        "title": "Director, Business Growth @ Kanbar Digital, IPP AMA San Diego",
+        "company": "Kanbar Digital, LLC",
+        "experiences": [
+          {
+            "title": null,
+            "company": "Kanbar Digital, LLC",
+            "duration": null,
+            "is_current": false
+          },
+          {
+            "title": null,
+            "company": "Part-time",
+            "duration": null,
+            "is_current": false
+          },
+          {
+            "title": null,
+            "company": "Modifly",
+            "duration": null,
+            "is_current": false
+          }
+        ],
+        "error": null
+      }
+    },
+    "verification": {
+      "is_same_person": true,
+      "currently_employed": true,
+      "confidence": 100,
+      "reasoning": "Rule-based verification",
+      "red_flags": []
+    },
+    "sources_agree_on_name": true,
+    "sources_agree_on_company": true,
+    "any_source_found_data": true,
+    "total_latency_ms": 9202
+  },
+  {
+    "ground_truth": {
+      "name": "Baptiste LB",
+      "company": "Taboola",
+      "title": "Sales Director, Growth Advertisers APAC",
+      "linkedin_url": "https://www.linkedin.com/in/baptiste-laborde-balen"
+    },
+    "enrichments": {
+      "rapidapi": {
+        "success": true,
+        "name": "Baptiste LB",
+        "title": "Taboola - Sales Director, Growth Advertisers APAC",
+        "company": "6 yrs 9 mos",
+        "experiences": [
+          {
+            "title": "Taboola",
+            "company": "6 yrs 9 mos",
+            "duration": "Bangkok City, Thailand",
+            "company_url": "https://www.linkedin.com/company/128707/"
+          },
+          {
+            "title": "TalentEx (Thailand) Co., Ltd.",
+            "company": "2 yrs 3 mos",
+            "duration": "Bangkok City, Thailand",
+            "company_url": "https://www.linkedin.com/company/11818305/"
+          },
+          {
+            "title": "Marketing Executive",
+            "company": "AIP Global",
+            "duration": "Sep 2015 - Feb 2016 \u00b7 6 mos",
+            "company_url": "https://www.linkedin.com/company/10902922/"
+          }
+        ],
+        "error": null
+      },
+      "scrapin": {
+        "success": true,
+        "name": "Baptiste LB",
+        "title": "Taboola - Sales Director, Growth Advertisers APAC",
+        "company": "Taboola",
+        "experiences": [
+          {
+            "title": "Sales Director, Growth Advertisers APAC",
+            "company": "Taboola",
+            "duration": null,
+            "is_current": false
+          },
+          {
+            "title": "Team Lead, Advertising Sales Development APAC",
+            "company": "Taboola",
+            "duration": null,
+            "is_current": false
+          },
+          {
+            "title": "Business Development Manager",
+            "company": "TalentEx (Thailand) Co., Ltd.",
+            "duration": null,
+            "is_current": false
+          }
+        ],
+        "error": null
+      },
+      "leadmagic": {
+        "success": true,
+        "name": "Baptiste LB",
+        "title": "Taboola - Sales Director, Growth Advertisers APAC",
+        "company": "6 yrs 9 mos",
+        "experiences": [
+          {
+            "title": null,
+            "company": "6 yrs 9 mos",
+            "duration": null,
+            "is_current": false
+          },
+          {
+            "title": null,
+            "company": "2 yrs 3 mos",
+            "duration": null,
+            "is_current": false
+          },
+          {
+            "title": null,
+            "company": "AIP Global",
+            "duration": null,
+            "is_current": false
+          }
+        ],
+        "error": null
+      }
+    },
+    "verification": {
+      "is_same_person": true,
+      "currently_employed": true,
+      "confidence": 100,
+      "reasoning": "Rule-based verification",
+      "red_flags": []
+    },
+    "sources_agree_on_name": true,
+    "sources_agree_on_company": false,
+    "any_source_found_data": true,
+    "total_latency_ms": 3850
+  },
+  {
+    "ground_truth": {
+      "name": "Mike Gunderson",
+      "company": "Gundir",
+      "title": "President",
+      "linkedin_url": "https://www.linkedin.com/in/gundertheson"
+    },
+    "enrichments": {
+      "rapidapi": {
+        "success": true,
+        "name": "Mike Gunderson",
+        "title": "Direct Marketing Expert  \ud83d\udcec Gundir | Gunderson Direct (Increase qualified leads with direct mail), \u23f0 PostReminder (Set a reminder for your advertised offer or event) and \ud83c\uddfa\ud83c\uddf8 VoteReminder (Remind your supporters to GOTV)",
+        "company": "Gundir \u00b7 Full-time",
+        "experiences": [
+          {
+            "title": "President",
+            "company": "Gundir \u00b7 Full-time",
+            "duration": "Jan 2003 - Present \u00b7 22 yrs 11 mos",
+            "company_url": "https://www.linkedin.com/company/1851375/"
+          },
+          {
+            "title": "Founder and CEO",
+            "company": "PostReminder \u00b7 Part-time",
+            "duration": "Aug 2022 - Present \u00b7 3 yrs 4 mos",
+            "company_url": "https://www.linkedin.com/company/89870062/"
+          },
+          {
+            "title": "Founder and CEO",
+            "company": "Respond Fast",
+            "duration": "Jan 2019 - Present \u00b7 6 yrs 11 mos",
+            "company_url": "https://www.linkedin.com/company/28440666/"
+          }
+        ],
+        "error": null
+      },
+      "scrapin": {
+        "success": true,
+        "name": "Mike Gunderson",
+        "title": "Direct Marketing Expert  \ud83d\udcec Gundir | Gunderson Direct (Increase qualified leads with direct mail), \u23f0 PostReminder (Set a reminder for your advertised offer or event) and \ud83c\uddfa\ud83c\uddf8 VoteReminder (Remind your supporters to GOTV)",
+        "company": "Gundir",
+        "experiences": [
+          {
+            "title": "President",
+            "company": "Gundir",
+            "duration": null,
+            "is_current": false
+          },
+          {
+            "title": "Founder and CEO",
+            "company": "PostReminder",
+            "duration": null,
+            "is_current": false
+          },
+          {
+            "title": "Founder and CEO",
+            "company": "Respond Fast",
+            "duration": null,
+            "is_current": false
+          }
+        ],
+        "error": null
+      },
+      "leadmagic": {
+        "success": true,
+        "name": "Mike Gunderson",
+        "title": "Direct Marketing Expert  \ud83d\udcec Gundir | Gunderson Direct (Increase qualified leads with direct mail), \u23f0 PostReminder (Set a reminder for your advertised offer or event) and \ud83c\uddfa\ud83c\uddf8 VoteReminder (Remind your supporters to GOTV)",
+        "company": "Gundir",
+        "experiences": [
+          {
+            "title": null,
+            "company": "Gundir",
+            "duration": null,
+            "is_current": false
+          },
+          {
+            "title": null,
+            "company": "PostReminder",
+            "duration": null,
+            "is_current": false
+          },
+          {
+            "title": null,
+            "company": "Respond Fast",
+            "duration": null,
+            "is_current": false
+          }
+        ],
+        "error": null
+      }
+    },
+    "verification": {
+      "is_same_person": true,
+      "currently_employed": true,
+      "confidence": 100,
+      "reasoning": "Rule-based verification",
+      "red_flags": []
+    },
+    "sources_agree_on_name": true,
+    "sources_agree_on_company": true,
+    "any_source_found_data": true,
+    "total_latency_ms": 3975
+  },
+  {
+    "ground_truth": {
+      "name": "Chad Lindsey",
+      "company": "Syncro",
+      "title": "Chief Revenue Officer",
+      "linkedin_url": "https://www.linkedin.com/in/chadmlindsey"
+    },
+    "enrichments": {
+      "rapidapi": {
+        "success": true,
+        "name": "Chad Lindsey",
+        "title": "Chief Revenue Officer @ Syncro | Cybersecurity | Data Protection | Managed Services",
+        "company": "Syncro \u00b7 Full-time",
+        "experiences": [
+          {
+            "title": "Chief Revenue Officer",
+            "company": "Syncro \u00b7 Full-time",
+            "duration": "Aug 2024 - Present \u00b7 1 yr 4 mos",
+            "company_url": "https://www.linkedin.com/company/18282000/"
+          },
+          {
+            "title": "Barracuda",
+            "company": "12 yrs 8 mos",
+            "duration": null,
+            "company_url": "https://www.linkedin.com/company/13957/"
+          },
+          {
+            "title": "Teacher & Coach",
+            "company": "Fulton County Schools \u00b7 Full-time",
+            "duration": "2008 - 2011 \u00b7 3 yrs",
+            "company_url": "https://www.linkedin.com/company/1216721/"
+          }
+        ],
+        "error": null
+      },
+      "scrapin": {
+        "success": true,
+        "name": "Chad Lindsey",
+        "title": "Chief Revenue Officer @ Syncro | Cybersecurity | Data Protection | Managed Services",
+        "company": "Syncro",
+        "experiences": [
+          {
+            "title": "Chief Revenue Officer",
+            "company": "Syncro",
+            "duration": null,
+            "is_current": false
+          },
+          {
+            "title": "VP & GM, Americas Sales",
+            "company": "Barracuda",
+            "duration": null,
+            "is_current": false
+          },
+          {
+            "title": "Vice President of Channel Sales | Channel Chief",
+            "company": "Barracuda",
+            "duration": null,
+            "is_current": false
+          }
+        ],
+        "error": null
+      },
+      "leadmagic": {
+        "success": true,
+        "name": "Chad Lindsey",
+        "title": "Chief Revenue Officer @ Syncro | Cybersecurity | Data Protection | Managed Services",
+        "company": "Syncro",
+        "experiences": [
+          {
+            "title": null,
+            "company": "Syncro",
+            "duration": null,
+            "is_current": false
+          },
+          {
+            "title": null,
+            "company": "12 yrs 8 mos",
+            "duration": null,
+            "is_current": false
+          },
+          {
+            "title": null,
+            "company": "Fulton County Schools",
+            "duration": null,
+            "is_current": false
+          }
+        ],
+        "error": null
+      }
+    },
+    "verification": {
+      "is_same_person": true,
+      "currently_employed": true,
+      "confidence": 100,
+      "reasoning": "Rule-based verification",
+      "red_flags": []
+    },
+    "sources_agree_on_name": true,
+    "sources_agree_on_company": true,
+    "any_source_found_data": true,
+    "total_latency_ms": 5541
+  },
+  {
+    "ground_truth": {
+      "name": "\u2728Martin Yochev",
+      "company": "Juma",
+      "title": "Marketing",
+      "linkedin_url": "https://www.linkedin.com/in/yochev"
+    },
+    "enrichments": {
+      "rapidapi": {
+        "success": true,
+        "name": "\u2728Martin Yochev",
+        "title": "Marketing @ Juma",
+        "company": "Juma \u00b7 Full-time",
+        "experiences": [
+          {
+            "title": "Marketing",
+            "company": "Juma \u00b7 Full-time",
+            "duration": "Mar 2024 - Present \u00b7 1 yr 9 mos",
+            "company_url": "https://www.linkedin.com/company/92812479/"
+          },
+          {
+            "title": "Marketing Manager",
+            "company": "Fabrico \u00b7 Full-time",
+            "duration": "Sep 2023 - Mar 2024 \u00b7 7 mos",
+            "company_url": "https://www.linkedin.com/company/81733915/"
+          },
+          {
+            "title": "Head of Marketing",
+            "company": "RelaxifyApp \u00b7 Full-time",
+            "duration": "Sep 2022 - Aug 2023 \u00b7 1 yr",
+            "company_url": "https://www.linkedin.com/company/73426656/"
+          }
+        ],
+        "error": null
+      },
+      "scrapin": {
+        "success": true,
+        "name": "\u2728Martin Yochev",
+        "title": "Marketing @ Juma",
+        "company": "Juma",
+        "experiences": [
+          {
+            "title": "Marketing",
+            "company": "Juma",
+            "duration": null,
+            "is_current": false
+          },
+          {
+            "title": "Marketing Manager",
+            "company": "Fabrico",
+            "duration": null,
+            "is_current": false
+          },
+          {
+            "title": "Head of Marketing",
+            "company": "RelaxifyApp",
+            "duration": null,
+            "is_current": false
+          }
+        ],
+        "error": null
+      },
+      "leadmagic": {
+        "success": true,
+        "name": "\u2728Martin Yochev",
+        "title": "Marketing @ Juma",
+        "company": "Juma",
+        "experiences": [
+          {
+            "title": null,
+            "company": "Juma",
+            "duration": null,
+            "is_current": false
+          },
+          {
+            "title": null,
+            "company": "Fabrico",
+            "duration": null,
+            "is_current": false
+          },
+          {
+            "title": null,
+            "company": "RelaxifyApp",
+            "duration": null,
+            "is_current": false
+          }
+        ],
+        "error": null
+      }
+    },
+    "verification": {
+      "is_same_person": true,
+      "currently_employed": true,
+      "confidence": 100,
+      "reasoning": "Rule-based verification",
+      "red_flags": []
+    },
+    "sources_agree_on_name": true,
+    "sources_agree_on_company": true,
+    "any_source_found_data": true,
+    "total_latency_ms": 3594
+  },
+  {
+    "ground_truth": {
+      "name": "Alexander Tyutyunnyk",
+      "company": "DevPuzzle",
+      "title": "CEO",
+      "linkedin_url": "https://www.linkedin.com/in/alexander-tyutyunnyk"
+    },
+    "enrichments": {
+      "rapidapi": {
+        "success": true,
+        "name": "Alexander Tyutyunnyk",
+        "title": " Founder and \u0421EO at DevPuzzle | Helping customers develop business with IT Solution ",
+        "company": "DevPuzzle",
+        "experiences": [
+          {
+            "title": "CEO",
+            "company": "DevPuzzle",
+            "duration": "Feb 2018 - Present \u00b7 7 yrs 10 mos",
+            "company_url": "https://www.linkedin.com/company/35495313/"
+          },
+          {
+            "title": "Java Software Developer",
+            "company": "Aspose",
+            "duration": "Apr 2016 - Jul 2022 \u00b7 6 yrs 4 mos",
+            "company_url": "https://www.linkedin.com/company/351007/"
+          },
+          {
+            "title": "PHP Developer",
+            "company": "Light IT",
+            "duration": "Sep 2012 - Apr 2016 \u00b7 3 yrs 8 mos",
+            "company_url": "https://www.linkedin.com/company/2938974/"
+          }
+        ],
+        "error": null
+      },
+      "scrapin": {
+        "success": true,
+        "name": "Alexander Tyutyunnyk",
+        "title": " Founder and \u0421EO at DevPuzzle | Helping customers develop business with IT Solution ",
+        "company": "DevPuzzle",
+        "experiences": [
+          {
+            "title": "CEO",
+            "company": "DevPuzzle",
+            "duration": null,
+            "is_current": false
+          },
+          {
+            "title": "Java Software Developer",
+            "company": "Aspose",
+            "duration": null,
+            "is_current": false
+          },
+          {
+            "title": "PHP Developer",
+            "company": "Light IT",
+            "duration": null,
+            "is_current": false
+          }
+        ],
+        "error": null
+      },
+      "leadmagic": {
+        "success": true,
+        "name": "Alexander Tyutyunnyk",
+        "title": " Founder and \u0421EO at DevPuzzle | Helping customers develop business with IT Solution ",
+        "company": "DevPuzzle",
+        "experiences": [
+          {
+            "title": null,
+            "company": "DevPuzzle",
+            "duration": null,
+            "is_current": false
+          },
+          {
+            "title": null,
+            "company": "Aspose",
+            "duration": null,
+            "is_current": false
+          },
+          {
+            "title": null,
+            "company": "Light IT",
+            "duration": null,
+            "is_current": false
+          }
+        ],
+        "error": null
+      }
+    },
+    "verification": {
+      "is_same_person": true,
+      "currently_employed": true,
+      "confidence": 100,
+      "reasoning": "Rule-based verification",
+      "red_flags": []
+    },
+    "sources_agree_on_name": true,
+    "sources_agree_on_company": true,
+    "any_source_found_data": true,
+    "total_latency_ms": 3659
+  }
+]

@@ -23,6 +23,40 @@ class LeadMagicEmailResult:
     raw_response: dict
 
 
+@dataclass
+class LeadMagicProfileResult:
+    """Result from profile-search endpoint (LinkedIn URL → profile data)"""
+    success: bool
+    full_name: str | None
+    first_name: str | None
+    last_name: str | None
+    professional_title: str | None
+    company_name: str | None
+    work_experience: list[dict]
+    education: list[dict]
+    certifications: list[dict]
+    location: str | None
+    linkedin_url: str | None
+    credits_consumed: int
+    raw_response: dict
+    error: str | None = None
+
+
+@dataclass
+class LeadMagicB2BProfileResult:
+    """Result from b2b-profile endpoint (email → LinkedIn URL)"""
+    success: bool
+    linkedin_url: str | None
+    first_name: str | None
+    last_name: str | None
+    full_name: str | None
+    professional_title: str | None
+    company_name: str | None
+    credits_consumed: int
+    raw_response: dict
+    error: str | None = None
+
+
 class LeadMagicClient:
     """LeadMagic API client for email finding"""
 
@@ -126,6 +160,199 @@ class LeadMagicClient:
                 credits_consumed=0,
                 company_data=None,
                 raw_response={}
+            )
+
+    async def profile_search(self, linkedin_url: str) -> LeadMagicProfileResult:
+        """
+        Enrich a LinkedIn profile URL to get profile data
+        POST /v1/people/profile-search - 1 credit
+
+        Args:
+            linkedin_url: LinkedIn profile URL (e.g., https://www.linkedin.com/in/username)
+
+        Returns:
+            LeadMagicProfileResult with name, title, company, work experience, education, etc.
+        """
+        session = await self._get_session()
+        url = f"{self.BASE_URL}/v1/people/profile-search"
+        payload = {"profile_url": linkedin_url}
+
+        try:
+            async with session.post(url, json=payload) as response:
+                if response.status == 400:
+                    return LeadMagicProfileResult(
+                        success=False,
+                        full_name=None,
+                        first_name=None,
+                        last_name=None,
+                        professional_title=None,
+                        company_name=None,
+                        work_experience=[],
+                        education=[],
+                        certifications=[],
+                        location=None,
+                        linkedin_url=linkedin_url,
+                        credits_consumed=0,
+                        raw_response={"error": "Invalid request"},
+                        error="Invalid request or URL"
+                    )
+
+                if response.status == 404:
+                    return LeadMagicProfileResult(
+                        success=False,
+                        full_name=None,
+                        first_name=None,
+                        last_name=None,
+                        professional_title=None,
+                        company_name=None,
+                        work_experience=[],
+                        education=[],
+                        certifications=[],
+                        location=None,
+                        linkedin_url=linkedin_url,
+                        credits_consumed=0,
+                        raw_response={"error": "Profile not found"},
+                        error="Profile not found"
+                    )
+
+                result = await response.json()
+
+                # Extract work experience
+                work_experience = result.get("work_experience", []) or []
+
+                # Get current company from first work experience
+                company_name = None
+                professional_title = None
+                if work_experience and len(work_experience) > 0:
+                    current_job = work_experience[0]
+                    company_name = current_job.get("company_name")
+                    professional_title = current_job.get("title")
+
+                # Also check top-level fields
+                if not company_name:
+                    company_name = result.get("company_name")
+                if not professional_title:
+                    professional_title = result.get("professional_title") or result.get("title")
+
+                return LeadMagicProfileResult(
+                    success=True,
+                    full_name=result.get("full_name"),
+                    first_name=result.get("first_name"),
+                    last_name=result.get("last_name"),
+                    professional_title=professional_title,
+                    company_name=company_name,
+                    work_experience=work_experience,
+                    education=result.get("education", []) or [],
+                    certifications=result.get("certifications", []) or [],
+                    location=result.get("location"),
+                    linkedin_url=result.get("linkedin_url") or linkedin_url,
+                    credits_consumed=result.get("credits_consumed", 1),
+                    raw_response=result,
+                    error=None
+                )
+
+        except Exception as e:
+            return LeadMagicProfileResult(
+                success=False,
+                full_name=None,
+                first_name=None,
+                last_name=None,
+                professional_title=None,
+                company_name=None,
+                work_experience=[],
+                education=[],
+                certifications=[],
+                location=None,
+                linkedin_url=linkedin_url,
+                credits_consumed=0,
+                raw_response={},
+                error=str(e)
+            )
+
+    async def email_to_linkedin(self, email: str) -> "LeadMagicB2BProfileResult":
+        """
+        Convert work email to LinkedIn profile URL.
+
+        POST /v1/people/b2b-profile
+        Cost: 10 credits
+
+        Args:
+            email: Work email address
+
+        Returns:
+            LeadMagicB2BProfileResult with LinkedIn URL if found
+        """
+        session = await self._get_session()
+        url = f"{self.BASE_URL}/v1/people/b2b-profile"
+        payload = {"work_email": email}
+
+        try:
+            async with session.post(url, json=payload) as response:
+                if response.status == 400:
+                    return LeadMagicB2BProfileResult(
+                        success=False,
+                        linkedin_url=None,
+                        first_name=None,
+                        last_name=None,
+                        full_name=None,
+                        professional_title=None,
+                        company_name=None,
+                        credits_consumed=0,
+                        raw_response={"error": "Invalid request"},
+                        error="Invalid email or request"
+                    )
+
+                if response.status == 404:
+                    return LeadMagicB2BProfileResult(
+                        success=False,
+                        linkedin_url=None,
+                        first_name=None,
+                        last_name=None,
+                        full_name=None,
+                        professional_title=None,
+                        company_name=None,
+                        credits_consumed=0,
+                        raw_response={"error": "Profile not found"},
+                        error="No LinkedIn profile found for this email"
+                    )
+
+                result = await response.json()
+
+                # Extract profile URL
+                profile_url = result.get("profile_url") or result.get("linkedin_url")
+
+                # Build full name if parts available
+                first_name = result.get("first_name")
+                last_name = result.get("last_name")
+                full_name = result.get("full_name")
+                if not full_name and first_name:
+                    full_name = f"{first_name} {last_name or ''}".strip()
+
+                return LeadMagicB2BProfileResult(
+                    success=bool(profile_url),
+                    linkedin_url=profile_url,
+                    first_name=first_name,
+                    last_name=last_name,
+                    full_name=full_name,
+                    professional_title=result.get("professional_title") or result.get("title"),
+                    company_name=result.get("company_name") or result.get("company"),
+                    credits_consumed=result.get("credits_consumed", 10),
+                    raw_response=result,
+                    error=None
+                )
+
+        except Exception as e:
+            return LeadMagicB2BProfileResult(
+                success=False,
+                linkedin_url=None,
+                first_name=None,
+                last_name=None,
+                full_name=None,
+                professional_title=None,
+                company_name=None,
+                credits_consumed=0,
+                raw_response={},
+                error=str(e)
             )
 
 

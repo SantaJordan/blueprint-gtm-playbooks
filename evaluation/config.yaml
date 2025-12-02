@@ -1,0 +1,56 @@
+# Evaluation Framework Configuration
+# API keys can also be set via environment variables:
+#   OCEAN_API_KEY, SCRAPIN_API_KEY, BLITZ_API_KEY
+
+api_keys:
+  ocean: "api_zS3HMp_qfDxcjLqk7b162tdii0WHVMGJS8EZHBo"
+  # scrapin: "${SCRAPIN_API_KEY}"  # Set via environment
+  blitz: "blitz_VQkRdq6HiJMk5xqkz9anTW3S"
+
+# Cache configuration
+cache_path: "./evaluation/data/cache.db"
+
+# Ground truth building settings
+ground_truth:
+  # Tier 1 (Gold) - manually verified or 2+ sources agree
+  gold_threshold: 2  # Min sources that must agree
+
+  # Persona types to collect contacts for
+  persona_types:
+    - owner_operator
+    - vp_marketing
+    - vp_sales
+
+# Split assignments
+splits:
+  cal_dev: 0.60
+  validation: 0.20
+  blind: 0.20
+  seed: 42
+
+# Evaluation settings
+evaluation:
+  # Max concurrent API calls
+  max_concurrent: 5
+
+  # Blitz settings
+  blitz:
+    max_results_per_call: 5
+    use_realtime: false
+
+# Target metrics (for pass/fail reporting)
+targets:
+  domain:
+    accuracy: 0.95
+    high_conf_accuracy: 0.97
+    coverage: 0.98
+    calibration_ece: 0.05
+
+  contact:
+    persona_recall: 0.70
+    person_precision: 0.80
+    email_accuracy: 0.90
+
+  e2e:
+    pipeline_success: 0.65
+    cost_per_contact: 0.50

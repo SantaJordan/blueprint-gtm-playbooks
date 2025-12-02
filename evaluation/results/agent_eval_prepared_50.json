@@ -1,0 +1,1937 @@
+{
+  "metadata": {
+    "input_file": "evaluation/data/agent_eval_50.json",
+    "pipeline_file": "evaluation/results/pilot_baseline_50.json",
+    "total_entities": 50,
+    "prepared_at": "2025-12-01T19:00:44.101124"
+  },
+  "items": [
+    {
+      "entity": {
+        "company_name": "West Pavilion Dialysis",
+        "domain": "henryford.com",
+        "vertical": "dialysis_centers",
+        "address": "2799 E Grand Blvd #1, Detroit, MI 48202",
+        "phone": "(313) 916-7062",
+        "place_id": "ChIJy_iXHWTNJIgR3VU79mzpHBI",
+        "rating": 3.0,
+        "reviews": 2
+      },
+      "pipeline_result": {
+        "company_name": "West Pavilion Dialysis",
+        "domain": "henryford.com",
+        "vertical": "dialysis_centers",
+        "stages_completed": [
+          "data_fill",
+          "website_fallback",
+          "social_links",
+          "validation"
+        ],
+        "errors": [],
+        "processing_time_ms": 7793.653964996338,
+        "contacts": [
+          {
+            "name": "Report Project",
+            "email": null,
+            "phone": null,
+            "title": "Owner",
+            "linkedin_url": null,
+            "sources": [
+              "serper_osint"
+            ],
+            "is_valid": false,
+            "confidence": 30.0,
+            "validation_reasons": [
+              "The contact's name is found but lacks verification through a reliable source, and there is no email or phone number provided.",
+              "RED FLAG: No email provided",
+              "RED FLAG: No phone number provided",
+              "RED FLAG: Email source is 'discovery' with no verification"
+            ]
+          }
+        ]
+      },
+      "agent_prompt": "You are evaluating contact discovery for an SMB company.\n\nCOMPANY DETAILS:\n- Name: West Pavilion Dialysis\n- Domain: henryford.com\n- Vertical: dialysis_centers\n- Address: 2799 E Grand Blvd #1, Detroit, MI 48202\n- Phone: (313) 916-7062\n\nPIPELINE RESULT (to verify):\n- Owner Found: Report Project (Owner)\n- Confidence: 30.0%\n- Sources: serper_osint\n\nYOUR TASKS:\n\n1. INDEPENDENTLY find the owner/decision-maker using these tools in order:\n   a. Use mcp__browser-mcp__chrome_navigate to visit https://henryford.com\n   b. Use mcp__browser-mcp__chrome_get_web_content to extract \"About Us\" or team info\n   c. Use WebSearch for \"West Pavilion Dialysis owner founder CEO\"\n   d. If needed, search Google Maps data\n\n2. VERIFY the pipeline result:\n   - Does your finding match the pipeline result?\n   - Is the pipeline result accurate?\n\n3. RETURN ONLY this JSON (no other text):\n{\n  \"company_name\": \"West Pavilion Dialysis\",\n  \"domain\": \"henryford.com\",\n  \"agent_owner_name\": \"name you found or null\",\n  \"agent_owner_title\": \"title or null\",\n  \"agent_sources\": [\"list of sources used\"],\n  \"agent_confidence\": \"high/medium/low/none\",\n  \"pipeline_owner\": \"Report Project (Owner)\",\n  \"pipeline_verdict\": \"correct/incorrect/partial/unknown\",\n  \"reasoning\": \"brief explanation of your finding\"\n}\n\nIMPORTANT:\n- Only return the JSON, nothing else\n- If you can't find any owner info, set agent_confidence to \"none\"\n- \"partial\" means pipeline found a real person but wrong details\n- \"unknown\" means you couldn't verify either way\n"
+    },
+    {
+      "entity": {
+        "company_name": "Westbridge Veterinary Referral Hospital",
+        "domain": "westbridgevets.com",
+        "vertical": "dialysis_centers",
+        "address": "595 W Center St, West Bridgewater, MA 02379",
+        "phone": "(508) 584-1600",
+        "place_id": "ChIJJ5I38qmP5IkRWOYVWqATTxA",
+        "rating": 4.2,
+        "reviews": 913
+      },
+      "pipeline_result": {
+        "company_name": "Westbridge Veterinary Referral Hospital",
+        "domain": "westbridgevets.com",
+        "vertical": "dialysis_centers",
+        "stages_completed": [
+          "data_fill",
+          "website_fallback",
+          "serper_osint",
+          "social_links",
+          "validation"
+        ],
+        "errors": [],
+        "processing_time_ms": 5214.570045471191,
+        "contacts": []
+      },
+      "agent_prompt": "You are evaluating contact discovery for an SMB company.\n\nCOMPANY DETAILS:\n- Name: Westbridge Veterinary Referral Hospital\n- Domain: westbridgevets.com\n- Vertical: dialysis_centers\n- Address: 595 W Center St, West Bridgewater, MA 02379\n- Phone: (508) 584-1600\n\nPIPELINE RESULT (to verify):\n- Owner Found: None found\n- Confidence: 0%\n- Sources: None\n\nYOUR TASKS:\n\n1. INDEPENDENTLY find the owner/decision-maker using these tools in order:\n   a. Use mcp__browser-mcp__chrome_navigate to visit https://westbridgevets.com\n   b. Use mcp__browser-mcp__chrome_get_web_content to extract \"About Us\" or team info\n   c. Use WebSearch for \"Westbridge Veterinary Referral Hospital owner founder CEO\"\n   d. If needed, search Google Maps data\n\n2. VERIFY the pipeline result:\n   - Does your finding match the pipeline result?\n   - Is the pipeline result accurate?\n\n3. RETURN ONLY this JSON (no other text):\n{\n  \"company_name\": \"Westbridge Veterinary Referral Hospital\",\n  \"domain\": \"westbridgevets.com\",\n  \"agent_owner_name\": \"name you found or null\",\n  \"agent_owner_title\": \"title or null\",\n  \"agent_sources\": [\"list of sources used\"],\n  \"agent_confidence\": \"high/medium/low/none\",\n  \"pipeline_owner\": \"None found\",\n  \"pipeline_verdict\": \"correct/incorrect/partial/unknown\",\n  \"reasoning\": \"brief explanation of your finding\"\n}\n\nIMPORTANT:\n- Only return the JSON, nothing else\n- If you can't find any owner info, set agent_confidence to \"none\"\n- \"partial\" means pipeline found a real person but wrong details\n- \"unknown\" means you couldn't verify either way\n"
+    },
+    {
+      "entity": {
+        "company_name": "Fresenius Kidney Care Leawood",
+        "domain": "freseniuskidneycare.com",
+        "vertical": "dialysis_centers",
+        "address": "6751 W 119th St, Overland Park, KS 66209",
+        "phone": "(800) 881-5101",
+        "place_id": "ChIJs7HtKCfqwIcRbB0dncTeMMI",
+        "rating": 5.0,
+        "reviews": 1
+      },
+      "pipeline_result": {
+        "company_name": "Fresenius Kidney Care Leawood",
+        "domain": "freseniuskidneycare.com",
+        "vertical": "dialysis_centers",
+        "stages_completed": [
+          "data_fill",
+          "website_fallback",
+          "serper_osint",
+          "social_links",
+          "validation"
+        ],
+        "errors": [],
+        "processing_time_ms": 5458.918333053589,
+        "contacts": []
+      },
+      "agent_prompt": "You are evaluating contact discovery for an SMB company.\n\nCOMPANY DETAILS:\n- Name: Fresenius Kidney Care Leawood\n- Domain: freseniuskidneycare.com\n- Vertical: dialysis_centers\n- Address: 6751 W 119th St, Overland Park, KS 66209\n- Phone: (800) 881-5101\n\nPIPELINE RESULT (to verify):\n- Owner Found: None found\n- Confidence: 0%\n- Sources: None\n\nYOUR TASKS:\n\n1. INDEPENDENTLY find the owner/decision-maker using these tools in order:\n   a. Use mcp__browser-mcp__chrome_navigate to visit https://freseniuskidneycare.com\n   b. Use mcp__browser-mcp__chrome_get_web_content to extract \"About Us\" or team info\n   c. Use WebSearch for \"Fresenius Kidney Care Leawood owner founder CEO\"\n   d. If needed, search Google Maps data\n\n2. VERIFY the pipeline result:\n   - Does your finding match the pipeline result?\n   - Is the pipeline result accurate?\n\n3. RETURN ONLY this JSON (no other text):\n{\n  \"company_name\": \"Fresenius Kidney Care Leawood\",\n  \"domain\": \"freseniuskidneycare.com\",\n  \"agent_owner_name\": \"name you found or null\",\n  \"agent_owner_title\": \"title or null\",\n  \"agent_sources\": [\"list of sources used\"],\n  \"agent_confidence\": \"high/medium/low/none\",\n  \"pipeline_owner\": \"None found\",\n  \"pipeline_verdict\": \"correct/incorrect/partial/unknown\",\n  \"reasoning\": \"brief explanation of your finding\"\n}\n\nIMPORTANT:\n- Only return the JSON, nothing else\n- If you can't find any owner info, set agent_confidence to \"none\"\n- \"partial\" means pipeline found a real person but wrong details\n- \"unknown\" means you couldn't verify either way\n"
+    },
+    {
+      "entity": {
+        "company_name": "U.S. Renal Care",
+        "domain": "usrenalcare.com",
+        "vertical": "dialysis_centers",
+        "address": "2055 N King St # 100, Honolulu, HI 96819",
+        "phone": "(808) 909-2065",
+        "place_id": "ChIJFzQTf2RvAHwR2Tk6o-Xhu-I",
+        "rating": 5.0,
+        "reviews": 1
+      },
+      "pipeline_result": {
+        "company_name": "U.S. Renal Care",
+        "domain": "usrenalcare.com",
+        "vertical": "dialysis_centers",
+        "stages_completed": [
+          "data_fill",
+          "website_fallback",
+          "social_links",
+          "validation"
+        ],
+        "errors": [],
+        "processing_time_ms": 6637.294054031372,
+        "contacts": [
+          {
+            "name": "Chris Brengard",
+            "email": null,
+            "phone": null,
+            "title": "Owner",
+            "linkedin_url": null,
+            "sources": [
+              "serper_osint"
+            ],
+            "is_valid": false,
+            "confidence": 30.0,
+            "validation_reasons": [
+              "The contact is identified as the owner, but lacks a verified email and phone number, leading to significant uncertainty.",
+              "RED FLAG: No email provided",
+              "RED FLAG: No phone number provided",
+              "RED FLAG: Email source is discovery with no verification"
+            ]
+          }
+        ]
+      },
+      "agent_prompt": "You are evaluating contact discovery for an SMB company.\n\nCOMPANY DETAILS:\n- Name: U.S. Renal Care\n- Domain: usrenalcare.com\n- Vertical: dialysis_centers\n- Address: 2055 N King St # 100, Honolulu, HI 96819\n- Phone: (808) 909-2065\n\nPIPELINE RESULT (to verify):\n- Owner Found: Chris Brengard (Owner)\n- Confidence: 30.0%\n- Sources: serper_osint\n\nYOUR TASKS:\n\n1. INDEPENDENTLY find the owner/decision-maker using these tools in order:\n   a. Use mcp__browser-mcp__chrome_navigate to visit https://usrenalcare.com\n   b. Use mcp__browser-mcp__chrome_get_web_content to extract \"About Us\" or team info\n   c. Use WebSearch for \"U.S. Renal Care owner founder CEO\"\n   d. If needed, search Google Maps data\n\n2. VERIFY the pipeline result:\n   - Does your finding match the pipeline result?\n   - Is the pipeline result accurate?\n\n3. RETURN ONLY this JSON (no other text):\n{\n  \"company_name\": \"U.S. Renal Care\",\n  \"domain\": \"usrenalcare.com\",\n  \"agent_owner_name\": \"name you found or null\",\n  \"agent_owner_title\": \"title or null\",\n  \"agent_sources\": [\"list of sources used\"],\n  \"agent_confidence\": \"high/medium/low/none\",\n  \"pipeline_owner\": \"Chris Brengard (Owner)\",\n  \"pipeline_verdict\": \"correct/incorrect/partial/unknown\",\n  \"reasoning\": \"brief explanation of your finding\"\n}\n\nIMPORTANT:\n- Only return the JSON, nothing else\n- If you can't find any owner info, set agent_confidence to \"none\"\n- \"partial\" means pipeline found a real person but wrong details\n- \"unknown\" means you couldn't verify either way\n"
+    },
+    {
+      "entity": {
+        "company_name": "Veterinary Specialty Center of Sturbridge",
+        "domain": "vscsturbridge.com",
+        "vertical": "dialysis_centers",
+        "address": "175 &, 173 Charlton Rd, Sturbridge, MA 01566",
+        "phone": "(774) 241-3111",
+        "place_id": "ChIJowMgmxmj5okRuoqHst-ZNJY",
+        "rating": 4.8,
+        "reviews": 178
+      },
+      "pipeline_result": {
+        "company_name": "Veterinary Specialty Center of Sturbridge",
+        "domain": "vscsturbridge.com",
+        "vertical": "dialysis_centers",
+        "stages_completed": [
+          "data_fill",
+          "website_fallback",
+          "serper_osint",
+          "social_links",
+          "validation"
+        ],
+        "errors": [],
+        "processing_time_ms": 8701.503992080688,
+        "contacts": [
+          {
+            "name": "ACVIM Forum",
+            "email": null,
+            "phone": null,
+            "title": "Owner",
+            "linkedin_url": null,
+            "sources": [
+              "serper_osint"
+            ],
+            "is_valid": false,
+            "confidence": 30.0,
+            "validation_reasons": [
+              "The contact name 'ACVIM Forum' is found as the owner, but lacks a verified email and phone number, leading to significant uncertainty.",
+              "RED FLAG: No email provided",
+              "RED FLAG: No phone number provided",
+              "RED FLAG: Email source is 'discovery' with no verification"
+            ]
+          }
+        ]
+      },
+      "agent_prompt": "You are evaluating contact discovery for an SMB company.\n\nCOMPANY DETAILS:\n- Name: Veterinary Specialty Center of Sturbridge\n- Domain: vscsturbridge.com\n- Vertical: dialysis_centers\n- Address: 175 &, 173 Charlton Rd, Sturbridge, MA 01566\n- Phone: (774) 241-3111\n\nPIPELINE RESULT (to verify):\n- Owner Found: ACVIM Forum (Owner)\n- Confidence: 30.0%\n- Sources: serper_osint\n\nYOUR TASKS:\n\n1. INDEPENDENTLY find the owner/decision-maker using these tools in order:\n   a. Use mcp__browser-mcp__chrome_navigate to visit https://vscsturbridge.com\n   b. Use mcp__browser-mcp__chrome_get_web_content to extract \"About Us\" or team info\n   c. Use WebSearch for \"Veterinary Specialty Center of Sturbridge owner founder CEO\"\n   d. If needed, search Google Maps data\n\n2. VERIFY the pipeline result:\n   - Does your finding match the pipeline result?\n   - Is the pipeline result accurate?\n\n3. RETURN ONLY this JSON (no other text):\n{\n  \"company_name\": \"Veterinary Specialty Center of Sturbridge\",\n  \"domain\": \"vscsturbridge.com\",\n  \"agent_owner_name\": \"name you found or null\",\n  \"agent_owner_title\": \"title or null\",\n  \"agent_sources\": [\"list of sources used\"],\n  \"agent_confidence\": \"high/medium/low/none\",\n  \"pipeline_owner\": \"ACVIM Forum (Owner)\",\n  \"pipeline_verdict\": \"correct/incorrect/partial/unknown\",\n  \"reasoning\": \"brief explanation of your finding\"\n}\n\nIMPORTANT:\n- Only return the JSON, nothing else\n- If you can't find any owner info, set agent_confidence to \"none\"\n- \"partial\" means pipeline found a real person but wrong details\n- \"unknown\" means you couldn't verify either way\n"
+    },
+    {
+      "entity": {
+        "company_name": "Innovative Renal Care Titusville Dialysis and Kidney Center",
+        "domain": "innovativerenal.com",
+        "vertical": "dialysis_centers",
+        "address": "801 Garden St Suite B, Titusville, FL 32796",
+        "phone": "(321) 567-0122",
+        "place_id": "ChIJh8T9NcpM54gRdDO3k1p5L_U",
+        "rating": 4.3,
+        "reviews": 8
+      },
+      "pipeline_result": {
+        "company_name": "Innovative Renal Care Titusville Dialysis and Kidney Center",
+        "domain": "innovativerenal.com",
+        "vertical": "dialysis_centers",
+        "stages_completed": [
+          "data_fill",
+          "website_fallback",
+          "serper_osint",
+          "social_links",
+          "validation"
+        ],
+        "errors": [],
+        "processing_time_ms": 7872.744083404541,
+        "contacts": []
+      },
+      "agent_prompt": "You are evaluating contact discovery for an SMB company.\n\nCOMPANY DETAILS:\n- Name: Innovative Renal Care Titusville Dialysis and Kidney Center\n- Domain: innovativerenal.com\n- Vertical: dialysis_centers\n- Address: 801 Garden St Suite B, Titusville, FL 32796\n- Phone: (321) 567-0122\n\nPIPELINE RESULT (to verify):\n- Owner Found: None found\n- Confidence: 0%\n- Sources: None\n\nYOUR TASKS:\n\n1. INDEPENDENTLY find the owner/decision-maker using these tools in order:\n   a. Use mcp__browser-mcp__chrome_navigate to visit https://innovativerenal.com\n   b. Use mcp__browser-mcp__chrome_get_web_content to extract \"About Us\" or team info\n   c. Use WebSearch for \"Innovative Renal Care Titusville Dialysis and Kidney Center owner founder CEO\"\n   d. If needed, search Google Maps data\n\n2. VERIFY the pipeline result:\n   - Does your finding match the pipeline result?\n   - Is the pipeline result accurate?\n\n3. RETURN ONLY this JSON (no other text):\n{\n  \"company_name\": \"Innovative Renal Care Titusville Dialysis and Kidney Center\",\n  \"domain\": \"innovativerenal.com\",\n  \"agent_owner_name\": \"name you found or null\",\n  \"agent_owner_title\": \"title or null\",\n  \"agent_sources\": [\"list of sources used\"],\n  \"agent_confidence\": \"high/medium/low/none\",\n  \"pipeline_owner\": \"None found\",\n  \"pipeline_verdict\": \"correct/incorrect/partial/unknown\",\n  \"reasoning\": \"brief explanation of your finding\"\n}\n\nIMPORTANT:\n- Only return the JSON, nothing else\n- If you can't find any owner info, set agent_confidence to \"none\"\n- \"partial\" means pipeline found a real person but wrong details\n- \"unknown\" means you couldn't verify either way\n"
+    },
+    {
+      "entity": {
+        "company_name": "Pacific Renal Care",
+        "domain": "pacificrenalcareoc.com",
+        "vertical": "dialysis_centers",
+        "address": "11180 Warner Ave # 463, Fountain Valley, CA 92708",
+        "phone": "(714) 241-9200",
+        "place_id": "ChIJf74P_mYn3YARoaLtgS1alCY",
+        "rating": 0.0,
+        "reviews": 0
+      },
+      "pipeline_result": {
+        "company_name": "Pacific Renal Care",
+        "domain": "pacificrenalcareoc.com",
+        "vertical": "dialysis_centers",
+        "stages_completed": [
+          "data_fill",
+          "website_fallback",
+          "social_links",
+          "validation"
+        ],
+        "errors": [],
+        "processing_time_ms": 4903.159141540527,
+        "contacts": [
+          {
+            "name": "Scholarships Expanding",
+            "email": null,
+            "phone": null,
+            "title": "Owner",
+            "linkedin_url": null,
+            "sources": [
+              "serper_osint"
+            ],
+            "is_valid": false,
+            "confidence": 30.0,
+            "validation_reasons": [
+              "The contact's name is found as the owner, but there is no email or phone number provided, and the email source is weak (discovery) with no verification.",
+              "RED FLAG: No email provided",
+              "RED FLAG: No phone number provided",
+              "RED FLAG: Weak email source"
+            ]
+          }
+        ]
+      },
+      "agent_prompt": "You are evaluating contact discovery for an SMB company.\n\nCOMPANY DETAILS:\n- Name: Pacific Renal Care\n- Domain: pacificrenalcareoc.com\n- Vertical: dialysis_centers\n- Address: 11180 Warner Ave # 463, Fountain Valley, CA 92708\n- Phone: (714) 241-9200\n\nPIPELINE RESULT (to verify):\n- Owner Found: Scholarships Expanding (Owner)\n- Confidence: 30.0%\n- Sources: serper_osint\n\nYOUR TASKS:\n\n1. INDEPENDENTLY find the owner/decision-maker using these tools in order:\n   a. Use mcp__browser-mcp__chrome_navigate to visit https://pacificrenalcareoc.com\n   b. Use mcp__browser-mcp__chrome_get_web_content to extract \"About Us\" or team info\n   c. Use WebSearch for \"Pacific Renal Care owner founder CEO\"\n   d. If needed, search Google Maps data\n\n2. VERIFY the pipeline result:\n   - Does your finding match the pipeline result?\n   - Is the pipeline result accurate?\n\n3. RETURN ONLY this JSON (no other text):\n{\n  \"company_name\": \"Pacific Renal Care\",\n  \"domain\": \"pacificrenalcareoc.com\",\n  \"agent_owner_name\": \"name you found or null\",\n  \"agent_owner_title\": \"title or null\",\n  \"agent_sources\": [\"list of sources used\"],\n  \"agent_confidence\": \"high/medium/low/none\",\n  \"pipeline_owner\": \"Scholarships Expanding (Owner)\",\n  \"pipeline_verdict\": \"correct/incorrect/partial/unknown\",\n  \"reasoning\": \"brief explanation of your finding\"\n}\n\nIMPORTANT:\n- Only return the JSON, nothing else\n- If you can't find any owner info, set agent_confidence to \"none\"\n- \"partial\" means pipeline found a real person but wrong details\n- \"unknown\" means you couldn't verify either way\n"
+    },
+    {
+      "entity": {
+        "company_name": "Fresenius Kidney Care Kew Gardens At Silver Lake Snf",
+        "domain": "freseniuskidneycare.com",
+        "vertical": "dialysis_centers",
+        "address": "275 Castleton Ave, Staten Island, NY 10301",
+        "phone": "(800) 881-5101",
+        "place_id": "ChIJudCnM3NPwokR8ixHQzYP6rc",
+        "rating": 0.0,
+        "reviews": 0
+      },
+      "pipeline_result": {
+        "company_name": "Fresenius Kidney Care Kew Gardens At Silver Lake Snf",
+        "domain": "freseniuskidneycare.com",
+        "vertical": "dialysis_centers",
+        "stages_completed": [
+          "data_fill",
+          "website_fallback",
+          "serper_osint",
+          "social_links",
+          "validation"
+        ],
+        "errors": [],
+        "processing_time_ms": 2425.2758026123047,
+        "contacts": []
+      },
+      "agent_prompt": "You are evaluating contact discovery for an SMB company.\n\nCOMPANY DETAILS:\n- Name: Fresenius Kidney Care Kew Gardens At Silver Lake Snf\n- Domain: freseniuskidneycare.com\n- Vertical: dialysis_centers\n- Address: 275 Castleton Ave, Staten Island, NY 10301\n- Phone: (800) 881-5101\n\nPIPELINE RESULT (to verify):\n- Owner Found: None found\n- Confidence: 0%\n- Sources: None\n\nYOUR TASKS:\n\n1. INDEPENDENTLY find the owner/decision-maker using these tools in order:\n   a. Use mcp__browser-mcp__chrome_navigate to visit https://freseniuskidneycare.com\n   b. Use mcp__browser-mcp__chrome_get_web_content to extract \"About Us\" or team info\n   c. Use WebSearch for \"Fresenius Kidney Care Kew Gardens At Silver Lake Snf owner founder CEO\"\n   d. If needed, search Google Maps data\n\n2. VERIFY the pipeline result:\n   - Does your finding match the pipeline result?\n   - Is the pipeline result accurate?\n\n3. RETURN ONLY this JSON (no other text):\n{\n  \"company_name\": \"Fresenius Kidney Care Kew Gardens At Silver Lake Snf\",\n  \"domain\": \"freseniuskidneycare.com\",\n  \"agent_owner_name\": \"name you found or null\",\n  \"agent_owner_title\": \"title or null\",\n  \"agent_sources\": [\"list of sources used\"],\n  \"agent_confidence\": \"high/medium/low/none\",\n  \"pipeline_owner\": \"None found\",\n  \"pipeline_verdict\": \"correct/incorrect/partial/unknown\",\n  \"reasoning\": \"brief explanation of your finding\"\n}\n\nIMPORTANT:\n- Only return the JSON, nothing else\n- If you can't find any owner info, set agent_confidence to \"none\"\n- \"partial\" means pipeline found a real person but wrong details\n- \"unknown\" means you couldn't verify either way\n"
+    },
+    {
+      "entity": {
+        "company_name": "Stacked | A Montana Grill",
+        "domain": "stackedamontanagrill.com",
+        "vertical": "bakeries",
+        "address": "106 N Broadway, Billings, MT 59101",
+        "phone": "(406) 534-8702",
+        "place_id": "ChIJ3RKHjDB7SFMRbiOT3d__vJI",
+        "rating": 4.4,
+        "reviews": 910
+      },
+      "pipeline_result": {
+        "company_name": "Stacked | A Montana Grill",
+        "domain": "stackedamontanagrill.com",
+        "vertical": "bakeries",
+        "stages_completed": [
+          "data_fill",
+          "website_fallback",
+          "social_links",
+          "validation"
+        ],
+        "errors": [],
+        "processing_time_ms": 4786.920785903931,
+        "contacts": [
+          {
+            "name": "Stephan Hindman",
+            "email": null,
+            "phone": null,
+            "title": "Owner",
+            "linkedin_url": null,
+            "sources": [
+              "serper_osint"
+            ],
+            "is_valid": true,
+            "confidence": 50.0,
+            "validation_reasons": [
+              "The contact is the owner of the business, but there is no email or phone number provided, and the email source is not verified, leading to significant uncertainty.",
+              "RED FLAG: No email provided",
+              "RED FLAG: No phone number provided",
+              "RED FLAG: Email source is unverified"
+            ]
+          }
+        ]
+      },
+      "agent_prompt": "You are evaluating contact discovery for an SMB company.\n\nCOMPANY DETAILS:\n- Name: Stacked | A Montana Grill\n- Domain: stackedamontanagrill.com\n- Vertical: bakeries\n- Address: 106 N Broadway, Billings, MT 59101\n- Phone: (406) 534-8702\n\nPIPELINE RESULT (to verify):\n- Owner Found: Stephan Hindman (Owner)\n- Confidence: 50.0%\n- Sources: serper_osint\n\nYOUR TASKS:\n\n1. INDEPENDENTLY find the owner/decision-maker using these tools in order:\n   a. Use mcp__browser-mcp__chrome_navigate to visit https://stackedamontanagrill.com\n   b. Use mcp__browser-mcp__chrome_get_web_content to extract \"About Us\" or team info\n   c. Use WebSearch for \"Stacked | A Montana Grill owner founder CEO\"\n   d. If needed, search Google Maps data\n\n2. VERIFY the pipeline result:\n   - Does your finding match the pipeline result?\n   - Is the pipeline result accurate?\n\n3. RETURN ONLY this JSON (no other text):\n{\n  \"company_name\": \"Stacked | A Montana Grill\",\n  \"domain\": \"stackedamontanagrill.com\",\n  \"agent_owner_name\": \"name you found or null\",\n  \"agent_owner_title\": \"title or null\",\n  \"agent_sources\": [\"list of sources used\"],\n  \"agent_confidence\": \"high/medium/low/none\",\n  \"pipeline_owner\": \"Stephan Hindman (Owner)\",\n  \"pipeline_verdict\": \"correct/incorrect/partial/unknown\",\n  \"reasoning\": \"brief explanation of your finding\"\n}\n\nIMPORTANT:\n- Only return the JSON, nothing else\n- If you can't find any owner info, set agent_confidence to \"none\"\n- \"partial\" means pipeline found a real person but wrong details\n- \"unknown\" means you couldn't verify either way\n"
+    },
+    {
+      "entity": {
+        "company_name": "Baldwin Bagels",
+        "domain": "baldwinbagels.com",
+        "vertical": "bakeries",
+        "address": "134 Baldwin Rd, Parsippany, NJ 07054",
+        "phone": "(973) 335-1217",
+        "place_id": "ChIJ09eM2eQHw4kRWFjsK_Qslkw",
+        "rating": 4.1,
+        "reviews": 484
+      },
+      "pipeline_result": {
+        "company_name": "Baldwin Bagels",
+        "domain": "baldwinbagels.com",
+        "vertical": "bakeries",
+        "stages_completed": [
+          "data_fill",
+          "website_fallback",
+          "serper_osint",
+          "social_links",
+          "validation"
+        ],
+        "errors": [],
+        "processing_time_ms": 7109.296798706055,
+        "contacts": [
+          {
+            "name": "Gillian Forsyth",
+            "email": null,
+            "phone": null,
+            "title": "Owner",
+            "linkedin_url": null,
+            "sources": [
+              "serper_osint"
+            ],
+            "is_valid": false,
+            "confidence": 30.0,
+            "validation_reasons": [
+              "The contact is identified as the owner, but lacks a verified email and phone number, leading to significant uncertainty.",
+              "RED FLAG: No email provided",
+              "RED FLAG: No phone number provided",
+              "RED FLAG: Email source is 'discovery' with no verification"
+            ]
+          }
+        ]
+      },
+      "agent_prompt": "You are evaluating contact discovery for an SMB company.\n\nCOMPANY DETAILS:\n- Name: Baldwin Bagels\n- Domain: baldwinbagels.com\n- Vertical: bakeries\n- Address: 134 Baldwin Rd, Parsippany, NJ 07054\n- Phone: (973) 335-1217\n\nPIPELINE RESULT (to verify):\n- Owner Found: Gillian Forsyth (Owner)\n- Confidence: 30.0%\n- Sources: serper_osint\n\nYOUR TASKS:\n\n1. INDEPENDENTLY find the owner/decision-maker using these tools in order:\n   a. Use mcp__browser-mcp__chrome_navigate to visit https://baldwinbagels.com\n   b. Use mcp__browser-mcp__chrome_get_web_content to extract \"About Us\" or team info\n   c. Use WebSearch for \"Baldwin Bagels owner founder CEO\"\n   d. If needed, search Google Maps data\n\n2. VERIFY the pipeline result:\n   - Does your finding match the pipeline result?\n   - Is the pipeline result accurate?\n\n3. RETURN ONLY this JSON (no other text):\n{\n  \"company_name\": \"Baldwin Bagels\",\n  \"domain\": \"baldwinbagels.com\",\n  \"agent_owner_name\": \"name you found or null\",\n  \"agent_owner_title\": \"title or null\",\n  \"agent_sources\": [\"list of sources used\"],\n  \"agent_confidence\": \"high/medium/low/none\",\n  \"pipeline_owner\": \"Gillian Forsyth (Owner)\",\n  \"pipeline_verdict\": \"correct/incorrect/partial/unknown\",\n  \"reasoning\": \"brief explanation of your finding\"\n}\n\nIMPORTANT:\n- Only return the JSON, nothing else\n- If you can't find any owner info, set agent_confidence to \"none\"\n- \"partial\" means pipeline found a real person but wrong details\n- \"unknown\" means you couldn't verify either way\n"
+    },
+    {
+      "entity": {
+        "company_name": "Range Cafe Downtown",
+        "domain": "rangecafe.com",
+        "vertical": "bakeries",
+        "address": "320 Central Ave SE, Albuquerque, NM 87102",
+        "phone": "(505) 243-1440",
+        "place_id": "ChIJUf6P97wMIocR9cWf1zprUIg",
+        "rating": 4.4,
+        "reviews": 3447
+      },
+      "pipeline_result": {
+        "company_name": "Range Cafe Downtown",
+        "domain": "rangecafe.com",
+        "vertical": "bakeries",
+        "stages_completed": [
+          "data_fill",
+          "website_fallback",
+          "serper_osint",
+          "social_links",
+          "validation"
+        ],
+        "errors": [],
+        "processing_time_ms": 2467.170000076294,
+        "contacts": []
+      },
+      "agent_prompt": "You are evaluating contact discovery for an SMB company.\n\nCOMPANY DETAILS:\n- Name: Range Cafe Downtown\n- Domain: rangecafe.com\n- Vertical: bakeries\n- Address: 320 Central Ave SE, Albuquerque, NM 87102\n- Phone: (505) 243-1440\n\nPIPELINE RESULT (to verify):\n- Owner Found: None found\n- Confidence: 0%\n- Sources: None\n\nYOUR TASKS:\n\n1. INDEPENDENTLY find the owner/decision-maker using these tools in order:\n   a. Use mcp__browser-mcp__chrome_navigate to visit https://rangecafe.com\n   b. Use mcp__browser-mcp__chrome_get_web_content to extract \"About Us\" or team info\n   c. Use WebSearch for \"Range Cafe Downtown owner founder CEO\"\n   d. If needed, search Google Maps data\n\n2. VERIFY the pipeline result:\n   - Does your finding match the pipeline result?\n   - Is the pipeline result accurate?\n\n3. RETURN ONLY this JSON (no other text):\n{\n  \"company_name\": \"Range Cafe Downtown\",\n  \"domain\": \"rangecafe.com\",\n  \"agent_owner_name\": \"name you found or null\",\n  \"agent_owner_title\": \"title or null\",\n  \"agent_sources\": [\"list of sources used\"],\n  \"agent_confidence\": \"high/medium/low/none\",\n  \"pipeline_owner\": \"None found\",\n  \"pipeline_verdict\": \"correct/incorrect/partial/unknown\",\n  \"reasoning\": \"brief explanation of your finding\"\n}\n\nIMPORTANT:\n- Only return the JSON, nothing else\n- If you can't find any owner info, set agent_confidence to \"none\"\n- \"partial\" means pipeline found a real person but wrong details\n- \"unknown\" means you couldn't verify either way\n"
+    },
+    {
+      "entity": {
+        "company_name": "Tractor Supply Co.",
+        "domain": "tractorsupply.com",
+        "vertical": "bakeries",
+        "address": "2335 W Airline Hwy, Laplace, LA 70068",
+        "phone": "(985) 652-8808",
+        "place_id": "ChIJmRxCvOXTIIYRhfVqfedWWQo",
+        "rating": 4.5,
+        "reviews": 219
+      },
+      "pipeline_result": {
+        "company_name": "Tractor Supply Co.",
+        "domain": "tractorsupply.com",
+        "vertical": "bakeries",
+        "stages_completed": [
+          "data_fill",
+          "website_fallback",
+          "social_links",
+          "validation"
+        ],
+        "errors": [],
+        "processing_time_ms": 19253.579139709473,
+        "contacts": [
+          {
+            "name": "Senior Vice",
+            "email": null,
+            "phone": null,
+            "title": "Owner",
+            "linkedin_url": null,
+            "sources": [
+              "serper_osint"
+            ],
+            "is_valid": false,
+            "confidence": 30.0,
+            "validation_reasons": [
+              "The contact's name is found but lacks verification and there is no email or phone number provided, leading to significant uncertainty.",
+              "RED FLAG: No email provided",
+              "RED FLAG: No phone number provided",
+              "RED FLAG: Email source is 'discovery' with no verification"
+            ]
+          }
+        ]
+      },
+      "agent_prompt": "You are evaluating contact discovery for an SMB company.\n\nCOMPANY DETAILS:\n- Name: Tractor Supply Co.\n- Domain: tractorsupply.com\n- Vertical: bakeries\n- Address: 2335 W Airline Hwy, Laplace, LA 70068\n- Phone: (985) 652-8808\n\nPIPELINE RESULT (to verify):\n- Owner Found: Senior Vice (Owner)\n- Confidence: 30.0%\n- Sources: serper_osint\n\nYOUR TASKS:\n\n1. INDEPENDENTLY find the owner/decision-maker using these tools in order:\n   a. Use mcp__browser-mcp__chrome_navigate to visit https://tractorsupply.com\n   b. Use mcp__browser-mcp__chrome_get_web_content to extract \"About Us\" or team info\n   c. Use WebSearch for \"Tractor Supply Co. owner founder CEO\"\n   d. If needed, search Google Maps data\n\n2. VERIFY the pipeline result:\n   - Does your finding match the pipeline result?\n   - Is the pipeline result accurate?\n\n3. RETURN ONLY this JSON (no other text):\n{\n  \"company_name\": \"Tractor Supply Co.\",\n  \"domain\": \"tractorsupply.com\",\n  \"agent_owner_name\": \"name you found or null\",\n  \"agent_owner_title\": \"title or null\",\n  \"agent_sources\": [\"list of sources used\"],\n  \"agent_confidence\": \"high/medium/low/none\",\n  \"pipeline_owner\": \"Senior Vice (Owner)\",\n  \"pipeline_verdict\": \"correct/incorrect/partial/unknown\",\n  \"reasoning\": \"brief explanation of your finding\"\n}\n\nIMPORTANT:\n- Only return the JSON, nothing else\n- If you can't find any owner info, set agent_confidence to \"none\"\n- \"partial\" means pipeline found a real person but wrong details\n- \"unknown\" means you couldn't verify either way\n"
+    },
+    {
+      "entity": {
+        "company_name": "Woods Coffee",
+        "domain": "woodscoffee.com",
+        "vertical": "bakeries",
+        "address": "1901 King St, Bellingham, WA 98225",
+        "phone": "(360) 738-3260",
+        "place_id": "ChIJhfjwqJGjhVQRfD-Xh1xFV4c",
+        "rating": 4.5,
+        "reviews": 292
+      },
+      "pipeline_result": {
+        "company_name": "Woods Coffee",
+        "domain": "woodscoffee.com",
+        "vertical": "bakeries",
+        "stages_completed": [
+          "data_fill",
+          "website_fallback",
+          "social_links",
+          "validation"
+        ],
+        "errors": [],
+        "processing_time_ms": 5712.475776672363,
+        "contacts": [
+          {
+            "name": "Wes Herman",
+            "email": null,
+            "phone": null,
+            "title": "Owner",
+            "linkedin_url": null,
+            "sources": [
+              "serper_osint"
+            ],
+            "is_valid": true,
+            "confidence": 50.0,
+            "validation_reasons": [
+              "Wes Herman is identified as the owner of Woods Coffee, but there is no email or phone number provided, and the email source is from discovery with no verification.",
+              "RED FLAG: No email provided",
+              "RED FLAG: No phone number provided",
+              "RED FLAG: Email source is discovery with no verification"
+            ]
+          }
+        ]
+      },
+      "agent_prompt": "You are evaluating contact discovery for an SMB company.\n\nCOMPANY DETAILS:\n- Name: Woods Coffee\n- Domain: woodscoffee.com\n- Vertical: bakeries\n- Address: 1901 King St, Bellingham, WA 98225\n- Phone: (360) 738-3260\n\nPIPELINE RESULT (to verify):\n- Owner Found: Wes Herman (Owner)\n- Confidence: 50.0%\n- Sources: serper_osint\n\nYOUR TASKS:\n\n1. INDEPENDENTLY find the owner/decision-maker using these tools in order:\n   a. Use mcp__browser-mcp__chrome_navigate to visit https://woodscoffee.com\n   b. Use mcp__browser-mcp__chrome_get_web_content to extract \"About Us\" or team info\n   c. Use WebSearch for \"Woods Coffee owner founder CEO\"\n   d. If needed, search Google Maps data\n\n2. VERIFY the pipeline result:\n   - Does your finding match the pipeline result?\n   - Is the pipeline result accurate?\n\n3. RETURN ONLY this JSON (no other text):\n{\n  \"company_name\": \"Woods Coffee\",\n  \"domain\": \"woodscoffee.com\",\n  \"agent_owner_name\": \"name you found or null\",\n  \"agent_owner_title\": \"title or null\",\n  \"agent_sources\": [\"list of sources used\"],\n  \"agent_confidence\": \"high/medium/low/none\",\n  \"pipeline_owner\": \"Wes Herman (Owner)\",\n  \"pipeline_verdict\": \"correct/incorrect/partial/unknown\",\n  \"reasoning\": \"brief explanation of your finding\"\n}\n\nIMPORTANT:\n- Only return the JSON, nothing else\n- If you can't find any owner info, set agent_confidence to \"none\"\n- \"partial\" means pipeline found a real person but wrong details\n- \"unknown\" means you couldn't verify either way\n"
+    },
+    {
+      "entity": {
+        "company_name": "Organic Remedies Dispensary",
+        "domain": "organicremediespa.com",
+        "vertical": "bakeries",
+        "address": "900 Wayne Ave, Chambersburg, PA 17201",
+        "phone": "(717) 251-2321",
+        "place_id": "ChIJrTCYYSCcyYkRJO6Q-1jHNIY",
+        "rating": 4.8,
+        "reviews": 1010
+      },
+      "pipeline_result": {
+        "company_name": "Organic Remedies Dispensary",
+        "domain": "organicremediespa.com",
+        "vertical": "bakeries",
+        "stages_completed": [
+          "data_fill",
+          "website_fallback",
+          "social_links",
+          "validation"
+        ],
+        "errors": [],
+        "processing_time_ms": 8176.214933395386,
+        "contacts": [
+          {
+            "name": "John Dymond",
+            "email": null,
+            "phone": null,
+            "title": "Owner",
+            "linkedin_url": null,
+            "sources": [
+              "serper_osint"
+            ],
+            "is_valid": false,
+            "confidence": 30.0,
+            "validation_reasons": [
+              "The contact is identified as the owner, but lacks a verified email and phone number, leading to significant uncertainty.",
+              "RED FLAG: No email provided",
+              "RED FLAG: No phone number provided",
+              "RED FLAG: Email source is 'discovery' with no verification"
+            ]
+          }
+        ]
+      },
+      "agent_prompt": "You are evaluating contact discovery for an SMB company.\n\nCOMPANY DETAILS:\n- Name: Organic Remedies Dispensary\n- Domain: organicremediespa.com\n- Vertical: bakeries\n- Address: 900 Wayne Ave, Chambersburg, PA 17201\n- Phone: (717) 251-2321\n\nPIPELINE RESULT (to verify):\n- Owner Found: John Dymond (Owner)\n- Confidence: 30.0%\n- Sources: serper_osint\n\nYOUR TASKS:\n\n1. INDEPENDENTLY find the owner/decision-maker using these tools in order:\n   a. Use mcp__browser-mcp__chrome_navigate to visit https://organicremediespa.com\n   b. Use mcp__browser-mcp__chrome_get_web_content to extract \"About Us\" or team info\n   c. Use WebSearch for \"Organic Remedies Dispensary owner founder CEO\"\n   d. If needed, search Google Maps data\n\n2. VERIFY the pipeline result:\n   - Does your finding match the pipeline result?\n   - Is the pipeline result accurate?\n\n3. RETURN ONLY this JSON (no other text):\n{\n  \"company_name\": \"Organic Remedies Dispensary\",\n  \"domain\": \"organicremediespa.com\",\n  \"agent_owner_name\": \"name you found or null\",\n  \"agent_owner_title\": \"title or null\",\n  \"agent_sources\": [\"list of sources used\"],\n  \"agent_confidence\": \"high/medium/low/none\",\n  \"pipeline_owner\": \"John Dymond (Owner)\",\n  \"pipeline_verdict\": \"correct/incorrect/partial/unknown\",\n  \"reasoning\": \"brief explanation of your finding\"\n}\n\nIMPORTANT:\n- Only return the JSON, nothing else\n- If you can't find any owner info, set agent_confidence to \"none\"\n- \"partial\" means pipeline found a real person but wrong details\n- \"unknown\" means you couldn't verify either way\n"
+    },
+    {
+      "entity": {
+        "company_name": "PCC Community Markets - Edmonds Co-op",
+        "domain": "pccmarkets.com",
+        "vertical": "bakeries",
+        "address": "9803 Edmonds Way, Edmonds, WA 98020",
+        "phone": "(425) 275-9036",
+        "place_id": "ChIJeeRsIogakFQRIbVTsaVRfZU",
+        "rating": 4.5,
+        "reviews": 1219
+      },
+      "pipeline_result": {
+        "company_name": "PCC Community Markets - Edmonds Co-op",
+        "domain": "pccmarkets.com",
+        "vertical": "bakeries",
+        "stages_completed": [
+          "data_fill",
+          "website_fallback",
+          "serper_osint",
+          "social_links",
+          "validation"
+        ],
+        "errors": [],
+        "processing_time_ms": 2576.6918659210205,
+        "contacts": []
+      },
+      "agent_prompt": "You are evaluating contact discovery for an SMB company.\n\nCOMPANY DETAILS:\n- Name: PCC Community Markets - Edmonds Co-op\n- Domain: pccmarkets.com\n- Vertical: bakeries\n- Address: 9803 Edmonds Way, Edmonds, WA 98020\n- Phone: (425) 275-9036\n\nPIPELINE RESULT (to verify):\n- Owner Found: None found\n- Confidence: 0%\n- Sources: None\n\nYOUR TASKS:\n\n1. INDEPENDENTLY find the owner/decision-maker using these tools in order:\n   a. Use mcp__browser-mcp__chrome_navigate to visit https://pccmarkets.com\n   b. Use mcp__browser-mcp__chrome_get_web_content to extract \"About Us\" or team info\n   c. Use WebSearch for \"PCC Community Markets - Edmonds Co-op owner founder CEO\"\n   d. If needed, search Google Maps data\n\n2. VERIFY the pipeline result:\n   - Does your finding match the pipeline result?\n   - Is the pipeline result accurate?\n\n3. RETURN ONLY this JSON (no other text):\n{\n  \"company_name\": \"PCC Community Markets - Edmonds Co-op\",\n  \"domain\": \"pccmarkets.com\",\n  \"agent_owner_name\": \"name you found or null\",\n  \"agent_owner_title\": \"title or null\",\n  \"agent_sources\": [\"list of sources used\"],\n  \"agent_confidence\": \"high/medium/low/none\",\n  \"pipeline_owner\": \"None found\",\n  \"pipeline_verdict\": \"correct/incorrect/partial/unknown\",\n  \"reasoning\": \"brief explanation of your finding\"\n}\n\nIMPORTANT:\n- Only return the JSON, nothing else\n- If you can't find any owner info, set agent_confidence to \"none\"\n- \"partial\" means pipeline found a real person but wrong details\n- \"unknown\" means you couldn't verify either way\n"
+    },
+    {
+      "entity": {
+        "company_name": "Adjudicake",
+        "domain": "adjudicake.com",
+        "vertical": "bakeries",
+        "address": "9221 Hidden Water Cir, Riverview, FL 33578",
+        "phone": "(813) 313-6292",
+        "place_id": "ChIJ17hVPNDPwogRqml_CwdNhbU",
+        "rating": 5.0,
+        "reviews": 87
+      },
+      "pipeline_result": {
+        "company_name": "Adjudicake",
+        "domain": "adjudicake.com",
+        "vertical": "bakeries",
+        "stages_completed": [
+          "data_fill",
+          "website_fallback",
+          "serper_osint",
+          "social_links",
+          "validation"
+        ],
+        "errors": [],
+        "processing_time_ms": 6212.459087371826,
+        "contacts": []
+      },
+      "agent_prompt": "You are evaluating contact discovery for an SMB company.\n\nCOMPANY DETAILS:\n- Name: Adjudicake\n- Domain: adjudicake.com\n- Vertical: bakeries\n- Address: 9221 Hidden Water Cir, Riverview, FL 33578\n- Phone: (813) 313-6292\n\nPIPELINE RESULT (to verify):\n- Owner Found: None found\n- Confidence: 0%\n- Sources: None\n\nYOUR TASKS:\n\n1. INDEPENDENTLY find the owner/decision-maker using these tools in order:\n   a. Use mcp__browser-mcp__chrome_navigate to visit https://adjudicake.com\n   b. Use mcp__browser-mcp__chrome_get_web_content to extract \"About Us\" or team info\n   c. Use WebSearch for \"Adjudicake owner founder CEO\"\n   d. If needed, search Google Maps data\n\n2. VERIFY the pipeline result:\n   - Does your finding match the pipeline result?\n   - Is the pipeline result accurate?\n\n3. RETURN ONLY this JSON (no other text):\n{\n  \"company_name\": \"Adjudicake\",\n  \"domain\": \"adjudicake.com\",\n  \"agent_owner_name\": \"name you found or null\",\n  \"agent_owner_title\": \"title or null\",\n  \"agent_sources\": [\"list of sources used\"],\n  \"agent_confidence\": \"high/medium/low/none\",\n  \"pipeline_owner\": \"None found\",\n  \"pipeline_verdict\": \"correct/incorrect/partial/unknown\",\n  \"reasoning\": \"brief explanation of your finding\"\n}\n\nIMPORTANT:\n- Only return the JSON, nothing else\n- If you can't find any owner info, set agent_confidence to \"none\"\n- \"partial\" means pipeline found a real person but wrong details\n- \"unknown\" means you couldn't verify either way\n"
+    },
+    {
+      "entity": {
+        "company_name": "American RV Technology, Inc.",
+        "domain": "americanrvtechnology.com",
+        "vertical": "auto_body_shops",
+        "address": "11155 S Tamiami Trl, North Port, FL 34287",
+        "phone": "(941) 429-0298",
+        "place_id": "ChIJmwBTWSY23YgRjB2G6ZpTzhs",
+        "rating": 4.5,
+        "reviews": 59
+      },
+      "pipeline_result": {
+        "company_name": "American RV Technology, Inc.",
+        "domain": "americanrvtechnology.com",
+        "vertical": "auto_body_shops",
+        "stages_completed": [
+          "data_fill",
+          "website_fallback",
+          "serper_osint",
+          "social_links",
+          "validation"
+        ],
+        "errors": [],
+        "processing_time_ms": 6105.712175369263,
+        "contacts": [
+          {
+            "name": "John Ringling",
+            "email": null,
+            "phone": null,
+            "title": "Owner",
+            "linkedin_url": null,
+            "sources": [
+              "serper_osint"
+            ],
+            "is_valid": false,
+            "confidence": 30.0,
+            "validation_reasons": [
+              "The contact is identified as the owner, but lacks a verified email and phone number, leading to significant uncertainty.",
+              "RED FLAG: No email provided",
+              "RED FLAG: No phone number provided",
+              "RED FLAG: Email source is 'discovery' with no verification"
+            ]
+          }
+        ]
+      },
+      "agent_prompt": "You are evaluating contact discovery for an SMB company.\n\nCOMPANY DETAILS:\n- Name: American RV Technology, Inc.\n- Domain: americanrvtechnology.com\n- Vertical: auto_body_shops\n- Address: 11155 S Tamiami Trl, North Port, FL 34287\n- Phone: (941) 429-0298\n\nPIPELINE RESULT (to verify):\n- Owner Found: John Ringling (Owner)\n- Confidence: 30.0%\n- Sources: serper_osint\n\nYOUR TASKS:\n\n1. INDEPENDENTLY find the owner/decision-maker using these tools in order:\n   a. Use mcp__browser-mcp__chrome_navigate to visit https://americanrvtechnology.com\n   b. Use mcp__browser-mcp__chrome_get_web_content to extract \"About Us\" or team info\n   c. Use WebSearch for \"American RV Technology, Inc. owner founder CEO\"\n   d. If needed, search Google Maps data\n\n2. VERIFY the pipeline result:\n   - Does your finding match the pipeline result?\n   - Is the pipeline result accurate?\n\n3. RETURN ONLY this JSON (no other text):\n{\n  \"company_name\": \"American RV Technology, Inc.\",\n  \"domain\": \"americanrvtechnology.com\",\n  \"agent_owner_name\": \"name you found or null\",\n  \"agent_owner_title\": \"title or null\",\n  \"agent_sources\": [\"list of sources used\"],\n  \"agent_confidence\": \"high/medium/low/none\",\n  \"pipeline_owner\": \"John Ringling (Owner)\",\n  \"pipeline_verdict\": \"correct/incorrect/partial/unknown\",\n  \"reasoning\": \"brief explanation of your finding\"\n}\n\nIMPORTANT:\n- Only return the JSON, nothing else\n- If you can't find any owner info, set agent_confidence to \"none\"\n- \"partial\" means pipeline found a real person but wrong details\n- \"unknown\" means you couldn't verify either way\n"
+    },
+    {
+      "entity": {
+        "company_name": "1 Stop Complete Auto Glass",
+        "domain": "1stopcompleteautoglass.com",
+        "vertical": "auto_body_shops",
+        "address": "31951 Corydon Rd #120, Lake Elsinore, CA 92530",
+        "phone": "(951) 457-1854",
+        "place_id": "ChIJBQ2IRqib3IARsQg1Vp50ITs",
+        "rating": 5.0,
+        "reviews": 50
+      },
+      "pipeline_result": {
+        "company_name": "1 Stop Complete Auto Glass",
+        "domain": "1stopcompleteautoglass.com",
+        "vertical": "auto_body_shops",
+        "stages_completed": [
+          "data_fill",
+          "website_fallback",
+          "serper_osint",
+          "social_links",
+          "validation"
+        ],
+        "errors": [],
+        "processing_time_ms": 3507.817029953003,
+        "contacts": []
+      },
+      "agent_prompt": "You are evaluating contact discovery for an SMB company.\n\nCOMPANY DETAILS:\n- Name: 1 Stop Complete Auto Glass\n- Domain: 1stopcompleteautoglass.com\n- Vertical: auto_body_shops\n- Address: 31951 Corydon Rd #120, Lake Elsinore, CA 92530\n- Phone: (951) 457-1854\n\nPIPELINE RESULT (to verify):\n- Owner Found: None found\n- Confidence: 0%\n- Sources: None\n\nYOUR TASKS:\n\n1. INDEPENDENTLY find the owner/decision-maker using these tools in order:\n   a. Use mcp__browser-mcp__chrome_navigate to visit https://1stopcompleteautoglass.com\n   b. Use mcp__browser-mcp__chrome_get_web_content to extract \"About Us\" or team info\n   c. Use WebSearch for \"1 Stop Complete Auto Glass owner founder CEO\"\n   d. If needed, search Google Maps data\n\n2. VERIFY the pipeline result:\n   - Does your finding match the pipeline result?\n   - Is the pipeline result accurate?\n\n3. RETURN ONLY this JSON (no other text):\n{\n  \"company_name\": \"1 Stop Complete Auto Glass\",\n  \"domain\": \"1stopcompleteautoglass.com\",\n  \"agent_owner_name\": \"name you found or null\",\n  \"agent_owner_title\": \"title or null\",\n  \"agent_sources\": [\"list of sources used\"],\n  \"agent_confidence\": \"high/medium/low/none\",\n  \"pipeline_owner\": \"None found\",\n  \"pipeline_verdict\": \"correct/incorrect/partial/unknown\",\n  \"reasoning\": \"brief explanation of your finding\"\n}\n\nIMPORTANT:\n- Only return the JSON, nothing else\n- If you can't find any owner info, set agent_confidence to \"none\"\n- \"partial\" means pipeline found a real person but wrong details\n- \"unknown\" means you couldn't verify either way\n"
+    },
+    {
+      "entity": {
+        "company_name": "Brandon Collision",
+        "domain": "brandoncollision.com",
+        "vertical": "auto_body_shops",
+        "address": "8700 E Adamo Dr, Tampa, FL 33619",
+        "phone": "(813) 327-6632",
+        "place_id": "ChIJB7FbPAnPwogRcf1jfnpBnfc",
+        "rating": 4.1,
+        "reviews": 494
+      },
+      "pipeline_result": {
+        "company_name": "Brandon Collision",
+        "domain": "brandoncollision.com",
+        "vertical": "auto_body_shops",
+        "stages_completed": [
+          "data_fill",
+          "website_fallback",
+          "serper_osint",
+          "social_links",
+          "validation"
+        ],
+        "errors": [],
+        "processing_time_ms": 4258.282899856567,
+        "contacts": []
+      },
+      "agent_prompt": "You are evaluating contact discovery for an SMB company.\n\nCOMPANY DETAILS:\n- Name: Brandon Collision\n- Domain: brandoncollision.com\n- Vertical: auto_body_shops\n- Address: 8700 E Adamo Dr, Tampa, FL 33619\n- Phone: (813) 327-6632\n\nPIPELINE RESULT (to verify):\n- Owner Found: None found\n- Confidence: 0%\n- Sources: None\n\nYOUR TASKS:\n\n1. INDEPENDENTLY find the owner/decision-maker using these tools in order:\n   a. Use mcp__browser-mcp__chrome_navigate to visit https://brandoncollision.com\n   b. Use mcp__browser-mcp__chrome_get_web_content to extract \"About Us\" or team info\n   c. Use WebSearch for \"Brandon Collision owner founder CEO\"\n   d. If needed, search Google Maps data\n\n2. VERIFY the pipeline result:\n   - Does your finding match the pipeline result?\n   - Is the pipeline result accurate?\n\n3. RETURN ONLY this JSON (no other text):\n{\n  \"company_name\": \"Brandon Collision\",\n  \"domain\": \"brandoncollision.com\",\n  \"agent_owner_name\": \"name you found or null\",\n  \"agent_owner_title\": \"title or null\",\n  \"agent_sources\": [\"list of sources used\"],\n  \"agent_confidence\": \"high/medium/low/none\",\n  \"pipeline_owner\": \"None found\",\n  \"pipeline_verdict\": \"correct/incorrect/partial/unknown\",\n  \"reasoning\": \"brief explanation of your finding\"\n}\n\nIMPORTANT:\n- Only return the JSON, nothing else\n- If you can't find any owner info, set agent_confidence to \"none\"\n- \"partial\" means pipeline found a real person but wrong details\n- \"unknown\" means you couldn't verify either way\n"
+    },
+    {
+      "entity": {
+        "company_name": "Bentley Cadillac Collision Repair Center",
+        "domain": "bentleycadillac.com",
+        "vertical": "auto_body_shops",
+        "address": "2118 Drake Ave SW, Huntsville, AL 35805",
+        "phone": "(256) 382-3310",
+        "place_id": "ChIJM1fCsIhtYogR08urqsfaKos",
+        "rating": 5.0,
+        "reviews": 4
+      },
+      "pipeline_result": {
+        "company_name": "Bentley Cadillac Collision Repair Center",
+        "domain": "bentleycadillac.com",
+        "vertical": "auto_body_shops",
+        "stages_completed": [
+          "data_fill",
+          "website_fallback",
+          "serper_osint",
+          "social_links",
+          "validation"
+        ],
+        "errors": [],
+        "processing_time_ms": 4453.035116195679,
+        "contacts": []
+      },
+      "agent_prompt": "You are evaluating contact discovery for an SMB company.\n\nCOMPANY DETAILS:\n- Name: Bentley Cadillac Collision Repair Center\n- Domain: bentleycadillac.com\n- Vertical: auto_body_shops\n- Address: 2118 Drake Ave SW, Huntsville, AL 35805\n- Phone: (256) 382-3310\n\nPIPELINE RESULT (to verify):\n- Owner Found: None found\n- Confidence: 0%\n- Sources: None\n\nYOUR TASKS:\n\n1. INDEPENDENTLY find the owner/decision-maker using these tools in order:\n   a. Use mcp__browser-mcp__chrome_navigate to visit https://bentleycadillac.com\n   b. Use mcp__browser-mcp__chrome_get_web_content to extract \"About Us\" or team info\n   c. Use WebSearch for \"Bentley Cadillac Collision Repair Center owner founder CEO\"\n   d. If needed, search Google Maps data\n\n2. VERIFY the pipeline result:\n   - Does your finding match the pipeline result?\n   - Is the pipeline result accurate?\n\n3. RETURN ONLY this JSON (no other text):\n{\n  \"company_name\": \"Bentley Cadillac Collision Repair Center\",\n  \"domain\": \"bentleycadillac.com\",\n  \"agent_owner_name\": \"name you found or null\",\n  \"agent_owner_title\": \"title or null\",\n  \"agent_sources\": [\"list of sources used\"],\n  \"agent_confidence\": \"high/medium/low/none\",\n  \"pipeline_owner\": \"None found\",\n  \"pipeline_verdict\": \"correct/incorrect/partial/unknown\",\n  \"reasoning\": \"brief explanation of your finding\"\n}\n\nIMPORTANT:\n- Only return the JSON, nothing else\n- If you can't find any owner info, set agent_confidence to \"none\"\n- \"partial\" means pipeline found a real person but wrong details\n- \"unknown\" means you couldn't verify either way\n"
+    },
+    {
+      "entity": {
+        "company_name": "Oil Changers",
+        "domain": "oilchangers.com",
+        "vertical": "auto_body_shops",
+        "address": "1874 US-60, Huntington, WV 25705",
+        "phone": "(304) 733-6121",
+        "place_id": "ChIJ1ahyfAMHRogReveoR0h5Shc",
+        "rating": 5.0,
+        "reviews": 391
+      },
+      "pipeline_result": {
+        "company_name": "Oil Changers",
+        "domain": "oilchangers.com",
+        "vertical": "auto_body_shops",
+        "stages_completed": [
+          "data_fill",
+          "website_fallback",
+          "social_links",
+          "validation"
+        ],
+        "errors": [],
+        "processing_time_ms": 4440.057992935181,
+        "contacts": [
+          {
+            "name": "Eric Frankenberger",
+            "email": null,
+            "phone": null,
+            "title": "Owner",
+            "linkedin_url": null,
+            "sources": [
+              "serper_osint"
+            ],
+            "is_valid": false,
+            "confidence": 30.0,
+            "validation_reasons": [
+              "The contact is identified as the owner, but lacks a verified email and phone number, leading to significant uncertainty.",
+              "RED FLAG: No email provided",
+              "RED FLAG: No phone number provided",
+              "RED FLAG: Email source is discovery with no verification"
+            ]
+          }
+        ]
+      },
+      "agent_prompt": "You are evaluating contact discovery for an SMB company.\n\nCOMPANY DETAILS:\n- Name: Oil Changers\n- Domain: oilchangers.com\n- Vertical: auto_body_shops\n- Address: 1874 US-60, Huntington, WV 25705\n- Phone: (304) 733-6121\n\nPIPELINE RESULT (to verify):\n- Owner Found: Eric Frankenberger (Owner)\n- Confidence: 30.0%\n- Sources: serper_osint\n\nYOUR TASKS:\n\n1. INDEPENDENTLY find the owner/decision-maker using these tools in order:\n   a. Use mcp__browser-mcp__chrome_navigate to visit https://oilchangers.com\n   b. Use mcp__browser-mcp__chrome_get_web_content to extract \"About Us\" or team info\n   c. Use WebSearch for \"Oil Changers owner founder CEO\"\n   d. If needed, search Google Maps data\n\n2. VERIFY the pipeline result:\n   - Does your finding match the pipeline result?\n   - Is the pipeline result accurate?\n\n3. RETURN ONLY this JSON (no other text):\n{\n  \"company_name\": \"Oil Changers\",\n  \"domain\": \"oilchangers.com\",\n  \"agent_owner_name\": \"name you found or null\",\n  \"agent_owner_title\": \"title or null\",\n  \"agent_sources\": [\"list of sources used\"],\n  \"agent_confidence\": \"high/medium/low/none\",\n  \"pipeline_owner\": \"Eric Frankenberger (Owner)\",\n  \"pipeline_verdict\": \"correct/incorrect/partial/unknown\",\n  \"reasoning\": \"brief explanation of your finding\"\n}\n\nIMPORTANT:\n- Only return the JSON, nothing else\n- If you can't find any owner info, set agent_confidence to \"none\"\n- \"partial\" means pipeline found a real person but wrong details\n- \"unknown\" means you couldn't verify either way\n"
+    },
+    {
+      "entity": {
+        "company_name": "CAR FIX Walker Springs",
+        "domain": "teamcarfix.com",
+        "vertical": "auto_body_shops",
+        "address": "8858 Kingston Pike, Knoxville, TN 37923",
+        "phone": "(865) 270-0050",
+        "place_id": "ChIJ41Ad6dglXIgRwfPSNANS2xk",
+        "rating": 4.7,
+        "reviews": 222
+      },
+      "pipeline_result": {
+        "company_name": "CAR FIX Walker Springs",
+        "domain": "teamcarfix.com",
+        "vertical": "auto_body_shops",
+        "stages_completed": [
+          "data_fill",
+          "website_fallback",
+          "serper_osint",
+          "social_links",
+          "validation"
+        ],
+        "errors": [],
+        "processing_time_ms": 2253.0441284179688,
+        "contacts": []
+      },
+      "agent_prompt": "You are evaluating contact discovery for an SMB company.\n\nCOMPANY DETAILS:\n- Name: CAR FIX Walker Springs\n- Domain: teamcarfix.com\n- Vertical: auto_body_shops\n- Address: 8858 Kingston Pike, Knoxville, TN 37923\n- Phone: (865) 270-0050\n\nPIPELINE RESULT (to verify):\n- Owner Found: None found\n- Confidence: 0%\n- Sources: None\n\nYOUR TASKS:\n\n1. INDEPENDENTLY find the owner/decision-maker using these tools in order:\n   a. Use mcp__browser-mcp__chrome_navigate to visit https://teamcarfix.com\n   b. Use mcp__browser-mcp__chrome_get_web_content to extract \"About Us\" or team info\n   c. Use WebSearch for \"CAR FIX Walker Springs owner founder CEO\"\n   d. If needed, search Google Maps data\n\n2. VERIFY the pipeline result:\n   - Does your finding match the pipeline result?\n   - Is the pipeline result accurate?\n\n3. RETURN ONLY this JSON (no other text):\n{\n  \"company_name\": \"CAR FIX Walker Springs\",\n  \"domain\": \"teamcarfix.com\",\n  \"agent_owner_name\": \"name you found or null\",\n  \"agent_owner_title\": \"title or null\",\n  \"agent_sources\": [\"list of sources used\"],\n  \"agent_confidence\": \"high/medium/low/none\",\n  \"pipeline_owner\": \"None found\",\n  \"pipeline_verdict\": \"correct/incorrect/partial/unknown\",\n  \"reasoning\": \"brief explanation of your finding\"\n}\n\nIMPORTANT:\n- Only return the JSON, nothing else\n- If you can't find any owner info, set agent_confidence to \"none\"\n- \"partial\" means pipeline found a real person but wrong details\n- \"unknown\" means you couldn't verify either way\n"
+    },
+    {
+      "entity": {
+        "company_name": "Spencer Auto Repair",
+        "domain": "spencerautorepair.com",
+        "vertical": "auto_body_shops",
+        "address": "1270 W Chandler Blvd, Chandler, AZ 85224",
+        "phone": "(480) 722-1700",
+        "place_id": "ChIJQ42zPyMBK4cROAc-KPdUxDI",
+        "rating": 4.6,
+        "reviews": 410
+      },
+      "pipeline_result": {
+        "company_name": "Spencer Auto Repair",
+        "domain": "spencerautorepair.com",
+        "vertical": "auto_body_shops",
+        "stages_completed": [
+          "data_fill",
+          "website_fallback",
+          "social_links",
+          "validation"
+        ],
+        "errors": [],
+        "processing_time_ms": 5561.148166656494,
+        "contacts": [
+          {
+            "name": "Geoffrey Spencer",
+            "email": null,
+            "phone": null,
+            "title": "Owner",
+            "linkedin_url": null,
+            "sources": [
+              "serper_osint"
+            ],
+            "is_valid": false,
+            "confidence": 30.0,
+            "validation_reasons": [
+              "The contact is identified as the owner, but lacks a verified email and phone number, leading to significant uncertainty.",
+              "RED FLAG: No email provided",
+              "RED FLAG: No phone number provided",
+              "RED FLAG: Email source is 'discovery' with no verification"
+            ]
+          }
+        ]
+      },
+      "agent_prompt": "You are evaluating contact discovery for an SMB company.\n\nCOMPANY DETAILS:\n- Name: Spencer Auto Repair\n- Domain: spencerautorepair.com\n- Vertical: auto_body_shops\n- Address: 1270 W Chandler Blvd, Chandler, AZ 85224\n- Phone: (480) 722-1700\n\nPIPELINE RESULT (to verify):\n- Owner Found: Geoffrey Spencer (Owner)\n- Confidence: 30.0%\n- Sources: serper_osint\n\nYOUR TASKS:\n\n1. INDEPENDENTLY find the owner/decision-maker using these tools in order:\n   a. Use mcp__browser-mcp__chrome_navigate to visit https://spencerautorepair.com\n   b. Use mcp__browser-mcp__chrome_get_web_content to extract \"About Us\" or team info\n   c. Use WebSearch for \"Spencer Auto Repair owner founder CEO\"\n   d. If needed, search Google Maps data\n\n2. VERIFY the pipeline result:\n   - Does your finding match the pipeline result?\n   - Is the pipeline result accurate?\n\n3. RETURN ONLY this JSON (no other text):\n{\n  \"company_name\": \"Spencer Auto Repair\",\n  \"domain\": \"spencerautorepair.com\",\n  \"agent_owner_name\": \"name you found or null\",\n  \"agent_owner_title\": \"title or null\",\n  \"agent_sources\": [\"list of sources used\"],\n  \"agent_confidence\": \"high/medium/low/none\",\n  \"pipeline_owner\": \"Geoffrey Spencer (Owner)\",\n  \"pipeline_verdict\": \"correct/incorrect/partial/unknown\",\n  \"reasoning\": \"brief explanation of your finding\"\n}\n\nIMPORTANT:\n- Only return the JSON, nothing else\n- If you can't find any owner info, set agent_confidence to \"none\"\n- \"partial\" means pipeline found a real person but wrong details\n- \"unknown\" means you couldn't verify either way\n"
+    },
+    {
+      "entity": {
+        "company_name": "Brookside 66 Services",
+        "domain": "brookside66.com",
+        "vertical": "auto_body_shops",
+        "address": "6244 Main St, Kansas City, MO 64113",
+        "phone": "(816) 333-0565",
+        "place_id": "ChIJ1StaeA7vwIcR23WzALqf0d4",
+        "rating": 3.9,
+        "reviews": 84
+      },
+      "pipeline_result": {
+        "company_name": "Brookside 66 Services",
+        "domain": "brookside66.com",
+        "vertical": "auto_body_shops",
+        "stages_completed": [
+          "data_fill",
+          "website_fallback",
+          "serper_osint",
+          "social_links",
+          "validation"
+        ],
+        "errors": [],
+        "processing_time_ms": 2895.0579166412354,
+        "contacts": []
+      },
+      "agent_prompt": "You are evaluating contact discovery for an SMB company.\n\nCOMPANY DETAILS:\n- Name: Brookside 66 Services\n- Domain: brookside66.com\n- Vertical: auto_body_shops\n- Address: 6244 Main St, Kansas City, MO 64113\n- Phone: (816) 333-0565\n\nPIPELINE RESULT (to verify):\n- Owner Found: None found\n- Confidence: 0%\n- Sources: None\n\nYOUR TASKS:\n\n1. INDEPENDENTLY find the owner/decision-maker using these tools in order:\n   a. Use mcp__browser-mcp__chrome_navigate to visit https://brookside66.com\n   b. Use mcp__browser-mcp__chrome_get_web_content to extract \"About Us\" or team info\n   c. Use WebSearch for \"Brookside 66 Services owner founder CEO\"\n   d. If needed, search Google Maps data\n\n2. VERIFY the pipeline result:\n   - Does your finding match the pipeline result?\n   - Is the pipeline result accurate?\n\n3. RETURN ONLY this JSON (no other text):\n{\n  \"company_name\": \"Brookside 66 Services\",\n  \"domain\": \"brookside66.com\",\n  \"agent_owner_name\": \"name you found or null\",\n  \"agent_owner_title\": \"title or null\",\n  \"agent_sources\": [\"list of sources used\"],\n  \"agent_confidence\": \"high/medium/low/none\",\n  \"pipeline_owner\": \"None found\",\n  \"pipeline_verdict\": \"correct/incorrect/partial/unknown\",\n  \"reasoning\": \"brief explanation of your finding\"\n}\n\nIMPORTANT:\n- Only return the JSON, nothing else\n- If you can't find any owner info, set agent_confidence to \"none\"\n- \"partial\" means pipeline found a real person but wrong details\n- \"unknown\" means you couldn't verify either way\n"
+    },
+    {
+      "entity": {
+        "company_name": "Pocatello Free Clinic",
+        "domain": "pocatellofreeclinic.com",
+        "vertical": "fertility_and_ivf_clinics",
+        "address": "1001 N 7th Ave Suite 155, Pocatello, ID 83201",
+        "phone": "(208) 233-6245",
+        "place_id": "ChIJbTKG-URPVVMRirKFcuCOoSA",
+        "rating": 4.5,
+        "reviews": 131
+      },
+      "pipeline_result": {
+        "company_name": "Pocatello Free Clinic",
+        "domain": "pocatellofreeclinic.com",
+        "vertical": "fertility_and_ivf_clinics",
+        "stages_completed": [
+          "data_fill",
+          "website_fallback",
+          "social_links",
+          "validation"
+        ],
+        "errors": [],
+        "processing_time_ms": 6263.4618282318115,
+        "contacts": [
+          {
+            "name": "Shaun Menchaca",
+            "email": null,
+            "phone": null,
+            "title": "Owner",
+            "linkedin_url": null,
+            "sources": [
+              "serper_osint"
+            ],
+            "is_valid": true,
+            "confidence": 50.0,
+            "validation_reasons": [
+              "Shaun Menchaca is identified as the owner from a reliable source, but there is no email or phone number provided, which significantly lowers confidence.",
+              "RED FLAG: No email provided",
+              "RED FLAG: No phone number provided"
+            ]
+          }
+        ]
+      },
+      "agent_prompt": "You are evaluating contact discovery for an SMB company.\n\nCOMPANY DETAILS:\n- Name: Pocatello Free Clinic\n- Domain: pocatellofreeclinic.com\n- Vertical: fertility_and_ivf_clinics\n- Address: 1001 N 7th Ave Suite 155, Pocatello, ID 83201\n- Phone: (208) 233-6245\n\nPIPELINE RESULT (to verify):\n- Owner Found: Shaun Menchaca (Owner)\n- Confidence: 50.0%\n- Sources: serper_osint\n\nYOUR TASKS:\n\n1. INDEPENDENTLY find the owner/decision-maker using these tools in order:\n   a. Use mcp__browser-mcp__chrome_navigate to visit https://pocatellofreeclinic.com\n   b. Use mcp__browser-mcp__chrome_get_web_content to extract \"About Us\" or team info\n   c. Use WebSearch for \"Pocatello Free Clinic owner founder CEO\"\n   d. If needed, search Google Maps data\n\n2. VERIFY the pipeline result:\n   - Does your finding match the pipeline result?\n   - Is the pipeline result accurate?\n\n3. RETURN ONLY this JSON (no other text):\n{\n  \"company_name\": \"Pocatello Free Clinic\",\n  \"domain\": \"pocatellofreeclinic.com\",\n  \"agent_owner_name\": \"name you found or null\",\n  \"agent_owner_title\": \"title or null\",\n  \"agent_sources\": [\"list of sources used\"],\n  \"agent_confidence\": \"high/medium/low/none\",\n  \"pipeline_owner\": \"Shaun Menchaca (Owner)\",\n  \"pipeline_verdict\": \"correct/incorrect/partial/unknown\",\n  \"reasoning\": \"brief explanation of your finding\"\n}\n\nIMPORTANT:\n- Only return the JSON, nothing else\n- If you can't find any owner info, set agent_confidence to \"none\"\n- \"partial\" means pipeline found a real person but wrong details\n- \"unknown\" means you couldn't verify either way\n"
+    },
+    {
+      "entity": {
+        "company_name": "Fayetteville Woman's Care",
+        "domain": "fwc.net",
+        "vertical": "fertility_and_ivf_clinics",
+        "address": "2029 Valleygate Dr STE 101, Fayetteville, NC 28304",
+        "phone": "(910) 323-2103",
+        "place_id": "ChIJ26wrV0ETq4kRjIbr3nCN_Uk",
+        "rating": 3.1,
+        "reviews": 241
+      },
+      "pipeline_result": {
+        "company_name": "Fayetteville Woman's Care",
+        "domain": "fwc.net",
+        "vertical": "fertility_and_ivf_clinics",
+        "stages_completed": [
+          "data_fill",
+          "website_fallback",
+          "social_links",
+          "validation"
+        ],
+        "errors": [],
+        "processing_time_ms": 5153.098821640015,
+        "contacts": [
+          {
+            "name": "Ralph Huff",
+            "email": null,
+            "phone": null,
+            "title": "Owner",
+            "linkedin_url": null,
+            "sources": [
+              "serper_osint"
+            ],
+            "is_valid": false,
+            "confidence": 30.0,
+            "validation_reasons": [
+              "The contact is identified as the owner, but lacks a verified email and phone number, leading to significant uncertainty.",
+              "RED FLAG: No email provided",
+              "RED FLAG: No phone number provided",
+              "RED FLAG: Email source is discovery with no verification"
+            ]
+          }
+        ]
+      },
+      "agent_prompt": "You are evaluating contact discovery for an SMB company.\n\nCOMPANY DETAILS:\n- Name: Fayetteville Woman's Care\n- Domain: fwc.net\n- Vertical: fertility_and_ivf_clinics\n- Address: 2029 Valleygate Dr STE 101, Fayetteville, NC 28304\n- Phone: (910) 323-2103\n\nPIPELINE RESULT (to verify):\n- Owner Found: Ralph Huff (Owner)\n- Confidence: 30.0%\n- Sources: serper_osint\n\nYOUR TASKS:\n\n1. INDEPENDENTLY find the owner/decision-maker using these tools in order:\n   a. Use mcp__browser-mcp__chrome_navigate to visit https://fwc.net\n   b. Use mcp__browser-mcp__chrome_get_web_content to extract \"About Us\" or team info\n   c. Use WebSearch for \"Fayetteville Woman's Care owner founder CEO\"\n   d. If needed, search Google Maps data\n\n2. VERIFY the pipeline result:\n   - Does your finding match the pipeline result?\n   - Is the pipeline result accurate?\n\n3. RETURN ONLY this JSON (no other text):\n{\n  \"company_name\": \"Fayetteville Woman's Care\",\n  \"domain\": \"fwc.net\",\n  \"agent_owner_name\": \"name you found or null\",\n  \"agent_owner_title\": \"title or null\",\n  \"agent_sources\": [\"list of sources used\"],\n  \"agent_confidence\": \"high/medium/low/none\",\n  \"pipeline_owner\": \"Ralph Huff (Owner)\",\n  \"pipeline_verdict\": \"correct/incorrect/partial/unknown\",\n  \"reasoning\": \"brief explanation of your finding\"\n}\n\nIMPORTANT:\n- Only return the JSON, nothing else\n- If you can't find any owner info, set agent_confidence to \"none\"\n- \"partial\" means pipeline found a real person but wrong details\n- \"unknown\" means you couldn't verify either way\n"
+    },
+    {
+      "entity": {
+        "company_name": "Northeastern Health System Tahlequah : Emergency Room",
+        "domain": "alwaysnhs.org",
+        "vertical": "fertility_and_ivf_clinics",
+        "address": "1400 E Downing St, Tahlequah, OK 74464",
+        "phone": "(918) 456-0641",
+        "place_id": "ChIJP8NthsT7yYcROcRCflezCYU",
+        "rating": 3.9,
+        "reviews": 166
+      },
+      "pipeline_result": {
+        "company_name": "Northeastern Health System Tahlequah : Emergency Room",
+        "domain": "alwaysnhs.org",
+        "vertical": "fertility_and_ivf_clinics",
+        "stages_completed": [
+          "data_fill",
+          "website_fallback",
+          "serper_osint",
+          "social_links",
+          "validation"
+        ],
+        "errors": [],
+        "processing_time_ms": 4247.080087661743,
+        "contacts": []
+      },
+      "agent_prompt": "You are evaluating contact discovery for an SMB company.\n\nCOMPANY DETAILS:\n- Name: Northeastern Health System Tahlequah : Emergency Room\n- Domain: alwaysnhs.org\n- Vertical: fertility_and_ivf_clinics\n- Address: 1400 E Downing St, Tahlequah, OK 74464\n- Phone: (918) 456-0641\n\nPIPELINE RESULT (to verify):\n- Owner Found: None found\n- Confidence: 0%\n- Sources: None\n\nYOUR TASKS:\n\n1. INDEPENDENTLY find the owner/decision-maker using these tools in order:\n   a. Use mcp__browser-mcp__chrome_navigate to visit https://alwaysnhs.org\n   b. Use mcp__browser-mcp__chrome_get_web_content to extract \"About Us\" or team info\n   c. Use WebSearch for \"Northeastern Health System Tahlequah : Emergency Room owner founder CEO\"\n   d. If needed, search Google Maps data\n\n2. VERIFY the pipeline result:\n   - Does your finding match the pipeline result?\n   - Is the pipeline result accurate?\n\n3. RETURN ONLY this JSON (no other text):\n{\n  \"company_name\": \"Northeastern Health System Tahlequah : Emergency Room\",\n  \"domain\": \"alwaysnhs.org\",\n  \"agent_owner_name\": \"name you found or null\",\n  \"agent_owner_title\": \"title or null\",\n  \"agent_sources\": [\"list of sources used\"],\n  \"agent_confidence\": \"high/medium/low/none\",\n  \"pipeline_owner\": \"None found\",\n  \"pipeline_verdict\": \"correct/incorrect/partial/unknown\",\n  \"reasoning\": \"brief explanation of your finding\"\n}\n\nIMPORTANT:\n- Only return the JSON, nothing else\n- If you can't find any owner info, set agent_confidence to \"none\"\n- \"partial\" means pipeline found a real person but wrong details\n- \"unknown\" means you couldn't verify either way\n"
+    },
+    {
+      "entity": {
+        "company_name": "Minnesota Perinatal Physicians - Coon Rapids",
+        "domain": "account.allinahealth.org",
+        "vertical": "fertility_and_ivf_clinics",
+        "address": "3960 Coon Rapids Blvd NW STE 220, Coon Rapids, MN 55433",
+        "phone": "(612) 863-4502",
+        "place_id": "ChIJee1brwM8s1IRw9EiVq1ObiQ",
+        "rating": 2.9,
+        "reviews": 11
+      },
+      "pipeline_result": {
+        "company_name": "Minnesota Perinatal Physicians - Coon Rapids",
+        "domain": "account.allinahealth.org",
+        "vertical": "fertility_and_ivf_clinics",
+        "stages_completed": [
+          "data_fill",
+          "website_fallback",
+          "serper_osint",
+          "social_links",
+          "validation"
+        ],
+        "errors": [],
+        "processing_time_ms": 4009.038209915161,
+        "contacts": []
+      },
+      "agent_prompt": "You are evaluating contact discovery for an SMB company.\n\nCOMPANY DETAILS:\n- Name: Minnesota Perinatal Physicians - Coon Rapids\n- Domain: account.allinahealth.org\n- Vertical: fertility_and_ivf_clinics\n- Address: 3960 Coon Rapids Blvd NW STE 220, Coon Rapids, MN 55433\n- Phone: (612) 863-4502\n\nPIPELINE RESULT (to verify):\n- Owner Found: None found\n- Confidence: 0%\n- Sources: None\n\nYOUR TASKS:\n\n1. INDEPENDENTLY find the owner/decision-maker using these tools in order:\n   a. Use mcp__browser-mcp__chrome_navigate to visit https://account.allinahealth.org\n   b. Use mcp__browser-mcp__chrome_get_web_content to extract \"About Us\" or team info\n   c. Use WebSearch for \"Minnesota Perinatal Physicians - Coon Rapids owner founder CEO\"\n   d. If needed, search Google Maps data\n\n2. VERIFY the pipeline result:\n   - Does your finding match the pipeline result?\n   - Is the pipeline result accurate?\n\n3. RETURN ONLY this JSON (no other text):\n{\n  \"company_name\": \"Minnesota Perinatal Physicians - Coon Rapids\",\n  \"domain\": \"account.allinahealth.org\",\n  \"agent_owner_name\": \"name you found or null\",\n  \"agent_owner_title\": \"title or null\",\n  \"agent_sources\": [\"list of sources used\"],\n  \"agent_confidence\": \"high/medium/low/none\",\n  \"pipeline_owner\": \"None found\",\n  \"pipeline_verdict\": \"correct/incorrect/partial/unknown\",\n  \"reasoning\": \"brief explanation of your finding\"\n}\n\nIMPORTANT:\n- Only return the JSON, nothing else\n- If you can't find any owner info, set agent_confidence to \"none\"\n- \"partial\" means pipeline found a real person but wrong details\n- \"unknown\" means you couldn't verify either way\n"
+    },
+    {
+      "entity": {
+        "company_name": "Crossroads Care Clinic",
+        "domain": "crossroadscareclinic.net",
+        "vertical": "fertility_and_ivf_clinics",
+        "address": "530 Wabash Ave, Terre Haute, IN 47807",
+        "phone": "(812) 234-8059",
+        "place_id": "ChIJeWVFIzBlbYgRReB4KjVwCW0",
+        "rating": 4.1,
+        "reviews": 44
+      },
+      "pipeline_result": {
+        "company_name": "Crossroads Care Clinic",
+        "domain": "crossroadscareclinic.net",
+        "vertical": "fertility_and_ivf_clinics",
+        "stages_completed": [
+          "data_fill",
+          "website_fallback",
+          "social_links",
+          "validation"
+        ],
+        "errors": [],
+        "processing_time_ms": 9653.856992721558,
+        "contacts": [
+          {
+            "name": "Rotary Club",
+            "email": null,
+            "phone": null,
+            "title": "Owner",
+            "linkedin_url": null,
+            "sources": [
+              "serper_osint"
+            ],
+            "is_valid": false,
+            "confidence": 30.0,
+            "validation_reasons": [
+              "The contact name 'Rotary Club' does not match the company name 'Crossroads Care Clinic', and there is no email or phone number provided for verification.",
+              "RED FLAG: Contact name does not match company name",
+              "RED FLAG: No email or phone number provided",
+              "RED FLAG: Email source is 'discovery' with no verification"
+            ]
+          },
+          {
+            "name": "CMSTeam",
+            "email": null,
+            "phone": null,
+            "title": null,
+            "linkedin_url": null,
+            "sources": [
+              "schema_org"
+            ],
+            "is_valid": false,
+            "confidence": 30.0,
+            "validation_reasons": [
+              "The contact lacks a valid name, title, email, and phone number, with only weak evidence from the Rotary Club search, leading to significant uncertainty.",
+              "RED FLAG: No valid name or title provided",
+              "RED FLAG: No email or phone number available",
+              "RED FLAG: Weak evidence from the source"
+            ]
+          }
+        ]
+      },
+      "agent_prompt": "You are evaluating contact discovery for an SMB company.\n\nCOMPANY DETAILS:\n- Name: Crossroads Care Clinic\n- Domain: crossroadscareclinic.net\n- Vertical: fertility_and_ivf_clinics\n- Address: 530 Wabash Ave, Terre Haute, IN 47807\n- Phone: (812) 234-8059\n\nPIPELINE RESULT (to verify):\n- Owner Found: Rotary Club (Owner)\n- Confidence: 30.0%\n- Sources: serper_osint\n\nYOUR TASKS:\n\n1. INDEPENDENTLY find the owner/decision-maker using these tools in order:\n   a. Use mcp__browser-mcp__chrome_navigate to visit https://crossroadscareclinic.net\n   b. Use mcp__browser-mcp__chrome_get_web_content to extract \"About Us\" or team info\n   c. Use WebSearch for \"Crossroads Care Clinic owner founder CEO\"\n   d. If needed, search Google Maps data\n\n2. VERIFY the pipeline result:\n   - Does your finding match the pipeline result?\n   - Is the pipeline result accurate?\n\n3. RETURN ONLY this JSON (no other text):\n{\n  \"company_name\": \"Crossroads Care Clinic\",\n  \"domain\": \"crossroadscareclinic.net\",\n  \"agent_owner_name\": \"name you found or null\",\n  \"agent_owner_title\": \"title or null\",\n  \"agent_sources\": [\"list of sources used\"],\n  \"agent_confidence\": \"high/medium/low/none\",\n  \"pipeline_owner\": \"Rotary Club (Owner)\",\n  \"pipeline_verdict\": \"correct/incorrect/partial/unknown\",\n  \"reasoning\": \"brief explanation of your finding\"\n}\n\nIMPORTANT:\n- Only return the JSON, nothing else\n- If you can't find any owner info, set agent_confidence to \"none\"\n- \"partial\" means pipeline found a real person but wrong details\n- \"unknown\" means you couldn't verify either way\n"
+    },
+    {
+      "entity": {
+        "company_name": "Maternal-Fetal Medicine Specialists of South Florida",
+        "domain": "toplinemd.com",
+        "vertical": "fertility_and_ivf_clinics",
+        "address": "7300 SW 62nd Pl, Miami, FL 33143",
+        "phone": "(305) 662-6367",
+        "place_id": "ChIJrWiDuO3H2YgRIb5780F0z_U",
+        "rating": 4.0,
+        "reviews": 478
+      },
+      "pipeline_result": {
+        "company_name": "Maternal-Fetal Medicine Specialists of South Florida",
+        "domain": "toplinemd.com",
+        "vertical": "fertility_and_ivf_clinics",
+        "stages_completed": [
+          "data_fill",
+          "website_fallback",
+          "serper_osint",
+          "social_links",
+          "validation"
+        ],
+        "errors": [],
+        "processing_time_ms": 3682.2309494018555,
+        "contacts": []
+      },
+      "agent_prompt": "You are evaluating contact discovery for an SMB company.\n\nCOMPANY DETAILS:\n- Name: Maternal-Fetal Medicine Specialists of South Florida\n- Domain: toplinemd.com\n- Vertical: fertility_and_ivf_clinics\n- Address: 7300 SW 62nd Pl, Miami, FL 33143\n- Phone: (305) 662-6367\n\nPIPELINE RESULT (to verify):\n- Owner Found: None found\n- Confidence: 0%\n- Sources: None\n\nYOUR TASKS:\n\n1. INDEPENDENTLY find the owner/decision-maker using these tools in order:\n   a. Use mcp__browser-mcp__chrome_navigate to visit https://toplinemd.com\n   b. Use mcp__browser-mcp__chrome_get_web_content to extract \"About Us\" or team info\n   c. Use WebSearch for \"Maternal-Fetal Medicine Specialists of South Florida owner founder CEO\"\n   d. If needed, search Google Maps data\n\n2. VERIFY the pipeline result:\n   - Does your finding match the pipeline result?\n   - Is the pipeline result accurate?\n\n3. RETURN ONLY this JSON (no other text):\n{\n  \"company_name\": \"Maternal-Fetal Medicine Specialists of South Florida\",\n  \"domain\": \"toplinemd.com\",\n  \"agent_owner_name\": \"name you found or null\",\n  \"agent_owner_title\": \"title or null\",\n  \"agent_sources\": [\"list of sources used\"],\n  \"agent_confidence\": \"high/medium/low/none\",\n  \"pipeline_owner\": \"None found\",\n  \"pipeline_verdict\": \"correct/incorrect/partial/unknown\",\n  \"reasoning\": \"brief explanation of your finding\"\n}\n\nIMPORTANT:\n- Only return the JSON, nothing else\n- If you can't find any owner info, set agent_confidence to \"none\"\n- \"partial\" means pipeline found a real person but wrong details\n- \"unknown\" means you couldn't verify either way\n"
+    },
+    {
+      "entity": {
+        "company_name": "River City OB/GYN",
+        "domain": "rivercityobgyn.com",
+        "vertical": "fertility_and_ivf_clinics",
+        "address": "13710 St Francis Blvd #603, Midlothian, VA 23114",
+        "phone": "(804) 362-0808",
+        "place_id": "ChIJZ66wUFdxsYkRWcO2WR8Le-c",
+        "rating": 4.4,
+        "reviews": 40
+      },
+      "pipeline_result": {
+        "company_name": "River City OB/GYN",
+        "domain": "rivercityobgyn.com",
+        "vertical": "fertility_and_ivf_clinics",
+        "stages_completed": [
+          "data_fill",
+          "website_fallback",
+          "serper_osint",
+          "social_links",
+          "validation"
+        ],
+        "errors": [],
+        "processing_time_ms": 5027.771234512329,
+        "contacts": []
+      },
+      "agent_prompt": "You are evaluating contact discovery for an SMB company.\n\nCOMPANY DETAILS:\n- Name: River City OB/GYN\n- Domain: rivercityobgyn.com\n- Vertical: fertility_and_ivf_clinics\n- Address: 13710 St Francis Blvd #603, Midlothian, VA 23114\n- Phone: (804) 362-0808\n\nPIPELINE RESULT (to verify):\n- Owner Found: None found\n- Confidence: 0%\n- Sources: None\n\nYOUR TASKS:\n\n1. INDEPENDENTLY find the owner/decision-maker using these tools in order:\n   a. Use mcp__browser-mcp__chrome_navigate to visit https://rivercityobgyn.com\n   b. Use mcp__browser-mcp__chrome_get_web_content to extract \"About Us\" or team info\n   c. Use WebSearch for \"River City OB/GYN owner founder CEO\"\n   d. If needed, search Google Maps data\n\n2. VERIFY the pipeline result:\n   - Does your finding match the pipeline result?\n   - Is the pipeline result accurate?\n\n3. RETURN ONLY this JSON (no other text):\n{\n  \"company_name\": \"River City OB/GYN\",\n  \"domain\": \"rivercityobgyn.com\",\n  \"agent_owner_name\": \"name you found or null\",\n  \"agent_owner_title\": \"title or null\",\n  \"agent_sources\": [\"list of sources used\"],\n  \"agent_confidence\": \"high/medium/low/none\",\n  \"pipeline_owner\": \"None found\",\n  \"pipeline_verdict\": \"correct/incorrect/partial/unknown\",\n  \"reasoning\": \"brief explanation of your finding\"\n}\n\nIMPORTANT:\n- Only return the JSON, nothing else\n- If you can't find any owner info, set agent_confidence to \"none\"\n- \"partial\" means pipeline found a real person but wrong details\n- \"unknown\" means you couldn't verify either way\n"
+    },
+    {
+      "entity": {
+        "company_name": "HaysMed DeBakey Heart Institute",
+        "domain": "haysmed.com",
+        "vertical": "fertility_and_ivf_clinics",
+        "address": "Bickle Family Tower, 2220 Canterbury Dr 2nd Floor, Hays, KS 67601",
+        "phone": "(785) 625-4699",
+        "place_id": "ChIJt8xP6kJ5oYcRkaLhVheP8i4",
+        "rating": 4.6,
+        "reviews": 29
+      },
+      "pipeline_result": {
+        "company_name": "HaysMed DeBakey Heart Institute",
+        "domain": "haysmed.com",
+        "vertical": "fertility_and_ivf_clinics",
+        "stages_completed": [
+          "data_fill",
+          "website_fallback",
+          "serper_osint",
+          "social_links",
+          "validation"
+        ],
+        "errors": [],
+        "processing_time_ms": 5119.027853012085,
+        "contacts": []
+      },
+      "agent_prompt": "You are evaluating contact discovery for an SMB company.\n\nCOMPANY DETAILS:\n- Name: HaysMed DeBakey Heart Institute\n- Domain: haysmed.com\n- Vertical: fertility_and_ivf_clinics\n- Address: Bickle Family Tower, 2220 Canterbury Dr 2nd Floor, Hays, KS 67601\n- Phone: (785) 625-4699\n\nPIPELINE RESULT (to verify):\n- Owner Found: None found\n- Confidence: 0%\n- Sources: None\n\nYOUR TASKS:\n\n1. INDEPENDENTLY find the owner/decision-maker using these tools in order:\n   a. Use mcp__browser-mcp__chrome_navigate to visit https://haysmed.com\n   b. Use mcp__browser-mcp__chrome_get_web_content to extract \"About Us\" or team info\n   c. Use WebSearch for \"HaysMed DeBakey Heart Institute owner founder CEO\"\n   d. If needed, search Google Maps data\n\n2. VERIFY the pipeline result:\n   - Does your finding match the pipeline result?\n   - Is the pipeline result accurate?\n\n3. RETURN ONLY this JSON (no other text):\n{\n  \"company_name\": \"HaysMed DeBakey Heart Institute\",\n  \"domain\": \"haysmed.com\",\n  \"agent_owner_name\": \"name you found or null\",\n  \"agent_owner_title\": \"title or null\",\n  \"agent_sources\": [\"list of sources used\"],\n  \"agent_confidence\": \"high/medium/low/none\",\n  \"pipeline_owner\": \"None found\",\n  \"pipeline_verdict\": \"correct/incorrect/partial/unknown\",\n  \"reasoning\": \"brief explanation of your finding\"\n}\n\nIMPORTANT:\n- Only return the JSON, nothing else\n- If you can't find any owner info, set agent_confidence to \"none\"\n- \"partial\" means pipeline found a real person but wrong details\n- \"unknown\" means you couldn't verify either way\n"
+    },
+    {
+      "entity": {
+        "company_name": "BJ's Restaurant & Brewhouse",
+        "domain": "bjsrestaurants.com",
+        "vertical": "breweries_and_brewpubs",
+        "address": "925 Blossom Hill Rd, San Jose, CA 95123",
+        "phone": "(408) 284-4260",
+        "place_id": "ChIJjUmd4NUzjoARRmw-xKGmJmY",
+        "rating": 4.4,
+        "reviews": 1766
+      },
+      "pipeline_result": {
+        "company_name": "BJ's Restaurant & Brewhouse",
+        "domain": "bjsrestaurants.com",
+        "vertical": "breweries_and_brewpubs",
+        "stages_completed": [
+          "data_fill",
+          "website_fallback",
+          "serper_osint",
+          "social_links",
+          "validation"
+        ],
+        "errors": [],
+        "processing_time_ms": 8729.397058486938,
+        "contacts": [
+          {
+            "name": "Greg Levin",
+            "email": null,
+            "phone": null,
+            "title": "Owner",
+            "linkedin_url": null,
+            "sources": [
+              "serper_osint"
+            ],
+            "is_valid": false,
+            "confidence": 30.0,
+            "validation_reasons": [
+              "The contact is identified as the owner, but lacks a verified email and phone number, leading to significant uncertainty.",
+              "RED FLAG: No email provided",
+              "RED FLAG: No phone number provided",
+              "RED FLAG: Email source is 'discovery' with no verification"
+            ]
+          }
+        ]
+      },
+      "agent_prompt": "You are evaluating contact discovery for an SMB company.\n\nCOMPANY DETAILS:\n- Name: BJ's Restaurant & Brewhouse\n- Domain: bjsrestaurants.com\n- Vertical: breweries_and_brewpubs\n- Address: 925 Blossom Hill Rd, San Jose, CA 95123\n- Phone: (408) 284-4260\n\nPIPELINE RESULT (to verify):\n- Owner Found: Greg Levin (Owner)\n- Confidence: 30.0%\n- Sources: serper_osint\n\nYOUR TASKS:\n\n1. INDEPENDENTLY find the owner/decision-maker using these tools in order:\n   a. Use mcp__browser-mcp__chrome_navigate to visit https://bjsrestaurants.com\n   b. Use mcp__browser-mcp__chrome_get_web_content to extract \"About Us\" or team info\n   c. Use WebSearch for \"BJ's Restaurant & Brewhouse owner founder CEO\"\n   d. If needed, search Google Maps data\n\n2. VERIFY the pipeline result:\n   - Does your finding match the pipeline result?\n   - Is the pipeline result accurate?\n\n3. RETURN ONLY this JSON (no other text):\n{\n  \"company_name\": \"BJ's Restaurant & Brewhouse\",\n  \"domain\": \"bjsrestaurants.com\",\n  \"agent_owner_name\": \"name you found or null\",\n  \"agent_owner_title\": \"title or null\",\n  \"agent_sources\": [\"list of sources used\"],\n  \"agent_confidence\": \"high/medium/low/none\",\n  \"pipeline_owner\": \"Greg Levin (Owner)\",\n  \"pipeline_verdict\": \"correct/incorrect/partial/unknown\",\n  \"reasoning\": \"brief explanation of your finding\"\n}\n\nIMPORTANT:\n- Only return the JSON, nothing else\n- If you can't find any owner info, set agent_confidence to \"none\"\n- \"partial\" means pipeline found a real person but wrong details\n- \"unknown\" means you couldn't verify either way\n"
+    },
+    {
+      "entity": {
+        "company_name": "Brewskis Oak Ridge",
+        "domain": "brewskis-oak-ridge.edan.io",
+        "vertical": "breweries_and_brewpubs",
+        "address": "144 Randolph Rd, Oak Ridge, TN 37830",
+        "phone": "(865) 272-3205",
+        "place_id": "ChIJKQB5STQzXIgR0SS_XwgrHF4",
+        "rating": 4.3,
+        "reviews": 224
+      },
+      "pipeline_result": {
+        "company_name": "Brewskis Oak Ridge",
+        "domain": "brewskis-oak-ridge.edan.io",
+        "vertical": "breweries_and_brewpubs",
+        "stages_completed": [
+          "data_fill",
+          "website_fallback",
+          "serper_osint",
+          "social_links",
+          "validation"
+        ],
+        "errors": [],
+        "processing_time_ms": 4971.53377532959,
+        "contacts": []
+      },
+      "agent_prompt": "You are evaluating contact discovery for an SMB company.\n\nCOMPANY DETAILS:\n- Name: Brewskis Oak Ridge\n- Domain: brewskis-oak-ridge.edan.io\n- Vertical: breweries_and_brewpubs\n- Address: 144 Randolph Rd, Oak Ridge, TN 37830\n- Phone: (865) 272-3205\n\nPIPELINE RESULT (to verify):\n- Owner Found: None found\n- Confidence: 0%\n- Sources: None\n\nYOUR TASKS:\n\n1. INDEPENDENTLY find the owner/decision-maker using these tools in order:\n   a. Use mcp__browser-mcp__chrome_navigate to visit https://brewskis-oak-ridge.edan.io\n   b. Use mcp__browser-mcp__chrome_get_web_content to extract \"About Us\" or team info\n   c. Use WebSearch for \"Brewskis Oak Ridge owner founder CEO\"\n   d. If needed, search Google Maps data\n\n2. VERIFY the pipeline result:\n   - Does your finding match the pipeline result?\n   - Is the pipeline result accurate?\n\n3. RETURN ONLY this JSON (no other text):\n{\n  \"company_name\": \"Brewskis Oak Ridge\",\n  \"domain\": \"brewskis-oak-ridge.edan.io\",\n  \"agent_owner_name\": \"name you found or null\",\n  \"agent_owner_title\": \"title or null\",\n  \"agent_sources\": [\"list of sources used\"],\n  \"agent_confidence\": \"high/medium/low/none\",\n  \"pipeline_owner\": \"None found\",\n  \"pipeline_verdict\": \"correct/incorrect/partial/unknown\",\n  \"reasoning\": \"brief explanation of your finding\"\n}\n\nIMPORTANT:\n- Only return the JSON, nothing else\n- If you can't find any owner info, set agent_confidence to \"none\"\n- \"partial\" means pipeline found a real person but wrong details\n- \"unknown\" means you couldn't verify either way\n"
+    },
+    {
+      "entity": {
+        "company_name": "Bull Island Brewing Company",
+        "domain": "bullislandbrewing.com",
+        "vertical": "breweries_and_brewpubs",
+        "address": "758 Settlers Landing Rd, Hampton, VA 23669",
+        "phone": "(757) 884-8884",
+        "place_id": "ChIJeRbN3beEuokRhbKWBFLSk3o",
+        "rating": 4.4,
+        "reviews": 508
+      },
+      "pipeline_result": {
+        "company_name": "Bull Island Brewing Company",
+        "domain": "bullislandbrewing.com",
+        "vertical": "breweries_and_brewpubs",
+        "stages_completed": [
+          "data_fill",
+          "website_fallback",
+          "social_links",
+          "validation"
+        ],
+        "errors": [],
+        "processing_time_ms": 5857.007741928101,
+        "contacts": [
+          {
+            "name": "Doug Reier",
+            "email": null,
+            "phone": null,
+            "title": "Owner",
+            "linkedin_url": null,
+            "sources": [
+              "serper_osint"
+            ],
+            "is_valid": true,
+            "confidence": 70.0,
+            "validation_reasons": [
+              "Doug Reier is identified as the owner of Bull Island Brewing Company through a reliable source (serper_osint), providing good evidence for the contact's validity.",
+              "RED FLAG: No email provided",
+              "RED FLAG: No phone number available",
+              "RED FLAG: LinkedIn profile not found"
+            ]
+          }
+        ]
+      },
+      "agent_prompt": "You are evaluating contact discovery for an SMB company.\n\nCOMPANY DETAILS:\n- Name: Bull Island Brewing Company\n- Domain: bullislandbrewing.com\n- Vertical: breweries_and_brewpubs\n- Address: 758 Settlers Landing Rd, Hampton, VA 23669\n- Phone: (757) 884-8884\n\nPIPELINE RESULT (to verify):\n- Owner Found: Doug Reier (Owner)\n- Confidence: 70.0%\n- Sources: serper_osint\n\nYOUR TASKS:\n\n1. INDEPENDENTLY find the owner/decision-maker using these tools in order:\n   a. Use mcp__browser-mcp__chrome_navigate to visit https://bullislandbrewing.com\n   b. Use mcp__browser-mcp__chrome_get_web_content to extract \"About Us\" or team info\n   c. Use WebSearch for \"Bull Island Brewing Company owner founder CEO\"\n   d. If needed, search Google Maps data\n\n2. VERIFY the pipeline result:\n   - Does your finding match the pipeline result?\n   - Is the pipeline result accurate?\n\n3. RETURN ONLY this JSON (no other text):\n{\n  \"company_name\": \"Bull Island Brewing Company\",\n  \"domain\": \"bullislandbrewing.com\",\n  \"agent_owner_name\": \"name you found or null\",\n  \"agent_owner_title\": \"title or null\",\n  \"agent_sources\": [\"list of sources used\"],\n  \"agent_confidence\": \"high/medium/low/none\",\n  \"pipeline_owner\": \"Doug Reier (Owner)\",\n  \"pipeline_verdict\": \"correct/incorrect/partial/unknown\",\n  \"reasoning\": \"brief explanation of your finding\"\n}\n\nIMPORTANT:\n- Only return the JSON, nothing else\n- If you can't find any owner info, set agent_confidence to \"none\"\n- \"partial\" means pipeline found a real person but wrong details\n- \"unknown\" means you couldn't verify either way\n"
+    },
+    {
+      "entity": {
+        "company_name": "River Rock Brewery",
+        "domain": "riverrockbrewery.com",
+        "vertical": "breweries_and_brewpubs",
+        "address": "608 N Lincoln Way, Galt, CA 95632",
+        "phone": "(209) 331-6071",
+        "place_id": "ChIJ5zxEjtCimoARK316qFZAm1Q",
+        "rating": 4.2,
+        "reviews": 60
+      },
+      "pipeline_result": {
+        "company_name": "River Rock Brewery",
+        "domain": "riverrockbrewery.com",
+        "vertical": "breweries_and_brewpubs",
+        "stages_completed": [
+          "data_fill",
+          "website_fallback",
+          "social_links",
+          "validation"
+        ],
+        "errors": [],
+        "processing_time_ms": 5212.110996246338,
+        "contacts": [
+          {
+            "name": "Brian Marsh",
+            "email": null,
+            "phone": null,
+            "title": "Owner",
+            "linkedin_url": null,
+            "sources": [
+              "serper_osint"
+            ],
+            "is_valid": true,
+            "confidence": 70.0,
+            "validation_reasons": [
+              "The contact is the owner of River Rock Brewery, which is a strong match based on the evidence from serper_osint, but lacks an email and phone number for verification.",
+              "RED FLAG: No email provided",
+              "RED FLAG: No phone number provided"
+            ]
+          }
+        ]
+      },
+      "agent_prompt": "You are evaluating contact discovery for an SMB company.\n\nCOMPANY DETAILS:\n- Name: River Rock Brewery\n- Domain: riverrockbrewery.com\n- Vertical: breweries_and_brewpubs\n- Address: 608 N Lincoln Way, Galt, CA 95632\n- Phone: (209) 331-6071\n\nPIPELINE RESULT (to verify):\n- Owner Found: Brian Marsh (Owner)\n- Confidence: 70.0%\n- Sources: serper_osint\n\nYOUR TASKS:\n\n1. INDEPENDENTLY find the owner/decision-maker using these tools in order:\n   a. Use mcp__browser-mcp__chrome_navigate to visit https://riverrockbrewery.com\n   b. Use mcp__browser-mcp__chrome_get_web_content to extract \"About Us\" or team info\n   c. Use WebSearch for \"River Rock Brewery owner founder CEO\"\n   d. If needed, search Google Maps data\n\n2. VERIFY the pipeline result:\n   - Does your finding match the pipeline result?\n   - Is the pipeline result accurate?\n\n3. RETURN ONLY this JSON (no other text):\n{\n  \"company_name\": \"River Rock Brewery\",\n  \"domain\": \"riverrockbrewery.com\",\n  \"agent_owner_name\": \"name you found or null\",\n  \"agent_owner_title\": \"title or null\",\n  \"agent_sources\": [\"list of sources used\"],\n  \"agent_confidence\": \"high/medium/low/none\",\n  \"pipeline_owner\": \"Brian Marsh (Owner)\",\n  \"pipeline_verdict\": \"correct/incorrect/partial/unknown\",\n  \"reasoning\": \"brief explanation of your finding\"\n}\n\nIMPORTANT:\n- Only return the JSON, nothing else\n- If you can't find any owner info, set agent_confidence to \"none\"\n- \"partial\" means pipeline found a real person but wrong details\n- \"unknown\" means you couldn't verify either way\n"
+    },
+    {
+      "entity": {
+        "company_name": "The Friendly Fermenter, LLC",
+        "domain": "friendlyfermenter.com",
+        "vertical": "breweries_and_brewpubs",
+        "address": "20 S Mason St Suite B10, Harrisonburg, VA 22801",
+        "phone": "(540) 217-2614",
+        "place_id": "ChIJhZs0K8mStIkR6WIE4qB4VH4",
+        "rating": 4.9,
+        "reviews": 222
+      },
+      "pipeline_result": {
+        "company_name": "The Friendly Fermenter, LLC",
+        "domain": "friendlyfermenter.com",
+        "vertical": "breweries_and_brewpubs",
+        "stages_completed": [
+          "data_fill",
+          "website_fallback",
+          "serper_osint",
+          "social_links",
+          "validation"
+        ],
+        "errors": [],
+        "processing_time_ms": 3635.641098022461,
+        "contacts": []
+      },
+      "agent_prompt": "You are evaluating contact discovery for an SMB company.\n\nCOMPANY DETAILS:\n- Name: The Friendly Fermenter, LLC\n- Domain: friendlyfermenter.com\n- Vertical: breweries_and_brewpubs\n- Address: 20 S Mason St Suite B10, Harrisonburg, VA 22801\n- Phone: (540) 217-2614\n\nPIPELINE RESULT (to verify):\n- Owner Found: None found\n- Confidence: 0%\n- Sources: None\n\nYOUR TASKS:\n\n1. INDEPENDENTLY find the owner/decision-maker using these tools in order:\n   a. Use mcp__browser-mcp__chrome_navigate to visit https://friendlyfermenter.com\n   b. Use mcp__browser-mcp__chrome_get_web_content to extract \"About Us\" or team info\n   c. Use WebSearch for \"The Friendly Fermenter, LLC owner founder CEO\"\n   d. If needed, search Google Maps data\n\n2. VERIFY the pipeline result:\n   - Does your finding match the pipeline result?\n   - Is the pipeline result accurate?\n\n3. RETURN ONLY this JSON (no other text):\n{\n  \"company_name\": \"The Friendly Fermenter, LLC\",\n  \"domain\": \"friendlyfermenter.com\",\n  \"agent_owner_name\": \"name you found or null\",\n  \"agent_owner_title\": \"title or null\",\n  \"agent_sources\": [\"list of sources used\"],\n  \"agent_confidence\": \"high/medium/low/none\",\n  \"pipeline_owner\": \"None found\",\n  \"pipeline_verdict\": \"correct/incorrect/partial/unknown\",\n  \"reasoning\": \"brief explanation of your finding\"\n}\n\nIMPORTANT:\n- Only return the JSON, nothing else\n- If you can't find any owner info, set agent_confidence to \"none\"\n- \"partial\" means pipeline found a real person but wrong details\n- \"unknown\" means you couldn't verify either way\n"
+    },
+    {
+      "entity": {
+        "company_name": "Calapooia Brewing",
+        "domain": "calapooiabrewing.com",
+        "vertical": "breweries_and_brewpubs",
+        "address": "140 Hill St SE, Albany, OR 97321",
+        "phone": "(541) 928-1931",
+        "place_id": "ChIJ3wia87JswFQRwd5whCDjty8",
+        "rating": 4.5,
+        "reviews": 461
+      },
+      "pipeline_result": {
+        "company_name": "Calapooia Brewing",
+        "domain": "calapooiabrewing.com",
+        "vertical": "breweries_and_brewpubs",
+        "stages_completed": [
+          "data_fill",
+          "website_fallback",
+          "social_links",
+          "validation"
+        ],
+        "errors": [],
+        "processing_time_ms": 5527.554035186768,
+        "contacts": [
+          {
+            "name": "Chris Neumann",
+            "email": null,
+            "phone": null,
+            "title": "Owner",
+            "linkedin_url": null,
+            "sources": [
+              "serper_osint"
+            ],
+            "is_valid": true,
+            "confidence": 70.0,
+            "validation_reasons": [
+              "Chris Neumann is identified as the owner of Calapooia Brewing through a reliable source (serper_osint), providing good evidence for the contact's validity.",
+              "RED FLAG: No email provided",
+              "RED FLAG: No phone number available",
+              "RED FLAG: LinkedIn profile not found"
+            ]
+          }
+        ]
+      },
+      "agent_prompt": "You are evaluating contact discovery for an SMB company.\n\nCOMPANY DETAILS:\n- Name: Calapooia Brewing\n- Domain: calapooiabrewing.com\n- Vertical: breweries_and_brewpubs\n- Address: 140 Hill St SE, Albany, OR 97321\n- Phone: (541) 928-1931\n\nPIPELINE RESULT (to verify):\n- Owner Found: Chris Neumann (Owner)\n- Confidence: 70.0%\n- Sources: serper_osint\n\nYOUR TASKS:\n\n1. INDEPENDENTLY find the owner/decision-maker using these tools in order:\n   a. Use mcp__browser-mcp__chrome_navigate to visit https://calapooiabrewing.com\n   b. Use mcp__browser-mcp__chrome_get_web_content to extract \"About Us\" or team info\n   c. Use WebSearch for \"Calapooia Brewing owner founder CEO\"\n   d. If needed, search Google Maps data\n\n2. VERIFY the pipeline result:\n   - Does your finding match the pipeline result?\n   - Is the pipeline result accurate?\n\n3. RETURN ONLY this JSON (no other text):\n{\n  \"company_name\": \"Calapooia Brewing\",\n  \"domain\": \"calapooiabrewing.com\",\n  \"agent_owner_name\": \"name you found or null\",\n  \"agent_owner_title\": \"title or null\",\n  \"agent_sources\": [\"list of sources used\"],\n  \"agent_confidence\": \"high/medium/low/none\",\n  \"pipeline_owner\": \"Chris Neumann (Owner)\",\n  \"pipeline_verdict\": \"correct/incorrect/partial/unknown\",\n  \"reasoning\": \"brief explanation of your finding\"\n}\n\nIMPORTANT:\n- Only return the JSON, nothing else\n- If you can't find any owner info, set agent_confidence to \"none\"\n- \"partial\" means pipeline found a real person but wrong details\n- \"unknown\" means you couldn't verify either way\n"
+    },
+    {
+      "entity": {
+        "company_name": "Rockfish Brewing Company Preston",
+        "domain": "rockfishbrewcompany.com",
+        "vertical": "breweries_and_brewpubs",
+        "address": "900 Preston Ave, Charlottesville, VA 22903",
+        "phone": "(434) 566-0969",
+        "place_id": "ChIJbfFldNeHs4kRr_tRRhjShtw",
+        "rating": 4.6,
+        "reviews": 94
+      },
+      "pipeline_result": {
+        "company_name": "Rockfish Brewing Company Preston",
+        "domain": "rockfishbrewcompany.com",
+        "vertical": "breweries_and_brewpubs",
+        "stages_completed": [
+          "data_fill",
+          "website_fallback",
+          "serper_osint",
+          "social_links",
+          "validation"
+        ],
+        "errors": [],
+        "processing_time_ms": 4764.577865600586,
+        "contacts": []
+      },
+      "agent_prompt": "You are evaluating contact discovery for an SMB company.\n\nCOMPANY DETAILS:\n- Name: Rockfish Brewing Company Preston\n- Domain: rockfishbrewcompany.com\n- Vertical: breweries_and_brewpubs\n- Address: 900 Preston Ave, Charlottesville, VA 22903\n- Phone: (434) 566-0969\n\nPIPELINE RESULT (to verify):\n- Owner Found: None found\n- Confidence: 0%\n- Sources: None\n\nYOUR TASKS:\n\n1. INDEPENDENTLY find the owner/decision-maker using these tools in order:\n   a. Use mcp__browser-mcp__chrome_navigate to visit https://rockfishbrewcompany.com\n   b. Use mcp__browser-mcp__chrome_get_web_content to extract \"About Us\" or team info\n   c. Use WebSearch for \"Rockfish Brewing Company Preston owner founder CEO\"\n   d. If needed, search Google Maps data\n\n2. VERIFY the pipeline result:\n   - Does your finding match the pipeline result?\n   - Is the pipeline result accurate?\n\n3. RETURN ONLY this JSON (no other text):\n{\n  \"company_name\": \"Rockfish Brewing Company Preston\",\n  \"domain\": \"rockfishbrewcompany.com\",\n  \"agent_owner_name\": \"name you found or null\",\n  \"agent_owner_title\": \"title or null\",\n  \"agent_sources\": [\"list of sources used\"],\n  \"agent_confidence\": \"high/medium/low/none\",\n  \"pipeline_owner\": \"None found\",\n  \"pipeline_verdict\": \"correct/incorrect/partial/unknown\",\n  \"reasoning\": \"brief explanation of your finding\"\n}\n\nIMPORTANT:\n- Only return the JSON, nothing else\n- If you can't find any owner info, set agent_confidence to \"none\"\n- \"partial\" means pipeline found a real person but wrong details\n- \"unknown\" means you couldn't verify either way\n"
+    },
+    {
+      "entity": {
+        "company_name": "Artillery Brewing",
+        "domain": "artillerybrewing.com",
+        "vertical": "breweries_and_brewpubs",
+        "address": "4221 Ferne Blvd, Drexel Hill, PA 19026",
+        "phone": "(610) 626-2937",
+        "place_id": "ChIJS4hOTGnBxokRX4stybsnGqc",
+        "rating": 4.5,
+        "reviews": 191
+      },
+      "pipeline_result": {
+        "company_name": "Artillery Brewing",
+        "domain": "artillerybrewing.com",
+        "vertical": "breweries_and_brewpubs",
+        "stages_completed": [
+          "data_fill",
+          "website_fallback",
+          "social_links",
+          "validation"
+        ],
+        "errors": [],
+        "processing_time_ms": 4713.860034942627,
+        "contacts": [
+          {
+            "name": "Paul Zippel",
+            "email": null,
+            "phone": null,
+            "title": "Owner",
+            "linkedin_url": null,
+            "sources": [
+              "serper_osint"
+            ],
+            "is_valid": true,
+            "confidence": 50.0,
+            "validation_reasons": [
+              "The contact is identified as the owner, but lacks an email and phone number, which significantly reduces confidence for outreach.",
+              "RED FLAG: No email provided",
+              "RED FLAG: No phone number provided",
+              "RED FLAG: Email source is 'discovery' with no verification"
+            ]
+          }
+        ]
+      },
+      "agent_prompt": "You are evaluating contact discovery for an SMB company.\n\nCOMPANY DETAILS:\n- Name: Artillery Brewing\n- Domain: artillerybrewing.com\n- Vertical: breweries_and_brewpubs\n- Address: 4221 Ferne Blvd, Drexel Hill, PA 19026\n- Phone: (610) 626-2937\n\nPIPELINE RESULT (to verify):\n- Owner Found: Paul Zippel (Owner)\n- Confidence: 50.0%\n- Sources: serper_osint\n\nYOUR TASKS:\n\n1. INDEPENDENTLY find the owner/decision-maker using these tools in order:\n   a. Use mcp__browser-mcp__chrome_navigate to visit https://artillerybrewing.com\n   b. Use mcp__browser-mcp__chrome_get_web_content to extract \"About Us\" or team info\n   c. Use WebSearch for \"Artillery Brewing owner founder CEO\"\n   d. If needed, search Google Maps data\n\n2. VERIFY the pipeline result:\n   - Does your finding match the pipeline result?\n   - Is the pipeline result accurate?\n\n3. RETURN ONLY this JSON (no other text):\n{\n  \"company_name\": \"Artillery Brewing\",\n  \"domain\": \"artillerybrewing.com\",\n  \"agent_owner_name\": \"name you found or null\",\n  \"agent_owner_title\": \"title or null\",\n  \"agent_sources\": [\"list of sources used\"],\n  \"agent_confidence\": \"high/medium/low/none\",\n  \"pipeline_owner\": \"Paul Zippel (Owner)\",\n  \"pipeline_verdict\": \"correct/incorrect/partial/unknown\",\n  \"reasoning\": \"brief explanation of your finding\"\n}\n\nIMPORTANT:\n- Only return the JSON, nothing else\n- If you can't find any owner info, set agent_confidence to \"none\"\n- \"partial\" means pipeline found a real person but wrong details\n- \"unknown\" means you couldn't verify either way\n"
+    },
+    {
+      "entity": {
+        "company_name": "Starbucks",
+        "domain": "starbucks.com",
+        "vertical": "coffee_shops_in_the_usa",
+        "address": "10777 Belleville Rd, Belleville, MI 48111",
+        "phone": "(734) 735-3835",
+        "place_id": "ChIJLXBvCpZQO4gR7fcWbXHp09k",
+        "rating": 4.0,
+        "reviews": 991
+      },
+      "pipeline_result": {
+        "company_name": "Starbucks",
+        "domain": "starbucks.com",
+        "vertical": "coffee_shops_in_the_usa",
+        "stages_completed": [
+          "data_fill",
+          "website_fallback",
+          "social_links",
+          "validation"
+        ],
+        "errors": [],
+        "processing_time_ms": 7022.014856338501,
+        "contacts": [
+          {
+            "name": "Howard Schultz",
+            "email": null,
+            "phone": null,
+            "title": "Owner",
+            "linkedin_url": null,
+            "sources": [
+              "serper_osint"
+            ],
+            "is_valid": false,
+            "confidence": 30.0,
+            "validation_reasons": [
+              "The contact is identified as the owner, but lacks a verified email and phone number, leading to significant uncertainty.",
+              "RED FLAG: No email provided",
+              "RED FLAG: No phone number provided",
+              "RED FLAG: Email source is discovery with no verification"
+            ]
+          }
+        ]
+      },
+      "agent_prompt": "You are evaluating contact discovery for an SMB company.\n\nCOMPANY DETAILS:\n- Name: Starbucks\n- Domain: starbucks.com\n- Vertical: coffee_shops_in_the_usa\n- Address: 10777 Belleville Rd, Belleville, MI 48111\n- Phone: (734) 735-3835\n\nPIPELINE RESULT (to verify):\n- Owner Found: Howard Schultz (Owner)\n- Confidence: 30.0%\n- Sources: serper_osint\n\nYOUR TASKS:\n\n1. INDEPENDENTLY find the owner/decision-maker using these tools in order:\n   a. Use mcp__browser-mcp__chrome_navigate to visit https://starbucks.com\n   b. Use mcp__browser-mcp__chrome_get_web_content to extract \"About Us\" or team info\n   c. Use WebSearch for \"Starbucks owner founder CEO\"\n   d. If needed, search Google Maps data\n\n2. VERIFY the pipeline result:\n   - Does your finding match the pipeline result?\n   - Is the pipeline result accurate?\n\n3. RETURN ONLY this JSON (no other text):\n{\n  \"company_name\": \"Starbucks\",\n  \"domain\": \"starbucks.com\",\n  \"agent_owner_name\": \"name you found or null\",\n  \"agent_owner_title\": \"title or null\",\n  \"agent_sources\": [\"list of sources used\"],\n  \"agent_confidence\": \"high/medium/low/none\",\n  \"pipeline_owner\": \"Howard Schultz (Owner)\",\n  \"pipeline_verdict\": \"correct/incorrect/partial/unknown\",\n  \"reasoning\": \"brief explanation of your finding\"\n}\n\nIMPORTANT:\n- Only return the JSON, nothing else\n- If you can't find any owner info, set agent_confidence to \"none\"\n- \"partial\" means pipeline found a real person but wrong details\n- \"unknown\" means you couldn't verify either way\n"
+    },
+    {
+      "entity": {
+        "company_name": "Bean Traders",
+        "domain": "beantraderscoffee.com",
+        "vertical": "coffee_shops_in_the_usa",
+        "address": "105 W Nc 54 Hwy, 249, Durham, NC 27713",
+        "phone": "(919) 484-2499",
+        "place_id": "ChIJo51lvLDorIkRWul-hUawTc4",
+        "rating": 4.6,
+        "reviews": 1407
+      },
+      "pipeline_result": {
+        "company_name": "Bean Traders",
+        "domain": "beantraderscoffee.com",
+        "vertical": "coffee_shops_in_the_usa",
+        "stages_completed": [
+          "data_fill",
+          "website_fallback",
+          "social_links",
+          "validation"
+        ],
+        "errors": [],
+        "processing_time_ms": 5271.031856536865,
+        "contacts": [
+          {
+            "name": "David Chapman",
+            "email": null,
+            "phone": null,
+            "title": "Owner",
+            "linkedin_url": null,
+            "sources": [
+              "serper_osint"
+            ],
+            "is_valid": false,
+            "confidence": 30.0,
+            "validation_reasons": [
+              "The contact is identified as the owner, but lacks a verified email and phone number, leading to significant uncertainty.",
+              "RED FLAG: No email provided",
+              "RED FLAG: No phone number provided",
+              "RED FLAG: Email source is 'discovery' with no verification"
+            ]
+          }
+        ]
+      },
+      "agent_prompt": "You are evaluating contact discovery for an SMB company.\n\nCOMPANY DETAILS:\n- Name: Bean Traders\n- Domain: beantraderscoffee.com\n- Vertical: coffee_shops_in_the_usa\n- Address: 105 W Nc 54 Hwy, 249, Durham, NC 27713\n- Phone: (919) 484-2499\n\nPIPELINE RESULT (to verify):\n- Owner Found: David Chapman (Owner)\n- Confidence: 30.0%\n- Sources: serper_osint\n\nYOUR TASKS:\n\n1. INDEPENDENTLY find the owner/decision-maker using these tools in order:\n   a. Use mcp__browser-mcp__chrome_navigate to visit https://beantraderscoffee.com\n   b. Use mcp__browser-mcp__chrome_get_web_content to extract \"About Us\" or team info\n   c. Use WebSearch for \"Bean Traders owner founder CEO\"\n   d. If needed, search Google Maps data\n\n2. VERIFY the pipeline result:\n   - Does your finding match the pipeline result?\n   - Is the pipeline result accurate?\n\n3. RETURN ONLY this JSON (no other text):\n{\n  \"company_name\": \"Bean Traders\",\n  \"domain\": \"beantraderscoffee.com\",\n  \"agent_owner_name\": \"name you found or null\",\n  \"agent_owner_title\": \"title or null\",\n  \"agent_sources\": [\"list of sources used\"],\n  \"agent_confidence\": \"high/medium/low/none\",\n  \"pipeline_owner\": \"David Chapman (Owner)\",\n  \"pipeline_verdict\": \"correct/incorrect/partial/unknown\",\n  \"reasoning\": \"brief explanation of your finding\"\n}\n\nIMPORTANT:\n- Only return the JSON, nothing else\n- If you can't find any owner info, set agent_confidence to \"none\"\n- \"partial\" means pipeline found a real person but wrong details\n- \"unknown\" means you couldn't verify either way\n"
+    },
+    {
+      "entity": {
+        "company_name": "Dunkin'",
+        "domain": "locations.dunkindonuts.com",
+        "vertical": "coffee_shops_in_the_usa",
+        "address": "325 Elsbree St, Fall River, MA 02720",
+        "phone": "(774) 488-3388",
+        "place_id": "ChIJO_WM_wn55IkRKQ_5lP62YFg",
+        "rating": 3.9,
+        "reviews": 298
+      },
+      "pipeline_result": {
+        "company_name": "Dunkin'",
+        "domain": "locations.dunkindonuts.com",
+        "vertical": "coffee_shops_in_the_usa",
+        "stages_completed": [
+          "data_fill",
+          "social_links",
+          "validation"
+        ],
+        "errors": [
+          "Website extraction failed: 'NoneType' object has no attribute 'get'"
+        ],
+        "processing_time_ms": 8463.529825210571,
+        "contacts": [
+          {
+            "name": "Passes Away",
+            "email": null,
+            "phone": null,
+            "title": "Owner",
+            "linkedin_url": null,
+            "sources": [
+              "serper_osint"
+            ],
+            "is_valid": false,
+            "confidence": 30.0,
+            "validation_reasons": [
+              "The contact's name is found but lacks verification from a reliable source, and there is no email or phone number provided.",
+              "RED FLAG: No email provided",
+              "RED FLAG: No phone number provided",
+              "RED FLAG: Weak evidence from a single source"
+            ]
+          }
+        ]
+      },
+      "agent_prompt": "You are evaluating contact discovery for an SMB company.\n\nCOMPANY DETAILS:\n- Name: Dunkin'\n- Domain: locations.dunkindonuts.com\n- Vertical: coffee_shops_in_the_usa\n- Address: 325 Elsbree St, Fall River, MA 02720\n- Phone: (774) 488-3388\n\nPIPELINE RESULT (to verify):\n- Owner Found: Passes Away (Owner)\n- Confidence: 30.0%\n- Sources: serper_osint\n\nYOUR TASKS:\n\n1. INDEPENDENTLY find the owner/decision-maker using these tools in order:\n   a. Use mcp__browser-mcp__chrome_navigate to visit https://locations.dunkindonuts.com\n   b. Use mcp__browser-mcp__chrome_get_web_content to extract \"About Us\" or team info\n   c. Use WebSearch for \"Dunkin' owner founder CEO\"\n   d. If needed, search Google Maps data\n\n2. VERIFY the pipeline result:\n   - Does your finding match the pipeline result?\n   - Is the pipeline result accurate?\n\n3. RETURN ONLY this JSON (no other text):\n{\n  \"company_name\": \"Dunkin'\",\n  \"domain\": \"locations.dunkindonuts.com\",\n  \"agent_owner_name\": \"name you found or null\",\n  \"agent_owner_title\": \"title or null\",\n  \"agent_sources\": [\"list of sources used\"],\n  \"agent_confidence\": \"high/medium/low/none\",\n  \"pipeline_owner\": \"Passes Away (Owner)\",\n  \"pipeline_verdict\": \"correct/incorrect/partial/unknown\",\n  \"reasoning\": \"brief explanation of your finding\"\n}\n\nIMPORTANT:\n- Only return the JSON, nothing else\n- If you can't find any owner info, set agent_confidence to \"none\"\n- \"partial\" means pipeline found a real person but wrong details\n- \"unknown\" means you couldn't verify either way\n"
+    },
+    {
+      "entity": {
+        "company_name": "G Cafe Bakery East Rock",
+        "domain": "gcafebakery.com",
+        "vertical": "coffee_shops_in_the_usa",
+        "address": "534 Orange St, New Haven, CT 06511",
+        "phone": "(475) 241-3901",
+        "place_id": "ChIJW1TksCzZ54kRnGQIozQMTy0",
+        "rating": 4.1,
+        "reviews": 130
+      },
+      "pipeline_result": {
+        "company_name": "G Cafe Bakery East Rock",
+        "domain": "gcafebakery.com",
+        "vertical": "coffee_shops_in_the_usa",
+        "stages_completed": [
+          "data_fill",
+          "website_fallback",
+          "social_links",
+          "validation"
+        ],
+        "errors": [],
+        "processing_time_ms": 3750.814914703369,
+        "contacts": [
+          {
+            "name": "Ritu Narayan",
+            "email": null,
+            "phone": null,
+            "title": "Owner",
+            "linkedin_url": null,
+            "sources": [
+              "serper_osint"
+            ],
+            "is_valid": true,
+            "confidence": 70.0,
+            "validation_reasons": [
+              "The owner name Ritu Narayan was found via a reliable source (serper_osint), which supports the title of Owner, providing a good match for outreach.",
+              "RED FLAG: No email provided",
+              "RED FLAG: No phone number available",
+              "RED FLAG: LinkedIn profile not found"
+            ]
+          }
+        ]
+      },
+      "agent_prompt": "You are evaluating contact discovery for an SMB company.\n\nCOMPANY DETAILS:\n- Name: G Cafe Bakery East Rock\n- Domain: gcafebakery.com\n- Vertical: coffee_shops_in_the_usa\n- Address: 534 Orange St, New Haven, CT 06511\n- Phone: (475) 241-3901\n\nPIPELINE RESULT (to verify):\n- Owner Found: Ritu Narayan (Owner)\n- Confidence: 70.0%\n- Sources: serper_osint\n\nYOUR TASKS:\n\n1. INDEPENDENTLY find the owner/decision-maker using these tools in order:\n   a. Use mcp__browser-mcp__chrome_navigate to visit https://gcafebakery.com\n   b. Use mcp__browser-mcp__chrome_get_web_content to extract \"About Us\" or team info\n   c. Use WebSearch for \"G Cafe Bakery East Rock owner founder CEO\"\n   d. If needed, search Google Maps data\n\n2. VERIFY the pipeline result:\n   - Does your finding match the pipeline result?\n   - Is the pipeline result accurate?\n\n3. RETURN ONLY this JSON (no other text):\n{\n  \"company_name\": \"G Cafe Bakery East Rock\",\n  \"domain\": \"gcafebakery.com\",\n  \"agent_owner_name\": \"name you found or null\",\n  \"agent_owner_title\": \"title or null\",\n  \"agent_sources\": [\"list of sources used\"],\n  \"agent_confidence\": \"high/medium/low/none\",\n  \"pipeline_owner\": \"Ritu Narayan (Owner)\",\n  \"pipeline_verdict\": \"correct/incorrect/partial/unknown\",\n  \"reasoning\": \"brief explanation of your finding\"\n}\n\nIMPORTANT:\n- Only return the JSON, nothing else\n- If you can't find any owner info, set agent_confidence to \"none\"\n- \"partial\" means pipeline found a real person but wrong details\n- \"unknown\" means you couldn't verify either way\n"
+    },
+    {
+      "entity": {
+        "company_name": "Coffee Klatch",
+        "domain": "coffeecateringgreenville.com",
+        "vertical": "coffee_shops_in_the_usa",
+        "address": "2 Longfellow Wy, Simpsonville, SC 29681",
+        "phone": "(864) 501-4050",
+        "place_id": "ChIJEzD33DknWIgRd5iJ9av2Hjw",
+        "rating": 5.0,
+        "reviews": 46
+      },
+      "pipeline_result": {
+        "company_name": "Coffee Klatch",
+        "domain": "coffeecateringgreenville.com",
+        "vertical": "coffee_shops_in_the_usa",
+        "stages_completed": [
+          "data_fill",
+          "website_fallback",
+          "social_links",
+          "validation"
+        ],
+        "errors": [],
+        "processing_time_ms": 5186.986923217773,
+        "contacts": [
+          {
+            "name": "Heather Perry",
+            "email": null,
+            "phone": null,
+            "title": "Owner",
+            "linkedin_url": null,
+            "sources": [
+              "serper_osint"
+            ],
+            "is_valid": false,
+            "confidence": 30.0,
+            "validation_reasons": [
+              "The contact is identified as the owner, but lacks a verified email and phone number, leading to significant uncertainty.",
+              "RED FLAG: No email provided",
+              "RED FLAG: No phone number provided",
+              "RED FLAG: Email source is discovery with no verification"
+            ]
+          }
+        ]
+      },
+      "agent_prompt": "You are evaluating contact discovery for an SMB company.\n\nCOMPANY DETAILS:\n- Name: Coffee Klatch\n- Domain: coffeecateringgreenville.com\n- Vertical: coffee_shops_in_the_usa\n- Address: 2 Longfellow Wy, Simpsonville, SC 29681\n- Phone: (864) 501-4050\n\nPIPELINE RESULT (to verify):\n- Owner Found: Heather Perry (Owner)\n- Confidence: 30.0%\n- Sources: serper_osint\n\nYOUR TASKS:\n\n1. INDEPENDENTLY find the owner/decision-maker using these tools in order:\n   a. Use mcp__browser-mcp__chrome_navigate to visit https://coffeecateringgreenville.com\n   b. Use mcp__browser-mcp__chrome_get_web_content to extract \"About Us\" or team info\n   c. Use WebSearch for \"Coffee Klatch owner founder CEO\"\n   d. If needed, search Google Maps data\n\n2. VERIFY the pipeline result:\n   - Does your finding match the pipeline result?\n   - Is the pipeline result accurate?\n\n3. RETURN ONLY this JSON (no other text):\n{\n  \"company_name\": \"Coffee Klatch\",\n  \"domain\": \"coffeecateringgreenville.com\",\n  \"agent_owner_name\": \"name you found or null\",\n  \"agent_owner_title\": \"title or null\",\n  \"agent_sources\": [\"list of sources used\"],\n  \"agent_confidence\": \"high/medium/low/none\",\n  \"pipeline_owner\": \"Heather Perry (Owner)\",\n  \"pipeline_verdict\": \"correct/incorrect/partial/unknown\",\n  \"reasoning\": \"brief explanation of your finding\"\n}\n\nIMPORTANT:\n- Only return the JSON, nothing else\n- If you can't find any owner info, set agent_confidence to \"none\"\n- \"partial\" means pipeline found a real person but wrong details\n- \"unknown\" means you couldn't verify either way\n"
+    },
+    {
+      "entity": {
+        "company_name": "Le Pain Quotidien",
+        "domain": "lepainquotidien.com",
+        "vertical": "coffee_shops_in_the_usa",
+        "address": "1425 Walnut St, Philadelphia, PA 19102",
+        "phone": "(215) 751-0570",
+        "place_id": "ChIJO4Ha9i_GxokRO4_EV730UZA",
+        "rating": 4.3,
+        "reviews": 813
+      },
+      "pipeline_result": {
+        "company_name": "Le Pain Quotidien",
+        "domain": "lepainquotidien.com",
+        "vertical": "coffee_shops_in_the_usa",
+        "stages_completed": [
+          "data_fill",
+          "website_fallback",
+          "social_links",
+          "validation"
+        ],
+        "errors": [],
+        "processing_time_ms": 5984.460115432739,
+        "contacts": [
+          {
+            "name": "Pain Quotidien",
+            "email": null,
+            "phone": null,
+            "title": "Owner",
+            "linkedin_url": null,
+            "sources": [
+              "serper_osint"
+            ],
+            "is_valid": false,
+            "confidence": 30.0,
+            "validation_reasons": [
+              "The contact name 'Pain Quotidien' is likely a misrepresentation of the company name, and there is no email or phone number provided, leading to significant uncertainty.",
+              "RED FLAG: No email provided",
+              "RED FLAG: No phone number provided",
+              "RED FLAG: Name appears to be a misrepresentation"
+            ]
+          }
+        ]
+      },
+      "agent_prompt": "You are evaluating contact discovery for an SMB company.\n\nCOMPANY DETAILS:\n- Name: Le Pain Quotidien\n- Domain: lepainquotidien.com\n- Vertical: coffee_shops_in_the_usa\n- Address: 1425 Walnut St, Philadelphia, PA 19102\n- Phone: (215) 751-0570\n\nPIPELINE RESULT (to verify):\n- Owner Found: Pain Quotidien (Owner)\n- Confidence: 30.0%\n- Sources: serper_osint\n\nYOUR TASKS:\n\n1. INDEPENDENTLY find the owner/decision-maker using these tools in order:\n   a. Use mcp__browser-mcp__chrome_navigate to visit https://lepainquotidien.com\n   b. Use mcp__browser-mcp__chrome_get_web_content to extract \"About Us\" or team info\n   c. Use WebSearch for \"Le Pain Quotidien owner founder CEO\"\n   d. If needed, search Google Maps data\n\n2. VERIFY the pipeline result:\n   - Does your finding match the pipeline result?\n   - Is the pipeline result accurate?\n\n3. RETURN ONLY this JSON (no other text):\n{\n  \"company_name\": \"Le Pain Quotidien\",\n  \"domain\": \"lepainquotidien.com\",\n  \"agent_owner_name\": \"name you found or null\",\n  \"agent_owner_title\": \"title or null\",\n  \"agent_sources\": [\"list of sources used\"],\n  \"agent_confidence\": \"high/medium/low/none\",\n  \"pipeline_owner\": \"Pain Quotidien (Owner)\",\n  \"pipeline_verdict\": \"correct/incorrect/partial/unknown\",\n  \"reasoning\": \"brief explanation of your finding\"\n}\n\nIMPORTANT:\n- Only return the JSON, nothing else\n- If you can't find any owner info, set agent_confidence to \"none\"\n- \"partial\" means pipeline found a real person but wrong details\n- \"unknown\" means you couldn't verify either way\n"
+    },
+    {
+      "entity": {
+        "company_name": "Dunkin'",
+        "domain": "locations.dunkindonuts.com",
+        "vertical": "coffee_shops_in_the_usa",
+        "address": "3350 Kirchoff Rd, Rolling Meadows, IL 60008",
+        "phone": "(847) 818-9675",
+        "place_id": "ChIJ4Qcz2EelD4gRkrME5wOSYng",
+        "rating": 2.5,
+        "reviews": 178
+      },
+      "pipeline_result": {
+        "company_name": "Dunkin'",
+        "domain": "locations.dunkindonuts.com",
+        "vertical": "coffee_shops_in_the_usa",
+        "stages_completed": [
+          "data_fill",
+          "social_links",
+          "validation"
+        ],
+        "errors": [
+          "Website extraction failed: 'NoneType' object has no attribute 'get'"
+        ],
+        "processing_time_ms": 8463.529825210571,
+        "contacts": [
+          {
+            "name": "Passes Away",
+            "email": null,
+            "phone": null,
+            "title": "Owner",
+            "linkedin_url": null,
+            "sources": [
+              "serper_osint"
+            ],
+            "is_valid": false,
+            "confidence": 30.0,
+            "validation_reasons": [
+              "The contact's name is found but lacks verification from a reliable source, and there is no email or phone number provided.",
+              "RED FLAG: No email provided",
+              "RED FLAG: No phone number provided",
+              "RED FLAG: Weak evidence from a single source"
+            ]
+          }
+        ]
+      },
+      "agent_prompt": "You are evaluating contact discovery for an SMB company.\n\nCOMPANY DETAILS:\n- Name: Dunkin'\n- Domain: locations.dunkindonuts.com\n- Vertical: coffee_shops_in_the_usa\n- Address: 3350 Kirchoff Rd, Rolling Meadows, IL 60008\n- Phone: (847) 818-9675\n\nPIPELINE RESULT (to verify):\n- Owner Found: Passes Away (Owner)\n- Confidence: 30.0%\n- Sources: serper_osint\n\nYOUR TASKS:\n\n1. INDEPENDENTLY find the owner/decision-maker using these tools in order:\n   a. Use mcp__browser-mcp__chrome_navigate to visit https://locations.dunkindonuts.com\n   b. Use mcp__browser-mcp__chrome_get_web_content to extract \"About Us\" or team info\n   c. Use WebSearch for \"Dunkin' owner founder CEO\"\n   d. If needed, search Google Maps data\n\n2. VERIFY the pipeline result:\n   - Does your finding match the pipeline result?\n   - Is the pipeline result accurate?\n\n3. RETURN ONLY this JSON (no other text):\n{\n  \"company_name\": \"Dunkin'\",\n  \"domain\": \"locations.dunkindonuts.com\",\n  \"agent_owner_name\": \"name you found or null\",\n  \"agent_owner_title\": \"title or null\",\n  \"agent_sources\": [\"list of sources used\"],\n  \"agent_confidence\": \"high/medium/low/none\",\n  \"pipeline_owner\": \"Passes Away (Owner)\",\n  \"pipeline_verdict\": \"correct/incorrect/partial/unknown\",\n  \"reasoning\": \"brief explanation of your finding\"\n}\n\nIMPORTANT:\n- Only return the JSON, nothing else\n- If you can't find any owner info, set agent_confidence to \"none\"\n- \"partial\" means pipeline found a real person but wrong details\n- \"unknown\" means you couldn't verify either way\n"
+    },
+    {
+      "entity": {
+        "company_name": "Robin's Nest Cafe at KEZF",
+        "domain": "therobinsnestcafe.com",
+        "vertical": "coffee_shops_in_the_usa",
+        "address": "3380 Shannon Airport Cir, Fredericksburg, VA 22408",
+        "phone": "(540) 642-4394",
+        "place_id": "ChIJazJPncrDtokRplRoJ02IAcU",
+        "rating": 4.5,
+        "reviews": 89
+      },
+      "pipeline_result": {
+        "company_name": "Robin's Nest Cafe at KEZF",
+        "domain": "therobinsnestcafe.com",
+        "vertical": "coffee_shops_in_the_usa",
+        "stages_completed": [
+          "data_fill",
+          "website_fallback",
+          "serper_osint",
+          "social_links",
+          "validation"
+        ],
+        "errors": [],
+        "processing_time_ms": 2851.196765899658,
+        "contacts": []
+      },
+      "agent_prompt": "You are evaluating contact discovery for an SMB company.\n\nCOMPANY DETAILS:\n- Name: Robin's Nest Cafe at KEZF\n- Domain: therobinsnestcafe.com\n- Vertical: coffee_shops_in_the_usa\n- Address: 3380 Shannon Airport Cir, Fredericksburg, VA 22408\n- Phone: (540) 642-4394\n\nPIPELINE RESULT (to verify):\n- Owner Found: None found\n- Confidence: 0%\n- Sources: None\n\nYOUR TASKS:\n\n1. INDEPENDENTLY find the owner/decision-maker using these tools in order:\n   a. Use mcp__browser-mcp__chrome_navigate to visit https://therobinsnestcafe.com\n   b. Use mcp__browser-mcp__chrome_get_web_content to extract \"About Us\" or team info\n   c. Use WebSearch for \"Robin's Nest Cafe at KEZF owner founder CEO\"\n   d. If needed, search Google Maps data\n\n2. VERIFY the pipeline result:\n   - Does your finding match the pipeline result?\n   - Is the pipeline result accurate?\n\n3. RETURN ONLY this JSON (no other text):\n{\n  \"company_name\": \"Robin's Nest Cafe at KEZF\",\n  \"domain\": \"therobinsnestcafe.com\",\n  \"agent_owner_name\": \"name you found or null\",\n  \"agent_owner_title\": \"title or null\",\n  \"agent_sources\": [\"list of sources used\"],\n  \"agent_confidence\": \"high/medium/low/none\",\n  \"pipeline_owner\": \"None found\",\n  \"pipeline_verdict\": \"correct/incorrect/partial/unknown\",\n  \"reasoning\": \"brief explanation of your finding\"\n}\n\nIMPORTANT:\n- Only return the JSON, nothing else\n- If you can't find any owner info, set agent_confidence to \"none\"\n- \"partial\" means pipeline found a real person but wrong details\n- \"unknown\" means you couldn't verify either way\n"
+    },
+    {
+      "entity": {
+        "company_name": "Plymwr Plumbing",
+        "domain": "plymwrplumbing.com",
+        "vertical": "plumbers",
+        "address": "6150 Rutland Ave suite 9, Riverside, CA 92503, Vereinigte Staaten",
+        "phone": "+1 951-223-5668",
+        "place_id": "ChIJrTJj-ki23IAR6V26xZVFHJs",
+        "rating": 4.1,
+        "reviews": 583
+      },
+      "pipeline_result": {
+        "company_name": "Plymwr Plumbing",
+        "domain": "plymwrplumbing.com",
+        "vertical": "plumbers",
+        "stages_completed": [
+          "data_fill",
+          "website_fallback",
+          "serper_osint",
+          "social_links",
+          "validation"
+        ],
+        "errors": [],
+        "processing_time_ms": 2811.6679191589355,
+        "contacts": []
+      },
+      "agent_prompt": "You are evaluating contact discovery for an SMB company.\n\nCOMPANY DETAILS:\n- Name: Plymwr Plumbing\n- Domain: plymwrplumbing.com\n- Vertical: plumbers\n- Address: 6150 Rutland Ave suite 9, Riverside, CA 92503, Vereinigte Staaten\n- Phone: +1 951-223-5668\n\nPIPELINE RESULT (to verify):\n- Owner Found: None found\n- Confidence: 0%\n- Sources: None\n\nYOUR TASKS:\n\n1. INDEPENDENTLY find the owner/decision-maker using these tools in order:\n   a. Use mcp__browser-mcp__chrome_navigate to visit https://plymwrplumbing.com\n   b. Use mcp__browser-mcp__chrome_get_web_content to extract \"About Us\" or team info\n   c. Use WebSearch for \"Plymwr Plumbing owner founder CEO\"\n   d. If needed, search Google Maps data\n\n2. VERIFY the pipeline result:\n   - Does your finding match the pipeline result?\n   - Is the pipeline result accurate?\n\n3. RETURN ONLY this JSON (no other text):\n{\n  \"company_name\": \"Plymwr Plumbing\",\n  \"domain\": \"plymwrplumbing.com\",\n  \"agent_owner_name\": \"name you found or null\",\n  \"agent_owner_title\": \"title or null\",\n  \"agent_sources\": [\"list of sources used\"],\n  \"agent_confidence\": \"high/medium/low/none\",\n  \"pipeline_owner\": \"None found\",\n  \"pipeline_verdict\": \"correct/incorrect/partial/unknown\",\n  \"reasoning\": \"brief explanation of your finding\"\n}\n\nIMPORTANT:\n- Only return the JSON, nothing else\n- If you can't find any owner info, set agent_confidence to \"none\"\n- \"partial\" means pipeline found a real person but wrong details\n- \"unknown\" means you couldn't verify either way\n"
+    },
+    {
+      "entity": {
+        "company_name": "L. Richards Plumbing & Heating, Inc.",
+        "domain": "lrichardsplumbing.com",
+        "vertical": "plumbers",
+        "address": "185-04 Williamson Ave, Springfield Gardens, NY 11413, Vereinigte Staaten",
+        "phone": "+1 718-949-3567",
+        "place_id": "ChIJlZ6Uuq1mwokRD21_ENMlow4",
+        "rating": 4.3,
+        "reviews": 57
+      },
+      "pipeline_result": {
+        "company_name": "L. Richards Plumbing & Heating, Inc.",
+        "domain": "lrichardsplumbing.com",
+        "vertical": "plumbers",
+        "stages_completed": [
+          "data_fill",
+          "website_fallback",
+          "serper_osint",
+          "social_links",
+          "validation"
+        ],
+        "errors": [],
+        "processing_time_ms": 9048.989295959473,
+        "contacts": [
+          {
+            "name": "Fox Brown",
+            "email": null,
+            "phone": null,
+            "title": "Owner",
+            "linkedin_url": null,
+            "sources": [
+              "serper_osint"
+            ],
+            "is_valid": false,
+            "confidence": 30.0,
+            "validation_reasons": [
+              "The contact is identified as the owner, but lacks a verified email and phone number, leading to significant uncertainty.",
+              "RED FLAG: No email provided",
+              "RED FLAG: No phone number provided",
+              "RED FLAG: Email source is 'discovery' with no verification"
+            ]
+          }
+        ]
+      },
+      "agent_prompt": "You are evaluating contact discovery for an SMB company.\n\nCOMPANY DETAILS:\n- Name: L. Richards Plumbing & Heating, Inc.\n- Domain: lrichardsplumbing.com\n- Vertical: plumbers\n- Address: 185-04 Williamson Ave, Springfield Gardens, NY 11413, Vereinigte Staaten\n- Phone: +1 718-949-3567\n\nPIPELINE RESULT (to verify):\n- Owner Found: Fox Brown (Owner)\n- Confidence: 30.0%\n- Sources: serper_osint\n\nYOUR TASKS:\n\n1. INDEPENDENTLY find the owner/decision-maker using these tools in order:\n   a. Use mcp__browser-mcp__chrome_navigate to visit https://lrichardsplumbing.com\n   b. Use mcp__browser-mcp__chrome_get_web_content to extract \"About Us\" or team info\n   c. Use WebSearch for \"L. Richards Plumbing & Heating, Inc. owner founder CEO\"\n   d. If needed, search Google Maps data\n\n2. VERIFY the pipeline result:\n   - Does your finding match the pipeline result?\n   - Is the pipeline result accurate?\n\n3. RETURN ONLY this JSON (no other text):\n{\n  \"company_name\": \"L. Richards Plumbing & Heating, Inc.\",\n  \"domain\": \"lrichardsplumbing.com\",\n  \"agent_owner_name\": \"name you found or null\",\n  \"agent_owner_title\": \"title or null\",\n  \"agent_sources\": [\"list of sources used\"],\n  \"agent_confidence\": \"high/medium/low/none\",\n  \"pipeline_owner\": \"Fox Brown (Owner)\",\n  \"pipeline_verdict\": \"correct/incorrect/partial/unknown\",\n  \"reasoning\": \"brief explanation of your finding\"\n}\n\nIMPORTANT:\n- Only return the JSON, nothing else\n- If you can't find any owner info, set agent_confidence to \"none\"\n- \"partial\" means pipeline found a real person but wrong details\n- \"unknown\" means you couldn't verify either way\n"
+    }
+  ]
+}

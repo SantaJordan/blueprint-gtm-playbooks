@@ -53,24 +53,31 @@ class LLMProvider(ABC):
 
 
 def get_provider(config: dict) -> LLMProvider:
-    """Factory function to get the configured LLM provider"""
-    provider_name = config.get("llm", {}).get("provider", "openai")
+    """Factory function to get the configured LLM provider
+
+    Args:
+        config: Either the full config dict (with config["llm"]) or just the llm section
+    """
+    # Handle both full config and llm-only config
+    llm_config = config.get("llm", config) if "provider" not in config else config
+
+    provider_name = llm_config.get("provider", "openai")
 
     if provider_name == "openai":
         from .openai_provider import OpenAIProvider
         return OpenAIProvider(
-            api_key=config["llm"].get("openai_api_key"),
-            model=config["llm"].get("model", "gpt-4o-mini"),
-            default_temperature=config["llm"].get("temperature", 0.1),
-            default_max_tokens=config["llm"].get("max_tokens", 500)
+            api_key=llm_config.get("openai_api_key"),
+            model=llm_config.get("model", "gpt-4o-mini"),
+            default_temperature=llm_config.get("temperature", 0.1),
+            default_max_tokens=llm_config.get("max_tokens", 500)
         )
     elif provider_name == "anthropic":
         from .anthropic_provider import AnthropicProvider
         return AnthropicProvider(
-            api_key=config["llm"].get("anthropic_api_key"),
-            model=config["llm"].get("model", "claude-3-haiku-20240307"),
-            default_temperature=config["llm"].get("temperature", 0.1),
-            default_max_tokens=config["llm"].get("max_tokens", 500)
+            api_key=llm_config.get("anthropic_api_key"),
+            model=llm_config.get("model", "claude-3-haiku-20240307"),
+            default_temperature=llm_config.get("temperature", 0.1),
+            default_max_tokens=llm_config.get("max_tokens", 500)
         )
     else:
         raise ValueError(f"Unknown LLM provider: {provider_name}")

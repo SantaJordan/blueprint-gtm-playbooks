@@ -1,0 +1,286 @@
+[
+  {
+    "ground_truth": {
+      "name": "David Yoo",
+      "company": "Clover Security",
+      "title": "Business Development",
+      "linkedin_url": "https://www.linkedin.com/in/davidedwardyoo"
+    },
+    "enrichments": {
+      "rapidapi": {
+        "success": true,
+        "name": "David Y.",
+        "title": "Automating design reviews, architecture reviews, and threat modeling",
+        "company": "Clover Security \u00b7 Full-time",
+        "experiences": [
+          {
+            "title": "Business Development",
+            "company": "Clover Security \u00b7 Full-time",
+            "duration": "Sep 2025 - Present \u00b7 3 mos",
+            "company_url": "https://www.linkedin.com/company/101222877/"
+          },
+          {
+            "title": "Business Development",
+            "company": "Cato Networks \u00b7 Full-time",
+            "duration": "Apr 2024 - Apr 2025 \u00b7 1 yr 1 mo",
+            "company_url": "https://www.linkedin.com/company/3533853/"
+          },
+          {
+            "title": "Business Development",
+            "company": "Rubrik, Inc. \u00b7 Full-time",
+            "duration": "Jan 2022 - Apr 2024 \u00b7 2 yrs 4 mos",
+            "company_url": "https://www.linkedin.com/company/4840301/"
+          }
+        ],
+        "error": null
+      },
+      "scrapin": {
+        "success": false,
+        "name": null,
+        "title": null,
+        "company": null,
+        "experiences": [],
+        "error": "'ScrapinPersonProfile' object has no attribute 'experiences'"
+      }
+    },
+    "verification": {
+      "is_same_person": false,
+      "currently_employed": true,
+      "confidence": 60,
+      "reasoning": "Rule-based verification",
+      "red_flags": [
+        "Name does not match"
+      ]
+    },
+    "sources_agree_on_name": true,
+    "sources_agree_on_company": true,
+    "any_source_found_data": true,
+    "total_latency_ms": 4850
+  },
+  {
+    "ground_truth": {
+      "name": "Sam Yarborough",
+      "company": "Arcadia",
+      "title": "Co-Founder",
+      "linkedin_url": "https://www.linkedin.com/in/sam-yarborough"
+    },
+    "enrichments": {
+      "rapidapi": {
+        "success": true,
+        "name": "Sam Yarborough",
+        "title": "Co-Founder at Arcadia, Podcast Host, 100 Powerful Women in Sales 2024 \u2601\ufe0f Salesforce Partner, Relationship obsessed, Former Marketer, Give a Damn \ud83c\udff4\u200d\u2620\ufe0f",
+        "company": "Arcadia \u00b7 Self-employed",
+        "experiences": [
+          {
+            "title": "Co-Founder ",
+            "company": "Arcadia \u00b7 Self-employed",
+            "duration": "Jan 2024 - Present \u00b7 1 yr 11 mos",
+            "company_url": "https://www.linkedin.com/company/101381887/"
+          },
+          {
+            "title": "Co Host",
+            "company": "Friends With Benefits Podcast \u00b7 Self-employed",
+            "duration": "May 2023 - Present \u00b7 2 yrs 7 mos",
+            "company_url": "https://www.linkedin.com/company/92637621/"
+          },
+          {
+            "title": "Member, Women in Partnerships ",
+            "company": "Partnership Leaders",
+            "duration": "Sep 2020 - Oct 2025 \u00b7 5 yrs 2 mos",
+            "company_url": "https://www.linkedin.com/company/42929779/"
+          }
+        ],
+        "error": null
+      },
+      "scrapin": {
+        "success": false,
+        "name": null,
+        "title": null,
+        "company": null,
+        "experiences": [],
+        "error": "'ScrapinPersonProfile' object has no attribute 'experiences'"
+      }
+    },
+    "verification": {
+      "is_same_person": true,
+      "currently_employed": true,
+      "confidence": 90,
+      "reasoning": "Rule-based verification",
+      "red_flags": []
+    },
+    "sources_agree_on_name": true,
+    "sources_agree_on_company": true,
+    "any_source_found_data": true,
+    "total_latency_ms": 5395
+  },
+  {
+    "ground_truth": {
+      "name": "Ryan Nolan",
+      "company": "Eucalyptus",
+      "title": "VP International",
+      "linkedin_url": "https://www.linkedin.com/in/rnolan94"
+    },
+    "enrichments": {
+      "rapidapi": {
+        "success": true,
+        "name": "Ryan Nolan",
+        "title": "VP International @ Euc",
+        "company": "Full-time \u00b7 1 yr 1 mo",
+        "experiences": [
+          {
+            "title": "Eucalyptus",
+            "company": "Full-time \u00b7 1 yr 1 mo",
+            "duration": "London Area, United Kingdom \u00b7 On-site",
+            "company_url": "https://www.linkedin.com/company/14544489/"
+          },
+          {
+            "title": "Founder",
+            "company": "Savely",
+            "duration": "Feb 2024 - Nov 2024 \u00b7 10 mos",
+            "company_url": "https://www.linkedin.com/search/results/all/?keywords=Savely"
+          },
+          {
+            "title": "Co-Founder",
+            "company": "Portal",
+            "duration": "Aug 2022 - Feb 2024 \u00b7 1 yr 7 mos",
+            "company_url": "https://www.linkedin.com/company/84139090/"
+          }
+        ],
+        "error": null
+      },
+      "scrapin": {
+        "success": false,
+        "name": null,
+        "title": null,
+        "company": null,
+        "experiences": [],
+        "error": "'ScrapinPersonProfile' object has no attribute 'experiences'"
+      }
+    },
+    "verification": {
+      "is_same_person": true,
+      "currently_employed": false,
+      "confidence": 30,
+      "reasoning": "Rule-based verification",
+      "red_flags": [
+        "Company not found in recent experiences"
+      ]
+    },
+    "sources_agree_on_name": true,
+    "sources_agree_on_company": true,
+    "any_source_found_data": true,
+    "total_latency_ms": 9181
+  },
+  {
+    "ground_truth": {
+      "name": "Saroosh Khan",
+      "company": "Allia",
+      "title": "Co-Founder - CTO",
+      "linkedin_url": "https://www.linkedin.com/in/saroosh-khan"
+    },
+    "enrichments": {
+      "rapidapi": {
+        "success": true,
+        "name": "Saroosh Khan",
+        "title": "Cofounder@ allia.health",
+        "company": "Allia \u00b7 Full-time",
+        "experiences": [
+          {
+            "title": "Co-Founder - CTO",
+            "company": "Allia \u00b7 Full-time",
+            "duration": "Apr 2024 - Present \u00b7 1 yr 8 mos",
+            "company_url": "https://www.linkedin.com/company/89593463/"
+          },
+          {
+            "title": "Consultant",
+            "company": "Powered by Search \u00b7 Full-time",
+            "duration": "Feb 2022 - Apr 2024 \u00b7 2 yrs 3 mos",
+            "company_url": "https://www.linkedin.com/company/750270/"
+          },
+          {
+            "title": "Consultant",
+            "company": "Freelance",
+            "duration": "Jun 2016 - Jan 2024 \u00b7 7 yrs 8 mos",
+            "company_url": "https://www.linkedin.com/search/results/all/?keywords=Freelance"
+          }
+        ],
+        "error": null
+      },
+      "scrapin": {
+        "success": false,
+        "name": null,
+        "title": null,
+        "company": null,
+        "experiences": [],
+        "error": "'ScrapinPersonProfile' object has no attribute 'experiences'"
+      }
+    },
+    "verification": {
+      "is_same_person": true,
+      "currently_employed": true,
+      "confidence": 90,
+      "reasoning": "Rule-based verification",
+      "red_flags": []
+    },
+    "sources_agree_on_name": true,
+    "sources_agree_on_company": true,
+    "any_source_found_data": true,
+    "total_latency_ms": 5268
+  },
+  {
+    "ground_truth": {
+      "name": "Carol Malakasis",
+      "company": "Market Pull Group",
+      "title": "CEO & founder",
+      "linkedin_url": "https://www.linkedin.com/in/carolmalakasis"
+    },
+    "enrichments": {
+      "rapidapi": {
+        "success": true,
+        "name": "Carol Malakasis",
+        "title": "De-risking sales | GTM coach to 100+ YC founders and founding sales teams | 2 exits",
+        "company": "Market Pull Group \u00b7 Full-time",
+        "experiences": [
+          {
+            "title": "CEO & founder",
+            "company": "Market Pull Group \u00b7 Full-time",
+            "duration": "Jan 2023 - Present \u00b7 2 yrs 11 mos",
+            "company_url": "https://www.linkedin.com/company/100779359/"
+          },
+          {
+            "title": "Startup Mentor",
+            "company": "SOSA \u00b7 Part-time",
+            "duration": "Jun 2024 - Present \u00b7 1 yr 6 mos",
+            "company_url": "https://www.linkedin.com/company/5397941/"
+          },
+          {
+            "title": "Startup Mentor",
+            "company": "Entrepreneurs Roundtable Accelerator \u00b7 Part-time",
+            "duration": "Jul 2023 - Present \u00b7 2 yrs 5 mos",
+            "company_url": "https://www.linkedin.com/company/1968378/"
+          }
+        ],
+        "error": null
+      },
+      "scrapin": {
+        "success": false,
+        "name": null,
+        "title": null,
+        "company": null,
+        "experiences": [],
+        "error": "'ScrapinPersonProfile' object has no attribute 'experiences'"
+      }
+    },
+    "verification": {
+      "is_same_person": true,
+      "currently_employed": true,
+      "confidence": 90,
+      "reasoning": "Rule-based verification",
+      "red_flags": []
+    },
+    "sources_agree_on_name": true,
+    "sources_agree_on_company": true,
+    "any_source_found_data": true,
+    "total_latency_ms": 10733
+  }
+]

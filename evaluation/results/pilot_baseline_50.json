@@ -1,0 +1,1316 @@
+{
+  "metadata": {
+    "input_file": "evaluation/data/agent_eval_50.json",
+    "limit": 50,
+    "concurrency": 5,
+    "skip_stages": [],
+    "timestamp": "2025-12-01T18:59:42.322919"
+  },
+  "summary": {
+    "total_companies": 50,
+    "companies_processed": 50,
+    "contacts_found": 29,
+    "contacts_validated": 8,
+    "serper_queries": 77,
+    "leadmagic_credits": 0,
+    "zenrows_requests": 88,
+    "estimated_cost": 1.2149999999999999
+  },
+  "stage_stats": {
+    "input_analysis": {
+      "total_rows": 50,
+      "companies_loaded": 50,
+      "detected_fields": [
+        "company_name",
+        "domain",
+        "vertical",
+        "address",
+        "phone",
+        "rating",
+        "reviews_count"
+      ],
+      "missing_fields": [],
+      "has_domain": "100.0%",
+      "has_owner": "0.0%"
+    }
+  },
+  "results": [
+    {
+      "company_name": "West Pavilion Dialysis",
+      "domain": "henryford.com",
+      "vertical": "dialysis_centers",
+      "stages_completed": [
+        "data_fill",
+        "website_fallback",
+        "social_links",
+        "validation"
+      ],
+      "errors": [],
+      "processing_time_ms": 7793.653964996338,
+      "contacts": [
+        {
+          "name": "Report Project",
+          "email": null,
+          "phone": null,
+          "title": "Owner",
+          "linkedin_url": null,
+          "sources": [
+            "serper_osint"
+          ],
+          "is_valid": false,
+          "confidence": 30.0,
+          "validation_reasons": [
+            "The contact's name is found but lacks verification through a reliable source, and there is no email or phone number provided.",
+            "RED FLAG: No email provided",
+            "RED FLAG: No phone number provided",
+            "RED FLAG: Email source is 'discovery' with no verification"
+          ]
+        }
+      ]
+    },
+    {
+      "company_name": "Westbridge Veterinary Referral Hospital",
+      "domain": "westbridgevets.com",
+      "vertical": "dialysis_centers",
+      "stages_completed": [
+        "data_fill",
+        "website_fallback",
+        "serper_osint",
+        "social_links",
+        "validation"
+      ],
+      "errors": [],
+      "processing_time_ms": 5214.570045471191,
+      "contacts": []
+    },
+    {
+      "company_name": "Fresenius Kidney Care Leawood",
+      "domain": "freseniuskidneycare.com",
+      "vertical": "dialysis_centers",
+      "stages_completed": [
+        "data_fill",
+        "website_fallback",
+        "serper_osint",
+        "social_links",
+        "validation"
+      ],
+      "errors": [],
+      "processing_time_ms": 5458.918333053589,
+      "contacts": []
+    },
+    {
+      "company_name": "U.S. Renal Care",
+      "domain": "usrenalcare.com",
+      "vertical": "dialysis_centers",
+      "stages_completed": [
+        "data_fill",
+        "website_fallback",
+        "social_links",
+        "validation"
+      ],
+      "errors": [],
+      "processing_time_ms": 6637.294054031372,
+      "contacts": [
+        {
+          "name": "Chris Brengard",
+          "email": null,
+          "phone": null,
+          "title": "Owner",
+          "linkedin_url": null,
+          "sources": [
+            "serper_osint"
+          ],
+          "is_valid": false,
+          "confidence": 30.0,
+          "validation_reasons": [
+            "The contact is identified as the owner, but lacks a verified email and phone number, leading to significant uncertainty.",
+            "RED FLAG: No email provided",
+            "RED FLAG: No phone number provided",
+            "RED FLAG: Email source is discovery with no verification"
+          ]
+        }
+      ]
+    },
+    {
+      "company_name": "Veterinary Specialty Center of Sturbridge",
+      "domain": "vscsturbridge.com",
+      "vertical": "dialysis_centers",
+      "stages_completed": [
+        "data_fill",
+        "website_fallback",
+        "serper_osint",
+        "social_links",
+        "validation"
+      ],
+      "errors": [],
+      "processing_time_ms": 8701.503992080688,
+      "contacts": [
+        {
+          "name": "ACVIM Forum",
+          "email": null,
+          "phone": null,
+          "title": "Owner",
+          "linkedin_url": null,
+          "sources": [
+            "serper_osint"
+          ],
+          "is_valid": false,
+          "confidence": 30.0,
+          "validation_reasons": [
+            "The contact name 'ACVIM Forum' is found as the owner, but lacks a verified email and phone number, leading to significant uncertainty.",
+            "RED FLAG: No email provided",
+            "RED FLAG: No phone number provided",
+            "RED FLAG: Email source is 'discovery' with no verification"
+          ]
+        }
+      ]
+    },
+    {
+      "company_name": "Innovative Renal Care Titusville Dialysis and Kidney Center",
+      "domain": "innovativerenal.com",
+      "vertical": "dialysis_centers",
+      "stages_completed": [
+        "data_fill",
+        "website_fallback",
+        "serper_osint",
+        "social_links",
+        "validation"
+      ],
+      "errors": [],
+      "processing_time_ms": 7872.744083404541,
+      "contacts": []
+    },
+    {
+      "company_name": "Pacific Renal Care",
+      "domain": "pacificrenalcareoc.com",
+      "vertical": "dialysis_centers",
+      "stages_completed": [
+        "data_fill",
+        "website_fallback",
+        "social_links",
+        "validation"
+      ],
+      "errors": [],
+      "processing_time_ms": 4903.159141540527,
+      "contacts": [
+        {
+          "name": "Scholarships Expanding",
+          "email": null,
+          "phone": null,
+          "title": "Owner",
+          "linkedin_url": null,
+          "sources": [
+            "serper_osint"
+          ],
+          "is_valid": false,
+          "confidence": 30.0,
+          "validation_reasons": [
+            "The contact's name is found as the owner, but there is no email or phone number provided, and the email source is weak (discovery) with no verification.",
+            "RED FLAG: No email provided",
+            "RED FLAG: No phone number provided",
+            "RED FLAG: Weak email source"
+          ]
+        }
+      ]
+    },
+    {
+      "company_name": "Fresenius Kidney Care Kew Gardens At Silver Lake Snf",
+      "domain": "freseniuskidneycare.com",
+      "vertical": "dialysis_centers",
+      "stages_completed": [
+        "data_fill",
+        "website_fallback",
+        "serper_osint",
+        "social_links",
+        "validation"
+      ],
+      "errors": [],
+      "processing_time_ms": 2425.2758026123047,
+      "contacts": []
+    },
+    {
+      "company_name": "Stacked | A Montana Grill",
+      "domain": "stackedamontanagrill.com",
+      "vertical": "bakeries",
+      "stages_completed": [
+        "data_fill",
+        "website_fallback",
+        "social_links",
+        "validation"
+      ],
+      "errors": [],
+      "processing_time_ms": 4786.920785903931,
+      "contacts": [
+        {
+          "name": "Stephan Hindman",
+          "email": null,
+          "phone": null,
+          "title": "Owner",
+          "linkedin_url": null,
+          "sources": [
+            "serper_osint"
+          ],
+          "is_valid": true,
+          "confidence": 50.0,
+          "validation_reasons": [
+            "The contact is the owner of the business, but there is no email or phone number provided, and the email source is not verified, leading to significant uncertainty.",
+            "RED FLAG: No email provided",
+            "RED FLAG: No phone number provided",
+            "RED FLAG: Email source is unverified"
+          ]
+        }
+      ]
+    },
+    {
+      "company_name": "Baldwin Bagels",
+      "domain": "baldwinbagels.com",
+      "vertical": "bakeries",
+      "stages_completed": [
+        "data_fill",
+        "website_fallback",
+        "serper_osint",
+        "social_links",
+        "validation"
+      ],
+      "errors": [],
+      "processing_time_ms": 7109.296798706055,
+      "contacts": [
+        {
+          "name": "Gillian Forsyth",
+          "email": null,
+          "phone": null,
+          "title": "Owner",
+          "linkedin_url": null,
+          "sources": [
+            "serper_osint"
+          ],
+          "is_valid": false,
+          "confidence": 30.0,
+          "validation_reasons": [
+            "The contact is identified as the owner, but lacks a verified email and phone number, leading to significant uncertainty.",
+            "RED FLAG: No email provided",
+            "RED FLAG: No phone number provided",
+            "RED FLAG: Email source is 'discovery' with no verification"
+          ]
+        }
+      ]
+    },
+    {
+      "company_name": "Range Cafe Downtown",
+      "domain": "rangecafe.com",
+      "vertical": "bakeries",
+      "stages_completed": [
+        "data_fill",
+        "website_fallback",
+        "serper_osint",
+        "social_links",
+        "validation"
+      ],
+      "errors": [],
+      "processing_time_ms": 2467.170000076294,
+      "contacts": []
+    },
+    {
+      "company_name": "Tractor Supply Co.",
+      "domain": "tractorsupply.com",
+      "vertical": "bakeries",
+      "stages_completed": [
+        "data_fill",
+        "website_fallback",
+        "social_links",
+        "validation"
+      ],
+      "errors": [],
+      "processing_time_ms": 19253.579139709473,
+      "contacts": [
+        {
+          "name": "Senior Vice",
+          "email": null,
+          "phone": null,
+          "title": "Owner",
+          "linkedin_url": null,
+          "sources": [
+            "serper_osint"
+          ],
+          "is_valid": false,
+          "confidence": 30.0,
+          "validation_reasons": [
+            "The contact's name is found but lacks verification and there is no email or phone number provided, leading to significant uncertainty.",
+            "RED FLAG: No email provided",
+            "RED FLAG: No phone number provided",
+            "RED FLAG: Email source is 'discovery' with no verification"
+          ]
+        }
+      ]
+    },
+    {
+      "company_name": "Woods Coffee",
+      "domain": "woodscoffee.com",
+      "vertical": "bakeries",
+      "stages_completed": [
+        "data_fill",
+        "website_fallback",
+        "social_links",
+        "validation"
+      ],
+      "errors": [],
+      "processing_time_ms": 5712.475776672363,
+      "contacts": [
+        {
+          "name": "Wes Herman",
+          "email": null,
+          "phone": null,
+          "title": "Owner",
+          "linkedin_url": null,
+          "sources": [
+            "serper_osint"
+          ],
+          "is_valid": true,
+          "confidence": 50.0,
+          "validation_reasons": [
+            "Wes Herman is identified as the owner of Woods Coffee, but there is no email or phone number provided, and the email source is from discovery with no verification.",
+            "RED FLAG: No email provided",
+            "RED FLAG: No phone number provided",
+            "RED FLAG: Email source is discovery with no verification"
+          ]
+        }
+      ]
+    },
+    {
+      "company_name": "Organic Remedies Dispensary",
+      "domain": "organicremediespa.com",
+      "vertical": "bakeries",
+      "stages_completed": [
+        "data_fill",
+        "website_fallback",
+        "social_links",
+        "validation"
+      ],
+      "errors": [],
+      "processing_time_ms": 8176.214933395386,
+      "contacts": [
+        {
+          "name": "John Dymond",
+          "email": null,
+          "phone": null,
+          "title": "Owner",
+          "linkedin_url": null,
+          "sources": [
+            "serper_osint"
+          ],
+          "is_valid": false,
+          "confidence": 30.0,
+          "validation_reasons": [
+            "The contact is identified as the owner, but lacks a verified email and phone number, leading to significant uncertainty.",
+            "RED FLAG: No email provided",
+            "RED FLAG: No phone number provided",
+            "RED FLAG: Email source is 'discovery' with no verification"
+          ]
+        }
+      ]
+    },
+    {
+      "company_name": "PCC Community Markets - Edmonds Co-op",
+      "domain": "pccmarkets.com",
+      "vertical": "bakeries",
+      "stages_completed": [
+        "data_fill",
+        "website_fallback",
+        "serper_osint",
+        "social_links",
+        "validation"
+      ],
+      "errors": [],
+      "processing_time_ms": 2576.6918659210205,
+      "contacts": []
+    },
+    {
+      "company_name": "Adjudicake",
+      "domain": "adjudicake.com",
+      "vertical": "bakeries",
+      "stages_completed": [
+        "data_fill",
+        "website_fallback",
+        "serper_osint",
+        "social_links",
+        "validation"
+      ],
+      "errors": [],
+      "processing_time_ms": 6212.459087371826,
+      "contacts": []
+    },
+    {
+      "company_name": "American RV Technology, Inc.",
+      "domain": "americanrvtechnology.com",
+      "vertical": "auto_body_shops",
+      "stages_completed": [
+        "data_fill",
+        "website_fallback",
+        "serper_osint",
+        "social_links",
+        "validation"
+      ],
+      "errors": [],
+      "processing_time_ms": 6105.712175369263,
+      "contacts": [
+        {
+          "name": "John Ringling",
+          "email": null,
+          "phone": null,
+          "title": "Owner",
+          "linkedin_url": null,
+          "sources": [
+            "serper_osint"
+          ],
+          "is_valid": false,
+          "confidence": 30.0,
+          "validation_reasons": [
+            "The contact is identified as the owner, but lacks a verified email and phone number, leading to significant uncertainty.",
+            "RED FLAG: No email provided",
+            "RED FLAG: No phone number provided",
+            "RED FLAG: Email source is 'discovery' with no verification"
+          ]
+        }
+      ]
+    },
+    {
+      "company_name": "1 Stop Complete Auto Glass",
+      "domain": "1stopcompleteautoglass.com",
+      "vertical": "auto_body_shops",
+      "stages_completed": [
+        "data_fill",
+        "website_fallback",
+        "serper_osint",
+        "social_links",
+        "validation"
+      ],
+      "errors": [],
+      "processing_time_ms": 3507.817029953003,
+      "contacts": []
+    },
+    {
+      "company_name": "Brandon Collision",
+      "domain": "brandoncollision.com",
+      "vertical": "auto_body_shops",
+      "stages_completed": [
+        "data_fill",
+        "website_fallback",
+        "serper_osint",
+        "social_links",
+        "validation"
+      ],
+      "errors": [],
+      "processing_time_ms": 4258.282899856567,
+      "contacts": []
+    },
+    {
+      "company_name": "Bentley Cadillac Collision Repair Center",
+      "domain": "bentleycadillac.com",
+      "vertical": "auto_body_shops",
+      "stages_completed": [
+        "data_fill",
+        "website_fallback",
+        "serper_osint",
+        "social_links",
+        "validation"
+      ],
+      "errors": [],
+      "processing_time_ms": 4453.035116195679,
+      "contacts": []
+    },
+    {
+      "company_name": "Oil Changers",
+      "domain": "oilchangers.com",
+      "vertical": "auto_body_shops",
+      "stages_completed": [
+        "data_fill",
+        "website_fallback",
+        "social_links",
+        "validation"
+      ],
+      "errors": [],
+      "processing_time_ms": 4440.057992935181,
+      "contacts": [
+        {
+          "name": "Eric Frankenberger",
+          "email": null,
+          "phone": null,
+          "title": "Owner",
+          "linkedin_url": null,
+          "sources": [
+            "serper_osint"
+          ],
+          "is_valid": false,
+          "confidence": 30.0,
+          "validation_reasons": [
+            "The contact is identified as the owner, but lacks a verified email and phone number, leading to significant uncertainty.",
+            "RED FLAG: No email provided",
+            "RED FLAG: No phone number provided",
+            "RED FLAG: Email source is discovery with no verification"
+          ]
+        }
+      ]
+    },
+    {
+      "company_name": "CAR FIX Walker Springs",
+      "domain": "teamcarfix.com",
+      "vertical": "auto_body_shops",
+      "stages_completed": [
+        "data_fill",
+        "website_fallback",
+        "serper_osint",
+        "social_links",
+        "validation"
+      ],
+      "errors": [],
+      "processing_time_ms": 2253.0441284179688,
+      "contacts": []
+    },
+    {
+      "company_name": "Spencer Auto Repair",
+      "domain": "spencerautorepair.com",
+      "vertical": "auto_body_shops",
+      "stages_completed": [
+        "data_fill",
+        "website_fallback",
+        "social_links",
+        "validation"
+      ],
+      "errors": [],
+      "processing_time_ms": 5561.148166656494,
+      "contacts": [
+        {
+          "name": "Geoffrey Spencer",
+          "email": null,
+          "phone": null,
+          "title": "Owner",
+          "linkedin_url": null,
+          "sources": [
+            "serper_osint"
+          ],
+          "is_valid": false,
+          "confidence": 30.0,
+          "validation_reasons": [
+            "The contact is identified as the owner, but lacks a verified email and phone number, leading to significant uncertainty.",
+            "RED FLAG: No email provided",
+            "RED FLAG: No phone number provided",
+            "RED FLAG: Email source is 'discovery' with no verification"
+          ]
+        }
+      ]
+    },
+    {
+      "company_name": "Brookside 66 Services",
+      "domain": "brookside66.com",
+      "vertical": "auto_body_shops",
+      "stages_completed": [
+        "data_fill",
+        "website_fallback",
+        "serper_osint",
+        "social_links",
+        "validation"
+      ],
+      "errors": [],
+      "processing_time_ms": 2895.0579166412354,
+      "contacts": []
+    },
+    {
+      "company_name": "Pocatello Free Clinic",
+      "domain": "pocatellofreeclinic.com",
+      "vertical": "fertility_and_ivf_clinics",
+      "stages_completed": [
+        "data_fill",
+        "website_fallback",
+        "social_links",
+        "validation"
+      ],
+      "errors": [],
+      "processing_time_ms": 6263.4618282318115,
+      "contacts": [
+        {
+          "name": "Shaun Menchaca",
+          "email": null,
+          "phone": null,
+          "title": "Owner",
+          "linkedin_url": null,
+          "sources": [
+            "serper_osint"
+          ],
+          "is_valid": true,
+          "confidence": 50.0,
+          "validation_reasons": [
+            "Shaun Menchaca is identified as the owner from a reliable source, but there is no email or phone number provided, which significantly lowers confidence.",
+            "RED FLAG: No email provided",
+            "RED FLAG: No phone number provided"
+          ]
+        }
+      ]
+    },
+    {
+      "company_name": "Fayetteville Woman's Care",
+      "domain": "fwc.net",
+      "vertical": "fertility_and_ivf_clinics",
+      "stages_completed": [
+        "data_fill",
+        "website_fallback",
+        "social_links",
+        "validation"
+      ],
+      "errors": [],
+      "processing_time_ms": 5153.098821640015,
+      "contacts": [
+        {
+          "name": "Ralph Huff",
+          "email": null,
+          "phone": null,
+          "title": "Owner",
+          "linkedin_url": null,
+          "sources": [
+            "serper_osint"
+          ],
+          "is_valid": false,
+          "confidence": 30.0,
+          "validation_reasons": [
+            "The contact is identified as the owner, but lacks a verified email and phone number, leading to significant uncertainty.",
+            "RED FLAG: No email provided",
+            "RED FLAG: No phone number provided",
+            "RED FLAG: Email source is discovery with no verification"
+          ]
+        }
+      ]
+    },
+    {
+      "company_name": "Northeastern Health System Tahlequah : Emergency Room",
+      "domain": "alwaysnhs.org",
+      "vertical": "fertility_and_ivf_clinics",
+      "stages_completed": [
+        "data_fill",
+        "website_fallback",
+        "serper_osint",
+        "social_links",
+        "validation"
+      ],
+      "errors": [],
+      "processing_time_ms": 4247.080087661743,
+      "contacts": []
+    },
+    {
+      "company_name": "Minnesota Perinatal Physicians - Coon Rapids",
+      "domain": "account.allinahealth.org",
+      "vertical": "fertility_and_ivf_clinics",
+      "stages_completed": [
+        "data_fill",
+        "website_fallback",
+        "serper_osint",
+        "social_links",
+        "validation"
+      ],
+      "errors": [],
+      "processing_time_ms": 4009.038209915161,
+      "contacts": []
+    },
+    {
+      "company_name": "Crossroads Care Clinic",
+      "domain": "crossroadscareclinic.net",
+      "vertical": "fertility_and_ivf_clinics",
+      "stages_completed": [
+        "data_fill",
+        "website_fallback",
+        "social_links",
+        "validation"
+      ],
+      "errors": [],
+      "processing_time_ms": 9653.856992721558,
+      "contacts": [
+        {
+          "name": "Rotary Club",
+          "email": null,
+          "phone": null,
+          "title": "Owner",
+          "linkedin_url": null,
+          "sources": [
+            "serper_osint"
+          ],
+          "is_valid": false,
+          "confidence": 30.0,
+          "validation_reasons": [
+            "The contact name 'Rotary Club' does not match the company name 'Crossroads Care Clinic', and there is no email or phone number provided for verification.",
+            "RED FLAG: Contact name does not match company name",
+            "RED FLAG: No email or phone number provided",
+            "RED FLAG: Email source is 'discovery' with no verification"
+          ]
+        },
+        {
+          "name": "CMSTeam",
+          "email": null,
+          "phone": null,
+          "title": null,
+          "linkedin_url": null,
+          "sources": [
+            "schema_org"
+          ],
+          "is_valid": false,
+          "confidence": 30.0,
+          "validation_reasons": [
+            "The contact lacks a valid name, title, email, and phone number, with only weak evidence from the Rotary Club search, leading to significant uncertainty.",
+            "RED FLAG: No valid name or title provided",
+            "RED FLAG: No email or phone number available",
+            "RED FLAG: Weak evidence from the source"
+          ]
+        }
+      ]
+    },
+    {
+      "company_name": "Maternal-Fetal Medicine Specialists of South Florida",
+      "domain": "toplinemd.com",
+      "vertical": "fertility_and_ivf_clinics",
+      "stages_completed": [
+        "data_fill",
+        "website_fallback",
+        "serper_osint",
+        "social_links",
+        "validation"
+      ],
+      "errors": [],
+      "processing_time_ms": 3682.2309494018555,
+      "contacts": []
+    },
+    {
+      "company_name": "River City OB/GYN",
+      "domain": "rivercityobgyn.com",
+      "vertical": "fertility_and_ivf_clinics",
+      "stages_completed": [
+        "data_fill",
+        "website_fallback",
+        "serper_osint",
+        "social_links",
+        "validation"
+      ],
+      "errors": [],
+      "processing_time_ms": 5027.771234512329,
+      "contacts": []
+    },
+    {
+      "company_name": "HaysMed DeBakey Heart Institute",
+      "domain": "haysmed.com",
+      "vertical": "fertility_and_ivf_clinics",
+      "stages_completed": [
+        "data_fill",
+        "website_fallback",
+        "serper_osint",
+        "social_links",
+        "validation"
+      ],
+      "errors": [],
+      "processing_time_ms": 5119.027853012085,
+      "contacts": []
+    },
+    {
+      "company_name": "BJ's Restaurant & Brewhouse",
+      "domain": "bjsrestaurants.com",
+      "vertical": "breweries_and_brewpubs",
+      "stages_completed": [
+        "data_fill",
+        "website_fallback",
+        "serper_osint",
+        "social_links",
+        "validation"
+      ],
+      "errors": [],
+      "processing_time_ms": 8729.397058486938,
+      "contacts": [
+        {
+          "name": "Greg Levin",
+          "email": null,
+          "phone": null,
+          "title": "Owner",
+          "linkedin_url": null,
+          "sources": [
+            "serper_osint"
+          ],
+          "is_valid": false,
+          "confidence": 30.0,
+          "validation_reasons": [
+            "The contact is identified as the owner, but lacks a verified email and phone number, leading to significant uncertainty.",
+            "RED FLAG: No email provided",
+            "RED FLAG: No phone number provided",
+            "RED FLAG: Email source is 'discovery' with no verification"
+          ]
+        }
+      ]
+    },
+    {
+      "company_name": "Brewskis Oak Ridge",
+      "domain": "brewskis-oak-ridge.edan.io",
+      "vertical": "breweries_and_brewpubs",
+      "stages_completed": [
+        "data_fill",
+        "website_fallback",
+        "serper_osint",
+        "social_links",
+        "validation"
+      ],
+      "errors": [],
+      "processing_time_ms": 4971.53377532959,
+      "contacts": []
+    },
+    {
+      "company_name": "Bull Island Brewing Company",
+      "domain": "bullislandbrewing.com",
+      "vertical": "breweries_and_brewpubs",
+      "stages_completed": [
+        "data_fill",
+        "website_fallback",
+        "social_links",
+        "validation"
+      ],
+      "errors": [],
+      "processing_time_ms": 5857.007741928101,
+      "contacts": [
+        {
+          "name": "Doug Reier",
+          "email": null,
+          "phone": null,
+          "title": "Owner",
+          "linkedin_url": null,
+          "sources": [
+            "serper_osint"
+          ],
+          "is_valid": true,
+          "confidence": 70.0,
+          "validation_reasons": [
+            "Doug Reier is identified as the owner of Bull Island Brewing Company through a reliable source (serper_osint), providing good evidence for the contact's validity.",
+            "RED FLAG: No email provided",
+            "RED FLAG: No phone number available",
+            "RED FLAG: LinkedIn profile not found"
+          ]
+        }
+      ]
+    },
+    {
+      "company_name": "River Rock Brewery",
+      "domain": "riverrockbrewery.com",
+      "vertical": "breweries_and_brewpubs",
+      "stages_completed": [
+        "data_fill",
+        "website_fallback",
+        "social_links",
+        "validation"
+      ],
+      "errors": [],
+      "processing_time_ms": 5212.110996246338,
+      "contacts": [
+        {
+          "name": "Brian Marsh",
+          "email": null,
+          "phone": null,
+          "title": "Owner",
+          "linkedin_url": null,
+          "sources": [
+            "serper_osint"
+          ],
+          "is_valid": true,
+          "confidence": 70.0,
+          "validation_reasons": [
+            "The contact is the owner of River Rock Brewery, which is a strong match based on the evidence from serper_osint, but lacks an email and phone number for verification.",
+            "RED FLAG: No email provided",
+            "RED FLAG: No phone number provided"
+          ]
+        }
+      ]
+    },
+    {
+      "company_name": "The Friendly Fermenter, LLC",
+      "domain": "friendlyfermenter.com",
+      "vertical": "breweries_and_brewpubs",
+      "stages_completed": [
+        "data_fill",
+        "website_fallback",
+        "serper_osint",
+        "social_links",
+        "validation"
+      ],
+      "errors": [],
+      "processing_time_ms": 3635.641098022461,
+      "contacts": []
+    },
+    {
+      "company_name": "Calapooia Brewing",
+      "domain": "calapooiabrewing.com",
+      "vertical": "breweries_and_brewpubs",
+      "stages_completed": [
+        "data_fill",
+        "website_fallback",
+        "social_links",
+        "validation"
+      ],
+      "errors": [],
+      "processing_time_ms": 5527.554035186768,
+      "contacts": [
+        {
+          "name": "Chris Neumann",
+          "email": null,
+          "phone": null,
+          "title": "Owner",
+          "linkedin_url": null,
+          "sources": [
+            "serper_osint"
+          ],
+          "is_valid": true,
+          "confidence": 70.0,
+          "validation_reasons": [
+            "Chris Neumann is identified as the owner of Calapooia Brewing through a reliable source (serper_osint), providing good evidence for the contact's validity.",
+            "RED FLAG: No email provided",
+            "RED FLAG: No phone number available",
+            "RED FLAG: LinkedIn profile not found"
+          ]
+        }
+      ]
+    },
+    {
+      "company_name": "Rockfish Brewing Company Preston",
+      "domain": "rockfishbrewcompany.com",
+      "vertical": "breweries_and_brewpubs",
+      "stages_completed": [
+        "data_fill",
+        "website_fallback",
+        "serper_osint",
+        "social_links",
+        "validation"
+      ],
+      "errors": [],
+      "processing_time_ms": 4764.577865600586,
+      "contacts": []
+    },
+    {
+      "company_name": "Artillery Brewing",
+      "domain": "artillerybrewing.com",
+      "vertical": "breweries_and_brewpubs",
+      "stages_completed": [
+        "data_fill",
+        "website_fallback",
+        "social_links",
+        "validation"
+      ],
+      "errors": [],
+      "processing_time_ms": 4713.860034942627,
+      "contacts": [
+        {
+          "name": "Paul Zippel",
+          "email": null,
+          "phone": null,
+          "title": "Owner",
+          "linkedin_url": null,
+          "sources": [
+            "serper_osint"
+          ],
+          "is_valid": true,
+          "confidence": 50.0,
+          "validation_reasons": [
+            "The contact is identified as the owner, but lacks an email and phone number, which significantly reduces confidence for outreach.",
+            "RED FLAG: No email provided",
+            "RED FLAG: No phone number provided",
+            "RED FLAG: Email source is 'discovery' with no verification"
+          ]
+        }
+      ]
+    },
+    {
+      "company_name": "Starbucks",
+      "domain": "starbucks.com",
+      "vertical": "coffee_shops_in_the_usa",
+      "stages_completed": [
+        "data_fill",
+        "website_fallback",
+        "social_links",
+        "validation"
+      ],
+      "errors": [],
+      "processing_time_ms": 7022.014856338501,
+      "contacts": [
+        {
+          "name": "Howard Schultz",
+          "email": null,
+          "phone": null,
+          "title": "Owner",
+          "linkedin_url": null,
+          "sources": [
+            "serper_osint"
+          ],
+          "is_valid": false,
+          "confidence": 30.0,
+          "validation_reasons": [
+            "The contact is identified as the owner, but lacks a verified email and phone number, leading to significant uncertainty.",
+            "RED FLAG: No email provided",
+            "RED FLAG: No phone number provided",
+            "RED FLAG: Email source is discovery with no verification"
+          ]
+        }
+      ]
+    },
+    {
+      "company_name": "Bean Traders",
+      "domain": "beantraderscoffee.com",
+      "vertical": "coffee_shops_in_the_usa",
+      "stages_completed": [
+        "data_fill",
+        "website_fallback",
+        "social_links",
+        "validation"
+      ],
+      "errors": [],
+      "processing_time_ms": 5271.031856536865,
+      "contacts": [
+        {
+          "name": "David Chapman",
+          "email": null,
+          "phone": null,
+          "title": "Owner",
+          "linkedin_url": null,
+          "sources": [
+            "serper_osint"
+          ],
+          "is_valid": false,
+          "confidence": 30.0,
+          "validation_reasons": [
+            "The contact is identified as the owner, but lacks a verified email and phone number, leading to significant uncertainty.",
+            "RED FLAG: No email provided",
+            "RED FLAG: No phone number provided",
+            "RED FLAG: Email source is 'discovery' with no verification"
+          ]
+        }
+      ]
+    },
+    {
+      "company_name": "Dunkin'",
+      "domain": "locations.dunkindonuts.com",
+      "vertical": "coffee_shops_in_the_usa",
+      "stages_completed": [
+        "data_fill",
+        "social_links",
+        "validation"
+      ],
+      "errors": [
+        "Website extraction failed: 'NoneType' object has no attribute 'get'"
+      ],
+      "processing_time_ms": 5429.48317527771,
+      "contacts": [
+        {
+          "name": "Passes Away",
+          "email": null,
+          "phone": null,
+          "title": "Owner",
+          "linkedin_url": null,
+          "sources": [
+            "serper_osint"
+          ],
+          "is_valid": false,
+          "confidence": 30.0,
+          "validation_reasons": [
+            "The contact's name is found but lacks verification through a reliable source, and there is no email or phone number provided.",
+            "RED FLAG: No email provided",
+            "RED FLAG: No phone number provided",
+            "RED FLAG: Email source is 'discovery' with no verification"
+          ]
+        }
+      ]
+    },
+    {
+      "company_name": "G Cafe Bakery East Rock",
+      "domain": "gcafebakery.com",
+      "vertical": "coffee_shops_in_the_usa",
+      "stages_completed": [
+        "data_fill",
+        "website_fallback",
+        "social_links",
+        "validation"
+      ],
+      "errors": [],
+      "processing_time_ms": 3750.814914703369,
+      "contacts": [
+        {
+          "name": "Ritu Narayan",
+          "email": null,
+          "phone": null,
+          "title": "Owner",
+          "linkedin_url": null,
+          "sources": [
+            "serper_osint"
+          ],
+          "is_valid": true,
+          "confidence": 70.0,
+          "validation_reasons": [
+            "The owner name Ritu Narayan was found via a reliable source (serper_osint), which supports the title of Owner, providing a good match for outreach.",
+            "RED FLAG: No email provided",
+            "RED FLAG: No phone number available",
+            "RED FLAG: LinkedIn profile not found"
+          ]
+        }
+      ]
+    },
+    {
+      "company_name": "Coffee Klatch",
+      "domain": "coffeecateringgreenville.com",
+      "vertical": "coffee_shops_in_the_usa",
+      "stages_completed": [
+        "data_fill",
+        "website_fallback",
+        "social_links",
+        "validation"
+      ],
+      "errors": [],
+      "processing_time_ms": 5186.986923217773,
+      "contacts": [
+        {
+          "name": "Heather Perry",
+          "email": null,
+          "phone": null,
+          "title": "Owner",
+          "linkedin_url": null,
+          "sources": [
+            "serper_osint"
+          ],
+          "is_valid": false,
+          "confidence": 30.0,
+          "validation_reasons": [
+            "The contact is identified as the owner, but lacks a verified email and phone number, leading to significant uncertainty.",
+            "RED FLAG: No email provided",
+            "RED FLAG: No phone number provided",
+            "RED FLAG: Email source is discovery with no verification"
+          ]
+        }
+      ]
+    },
+    {
+      "company_name": "Le Pain Quotidien",
+      "domain": "lepainquotidien.com",
+      "vertical": "coffee_shops_in_the_usa",
+      "stages_completed": [
+        "data_fill",
+        "website_fallback",
+        "social_links",
+        "validation"
+      ],
+      "errors": [],
+      "processing_time_ms": 5984.460115432739,
+      "contacts": [
+        {
+          "name": "Pain Quotidien",
+          "email": null,
+          "phone": null,
+          "title": "Owner",
+          "linkedin_url": null,
+          "sources": [
+            "serper_osint"
+          ],
+          "is_valid": false,
+          "confidence": 30.0,
+          "validation_reasons": [
+            "The contact name 'Pain Quotidien' is likely a misrepresentation of the company name, and there is no email or phone number provided, leading to significant uncertainty.",
+            "RED FLAG: No email provided",
+            "RED FLAG: No phone number provided",
+            "RED FLAG: Name appears to be a misrepresentation"
+          ]
+        }
+      ]
+    },
+    {
+      "company_name": "Dunkin'",
+      "domain": "locations.dunkindonuts.com",
+      "vertical": "coffee_shops_in_the_usa",
+      "stages_completed": [
+        "data_fill",
+        "social_links",
+        "validation"
+      ],
+      "errors": [
+        "Website extraction failed: 'NoneType' object has no attribute 'get'"
+      ],
+      "processing_time_ms": 8463.529825210571,
+      "contacts": [
+        {
+          "name": "Passes Away",
+          "email": null,
+          "phone": null,
+          "title": "Owner",
+          "linkedin_url": null,
+          "sources": [
+            "serper_osint"
+          ],
+          "is_valid": false,
+          "confidence": 30.0,
+          "validation_reasons": [
+            "The contact's name is found but lacks verification from a reliable source, and there is no email or phone number provided.",
+            "RED FLAG: No email provided",
+            "RED FLAG: No phone number provided",
+            "RED FLAG: Weak evidence from a single source"
+          ]
+        }
+      ]
+    },
+    {
+      "company_name": "Robin's Nest Cafe at KEZF",
+      "domain": "therobinsnestcafe.com",
+      "vertical": "coffee_shops_in_the_usa",
+      "stages_completed": [
+        "data_fill",
+        "website_fallback",
+        "serper_osint",
+        "social_links",
+        "validation"
+      ],
+      "errors": [],
+      "processing_time_ms": 2851.196765899658,
+      "contacts": []
+    },
+    {
+      "company_name": "Plymwr Plumbing",
+      "domain": "plymwrplumbing.com",
+      "vertical": "plumbers",
+      "stages_completed": [
+        "data_fill",
+        "website_fallback",
+        "serper_osint",
+        "social_links",
+        "validation"
+      ],
+      "errors": [],
+      "processing_time_ms": 2811.6679191589355,
+      "contacts": []
+    },
+    {
+      "company_name": "L. Richards Plumbing & Heating, Inc.",
+      "domain": "lrichardsplumbing.com",
+      "vertical": "plumbers",
+      "stages_completed": [
+        "data_fill",
+        "website_fallback",
+        "serper_osint",
+        "social_links",
+        "validation"
+      ],
+      "errors": [],
+      "processing_time_ms": 9048.989295959473,
+      "contacts": [
+        {
+          "name": "Fox Brown",
+          "email": null,
+          "phone": null,
+          "title": "Owner",
+          "linkedin_url": null,
+          "sources": [
+            "serper_osint"
+          ],
+          "is_valid": false,
+          "confidence": 30.0,
+          "validation_reasons": [
+            "The contact is identified as the owner, but lacks a verified email and phone number, leading to significant uncertainty.",
+            "RED FLAG: No email provided",
+            "RED FLAG: No phone number provided",
+            "RED FLAG: Email source is 'discovery' with no verification"
+          ]
+        }
+      ]
+    }
+  ]
+}

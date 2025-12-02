@@ -1,0 +1,369 @@
+{
+  "metadata": {
+    "input_file": "evaluation/data/smb_sample_1400.json",
+    "limit": 10,
+    "concurrency": 3,
+    "skip_stages": [
+      "enrichment"
+    ],
+    "timestamp": "2025-12-01T14:30:47.993411"
+  },
+  "summary": {
+    "total_companies": 10,
+    "companies_processed": 10,
+    "contacts_found": 11,
+    "contacts_validated": 11,
+    "serper_queries": 12,
+    "leadmagic_credits": 0,
+    "zenrows_requests": 21,
+    "estimated_cost": 0.222
+  },
+  "stage_stats": {
+    "input_analysis": {
+      "total_rows": 1400,
+      "companies_loaded": 10,
+      "detected_fields": [
+        "company_name",
+        "domain",
+        "vertical",
+        "address",
+        "phone",
+        "rating",
+        "reviews_count"
+      ],
+      "missing_fields": [],
+      "has_domain": "100.0%",
+      "has_owner": "0.0%"
+    }
+  },
+  "results": [
+    {
+      "company_name": "West Pavilion Dialysis",
+      "domain": "henryford.com",
+      "vertical": "dialysis_centers",
+      "stages_completed": [
+        "data_fill",
+        "website",
+        "validation"
+      ],
+      "errors": [],
+      "processing_time_ms": 3031.9838523864746,
+      "contacts": [
+        {
+          "name": "Report Project",
+          "email": null,
+          "phone": null,
+          "title": "Owner",
+          "linkedin_url": null,
+          "sources": [
+            "serper_osint"
+          ],
+          "is_valid": true,
+          "confidence": 55,
+          "validation_reasons": [
+            "Strong owner title: Owner",
+            "Found in 1 source: serper_osint",
+            "Has full name"
+          ]
+        }
+      ]
+    },
+    {
+      "company_name": "Stacked | A Montana Grill",
+      "domain": "stackedamontanagrill.com",
+      "vertical": "bakeries",
+      "stages_completed": [
+        "data_fill",
+        "website",
+        "validation"
+      ],
+      "errors": [],
+      "processing_time_ms": 2025.0928401947021,
+      "contacts": [
+        {
+          "name": "and owner",
+          "email": null,
+          "phone": null,
+          "title": "Owner",
+          "linkedin_url": null,
+          "sources": [
+            "serper_osint"
+          ],
+          "is_valid": true,
+          "confidence": 55,
+          "validation_reasons": [
+            "Strong owner title: Owner",
+            "Found in 1 source: serper_osint",
+            "Has full name"
+          ]
+        },
+        {
+          "name": "and got to",
+          "email": null,
+          "phone": null,
+          "title": "Owner",
+          "linkedin_url": null,
+          "sources": [
+            "page_scrape"
+          ],
+          "is_valid": true,
+          "confidence": 55,
+          "validation_reasons": [
+            "Strong owner title: Owner",
+            "Found in 1 source: page_scrape",
+            "Has full name"
+          ]
+        },
+        {
+          "name": "talked with the",
+          "email": null,
+          "phone": null,
+          "title": "Owner",
+          "linkedin_url": null,
+          "sources": [
+            "page_scrape"
+          ],
+          "is_valid": true,
+          "confidence": 55,
+          "validation_reasons": [
+            "Strong owner title: Owner",
+            "Found in 1 source: page_scrape",
+            "Has full name"
+          ]
+        }
+      ]
+    },
+    {
+      "company_name": "American RV Technology, Inc.",
+      "domain": "americanrvtechnology.com",
+      "vertical": "auto_body_shops",
+      "stages_completed": [
+        "data_fill",
+        "website",
+        "serper_osint",
+        "validation"
+      ],
+      "errors": [],
+      "processing_time_ms": 3608.419179916382,
+      "contacts": [
+        {
+          "name": "and Founder",
+          "email": null,
+          "phone": null,
+          "title": "Owner",
+          "linkedin_url": null,
+          "sources": [
+            "serper_osint"
+          ],
+          "is_valid": true,
+          "confidence": 55,
+          "validation_reasons": [
+            "Strong owner title: Owner",
+            "Found in 1 source: serper_osint",
+            "Has full name"
+          ]
+        }
+      ]
+    },
+    {
+      "company_name": "Pocatello Free Clinic",
+      "domain": "pocatellofreeclinic.com",
+      "vertical": "fertility_and_ivf_clinics",
+      "stages_completed": [
+        "data_fill",
+        "website",
+        "validation"
+      ],
+      "errors": [],
+      "processing_time_ms": 2464.33687210083,
+      "contacts": [
+        {
+          "name": "of Genesis",
+          "email": null,
+          "phone": null,
+          "title": "Owner",
+          "linkedin_url": null,
+          "sources": [
+            "serper_osint"
+          ],
+          "is_valid": true,
+          "confidence": 55,
+          "validation_reasons": [
+            "Strong owner title: Owner",
+            "Found in 1 source: serper_osint",
+            "Has full name"
+          ]
+        }
+      ]
+    },
+    {
+      "company_name": "1 Stop Complete Auto Glass",
+      "domain": "1stopcompleteautoglass.com",
+      "vertical": "auto_body_shops",
+      "stages_completed": [
+        "data_fill",
+        "website",
+        "validation"
+      ],
+      "errors": [],
+      "processing_time_ms": 3072.5362300872803,
+      "contacts": [
+        {
+          "name": "and also",
+          "email": null,
+          "phone": null,
+          "title": "Owner",
+          "linkedin_url": null,
+          "sources": [
+            "serper_osint"
+          ],
+          "is_valid": true,
+          "confidence": 55,
+          "validation_reasons": [
+            "Strong owner title: Owner",
+            "Found in 1 source: serper_osint",
+            "Has full name"
+          ]
+        }
+      ]
+    },
+    {
+      "company_name": "Brandon Collision",
+      "domain": "brandoncollision.com",
+      "vertical": "auto_body_shops",
+      "stages_completed": [
+        "data_fill",
+        "website",
+        "serper_osint",
+        "validation"
+      ],
+      "errors": [],
+      "processing_time_ms": 4348.0589389801025,
+      "contacts": []
+    },
+    {
+      "company_name": "Bentley Cadillac Collision Repair Center",
+      "domain": "bentleycadillac.com",
+      "vertical": "auto_body_shops",
+      "stages_completed": [
+        "data_fill",
+        "website",
+        "validation"
+      ],
+      "errors": [],
+      "processing_time_ms": 4430.680990219116,
+      "contacts": [
+        {
+          "name": "qualified current",
+          "email": null,
+          "phone": null,
+          "title": "Owner",
+          "linkedin_url": null,
+          "sources": [
+            "page_scrape"
+          ],
+          "is_valid": true,
+          "confidence": 55,
+          "validation_reasons": [
+            "Strong owner title: Owner",
+            "Found in 1 source: page_scrape",
+            "Has full name"
+          ]
+        }
+      ]
+    },
+    {
+      "company_name": "Fayetteville Woman's Care",
+      "domain": "fwc.net",
+      "vertical": "fertility_and_ivf_clinics",
+      "stages_completed": [
+        "data_fill",
+        "website",
+        "validation"
+      ],
+      "errors": [],
+      "processing_time_ms": 2404.1690826416016,
+      "contacts": [
+        {
+          "name": "Sidney Gardner",
+          "email": null,
+          "phone": null,
+          "title": "Owner",
+          "linkedin_url": null,
+          "sources": [
+            "serper_osint"
+          ],
+          "is_valid": true,
+          "confidence": 55,
+          "validation_reasons": [
+            "Strong owner title: Owner",
+            "Found in 1 source: serper_osint",
+            "Has full name"
+          ]
+        }
+      ]
+    },
+    {
+      "company_name": "BJ's Restaurant & Brewhouse",
+      "domain": "bjsrestaurants.com",
+      "vertical": "breweries_and_brewpubs",
+      "stages_completed": [
+        "data_fill",
+        "website",
+        "validation"
+      ],
+      "errors": [],
+      "processing_time_ms": 2031.3770771026611,
+      "contacts": [
+        {
+          "name": "and president",
+          "email": null,
+          "phone": null,
+          "title": "Owner",
+          "linkedin_url": null,
+          "sources": [
+            "serper_osint"
+          ],
+          "is_valid": true,
+          "confidence": 55,
+          "validation_reasons": [
+            "Strong owner title: Owner",
+            "Found in 1 source: serper_osint",
+            "Has full name"
+          ]
+        }
+      ]
+    },
+    {
+      "company_name": "BN Plumbing",
+      "domain": "sites.google.com",
+      "vertical": "plumbers",
+      "stages_completed": [
+        "data_fill",
+        "website",
+        "validation"
+      ],
+      "errors": [],
+      "processing_time_ms": 2890.554189682007,
+      "contacts": [
+        {
+          "name": "Bob has",
+          "email": null,
+          "phone": null,
+          "title": "Owner",
+          "linkedin_url": null,
+          "sources": [
+            "serper_osint"
+          ],
+          "is_valid": true,
+          "confidence": 55,
+          "validation_reasons": [
+            "Strong owner title: Owner",
+            "Found in 1 source: serper_osint",
+            "Has full name"
+          ]
+        }
+      ]
+    }
+  ]
+}
