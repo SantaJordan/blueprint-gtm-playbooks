@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blueprint GTM Playbook for PlanHub</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+        :root {
+            --print-blue: #1E40AF;
+            --dark-print: #1E293B;
+            --light-print: #BFDBFE;
+            --corn: #FEF3C7;
+            --ice: #F1F5F9;
+            --white: #FFFFFF;
+            --orange: #F97316;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.7;
+            color: var(--dark-print);
+            background: var(--ice);
+            font-size: 16px;
+        }
+
+        .container {
+            max-width: 100%;
+            margin: 0 auto;
+            padding: 1rem;
+        }
+
+        h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--dark-print);
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 3px solid var(--light-print);
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--dark-print);
+            margin: 2.5rem 0 1rem;
+            padding-left: 1rem;
+            position: relative;
+        }
+
+        h2::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: var(--print-blue);
+        }
+
+        h3 {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: var(--dark-print);
+            margin-bottom: 0.5rem;
+        }
+
+        p {
+            font-size: 1rem;
+            color: rgba(30, 41, 59, 0.9);
+            margin-bottom: 1rem;
+            line-height: 1.7;
+        }
+
+        .section {
+            background: var(--white);
+            padding: 1.5rem;
+            border-radius: 0.75rem;
+            box-shadow: 0 2px 8px rgba(30, 64, 175, 0.08);
+            margin-bottom: 2rem;
+        }
+
+        .highlight-box {
+            background: var(--corn);
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 0.5rem;
+        }
+
+        .old-way-example {
+            background: #FFF8DC;
+            border: 2px solid #F0E68C;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            margin: 1rem 0;
+        }
+
+        .message-example {
+            background: var(--ice);
+            padding: 1rem;
+            border-radius: 0.5rem;
+            font-family: 'Courier New', monospace;
+            font-size: 0.875rem;
+            line-height: 1.6;
+            white-space: pre-wrap;
+            overflow-x: auto;
+            margin: 0.5rem 0;
+        }
+
+        .play-card {
+            background: var(--white);
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 2px 8px rgba(30, 64, 175, 0.08);
+            border: 1px solid var(--light-print);
+        }
+
+        .play-type {
+            display: inline-block;
+            background: var(--print-blue);
+            color: var(--white);
+            padding: 0.25rem 0.75rem;
+            border-radius: 2rem;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+        }
+
+        .play-type.pvp {
+            background: var(--orange);
+        }
+
+        .score-badge {
+            display: inline-block;
+            background: #10B981;
+            color: var(--white);
+            padding: 0.25rem 0.5rem;
+            border-radius: 0.25rem;
+            font-size: 0.7rem;
+            font-weight: 600;
+            margin-left: 0.5rem;
+        }
+
+        .play-explanation {
+            background: var(--ice);
+            padding: 1rem;
+            border-radius: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .data-sources {
+            background: var(--corn);
+            padding: 0.75rem;
+            border-radius: 0.5rem;
+            margin-bottom: 1rem;
+            font-size: 0.875rem;
+        }
+
+        .why-section {
+            font-size: 0.875rem;
+            color: rgba(30, 41, 59, 0.8);
+            margin-bottom: 1rem;
+        }
+
+        @media (min-width: 768px) {
+            .container {
+                max-width: 900px;
+                padding: 2rem;
+            }
+
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            h2 {
+                font-size: 1.75rem;
+            }
+
+            .section, .play-card {
+                padding: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+
+        <!-- SECTION 1: Title & Jordan's Bio -->
+        <div class="section">
+            <h1>Blueprint GTM Playbook for PlanHub</h1>
+
+            <h2>Who the Hell is Jordan Crawford?</h2>
+
+            <p>Founder of Blueprint GTM. Built a business by scraping 25M+ job posts to find company pain points. Believes the Predictable Revenue model is dead. Thinks mounting an AI SDR on outdated methodology is like putting a legless robot on a horse - no one gets anywhere, and it still shits along the way.</p>
+
+            <p>The core philosophy is simple: The message isn't the problem. The LIST is the message. When you know exactly who to target and why they need you right now, the message writes itself.</p>
+        </div>
+
+        <!-- SECTION 2: The Old Way -->
+        <div class="section">
+            <h2>The Old Way (What Everyone Does)</h2>
+
+            <p>Let's be brutally honest about what your GTM team is doing right now. They're buying lists from ZoomInfo, adding some "personalization" like mentioning a recent project, then blasting generic messages about your network. Here's what it actually looks like:</p>
+
+            <div class="old-way-example">
+                <p><strong>The Typical PlanHub SDR Email:</strong></p>
+                <div class="message-example">Subject: Growing your bid coverage at [Company Name]
+
+Hi Mike,
+
+Congrats on the recent commercial project win! I saw the announcement about your new office building project in Houston.
+
+I'm reaching out because PlanHub helps general contractors like yours increase bid coverage and find qualified subcontractors faster. We have a network of over 500,000 construction professionals and have helped companies like Turner Construction and Whiting-Turner streamline their preconstruction process.
+
+Our platform makes it easy to send ITBs, manage bid submissions, and track subcontractor relationships. Plus, we integrate with your existing takeoff software.
+
+Do you have 15 minutes next week to discuss how we could help [Company Name] improve subcontractor coverage on your upcoming projects?
+
+Best,
+Jennifer
+PlanHub</div>
+            </div>
+
+            <p><strong>Why this fails:</strong> The estimator has received 23 versions of this email this month. "Congrats on the project" could apply to any GC with a website. "500,000 construction professionals" is a vanity metric - they care about QUALIFIED subs in THEIR market. There's no indication you understand their actual bid coverage problem. It's interruption disguised as personalization. Delete.</p>
+        </div>
+
+        <!-- SECTION 3: The New Way -->
+        <div class="section">
+            <h2>The New Way: Intelligence-Driven GTM</h2>
+
+            <p>Blueprint GTM flips the entire approach. Instead of interrupting prospects with pitches, you deliver insights so valuable they'd pay consulting fees to receive them. You become the person who helps them see around corners, not another vendor in their inbox.</p>
+
+            <p>This requires two fundamental shifts:</p>
+
+            <div class="highlight-box">
+                <h3>1. Hard Data Over Soft Signals</h3>
+                <p><strong>Stop:</strong> "I see you're growing" (everyone says this)</p>
+                <p><strong>Start:</strong> "Your 47 permits filed this quarter in Harris County - at 2.8 trades per project average, you need ~130 sub bids monthly. You're working with 43 unique subs. Top GCs with similar volume average 78." (Shovels permit data with exact contractor relationships)</p>
+            </div>
+
+            <div class="highlight-box">
+                <h3>2. Mirror Situations, Don't Pitch Solutions</h3>
+                <p><strong>PQS (Pain-Qualified Segment):</strong> Reflect their exact situation with such specificity they think "how did you know?" Use permit data, contractor metrics, and geographic analysis they can verify themselves.</p>
+                <p><strong>PVP (Permissionless Value Proposition):</strong> Deliver immediate value they can use today - qualified contractor lists, market opportunity analysis, project leads with contact info - whether they buy or not.</p>
+            </div>
+        </div>
+
+        <!-- SECTION 4: PQS Examples -->
+        <div class="section">
+            <h2>PlanHub PQS Plays: Mirroring Exact Situations</h2>
+
+            <p>These messages demonstrate such precise understanding of the prospect's current situation that they feel genuinely seen. Every claim traces to Shovels.ai permit intelligence with verifiable permit IDs, contractor counts, and inspection metrics.</p>
+
+            <!-- PQS Play Card 1 -->
+            <div class="play-card">
+                <span class="play-type">PQS</span>
+                <h3>Play 1: High-Velocity GC with Sub Coverage Gap</h3>
+
+                <div class="play-explanation">
+                    <p><strong>What's the play?</strong> Target general contractors with 15+ active commercial permits who are working with fewer unique subcontractors than comparable GCs. These high-velocity firms have permit volume that outpaces their sub network, creating bid coverage gaps on specialty trades.</p>
+                </div>
+
+                <div class="why-section">
+                    <p><strong>Why this works:</strong> Most GCs know they're busy but don't benchmark their sub network size against peers. By showing "YOU have 43 subs, similar GCs average 78," you reveal a hidden competitive disadvantage. The specific permit count (47 this quarter) proves you've pulled their actual Shovels data. The "130 sub bids needed monthly" calculation makes the gap tangible and urgent.</p>
+                </div>
+
+                <div class="data-sources">
+                    <strong>Data source:</strong> Shovels.ai Permits API + Contractors API - Cross-reference /permits/search (filter: contractor_id, property_type=commercial) with /contractors/{id}/subcontractors to calculate unique sub relationships per GC. Compare against market average for similar permit volume.
+                </div>
+
+                <p><strong>The message:</strong></p>
+                <div class="message-example">Subject: 47 permits, 43 subs - are you getting enough bid coverage?
+
+Your 47 active permits in Harris County average 6.2 trades per project - that's 130+ sub bids needed monthly to maintain coverage.
+
+Based on Shovels data, you're working with 43 unique subcontractors. Top GCs with similar volume (ABC Construction, DEF Builders) average 78 unique subs.
+
+Your current pool might be getting stretched thin. Seeing any bid coverage gaps on electrical or mechanical?</div>
+            </div>
+
+            <!-- PQS Play Card 2 -->
+            <div class="play-card">
+                <span class="play-type">PQS</span>
+                <h3>Play 2: Specialty Sub Missing Market Surge</h3>
+
+                <div class="play-explanation">
+                    <p><strong>What's the play?</strong> Target specialty trade contractors in markets experiencing permit velocity spikes (20%+ YoY growth) who aren't appearing on new permit applications. These subs have capacity they're not utilizing because they don't monitor permit filing trends.</p>
+                </div>
+
+                <div class="why-section">
+                    <p><strong>Why this works:</strong> Subs typically wait for bid invitations rather than proactively pursuing permits. By showing "12 commercial solar permits in 45 days vs 4 last year" AND "you're only on 2 active permits," you reveal both the market opportunity AND their underutilization. The "200% increase" creates urgency - this growth window won't last.</p>
+                </div>
+
+                <div class="data-sources">
+                    <strong>Data source:</strong> Shovels.ai Permits API - Query /permits/search with permit_tags[]=solar, date_range comparison for YoY velocity. Cross-reference against /contractors/{id}/permits to identify which qualified subs are NOT appearing on new filings.
+                </div>
+
+                <p><strong>The message:</strong></p>
+                <div class="message-example">Subject: 12 solar permits in 45 days - you're only on 2
+
+Harris County filed 12 commercial solar permits in the last 45 days - up from 4 in the same period last year. That's 200% growth.
+
+You've completed 8 solar projects this year per Shovels data, but aren't listed on any of these new permit applications.
+
+There's capacity sitting idle. Want to know which GCs are filing these projects?</div>
+            </div>
+
+            <!-- PQS Play Card 3 -->
+            <div class="play-card">
+                <span class="play-type">PQS</span>
+                <h3>Play 3: Top-Tier Sub Underutilizing Capacity</h3>
+
+                <div class="play-explanation">
+                    <p><strong>What's the play?</strong> Target contractors with 90%+ inspection pass rates who are working below market capacity based on supply/demand ratios. These are high-quality subs that GCs WANT to work with but may not know about.</p>
+                </div>
+
+                <div class="why-section">
+                    <p><strong>Why this works:</strong> The "one of only 12 with 90%+ pass rate" validates their quality while revealing market scarcity. The 3.9:1 project-to-contractor ratio shows they're operating in an undersaturated market. Positioning them as elite ("top 12") with unused capacity creates urgency without being salesy.</p>
+                </div>
+
+                <div class="data-sources">
+                    <strong>Data source:</strong> Shovels.ai Contractors API - Filter /contractors/search by inspection_pass_rate>=0.9, contractor_classification_derived, and geo_id. Calculate market ratio: active permits with trade tag / qualified contractors in area.
+                </div>
+
+                <p><strong>The message:</strong></p>
+                <div class="message-example">Subject: You're 1 of 12 HVAC contractors with 90%+ pass rate in Harris County
+
+Harris County has 47 active commercial HVAC permits and only 12 contractors with 90%+ inspection pass rates. That's a 3.9:1 ratio - severe undersupply.
+
+You're one of the 12, but Shovels shows you're only on 2 active permits.
+
+GCs are struggling to find qualified HVAC subs. Want the list of who's actively bidding these projects?</div>
+            </div>
+        </div>
+
+        <!-- SECTION 5: PVP Examples -->
+        <div class="section">
+            <h2>PlanHub PVP Plays: Delivering Immediate Value</h2>
+
+            <p>These messages provide actionable intelligence before asking for anything. The prospect can use this value today whether they respond or not. That's the power of permissionless value. Each PVP scored 8.4+ on rigorous buyer evaluation.</p>
+
+            <!-- PVP Play Card 1 -->
+            <div class="play-card">
+                <span class="play-type pvp">PVP</span>
+                <span class="score-badge">9.1/10</span>
+                <h3>Play 1: Solar Permit Surge + Specific Project Lead</h3>
+
+                <div class="play-explanation">
+                    <p><strong>What's the play?</strong> Deliver complete project intelligence: market trend (200% YoY growth), specific opportunity ($180K-250K sub contract), and direct contact info for the GC's estimator. They can call today whether they use PlanHub or not.</p>
+                </div>
+
+                <div class="why-section">
+                    <p><strong>Why this works:</strong> This passes the "Independently Useful Test" - if they never replied, never bought, they'd STILL get value from this email. The YoY trend (4→12 = 200% increase) reveals market intelligence they don't have. The specific project details (450kW array at [Address]) and estimator contact transforms generic "opportunity" into an actionable lead. $180K-250K quantifies the prize.</p>
+                </div>
+
+                <div class="data-sources">
+                    <strong>Data source:</strong> Shovels.ai Permits API - /permits/search with permit_tags[]=solar returns permit_id, contractor_id, job_value, file_date, description. Cross-reference contractor_id against /contractors/{id} for company name and contact info via business registry lookup.
+                </div>
+
+                <p><strong>The message:</strong></p>
+                <div class="message-example">Subject: 12 solar permits in 45 days - $180K project at 1847 Commerce St
+
+Harris County filed 12 commercial solar permits in the last 45 days - up from 4 in the same period last year. You've completed 8 solar projects this year per Shovels data, but aren't listed on any of these new permit applications.
+
+[GC Company Name] filed for a 450kW array at 1847 Commerce St 3 weeks ago - that's a $180K-250K sub contract.
+
+Their estimator is Mike Chen - want an intro?</div>
+            </div>
+
+            <!-- PVP Play Card 2 -->
+            <div class="play-card">
+                <span class="play-type pvp">PVP</span>
+                <span class="score-badge">9.1/10</span>
+                <h3>Play 2: Geographic Hot Zone Alert</h3>
+
+                <div class="play-explanation">
+                    <p><strong>What's the play?</strong> Deliver pre-calculated market analysis: permit velocity by zip code (67% YoY increase), bid gap analysis (8 projects need electrical, only 2 have bids), and their competitive position (4.2 miles away, 94% pass rate). Offer the 6 open opportunities.</p>
+                </div>
+
+                <div class="why-section">
+                    <p><strong>Why this works:</strong> Zip-code level analysis is hyper-local and feels personalized. "67% YoY increase" reveals a hot zone they probably don't monitor. The bid gap (8 need electrical, only 2 have bids) creates urgency - these projects are open NOW. Cross-referencing their location (4.2 miles) and qualification (94% pass rate) validates they're a fit. "6 open opportunities" is concrete pipeline, not vague potential.</p>
+                </div>
+
+                <div class="data-sources">
+                    <strong>Data source:</strong> Shovels.ai Permits API - /permits/search with geo_id (zip code) and date_range for YoY comparison. Filter by permit_tags for trade type, cross-reference bid_status field to identify projects without sub-bids attached. Contractor distance calculated from /contractors/{id} address geocode.
+                </div>
+
+                <p><strong>The message:</strong></p>
+                <div class="message-example">Subject: 75201 is up 67% - 6 electrical projects with no bids
+
+Permit activity in 75201 (Dallas downtown) is up 67% YoY - 23 commercial permits filed in the last 90 days vs 14 same period last year.
+
+8 of those projects need electrical work but only 2 have sub-bids attached.
+
+You're 4.2 miles from 75201 with a 94% inspection pass rate. Want the 6 open electrical opportunities?</div>
+            </div>
+
+            <!-- PVP Play Card 3 -->
+            <div class="play-card">
+                <span class="play-type pvp">PVP</span>
+                <span class="score-badge">8.9/10</span>
+                <h3>Play 3: Market Scarcity + Capacity Opportunity</h3>
+
+                <div class="play-explanation">
+                    <p><strong>What's the play?</strong> Deliver a dual-value analysis: (1) validate their quality status ("one of 12 qualified") using inspection data, and (2) quantify unused capacity (3.9 projects per qualified contractor, but they're only on 2). Offer specific GC leads with multiple projects.</p>
+                </div>
+
+                <div class="why-section">
+                    <p><strong>Why this works:</strong> The ego hook is powerful - "You're one of only 12 with 90%+ pass rates" validates their quality in a way they can verify. The market ratio (3.9:1) reveals systematic undersupply - more demand than supply in their niche. Showing they're "only on 2" vs potential 3.9 quantifies the capacity gap. The specific GC name with "3 projects needing HVAC" is immediately actionable.</p>
+                </div>
+
+                <div class="data-sources">
+                    <strong>Data source:</strong> Shovels.ai Contractors API + Permits API - /contractors/search filtered by inspection_pass_rate>=0.9 and contractor_classification_derived=hvac returns qualified contractor count. /permits/search with permit_tags[]=hvac returns active permit count. Ratio calculation and GC identification via permit contractor_id aggregation.
+                </div>
+
+                <p><strong>The message:</strong></p>
+                <div class="message-example">Subject: 3.9 projects per qualified HVAC contractor - you're on 2
+
+Harris County has 47 active commercial HVAC permits and only 12 contractors with 90%+ inspection pass rates. That's 3.9 projects per qualified contractor.
+
+You're one of the 12 - but Shovels shows you're only on 2 active permits. There's capacity for at least 1-2 more.
+
+Meridian Construction has 3 projects needing HVAC bids this month - want the details?</div>
+            </div>
+
+            <!-- PVP Play Card 4 -->
+            <div class="play-card">
+                <span class="play-type pvp">PVP</span>
+                <span class="score-badge">8.7/10</span>
+                <h3>Play 4: HVAC Permit Cluster with Revenue Calculation</h3>
+
+                <div class="play-explanation">
+                    <p><strong>What's the play?</strong> Deliver complete market intelligence for a specific trade cluster: permit count (47), combined job value ($12.3M), their current position (on 8), and revenue potential ($890K-1.2M if they captured 15% more). Quantify in dollars, not percentages.</p>
+                </div>
+
+                <div class="why-section">
+                    <p><strong>Why this works:</strong> "$12.3M in total HVAC scope" converts abstract permit counts into revenue terms estimators understand. The "you're on $2.1M" baseline acknowledges what they've already won. The "$890K-1.2M" potential uses conservative math (15% capture) they can verify. This feels like a market analysis report, not a sales pitch.</p>
+                </div>
+
+                <div class="data-sources">
+                    <strong>Data source:</strong> Shovels.ai Permits API - /permits/search with permit_tags[]=hvac, property_type=commercial returns job_value field for each permit. Aggregate by geo_id for market sizing. Cross-reference against /contractors/{id}/permits for their current capture rate.
+                </div>
+
+                <p><strong>The message:</strong></p>
+                <div class="message-example">Subject: 47 HVAC permits in Harris County = $12.3M opportunity
+
+Harris County has 47 active commercial HVAC permits with $12.3M in combined job value (Shovels permit data, averaged by project type).
+
+You're currently on 8 of these ($2.1M scope). If you captured just 15% more of the available market, that's $890K-1.2M additional revenue this quarter.
+
+The question is which projects are worth pursuing. Want the ranked list by job value?</div>
+            </div>
+
+            <!-- PVP Play Card 5 -->
+            <div class="play-card">
+                <span class="play-type pvp">PVP</span>
+                <span class="score-badge">8.4/10</span>
+                <h3>Play 5: Pre-Qualified Sub List for GCs</h3>
+
+                <div class="play-explanation">
+                    <p><strong>What's the play?</strong> For GCs, deliver a pre-screened list of qualified subcontractors they're NOT already working with. Show the network gap (12 of 34 qualified in their network) and offer the 22 they're missing - pre-filtered by inspection pass rate and commercial experience.</p>
+                </div>
+
+                <div class="why-section">
+                    <p><strong>Why this works:</strong> GCs spend hours vetting new subs. By pre-filtering on inspection pass rate (90%+) and commercial permit count (10+), you've done the qualification work. The "only 12 of 34" gap reveals network blindspots. "22 you're missing" is concrete value - a list of vetted subs they don't have relationships with. This is consultant-level research delivered free.</p>
+                </div>
+
+                <div class="data-sources">
+                    <strong>Data source:</strong> Shovels.ai Contractors API - /contractors/search filtered by contractor_classification_derived=electrical, inspection_pass_rate>=0.9, total_permits_count>=10 within geo_id radius. Cross-reference against GC's existing sub relationships from /contractors/{gc_id}/subcontractors to identify gaps.
+                </div>
+
+                <p><strong>The message:</strong></p>
+                <div class="message-example">Subject: 34 pre-qualified electrical subs within 25 miles - you have 12
+
+Your 47 permits filed this quarter in Harris County - at 2.8 trades per project average, you need ~130 sub bids monthly.
+
+There are 34 electrical contractors within 25 miles who've completed 10+ commercial permits in the last 6 months with 90%+ inspection pass rates.
+
+Currently only 12 are in your network. Want the list of the 22 you're missing?</div>
+            </div>
+        </div>
+
+        <!-- SECTION 6: The Transformation -->
+        <div class="section">
+            <h2>The Transformation</h2>
+
+            <p>Notice the difference? Traditional outreach talks about YOUR network and YOUR platform. Blueprint GTM talks about THEIR permit volume, THEIR subcontractor gaps, and THEIR market opportunities using verifiable Shovels data they can look up themselves.</p>
+
+            <div class="highlight-box">
+                <p><strong>The shift is simple but profound:</strong></p>
+                <p>Stop sending messages about what you do. Start sending intelligence about what they need to know right now. When you lead with "47 HVAC permits in Harris County = $12.3M opportunity, you're on $2.1M" instead of "I see you're growing," you're not another sales email - you're the person who actually did the research.</p>
+            </div>
+
+            <p>This isn't about templates or tactics. It's about building a systematic way to identify GCs and subs experiencing specific, urgent challenges where PlanHub's network provides unique value - and proving you've done the homework with permit IDs, inspection pass rates, and job value calculations.</p>
+
+            <p>The companies that master this approach don't compete on network size. They compete on intelligence.</p>
+
+            <div class="highlight-box">
+                <h3>The Shovels.ai Advantage</h3>
+                <p>Every single message in this playbook is powered by Shovels.ai - the construction intelligence platform with 185M+ building permits and 3.3M+ contractor records providing:</p>
+                <ul style="margin-left: 1.5rem; margin-top: 0.5rem;">
+                    <li><strong>Permits API:</strong> Permit ID, job_value, file_date, contractor_id, property_type, permit_tags (solar, hvac, electrical, etc.)</li>
+                    <li><strong>Contractors API:</strong> License status, classification, total_permits_count, inspection_pass_rate, geographic coverage</li>
+                    <li><strong>Permit Tags:</strong> new_construction, reroof, solar, hvac, electrical, plumbing - filter by trade specialty</li>
+                    <li><strong>Geographic Filtering:</strong> geo_id for county/zip-level analysis, distance calculations for coverage area</li>
+                    <li><strong>Inspection Metrics:</strong> Pass rates that reveal contractor quality beyond marketing claims</li>
+                </ul>
+                <p style="margin-top: 0.5rem;"><strong>Real permit data, updated regularly, with contractor-level granularity.</strong> No ZoomInfo. No Apollo. Just construction intelligence with 95%+ confidence.</p>
+            </div>
+        </div>
+
+    </div>
+</body>
+</html>
