@@ -1,0 +1,98 @@
+name: Blueprint Quality Tests
+
+on:
+  push:
+    paths:
+      - 'blueprint-worker/**'
+  pull_request:
+    paths:
+      - 'blueprint-worker/**'
+  schedule:
+    # Run full test suite nightly at 2am UTC
+    - cron: '0 2 * * *'
+  workflow_dispatch:
+    inputs:
+      full_test:
+        description: 'Run full test suite (15 companies)'
+        required: false
+        default: 'false'
+        type: boolean
+
+jobs:
+  baseline-tests:
+    name: Run Baseline Tests
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: |
+          pip install beautifulsoup4
+
+      - name: Run baseline tests
+        run: |
+          python blueprint-worker/tests/run_baseline_tests.py
+
+      - name: Upload test results
+        uses: actions/upload-artifact@v4
+        with:
+          name: baseline-results
+          path: blueprint-worker/tests/baseline_results.json
+
+  cloud-comparison:
+    name: Cloud vs Local Comparison
+    runs-on: ubuntu-latest
+    needs: baseline-tests
+    if: github.event_name == 'schedule' || github.event.inputs.full_test == 'true'
+
+    env:
+      SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+      SUPABASE_KEY: ${{ secrets.SUPABASE_ANON_KEY }}
+      BLUEPRINT_API_URL: https://blueprint-trigger-api.vercel.app
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: |
+          pip install beautifulsoup4 httpx
+
+      - name: Run quick test (3 companies)
+        run: |
+          python blueprint-worker/tests/run_cloud_comparison.py --quick
+
+      - name: Upload comparison results
+        uses: actions/upload-artifact@v4
+        with:
+          name: comparison-results
+          path: blueprint-worker/tests/comparison_results.json
+
+      - name: Check quality thresholds
+        run: |
+          python -c "
+          import json
+          with open('blueprint-worker/tests/comparison_results.json') as f:
+              results = json.load(f)
+
+          failed = [r for r in results['comparisons'] if not r['pass']]
+          if failed:
+              print('❌ QUALITY CHECK FAILED')
+              for r in failed:
+                  print(f\"  - {r['company']}: {r['issues']}\")
+              exit(1)
+          else:
+              print('✅ All quality checks passed')
+          "

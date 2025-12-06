@@ -21,28 +21,52 @@ FIELDS: {fields}
 TARGET PERSONA: {persona_title}
 COMPANY OFFERING: {offering}
 
-PQS MESSAGE FORMAT:
-- Subject: 2-4 words only
-- Intro: Exact data mirror with specific record numbers, dates, facility names
+=== PQS MESSAGE RULES ===
+
+FORMAT:
+- Subject: 2-4 words max, specific situation reference
+- Intro: Exact data mirror with SPECIFIC identifiers (see examples below)
 - Insight: Non-obvious synthesis the persona doesn't already know
 - Question: Low-effort question to spark reply
 - Length: Under 75 words total
 
-REQUIREMENTS:
-- Use SPECIFIC data from the fields listed (not generic placeholders like [X])
-- Include record numbers, dates, addresses where applicable
-- Every claim must be PROVABLE (trace to specific field)
-- Mirror their EXACT situation, don't pitch anything
+MANDATORY REQUIREMENTS:
+1. NEVER use placeholders: [X], [company_name], [similar company], [specific data] → AUTO-FAIL
+2. MUST include at least ONE specific identifier (examples):
+   - Record/case numbers: "solicitation #W912QR-25-R-0047"
+   - Dates: "March 14, 2025" (not "recently" or "last month")
+   - Addresses: "1847 Main St, Denver" (not "your facility")
+   - License numbers: "NPI 1234567890"
+   - Dollar amounts: "$847,000" (not "significant amount")
+
+3. MUST trace every claim to a data source from FIELDS above
+4. Mirror their EXACT situation, don't pitch anything
+
+CALCULATION WORKSHEET (required for any numeric claim):
+Example: "8 AEs × 6 hours/week = 48 hours saved monthly"
+Format: [number] × [rate] = [result] from [source]
+
+=== GOOD vs BAD EXAMPLES ===
+
+BAD (fails - uses placeholders):
+"I noticed [company_name] has been expanding..."
+"Your team spends [X] hours on manual work..."
+
+GOOD (passes - uses specifics):
+"Your February 12 permit filing for 1847 Main St requires OSHA 30-hour certification..."
+"Solicitation #W912QR-25-R-0047 closes in 18 days with 12 competitors already..."
 
 Generate 2 PQS message variants:
 
 PQS_VARIANT_1:
-Subject: [subject]
-Body: [full message]
+Subject: [2-4 words only]
+Body: [full message with specific data - NO placeholders]
+Calculation_Worksheet: [if any numeric claims, show the math]
 
 PQS_VARIANT_2:
-Subject: [subject]
-Body: [full message]"""
+Subject: [2-4 words only]
+Body: [full message with specific data - NO placeholders]
+Calculation_Worksheet: [if any numeric claims, show the math]"""
 
     PVP_PROMPT = """Generate a PVP (Permissionless Value Proposition) message for this segment.
 
@@ -54,28 +78,52 @@ FIELDS: {fields}
 TARGET PERSONA: {persona_title}
 COMPANY OFFERING: {offering}
 
-PVP MESSAGE FORMAT:
-- Subject: Specific value being offered (not a pitch)
-- Intro: What you're giving them RIGHT NOW (specific, concrete)
-- Insight: Why this matters to them specifically
+=== PVP MESSAGE RULES ===
+
+FORMAT:
+- Subject: Specific value being offered (the deliverable, not a pitch)
+- Intro: What you're giving them RIGHT NOW (already done, not an offer to do)
+- Insight: Why this matters to them specifically (with their data)
 - Question: Who should receive this? (route to right person)
 - Length: Under 100 words total
 
-PVP REQUIREMENTS:
-- Must deliver IMMEDIATE usable value (no meeting required)
-- Analysis already done, deadlines already pulled, patterns already identified
-- Recipient can take action WITHOUT replying
-- Include specific numbers, dates, benchmarks
+MANDATORY REQUIREMENTS:
+1. NEVER use placeholders: [X], [company_name], [similar company] → AUTO-FAIL
+2. MUST deliver IMMEDIATE usable value:
+   - "I pulled your 3 upcoming deadlines: March 14, April 2, May 9..."
+   - "Your competitor analysis: 12 companies in NAICS 541330 with >$5M revenue..."
+   - "Benchmark comparison: Your 3.2 stars vs. county median 4.1..."
+
+3. Analysis ALREADY DONE (not an offer to analyze)
+4. Include specific: dates, dollar amounts, percentages, record numbers
+
+CALCULATION WORKSHEET (required for any numeric claim):
+Example: "3 facilities × 4.2 avg deficiencies = 12.6 annual citations at ~$2,400 each = $30,240 exposure"
+Format: [number] × [rate] = [result] → [implication] from [source]
+
+=== GOOD vs BAD EXAMPLES ===
+
+BAD (fails - offer to help):
+"We can help you analyze your competitor landscape..."
+"Would you like me to pull your deadline data?"
+
+GOOD (passes - value already delivered):
+"Your March 28 CMS audit has 3 deficiencies still open from October..."
+"I found 8 active federal opportunities in NAICS 541330 closing Q2 - here's the list..."
 
 Generate 2 PVP message variants:
 
 PVP_VARIANT_1:
-Subject: [subject]
-Body: [full message]
+Subject: [specific value deliverable]
+Body: [full message with specific data - NO placeholders]
+Calculation_Worksheet: [show the math for any numeric claims]
+Data_Sources_Used: [which APIs/databases this comes from]
 
 PVP_VARIANT_2:
-Subject: [subject]
-Body: [full message]"""
+Subject: [specific value deliverable]
+Body: [full message with specific data - NO placeholders]
+Calculation_Worksheet: [show the math for any numeric claims]
+Data_Sources_Used: [which APIs/databases this comes from]"""
 
     CRITIQUE_PROMPT = """Adopt this buyer persona and brutally critique these messages.
 
@@ -96,6 +144,15 @@ If 'maybe'—that's a NO."
 MESSAGES TO CRITIQUE:
 {messages}
 
+=== AUTOMATIC DISQUALIFICATION ===
+
+Check FIRST for these instant-fail conditions:
+- Contains [X] or [company_name] or [similar company] → AUTO-DESTROY (score 0)
+- Uses "recently", "many", "some", "significant" without specific numbers → Score 2 max
+- Makes claims without traceable data source → Score 3 max
+
+=== SCORING (only if no auto-disqualification) ===
+
 Score each message (0-10 on 5 criteria):
 1. Situation Recognition: Does this mirror my EXACT current situation? Generic=0, Hyper-specific=10
 2. Data Credibility: Can I verify this data? Is it from trusted source? Assumed=0, Provable=10
@@ -103,13 +160,21 @@ Score each message (0-10 on 5 criteria):
 4. Effort to Reply: How easy to respond? High friction=0, One-word answer=10
 5. Emotional Resonance: Does this trigger urgency or curiosity? Meh=0, Must investigate=10
 
-Then apply Texada Test for each:
-- Hyper-specific: Contains dates, record numbers, specific values? (not "recent", "many", "some")
-- Factually grounded: Every claim traces to documented data source?
-- Non-obvious synthesis: Insight persona doesn't already have access to?
+=== TEXADA TEST ===
 
-Output format for EACH message:
+Apply Texada Test for each:
+- Hyper-specific: Contains dates (March 14), record numbers (#W912QR), dollar amounts ($847K)?
+  FAIL if: uses "recent", "many", "some", "significant" without numbers
+- Factually grounded: Every claim traces to documented data source (API field name)?
+  FAIL if: can't name the API or database for each fact
+- Non-obvious synthesis: Insight persona doesn't already have access to?
+  FAIL if: information is on their own website or obvious industry knowledge
+
+=== OUTPUT FORMAT ===
+
+For EACH message:
 MESSAGE: [which one]
+PLACEHOLDER_CHECK: PASS / AUTO-DESTROY (contains [X], [company_name], etc.)
 SCORES:
 - Situation Recognition: [0-10]
 - Data Credibility: [0-10]
@@ -117,9 +182,12 @@ SCORES:
 - Effort to Reply: [0-10]
 - Emotional Resonance: [0-10]
 AVERAGE: [calculated average]
-TEXADA: [PASS/FAIL for each criterion]
-VERDICT: KEEP (≥7.5) / REVISE (6.0-7.4) / DESTROY (<6.0)
-FEEDBACK: [what would make me reply]"""
+TEXADA:
+- Hyper-specific: PASS/FAIL [with evidence]
+- Factually grounded: PASS/FAIL [with evidence]
+- Non-obvious: PASS/FAIL [with evidence]
+VERDICT: KEEP (≥8.0) / REVISE (6.5-7.9) / DESTROY (<6.5)
+FEEDBACK: [specific improvement needed to make me reply]"""
 
     def __init__(self, claude_client):
         self.claude = claude_client

@@ -94,35 +94,80 @@ class Wave1CompanyResearch:
     async def _synthesize_with_claude(self, company_name: str, content: str) -> Dict:
         """Use Claude to extract structured information from raw content."""
 
-        prompt = f"""Analyze this company research data and extract key information.
+        prompt = f"""Analyze this company research data and extract SPECIFIC, VERIFIABLE information.
 
 COMPANY: {company_name}
 
 RAW CONTENT:
 {content[:50000]}  # Limit content size
 
-Extract and return this information in a structured format:
+=== EXTRACTION REQUIREMENTS ===
 
-1. OFFERING: What does this company sell? (1-2 sentences)
-2. VALUE_PROP: What's their main value proposition? (1-2 sentences)
-3. DIFFERENTIATORS: What makes them unique? (list 3-5 points)
-4. INDUSTRIES_SERVED: What industries do they target? (list specific industries)
-5. ICP: Who is their ideal customer? (describe company type, size, characteristics)
-6. PERSONA_TITLE: What job title is the primary buyer? (e.g., "VP of Operations")
-7. PERSONA_RESPONSIBILITIES: What does this persona do daily?
-8. PERSONA_KPIS: What metrics is this persona measured on? (list 3-5)
-9. PERSONA_BLIND_SPOTS: What operational challenges might this persona not see coming?
+MANDATORY: Every extracted item must be TRACEABLE to the source content above.
+NEVER use generic terms like "various industries" or "multiple sectors".
+If you cannot find specific evidence, write "NOT FOUND IN SOURCE".
 
-Format your response as:
-OFFERING: [text]
-VALUE_PROP: [text]
+=== EXTRACT THESE FIELDS ===
+
+1. OFFERING: What EXACTLY does this company sell?
+   - Name specific products/services (not categories)
+   - Example GOOD: "AI-powered email scheduling and sales engagement platform"
+   - Example BAD: "software solutions for businesses"
+
+2. VALUE_PROP: What's their SPECIFIC value proposition with NUMBERS if available?
+   - Example GOOD: "Increases reply rates 3x by sending emails at optimal times"
+   - Example BAD: "helps companies improve their sales"
+
+3. DIFFERENTIATORS: What makes them UNIQUELY different? (list 3-5)
+   - Must be features competitors DON'T have
+   - Example GOOD: "Only platform with native Salesforce bi-directional sync"
+   - Example BAD: "great customer service"
+
+4. INDUSTRIES_SERVED: What SPECIFIC verticals do they target?
+   - Use NAICS-style specificity when possible
+   - Example GOOD: "Skilled Nursing Facilities (NAICS 623110), Home Health Agencies (NAICS 621610)"
+   - Example BAD: "healthcare companies"
+   - Look for: case studies, customer logos, landing pages, testimonials
+
+5. VERTICAL_SIGNALS: What regulated/licensed industries appear in their content?
+   - Look for: healthcare, financial services, government contractors, food service, construction
+   - Note any compliance mentions: HIPAA, SOC 2, FedRAMP, FDA, OSHA
+
+6. ICP: Describe their IDEAL customer with SPECIFIC characteristics:
+   - Company SIZE: (revenue range, employee count, location count)
+   - OPERATIONAL CONTEXT: (what triggers need for this product)
+   - Example GOOD: "Mid-market SaaS companies ($10-100M ARR) with 50-200 person sales teams"
+   - Example BAD: "growing companies"
+
+7. PERSONA_TITLE: The EXACT job title of the primary buyer
+   - Be specific: "VP of Revenue Operations" not "executive"
+   - If multiple, list in order of decision-making authority
+
+8. PERSONA_RESPONSIBILITIES: What does this persona ACTUALLY do daily?
+   - List 3-5 specific activities with operational details
+   - Example: "Reviews daily pipeline reports, coaches 8-12 SDRs on call quality"
+
+9. PERSONA_KPIS: What METRICS is this persona measured on? (list 3-5)
+   - Must be QUANTIFIABLE metrics
+   - Example GOOD: "Pipeline velocity (days), Meeting-to-opportunity rate (%), AE quota attainment (%)"
+   - Example BAD: "sales performance, team happiness"
+
+10. PERSONA_BLIND_SPOTS: What operational challenges might they NOT see?
+    - Focus on data gaps, process inefficiencies, hidden costs
+    - Example: "Doesn't see that reps spend 47% of time on non-selling activities"
+
+=== OUTPUT FORMAT ===
+
+OFFERING: [specific product/service description]
+VALUE_PROP: [specific value with numbers if available]
 DIFFERENTIATORS: [item1, item2, item3]
-INDUSTRIES_SERVED: [industry1, industry2, industry3]
-ICP: [text]
-PERSONA_TITLE: [title]
-PERSONA_RESPONSIBILITIES: [text]
-PERSONA_KPIS: [kpi1, kpi2, kpi3]
-PERSONA_BLIND_SPOTS: [text]"""
+INDUSTRIES_SERVED: [specific industry1, specific industry2, specific industry3]
+VERTICAL_SIGNALS: [regulated verticals found or NONE]
+ICP: [specific company profile]
+PERSONA_TITLE: [exact title]
+PERSONA_RESPONSIBILITIES: [specific daily activities]
+PERSONA_KPIS: [quantifiable metric1, metric2, metric3]
+PERSONA_BLIND_SPOTS: [data gaps and hidden inefficiencies]"""
 
         response = await self.claude.messages.create(
             model="claude-sonnet-4-20250514",  # Use Sonnet for bulk work
@@ -139,6 +184,7 @@ PERSONA_BLIND_SPOTS: [text]"""
             "value_prop": "",
             "differentiators": [],
             "industries_served": [],
+            "vertical_signals": [],
             "icp": "",
             "persona_title": "",
             "persona": "",
@@ -151,6 +197,7 @@ PERSONA_BLIND_SPOTS: [text]"""
             "value_prop": r"VALUE_PROP:\s*(.+?)(?=\n[A-Z_]+:|$)",
             "differentiators": r"DIFFERENTIATORS:\s*(.+?)(?=\n[A-Z_]+:|$)",
             "industries_served": r"INDUSTRIES_SERVED:\s*(.+?)(?=\n[A-Z_]+:|$)",
+            "vertical_signals": r"VERTICAL_SIGNALS:\s*(.+?)(?=\n[A-Z_]+:|$)",
             "icp": r"ICP:\s*(.+?)(?=\n[A-Z_]+:|$)",
             "persona_title": r"PERSONA_TITLE:\s*(.+?)(?=\n[A-Z_]+:|$)",
             "persona": r"PERSONA_RESPONSIBILITIES:\s*(.+?)(?=\n[A-Z_]+:|$)",
@@ -158,13 +205,16 @@ PERSONA_BLIND_SPOTS: [text]"""
             "persona_blind_spots": r"PERSONA_BLIND_SPOTS:\s*(.+?)(?=\n[A-Z_]+:|$)",
         }
 
+        list_fields = ["differentiators", "industries_served", "vertical_signals", "persona_kpis"]
+
         for key, pattern in patterns.items():
             match = re.search(pattern, text, re.DOTALL | re.IGNORECASE)
             if match:
                 value = match.group(1).strip()
-                if key in ["differentiators", "industries_served", "persona_kpis"]:
-                    # Parse as list
-                    result[key] = [item.strip() for item in re.split(r'[,\[\]]', value) if item.strip()]
+                if key in list_fields:
+                    # Parse as list, filter out NONE/NOT FOUND
+                    items = [item.strip() for item in re.split(r'[,\[\]]', value) if item.strip()]
+                    result[key] = [i for i in items if i.upper() not in ["NONE", "NOT FOUND", "NOT FOUND IN SOURCE"]]
                 else:
                     result[key] = value
 

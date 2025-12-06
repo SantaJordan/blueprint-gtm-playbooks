@@ -15,33 +15,41 @@ import re
 class Wave2DataLandscape:
     """Wave 2: Map available data sources for the target niche."""
 
-    # Search templates by category
+    # Search templates by category - SPECIFIC API and field discovery
     GOVERNMENT_SEARCHES = [
-        "{industry} government database violations API",
-        "{industry} licensing board public records search",
-        "{industry} inspection records database field names",
-        "OSHA {industry} violation data downloadable",
-        "{industry} permit database API documentation",
-        "EPA {industry} compliance data public access",
+        "site:data.cms.gov {industry} provider data API fields",
+        "site:osha.gov {industry} inspection data download CSV",
+        "site:epa.gov ECHO database {industry} violation records API",
+        "{industry} state licensing board public lookup API",
+        "site:sam.gov {industry} federal contracts API documentation",
+        "site:usaspending.gov {industry} NAICS award data API",
+        "{industry} permit database bulk download field schema",
+        "FDA {industry} inspection database API 483 warning letters",
+        "{industry} Medicare provider enrollment data CMS PECOS",
     ]
 
     COMPETITIVE_SEARCHES = [
-        "{industry} pricing data scraping tools",
-        "{industry} review data extraction API",
-        "{industry} competitive analysis data sources",
-        "scrape reviews {industry}",
+        "site:g2.com API {industry} product reviews data export",
+        "site:capterra.com {industry} reviews data feed",
+        "site:trustradius.com {industry} vendor comparison API",
+        "{industry} market share data API firmographics",
+        "{industry} pricing intelligence API competitor tracking",
     ]
 
     VELOCITY_SEARCHES = [
-        "Google Maps API review data documentation",
-        "review velocity tracking tools {industry}",
-        "{industry} hiring velocity job posting data API",
+        "Google Places API review_count rating fields documentation",
+        "Yelp Fusion API {industry} business reviews endpoint",
+        "{industry} job posting API Indeed Greenhouse Lever",
+        "LinkedIn job postings API {industry} hiring signals",
+        "Crunchbase API {industry} funding rounds headcount",
     ]
 
     TECH_SEARCHES = [
-        "BuiltWith API pricing technology detection",
-        "job posting API {industry} Indeed LinkedIn",
-        "{industry} tech stack data sources",
+        "BuiltWith API technology lookup {industry} pricing",
+        "Wappalyzer API tech stack detection fields",
+        "SimilarWeb API {industry} website traffic data",
+        "site:hunter.io API email pattern company domain",
+        "{industry} technographics data Apollo ZoomInfo API",
     ]
 
     def __init__(self, claude_client, web_search):
@@ -122,7 +130,7 @@ class Wave2DataLandscape:
     async def _evaluate_sources(self, categorized_results: Dict, industry: str) -> Dict:
         """Use Claude to evaluate discovered data sources."""
 
-        prompt = f"""Analyze these search results to identify available data sources for {industry}.
+        prompt = f"""Analyze these search results to identify SPECIFIC, ACTIONABLE data sources for {industry}.
 
 SEARCH RESULTS BY CATEGORY:
 
@@ -138,33 +146,69 @@ VELOCITY SIGNALS:
 TECH/OPERATIONAL:
 {self._format_category_results(categorized_results.get('tech', []))}
 
-For each category, identify 2-4 specific data sources with this information:
+=== REQUIREMENTS ===
 
-FORMAT:
+For each category, identify 2-4 data sources with EXACT technical details.
+
+MANDATORY FOR EACH SOURCE:
+1. EXACT database/API name (not "government databases")
+2. ACTUAL URL (not "official website")
+3. SPECIFIC field names (not "company information")
+4. REALISTIC feasibility rating with justification
+
+=== OUTPUT FORMAT ===
+
 GOVERNMENT SOURCES:
-1. NAME: [database name]
-   URL: [actual URL if found]
-   FIELDS: [field1, field2, field3]
+1. NAME: [Exact database name, e.g., "CMS Provider Enrollment and Certification System (PECOS)"]
+   URL: [Actual API/download URL, e.g., "https://data.cms.gov/provider-data/api/"]
+   FIELDS: [Specific field names, e.g., "provider_npi, enrollment_date, specialty_code, sanctions_history"]
    FEASIBILITY: HIGH/MEDIUM/LOW
-   FREQUENCY: [daily/weekly/monthly]
-   COST: [free/paid amount]
+   FEASIBILITY_REASON: [Why this rating - e.g., "Free bulk download, updated monthly, documented schema"]
+   FREQUENCY: [daily/weekly/monthly/quarterly]
+   COST: [free/$X per 1000 calls/subscription $X/mo]
+   TEXADA_VALUE: [What non-obvious insight can we extract?]
 
 COMPETITIVE SOURCES:
-1. NAME: [source name]
-   ...
+1. NAME: [e.g., "G2 Product Reviews API"]
+   URL: [e.g., "https://data.g2.com/api/v2/"]
+   FIELDS: [e.g., "product_id, review_score, review_date, competitor_comparison, switching_reason"]
+   FEASIBILITY: HIGH/MEDIUM/LOW
+   FEASIBILITY_REASON: [justification]
+   FREQUENCY: [update frequency]
+   COST: [pricing]
+   TEXADA_VALUE: [non-obvious insight]
 
 VELOCITY SOURCES:
-1. NAME: [source name]
-   ...
+1. NAME: [e.g., "Google Places API"]
+   URL: [e.g., "https://maps.googleapis.com/maps/api/place/"]
+   FIELDS: [e.g., "place_id, rating, user_ratings_total, reviews[].time, reviews[].rating"]
+   FEASIBILITY: HIGH/MEDIUM/LOW
+   FEASIBILITY_REASON: [justification]
+   FREQUENCY: [update frequency]
+   COST: [pricing - e.g., "$0.017 per request"]
+   TEXADA_VALUE: [e.g., "Review velocity = (reviews_this_month - reviews_last_month) indicates growth/decline"]
 
 TECH SOURCES:
-1. NAME: [source name]
-   ...
+1. NAME: [e.g., "BuiltWith Technology Lookup API"]
+   URL: [e.g., "https://api.builtwith.com/v21/api.json"]
+   FIELDS: [e.g., "technologies[].name, technologies[].category, first_detected, last_detected"]
+   FEASIBILITY: HIGH/MEDIUM/LOW
+   FEASIBILITY_REASON: [justification]
+   FREQUENCY: [update frequency]
+   COST: [pricing]
+   TEXADA_VALUE: [e.g., "Competitor tech stack changes indicate switching intent"]
 
-FEASIBILITY DEFINITIONS:
-- HIGH: API exists, free or cheap, documented fields, frequent updates
-- MEDIUM: Manual access or expensive, sparse docs, weekly updates
-- LOW: No automation, prohibitively expensive, poor docs"""
+=== FEASIBILITY DEFINITIONS ===
+- HIGH: Free/cheap API, documented fields, daily/weekly updates, bulk access
+- MEDIUM: Paid API ($50-500/mo), sparse docs, manual enrichment needed
+- LOW: Enterprise pricing (>$1000/mo), no API, legal restrictions, stale data
+
+=== QUALITY CHECK ===
+REJECT sources that:
+- Have no documented API or bulk download
+- Require manual data entry
+- Have update frequency >90 days
+- Cost >$1000/month for basic access"""
 
         response = await self.claude.messages.create(
             model="claude-sonnet-4-20250514",
@@ -216,8 +260,10 @@ FEASIBILITY DEFINITIONS:
                 "url": "",
                 "fields": [],
                 "feasibility": "MEDIUM",
+                "feasibility_reason": "",
                 "update_frequency": "unknown",
-                "cost": "unknown"
+                "cost": "unknown",
+                "texada_value": ""
             }
 
             # Parse fields
@@ -238,6 +284,10 @@ FEASIBILITY DEFINITIONS:
             if feasibility_match:
                 source["feasibility"] = feasibility_match.group(1).upper()
 
+            feasibility_reason_match = re.search(r"FEASIBILITY_REASON:\s*(.+?)(?=\n|$)", item)
+            if feasibility_reason_match:
+                source["feasibility_reason"] = feasibility_reason_match.group(1).strip()
+
             frequency_match = re.search(r"FREQUENCY:\s*(.+?)(?=\n|$)", item)
             if frequency_match:
                 source["update_frequency"] = frequency_match.group(1).strip()
@@ -245,6 +295,10 @@ FEASIBILITY DEFINITIONS:
             cost_match = re.search(r"COST:\s*(.+?)(?=\n|$)", item)
             if cost_match:
                 source["cost"] = cost_match.group(1).strip()
+
+            texada_match = re.search(r"TEXADA_VALUE:\s*(.+?)(?=\n|$)", item)
+            if texada_match:
+                source["texada_value"] = texada_match.group(1).strip()
 
             if source["name"]:
                 sources.append(source)

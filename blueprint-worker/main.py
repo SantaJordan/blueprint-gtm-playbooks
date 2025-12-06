@@ -95,6 +95,7 @@ async def process_blueprint_job(request: Dict) -> Dict:
             Wave05ProductFit,
             Wave15NicheConversion,
             Wave2DataLandscape,
+            Wave25SituationFallback,
             Synthesis,
             HardGates,
             Wave3Messages,
@@ -126,6 +127,15 @@ async def process_blueprint_job(request: Dict) -> Dict:
         niches = await wave15.execute(company_context, product_fit)
         print(f"[Wave 1.5] Complete: {len(niches.get('qualified_niches', []))} qualified niches")
 
+        # ========== WAVE 2.5: Situation Fallback (if needed) ==========
+        situation_segments = []
+        if niches.get("fallback_needed", False):
+            print("[Wave 2.5] Niche fallback triggered - generating situation segments...")
+            wave25 = Wave25SituationFallback(claude, web_search)
+            situation_result = await wave25.execute(company_context, product_fit)
+            situation_segments = situation_result.get("situation_segments", [])
+            print(f"[Wave 2.5] Complete: {len(situation_segments)} situation segments")
+
         # ========== WAVE 2: Data Landscape ==========
         print("[Wave 2] Mapping data landscape...")
         wave2 = Wave2DataLandscape(claude, web_search)
@@ -146,21 +156,37 @@ async def process_blueprint_job(request: Dict) -> Dict:
         segments = segments_result.get("segments", [])
         print(f"[Synthesis] Complete: {len(segments)} segments generated")
 
-        # ========== HARD GATES: Validation (BYPASSED for testing) ==========
-        print("[Hard Gates] BYPASSED - using raw segments for testing...")
-        validated_segments = segments[:2] if segments else []  # Take first 2 segments without validation
-        print(f"[Hard Gates] Using {len(validated_segments)} segments")
+        # Combine with situation segments if available
+        if situation_segments:
+            # Convert situation segments to match synthesis segment format
+            for sit_seg in situation_segments:
+                segments.append({
+                    "name": sit_seg.get("name", "Situation Segment"),
+                    "description": sit_seg.get("pain_hypothesis", ""),
+                    "data_sources": [s.get("source", "") for s in sit_seg.get("data_sources", [])],
+                    "fields": [],
+                    "message_type": sit_seg.get("message_type", "PQS"),
+                    "trigger_event": sit_seg.get("trigger_event", ""),
+                    "is_situation_based": True
+                })
+            print(f"[Synthesis] Added {len(situation_segments)} situation segments")
+
+        # ========== HARD GATES: Validation ==========
+        print("[Hard Gates] Validating segments...")
+        hard_gates = HardGates(claude)
+        validated_segments = await hard_gates.validate(segments, product_fit)
+        print(f"[Hard Gates] {len(validated_segments)}/{len(segments)} segments passed validation")
 
         if len(validated_segments) < 1:
-            # Create a dummy segment if synthesis failed
-            validated_segments = [{
+            # Fallback: take best unvalidated segment if all failed
+            print("[Hard Gates] All segments failed - using top 2 with warnings...")
+            validated_segments = segments[:2] if segments else [{
                 "name": "Sales Engagement Leaders",
                 "description": "Companies using multiple sales tools seeking consolidation",
                 "data_sources": ["G2", "LinkedIn"],
                 "fields": ["company_name", "technology_stack"],
                 "message_type": "PQS"
             }]
-            print("[Hard Gates] Using fallback dummy segment")
 
         # ========== WAVE 3: Message Generation ==========
         print("[Wave 3] Generating messages...")

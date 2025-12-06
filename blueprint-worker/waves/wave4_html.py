@@ -173,12 +173,89 @@ class Wave4HTML:
 
         .score-badge {{
             display: inline-block;
-            background: var(--light-print);
-            color: var(--dark-print);
-            padding: 0.25rem 0.5rem;
+            background: #10B981;
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 2rem;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-left: 0.5rem;
+        }}
+
+        .score-badge.medium {{
+            background: #F59E0B;
+        }}
+
+        .score-badge.low {{
+            background: #EF4444;
+        }}
+
+        .segment-label {{
+            display: inline-block;
+            background: var(--ice);
+            color: var(--print-blue);
+            padding: 0.25rem 0.75rem;
             border-radius: 0.25rem;
             font-size: 0.75rem;
+            font-weight: 500;
             margin-left: 0.5rem;
+            border: 1px solid var(--light-print);
+        }}
+
+        .calculation-worksheet {{
+            background: #F0FDF4;
+            border: 1px solid #86EFAC;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            margin: 1rem 0;
+            font-family: 'Courier New', monospace;
+            font-size: 0.875rem;
+        }}
+
+        .calculation-worksheet h4 {{
+            color: #166534;
+            font-size: 0.875rem;
+            margin-bottom: 0.5rem;
+        }}
+
+        .data-confidence {{
+            display: inline-block;
+            padding: 0.125rem 0.5rem;
+            border-radius: 0.25rem;
+            font-size: 0.625rem;
+            font-weight: 600;
+            margin-left: 0.25rem;
+        }}
+
+        .data-confidence.high {{
+            background: #DCFCE7;
+            color: #166534;
+        }}
+
+        .data-confidence.medium {{
+            background: #FEF3C7;
+            color: #92400E;
+        }}
+
+        .data-confidence.low {{
+            background: #FEE2E2;
+            color: #991B1B;
+        }}
+
+        .texada-badge {{
+            display: inline-block;
+            background: var(--dark-print);
+            color: var(--corn);
+            padding: 0.25rem 0.5rem;
+            border-radius: 0.25rem;
+            font-size: 0.625rem;
+            font-weight: 600;
+            margin-right: 0.25rem;
+        }}
+
+        .texada-badge.fail {{
+            background: #FEE2E2;
+            color: #991B1B;
         }}
 
         @media (min-width: 768px) {{
@@ -290,9 +367,16 @@ class Wave4HTML:
 
     PLAY_CARD_TEMPLATE = '''
             <div class="play-card">
-                <span class="play-type{pvp_class}">{play_type}</span>
-                <span class="score-badge">Score: {score}/10</span>
+                <div style="margin-bottom: 0.75rem;">
+                    <span class="play-type{pvp_class}">{play_type}</span>
+                    <span class="score-badge{score_class}">Score: {score}/10</span>
+                    <span class="segment-label">{segment}</span>
+                </div>
                 <h3>{title}</h3>
+
+                <div style="margin-bottom: 0.75rem;">
+                    {texada_badges}
+                </div>
 
                 <div class="play-explanation">
                     <p><strong>What's the play?</strong> {explanation}</p>
@@ -303,14 +387,22 @@ class Wave4HTML:
                 </div>
 
                 <div class="data-sources">
-                    <strong>Data source:</strong> {data_source}
+                    <strong>Data Sources:</strong> {data_source}
                 </div>
+
+                {calculation_section}
 
                 <p><strong>The message:</strong></p>
                 <div class="message-example">Subject: {subject}
 
 {body}</div>
             </div>'''
+
+    CALCULATION_TEMPLATE = '''
+                <div class="calculation-worksheet">
+                    <h4>📊 Calculation Worksheet</h4>
+                    <p>{calculation}</p>
+                </div>'''
 
     def __init__(self):
         pass
@@ -381,18 +473,76 @@ Generic SDR"""
         for i, msg in enumerate(messages, 1):
             critique = msg.get("critique", {})
             score = critique.get("average", 0)
+            texada = critique.get("texada", {})
+
+            # Determine score badge class
+            if score >= 8.0:
+                score_class = ""  # Green (default)
+            elif score >= 6.5:
+                score_class = " medium"  # Yellow
+            else:
+                score_class = " low"  # Red
+
+            # Generate Texada badges
+            texada_badges = self._generate_texada_badges(texada)
+
+            # Generate calculation section if available
+            calculation = msg.get("calculation_worksheet", "")
+            calculation_section = ""
+            if calculation:
+                calculation_section = self.CALCULATION_TEMPLATE.format(calculation=calculation)
+
+            # Format data sources with confidence indicators
+            data_sources = msg.get("data_sources", ["Government databases"])
+            if isinstance(data_sources, list):
+                formatted_sources = []
+                for ds in data_sources:
+                    if isinstance(ds, dict):
+                        name = ds.get("name", ds.get("source", "Unknown"))
+                        feasibility = ds.get("feasibility", "MEDIUM")
+                        conf_class = feasibility.lower()
+                        formatted_sources.append(
+                            f'{name} <span class="data-confidence {conf_class}">{feasibility}</span>'
+                        )
+                    else:
+                        formatted_sources.append(str(ds))
+                data_source_html = ", ".join(formatted_sources)
+            else:
+                data_source_html = str(data_sources)
 
             card = self.PLAY_CARD_TEMPLATE.format(
                 play_type=play_type,
                 pvp_class=" pvp" if play_type == "PVP" else "",
                 score=f"{score:.1f}",
-                title=f"Play {i}: {msg.get('segment', 'Segment')}",
+                score_class=score_class,
+                segment=msg.get("segment", "General"),
+                title=f"Play {i}: {msg.get('subject', 'Target Segment')[:50]}",
+                texada_badges=texada_badges,
                 explanation=msg.get("segment", "Target prospects in this segment."),
                 why_works=critique.get("feedback", "Uses specific, verifiable data."),
-                data_source=", ".join(msg.get("data_sources", ["Government databases"])),
+                data_source=data_source_html,
+                calculation_section=calculation_section,
                 subject=msg.get("subject", "Subject"),
                 body=msg.get("body", "Message body")
             )
             cards.append(card)
 
         return "\n".join(cards) if cards else "<p>No messages generated for this category.</p>"
+
+    def _generate_texada_badges(self, texada: Dict) -> str:
+        """Generate Texada test badges HTML."""
+        badges = []
+
+        tests = [
+            ("hyper_specific", "Hyper-Specific"),
+            ("factually_grounded", "Factually Grounded"),
+            ("non_obvious", "Non-Obvious")
+        ]
+
+        for key, label in tests:
+            passed = texada.get(key, False)
+            badge_class = "" if passed else " fail"
+            status = "✓" if passed else "✗"
+            badges.append(f'<span class="texada-badge{badge_class}">{status} {label}</span>')
+
+        return "".join(badges)

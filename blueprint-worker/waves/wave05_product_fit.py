@@ -158,3 +158,52 @@ PRODUCT_FIT_QUESTION: "Would resolving [pain] require buying [this product]?" ""
             result["product_fit_question"] = match.group(1).strip().strip('"')
 
         return result
+
+    def validate_segment_fit(self, segment_pain: str, product_fit: Dict) -> Dict:
+        """
+        Validate if a segment's pain matches the product's valid domains.
+
+        Args:
+            segment_pain: Description of the pain the segment experiences
+            product_fit: Output from execute()
+
+        Returns:
+            {"valid": bool, "reason": str, "confidence": float}
+        """
+        pain_lower = segment_pain.lower()
+
+        # Check against invalid domains first (auto-reject)
+        for invalid in product_fit.get("invalid_domains", []):
+            invalid_words = [w.lower() for w in invalid.split() if len(w) > 3]
+            if any(word in pain_lower for word in invalid_words):
+                return {
+                    "valid": False,
+                    "reason": f"Pain '{segment_pain[:50]}...' matches INVALID domain: {invalid}",
+                    "confidence": 0.9
+                }
+
+        # Check against valid domains (accept)
+        for valid in product_fit.get("valid_domains", []):
+            valid_words = [w.lower() for w in valid.split() if len(w) > 3]
+            if any(word in pain_lower for word in valid_words):
+                return {
+                    "valid": True,
+                    "reason": f"Pain matches VALID domain: {valid}",
+                    "confidence": 0.85
+                }
+
+        # Use product fit question for ambiguous cases
+        fit_question = product_fit.get("product_fit_question", "")
+        if fit_question:
+            # Default to invalid for ambiguous cases
+            return {
+                "valid": False,
+                "reason": f"Pain domain unclear - apply fit question: {fit_question}",
+                "confidence": 0.5
+            }
+
+        return {
+            "valid": False,
+            "reason": "No matching domain found - likely not a good fit",
+            "confidence": 0.6
+        }
