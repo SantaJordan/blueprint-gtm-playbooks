@@ -6,6 +6,7 @@ Executes full 5-wave methodology using Claude API.
 """
 import modal
 import os
+import time
 from datetime import datetime
 from typing import Dict
 
@@ -14,6 +15,7 @@ app = modal.App("blueprint-gtm-worker")
 
 # Define secrets (created via: modal secret create blueprint-secrets ...)
 secrets = modal.Secret.from_name("blueprint-secrets")
+vercel_secrets = modal.Secret.from_name("blueprint-vercel")
 
 # Define container image with dependencies and local Python modules
 image = (
@@ -32,8 +34,8 @@ image = (
 
 @app.function(
     image=image,
-    secrets=[secrets],
-    timeout=1800,  # 30 minute timeout
+    secrets=[secrets, vercel_secrets],
+    timeout=2700,  # 45 minute timeout (increased from 30)
     cpu=2,
     memory=2048,
 )
@@ -81,6 +83,7 @@ async def process_blueprint_job(request: Dict) -> Dict:
         return {"success": False, "error": "Missing job_id or company_url"}
 
     print(f"[Blueprint Worker] Starting job {job_id} for {company_url}")
+    job_start = time.time()
 
     try:
         # Update status to processing
@@ -102,50 +105,68 @@ async def process_blueprint_job(request: Dict) -> Dict:
             Wave4HTML,
             Wave45Publish
         )
-        from tools import WebFetch, WebSearch
+        from tools import WebFetch, WebSearch, DualProviderSearch
 
         # Initialize tools
         serper_key = os.environ.get("SERPER_API_KEY", "")
+        rapidapi_key = os.environ.get("RAPIDAPI_KEY", "")
+        openweb_ninja_key = os.environ.get("OPENWEB_NINJA_KEY", "")  # Native ak_ format key
         web_fetch = WebFetch()
-        web_search = WebSearch(serper_key)
+
+        # Use dual-provider search with OpenWeb Ninja native API (preferred) or RapidAPI
+        if openweb_ninja_key:
+            print("[Tools] Using dual-provider search (Serper + OpenWeb Ninja native API)")
+            web_search = DualProviderSearch(serper_key, openweb_ninja_key, use_native=True)
+        elif rapidapi_key:
+            print("[Tools] Using dual-provider search (Serper + OpenWeb Ninja via RapidAPI)")
+            web_search = DualProviderSearch(serper_key, rapidapi_key, use_native=False)
+        else:
+            print("[Tools] Using Serper-only search")
+            web_search = WebSearch(serper_key)
 
         # ========== WAVE 1: Company Intelligence ==========
+        wave_start = time.time()
         print("[Wave 1] Gathering company intelligence...")
         wave1 = Wave1CompanyResearch(claude, web_fetch, web_search)
         company_context = await wave1.execute(company_url)
-        print(f"[Wave 1] Complete: {company_context.get('company_name', 'Unknown')}")
+        print(f"[Wave 1] Complete in {time.time() - wave_start:.1f}s: {company_context.get('company_name', 'Unknown')}")
 
         # ========== WAVE 0.5: Product Fit Analysis ==========
+        wave_start = time.time()
         print("[Wave 0.5] Analyzing product fit...")
         wave05 = Wave05ProductFit(claude)
         product_fit = await wave05.execute(company_context)
-        print(f"[Wave 0.5] Complete: {len(product_fit.get('valid_domains', []))} valid domains")
+        print(f"[Wave 0.5] Complete in {time.time() - wave_start:.1f}s: {len(product_fit.get('valid_domains', []))} valid domains")
 
         # ========== WAVE 1.5: Niche Conversion ==========
+        wave_start = time.time()
         print("[Wave 1.5] Converting niches...")
         wave15 = Wave15NicheConversion(claude, web_search)
         niches = await wave15.execute(company_context, product_fit)
-        print(f"[Wave 1.5] Complete: {len(niches.get('qualified_niches', []))} qualified niches")
+        print(f"[Wave 1.5] Complete in {time.time() - wave_start:.1f}s: {len(niches.get('qualified_niches', []))} qualified niches")
 
         # ========== WAVE 2.5: Situation Fallback (if needed) ==========
         situation_segments = []
         if niches.get("fallback_needed", False):
+            wave_start = time.time()
             print("[Wave 2.5] Niche fallback triggered - generating situation segments...")
             wave25 = Wave25SituationFallback(claude, web_search)
             situation_result = await wave25.execute(company_context, product_fit)
             situation_segments = situation_result.get("situation_segments", [])
-            print(f"[Wave 2.5] Complete: {len(situation_segments)} situation segments")
+            print(f"[Wave 2.5] Complete in {time.time() - wave_start:.1f}s: {len(situation_segments)} situation segments")
 
         # ========== WAVE 2: Data Landscape ==========
+        wave_start = time.time()
         print("[Wave 2] Mapping data landscape...")
         wave2 = Wave2DataLandscape(claude, web_search)
         data_landscape = await wave2.execute(
             niches.get("qualified_niches", [{}])[0] if niches.get("qualified_niches") else {},
             company_context
         )
-        print(f"[Wave 2] Complete: {sum(len(v) for v in data_landscape.values() if isinstance(v, list))} sources found")
+        print(f"[Wave 2] Complete in {time.time() - wave_start:.1f}s: {sum(len(v) for v in data_landscape.values() if isinstance(v, list))} sources found")
 
         # ========== SYNTHESIS: Sequential Thinking ==========
+        wave_start = time.time()
         print("[Synthesis] Generating pain segments...")
         synthesis = Synthesis(claude)
         segments_result = await synthesis.generate_segments(
@@ -154,7 +175,7 @@ async def process_blueprint_job(request: Dict) -> Dict:
             product_fit
         )
         segments = segments_result.get("segments", [])
-        print(f"[Synthesis] Complete: {len(segments)} segments generated")
+        print(f"[Synthesis] Complete in {time.time() - wave_start:.1f}s: {len(segments)} segments generated")
 
         # Combine with situation segments if available
         if situation_segments:
@@ -172,10 +193,11 @@ async def process_blueprint_job(request: Dict) -> Dict:
             print(f"[Synthesis] Added {len(situation_segments)} situation segments")
 
         # ========== HARD GATES: Validation ==========
+        wave_start = time.time()
         print("[Hard Gates] Validating segments...")
         hard_gates = HardGates(claude)
         validated_segments = await hard_gates.validate(segments, product_fit)
-        print(f"[Hard Gates] {len(validated_segments)}/{len(segments)} segments passed validation")
+        print(f"[Hard Gates] Complete in {time.time() - wave_start:.1f}s: {len(validated_segments)}/{len(segments)} segments passed")
 
         if len(validated_segments) < 1:
             # Fallback: take best unvalidated segment if all failed
@@ -189,18 +211,21 @@ async def process_blueprint_job(request: Dict) -> Dict:
             }]
 
         # ========== WAVE 3: Message Generation ==========
+        wave_start = time.time()
         print("[Wave 3] Generating messages...")
         wave3 = Wave3Messages(claude)
-        messages = await wave3.generate(validated_segments[:2], company_context)
-        print(f"[Wave 3] Complete: {len(messages)} messages generated")
+        messages = await wave3.generate(validated_segments[:4], company_context)  # Process 4 segments instead of 2
+        print(f"[Wave 3] Complete in {time.time() - wave_start:.1f}s: {len(messages)} messages generated")
 
         # ========== WAVE 4: HTML Assembly ==========
+        wave_start = time.time()
         print("[Wave 4] Assembling HTML playbook...")
         wave4 = Wave4HTML()
         html_content = wave4.generate(company_context, messages)
-        print(f"[Wave 4] Complete: {len(html_content)} bytes")
+        print(f"[Wave 4] Complete in {time.time() - wave_start:.1f}s: {len(html_content)} bytes")
 
         # ========== WAVE 4.5: Publish to GitHub ==========
+        wave_start = time.time()
         print("[Wave 4.5] Publishing to GitHub Pages...")
         wave45 = Wave45Publish(
             github_token=os.environ.get("GITHUB_TOKEN", ""),
@@ -209,7 +234,41 @@ async def process_blueprint_job(request: Dict) -> Dict:
         )
         company_slug = company_url.split("//")[-1].split("/")[0].replace(".", "-").replace("www-", "")
         playbook_url = await wave45.publish(html_content, company_slug)
-        print(f"[Wave 4.5] Complete: {playbook_url}")
+        print(f"[Wave 4.5] Complete in {time.time() - wave_start:.1f}s: {playbook_url}")
+
+        # ========== WAVE 5: Capture Payment (if applicable) ==========
+        payment_intent_id = record.get("stripe_payment_intent_id")
+        if payment_intent_id:
+            import httpx
+            wave_start = time.time()
+            print("[Wave 5] Capturing payment...")
+            vercel_api_url = os.environ.get("VERCEL_API_URL", "")
+            modal_webhook_secret = os.environ.get("MODAL_WEBHOOK_SECRET", "")
+
+            if vercel_api_url and modal_webhook_secret:
+                try:
+                    async with httpx.AsyncClient(timeout=30) as client:
+                        response = await client.post(
+                            f"{vercel_api_url}/api/capture-payment",
+                            headers={
+                                "Authorization": f"Bearer {modal_webhook_secret}",
+                                "Content-Type": "application/json"
+                            },
+                            json={
+                                "job_id": job_id,
+                                "playbook_url": playbook_url
+                            }
+                        )
+                        if response.status_code == 200:
+                            print(f"[Wave 5] Payment captured successfully in {time.time() - wave_start:.1f}s")
+                        else:
+                            print(f"[Wave 5] Payment capture failed: {response.text}")
+                except Exception as payment_err:
+                    print(f"[Wave 5] Payment capture error: {payment_err}")
+            else:
+                print("[Wave 5] Payment capture skipped - missing VERCEL_API_URL or MODAL_WEBHOOK_SECRET")
+        else:
+            print("[Wave 5] Skipped - no payment intent (test job or legacy)")
 
         # Update job as completed
         supabase.table("blueprint_jobs").update({
@@ -218,7 +277,8 @@ async def process_blueprint_job(request: Dict) -> Dict:
             "playbook_url": playbook_url
         }).eq("id", job_id).execute()
 
-        print(f"[Blueprint Worker] Job {job_id} completed successfully!")
+        total_time = time.time() - job_start
+        print(f"[Blueprint Worker] Job {job_id} completed in {total_time:.1f}s ({total_time/60:.1f} min)")
         return {"success": True, "playbook_url": playbook_url}
 
     except Exception as e:
@@ -237,7 +297,7 @@ async def process_blueprint_job(request: Dict) -> Dict:
         return {"success": False, "error": error_msg}
 
 
-@app.function(image=image, secrets=[secrets], schedule=modal.Cron("*/5 * * * *"))
+@app.function(image=image, secrets=[secrets, vercel_secrets], schedule=modal.Cron("*/5 * * * *"))
 async def poll_pending_jobs():
     """
     Backup cron job that polls for pending jobs every 5 minutes.

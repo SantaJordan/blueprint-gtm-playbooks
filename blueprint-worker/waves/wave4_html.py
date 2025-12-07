@@ -420,9 +420,9 @@ class Wave4HTML:
         """
         company_name = company_context.get("company_name", "Company")
 
-        # Separate PQS and PVP messages
-        pqs_messages = [m for m in messages if m.get("type") == "PQS"][:2]
-        pvp_messages = [m for m in messages if m.get("type") == "PVP"][:2]
+        # Separate PQS and PVP messages (allow up to 8 each for more output)
+        pqs_messages = self._order_messages([m for m in messages if m.get("type") == "PQS"][:8])
+        pvp_messages = self._order_messages([m for m in messages if m.get("type") == "PVP"][:8])
 
         # Generate bad email example
         bad_email = self._generate_bad_email(company_context)
@@ -546,3 +546,41 @@ Generic SDR"""
             badges.append(f'<span class="texada-badge{badge_class}">{status} {label}</span>')
 
         return "".join(badges)
+
+    def _order_messages(self, messages: List[Dict]) -> List[Dict]:
+        """
+        Order messages for maximum impact using primacy/recency effect.
+
+        Strategy: Best first, second-best last, middle scores in between.
+        People remember the first and last items best.
+
+        Args:
+            messages: List of messages, already sorted by score descending
+
+        Returns:
+            Reordered list with best first, second-best last, middle in between
+        """
+        if len(messages) <= 2:
+            return messages
+
+        # Messages should already be sorted by score descending from Wave 3
+        # But let's ensure they are
+        sorted_msgs = sorted(
+            messages,
+            key=lambda m: m.get("critique", {}).get("average", 0),
+            reverse=True
+        )
+
+        # Best goes first
+        best = sorted_msgs[0]
+
+        # Second-best goes last
+        second_best = sorted_msgs[1]
+
+        # Everything else in the middle
+        middle = sorted_msgs[2:]
+
+        # Reorder: best, middle..., second-best
+        result = [best] + middle + [second_best]
+
+        return result
