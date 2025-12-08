@@ -16,6 +16,7 @@ app = modal.App("blueprint-gtm-worker")
 # Define secrets (created via: modal secret create blueprint-secrets ...)
 secrets = modal.Secret.from_name("blueprint-secrets")
 vercel_secrets = modal.Secret.from_name("blueprint-vercel")
+openrouter_secrets = modal.Secret.from_name("openrouter-secret")
 
 # Define container image with dependencies and local Python modules
 image = (
@@ -29,15 +30,17 @@ image = (
     ])
     .add_local_python_source("waves")
     .add_local_python_source("tools")
+    .add_local_python_source("references")
 )
 
 
 @app.function(
     image=image,
-    secrets=[secrets, vercel_secrets],
-    timeout=2700,  # 45 minute timeout (increased from 30)
+    secrets=[secrets, vercel_secrets, openrouter_secrets],
+    timeout=3600,  # 60 minute timeout
     cpu=2,
     memory=2048,
+    scaledown_window=300,  # Keep container warm for 5 min after job completes
 )
 @modal.fastapi_endpoint(method="POST")
 async def process_blueprint_job(request: Dict) -> Dict:
@@ -65,7 +68,19 @@ async def process_blueprint_job(request: Dict) -> Dict:
 
     # Initialize clients
     try:
-        claude = AsyncAnthropic(api_key=os.environ["ANTHROPIC_API_KEY"])
+        from tools.openrouter_client import DualClaudeClient
+
+        anthropic_client = AsyncAnthropic(api_key=os.environ["ANTHROPIC_API_KEY"])
+
+        # Check for OpenRouter key for parallel API calls
+        openrouter_key = os.environ.get("OPENROUTER_API_KEY")
+        if openrouter_key:
+            print("[Blueprint Worker] OpenRouter key found - using dual-provider mode")
+            claude = DualClaudeClient(anthropic_client, openrouter_key)
+        else:
+            print("[Blueprint Worker] Using Anthropic-only mode")
+            claude = anthropic_client
+
         supabase = create_client(
             os.environ["SUPABASE_URL"],
             os.environ["SUPABASE_SERVICE_KEY"]
@@ -131,6 +146,12 @@ async def process_blueprint_job(request: Dict) -> Dict:
         company_context = await wave1.execute(company_url)
         print(f"[Wave 1] Complete in {time.time() - wave_start:.1f}s: {company_context.get('company_name', 'Unknown')}")
 
+        # Validate Wave 1 output - fail fast if company extraction failed
+        if not company_context:
+            raise ValueError(f"[Wave 1] Company research returned empty result for {company_url}")
+        if not company_context.get("company_name"):
+            raise ValueError(f"[Wave 1] Failed to extract company name from {company_url}")
+
         # ========== WAVE 0.5: Product Fit Analysis ==========
         wave_start = time.time()
         print("[Wave 0.5] Analyzing product fit...")
@@ -177,6 +198,10 @@ async def process_blueprint_job(request: Dict) -> Dict:
         segments = segments_result.get("segments", [])
         print(f"[Synthesis] Complete in {time.time() - wave_start:.1f}s: {len(segments)} segments generated")
 
+        # Warn if synthesis produced no segments - this will likely degrade output quality
+        if not segments:
+            print("[Synthesis] WARNING: No segments generated - output quality may be degraded")
+
         # Combine with situation segments if available
         if situation_segments:
             # Convert situation segments to match synthesis segment format
@@ -196,19 +221,29 @@ async def process_blueprint_job(request: Dict) -> Dict:
         wave_start = time.time()
         print("[Hard Gates] Validating segments...")
         hard_gates = HardGates(claude)
-        validated_segments = await hard_gates.validate(segments, product_fit)
+        validated_segments = await hard_gates.validate(segments, product_fit, company_context)
         print(f"[Hard Gates] Complete in {time.time() - wave_start:.1f}s: {len(validated_segments)}/{len(segments)} segments passed")
 
+        # Track if fallback was used for logging
+        used_fallback = False
         if len(validated_segments) < 1:
+            used_fallback = True
             # Fallback: take best unvalidated segment if all failed
-            print("[Hard Gates] All segments failed - using top 2 with warnings...")
-            validated_segments = segments[:2] if segments else [{
-                "name": "Sales Engagement Leaders",
-                "description": "Companies using multiple sales tools seeking consolidation",
-                "data_sources": ["G2", "LinkedIn"],
-                "fields": ["company_name", "technology_stack"],
-                "message_type": "PQS"
-            }]
+            if segments:
+                print(f"[Hard Gates] WARNING: All {len(segments)} segments failed validation - using top 2 unvalidated segments")
+                validated_segments = segments[:2]
+            else:
+                print("[Hard Gates] CRITICAL: No segments available - using hardcoded fallback (output quality will be poor)")
+                validated_segments = [{
+                    "name": "Sales Engagement Leaders",
+                    "description": "Companies using multiple sales tools seeking consolidation",
+                    "data_sources": ["G2", "LinkedIn"],
+                    "fields": ["company_name", "technology_stack"],
+                    "message_type": "PQS"
+                }]
+
+        if used_fallback:
+            print("[Hard Gates] ALERT: Job continuing with fallback segments - output quality may be degraded")
 
         # ========== WAVE 3: Message Generation ==========
         wave_start = time.time()
@@ -283,13 +318,25 @@ async def process_blueprint_job(request: Dict) -> Dict:
 
     except Exception as e:
         error_msg = str(e)
-        print(f"[Blueprint Worker] Job {job_id} failed: {error_msg}")
+        error_type = type(e).__name__
+
+        # Log full error for debugging (visible in Modal logs)
+        print(f"[Blueprint Worker] FULL ERROR for job {job_id}:")
+        print(f"[Blueprint Worker] Error type: {error_type}")
+        print(f"[Blueprint Worker] Error message: {error_msg}")
+
+        # Also log traceback for debugging
+        import traceback
+        print(f"[Blueprint Worker] Traceback:\n{traceback.format_exc()}")
+
+        # Truncate for database storage
+        stored_error = f"{error_type}: {error_msg[:900]}" if len(error_msg) > 900 else f"{error_type}: {error_msg}"
 
         # Update job as failed
         try:
             supabase.table("blueprint_jobs").update({
                 "status": "failed",
-                "error_message": error_msg[:1000]  # Limit error message length
+                "error_message": stored_error[:1000]  # Limit error message length
             }).eq("id", job_id).execute()
         except Exception as update_err:
             print(f"[Blueprint Worker] Failed to update job status: {update_err}")
@@ -317,10 +364,12 @@ async def poll_pending_jobs():
         job = result.data[0]
         print(f"[Cron] Found pending job: {job['id']}")
 
-        # Process the job
-        await process_blueprint_job.remote.aio({
+        # Process the job locally (webhook functions can't use .remote())
+        await process_blueprint_job.local({
             "record": job
         })
+    else:
+        print("[Cron] No pending jobs found")
 
 
 # Local testing entry point
@@ -329,11 +378,13 @@ def main(company_url: str = "https://owner.com"):
     """Test the worker locally with a company URL."""
     import asyncio
 
-    result = asyncio.run(process_blueprint_job.remote.aio({
-        "record": {
-            "id": "test-job-001",
-            "company_url": company_url
-        }
-    }))
+    async def run_local():
+        return await process_blueprint_job.local({
+            "record": {
+                "id": "test-job-001",
+                "company_url": company_url
+            }
+        })
 
+    result = asyncio.run(run_local())
     print(f"Result: {result}")

@@ -27,7 +27,7 @@ export const stripe = {
   get webhooks() { return getStripe().webhooks; },
 };
 
-export const PRODUCT_PRICE_CENTS = 50; // $0.50 - TESTING MODE (Stripe minimum)
+export const PRODUCT_PRICE_CENTS = 50; // $0.50 for testing
 
 export function normalizeCompanyDomain(input: string): string {
   let url = input.trim().toLowerCase();

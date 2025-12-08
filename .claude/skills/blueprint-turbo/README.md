@@ -182,10 +182,14 @@ See [CHANGELOG.md](./CHANGELOG.md) for version history.
 
 Blueprint Turbo is part of the Blueprint GTM family:
 
+- **blueprint-validator** - Quality enforcement (5-gate validation, banned patterns, feasibility checks)
+- **blueprint-pvp-deep** - Deep PVP generation (Gold Standard 8.0+ PVPs)
 - **blueprint-company-research** - Stage 1: Company intelligence
 - **blueprint-data-research** - Stage 2: Database validation
 - **blueprint-message-generation** - Stage 3: Message creation + critique
 - **blueprint-explainer-builder** - Stage 4: HTML generation
 - **blueprint-gtm-complete** - Original all-in-one execution (30-45 min)
+
+**Architecture:** Blueprint Turbo invokes `blueprint-validator` for quality enforcement and optionally `blueprint-pvp-deep` for enhanced PVP generation. All validation methodology is centralized in the validator skill.
 
 **These are NOT deprecated.** Use original skills for maximum thoroughness when time permits.

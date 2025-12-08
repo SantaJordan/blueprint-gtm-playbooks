@@ -565,15 +565,22 @@ OUTPUT: 2-3 pain segment hypotheses with:
 
 ### HARD GATE CHECKPOINT (MANDATORY - 1-2 min)
 
-**CRITICAL:** This checkpoint executes AUTOMATICALLY after Synthesis. ALL segments MUST pass 4 gates before proceeding to Wave 3.
+**CRITICAL:** This checkpoint executes AUTOMATICALLY after Synthesis. ALL segments MUST pass 5 gates before proceeding to Wave 3.
 
-**Load Validator:**
+**Invoke Validator Skill:**
 ```
-Read: .claude/skills/blueprint-pvp-deep/prompts/hard-gate-validator.md
-Reference: .claude/skills/blueprint-pvp-deep/prompts/banned-patterns-registry.md
+→ Invoke: Skill(skill: "blueprint-validator")
+→ Pass:
+  - Mode: SEGMENT_VALIDATION
+  - Product Context: core_problem, valid_domains, invalid_domains (from Wave 0.5)
+  - Segments: all segments from Synthesis phase
+→ Receive:
+  - VALIDATED_SEGMENTS: segments that passed all 5 gates
+  - REJECTED_SEGMENTS: segments that failed (with reasons)
+  - REVISION_CANDIDATES: segments that can be revised (Gate 3 or 4 failures only)
 ```
 
-**For EACH segment from Synthesis, validate:**
+**What the Validator Checks (for reference - see blueprint-validator skill for details):**
 
 **Gate 1: Horizontal Disqualification**
 - Is the ICP operationally specific?
@@ -1583,6 +1590,87 @@ done
 - User gets confirmed-working URL or clear guidance on what to do
 
 **Progress Hook:** Dynamic output based on verification status - either confirmed live or with clear next steps
+
+---
+
+### WAVE 5: Model Version Check (End of Run)
+
+**Objective:** Auto-check for newer Anthropic models and update codebase if found
+
+**Execute After HTML Publish Successfully:**
+
+**Step 1: Fetch Current Model Information**
+
+```
+WebFetch: https://docs.anthropic.com/en/docs/about-claude/models
+Prompt: "Extract the latest model IDs for Claude Opus, Sonnet, and Haiku. Return just the model ID strings (e.g., claude-opus-4-5-20251101)."
+```
+
+**Step 2: Compare Against Expected Latest**
+
+Current expected latest models (update this list when models change):
+```
+EXPECTED_MODELS:
+  opus: claude-opus-4-5-20251101
+  sonnet: claude-sonnet-4-5-20250929
+  haiku: claude-haiku-4-5-20251001
+```
+
+**Step 3: Auto-Update Logic**
+
+IF newer model detected for any class (opus/sonnet/haiku):
+
+1. **Update blueprint-worker Python files:**
+   - `blueprint-worker/waves/hard_gates.py` - sonnet references
+   - `blueprint-worker/waves/wave1_company_research.py` - sonnet references
+   - `blueprint-worker/waves/wave2_data_landscape.py` - sonnet references
+   - `blueprint-worker/waves/wave3_messages.py` - sonnet references
+   - `blueprint-worker/waves/wave05_product_fit.py` - sonnet references
+   - `blueprint-worker/waves/wave15_niche_conversion.py` - haiku references
+   - `blueprint-worker/waves/wave25_situation_fallback.py` - sonnet/haiku references
+   - `blueprint-worker/waves/synthesis.py` - sonnet references
+   - `blueprint-worker/tools/sequential_thinking.py` - opus references
+
+2. **Update contact-finder legacy files (if exists):**
+   - `contact-finder/modules/llm/anthropic_provider.py` - haiku default
+   - `contact-finder/modules/llm/provider.py` - haiku fallback
+
+3. **Update this command's expected models list** (above)
+
+**Replacement Rules:**
+- Match pattern `claude-opus-*` → replace with latest opus ID
+- Match pattern `claude-sonnet-*` → replace with latest sonnet ID
+- Match pattern `claude-haiku-*` → replace with latest haiku ID
+- Match pattern `claude-3-*-haiku-*` → replace with latest haiku ID (legacy format)
+
+**Step 4: Output Results**
+
+**If Updates Made:**
+```
+🔄 MODEL AUTO-UPDATE COMPLETE
+
+Updated to latest Anthropic models:
+- Opus: [old] → [new]
+- Sonnet: [old] → [new]
+- Haiku: [old] → [new]
+
+Files updated:
+- [list of files modified]
+
+Note: Run `modal deploy blueprint-worker/main.py` to apply Modal worker changes.
+```
+
+**If Already Latest:**
+```
+✅ Using latest models (no updates needed)
+```
+
+**If Check Failed (non-blocking):**
+```
+⚠️ Model check skipped (could not fetch model info)
+```
+
+**Progress Hook:** "🔍 Wave 5/5: Model version check complete"
 
 ---
 

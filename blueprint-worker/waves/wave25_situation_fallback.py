@@ -6,8 +6,40 @@ Generates TIMING-based plays that connect DATA → SITUATION → PAIN → PRODUC
 
 For horizontal products that serve any business without vertical-specific data moats.
 """
-from typing import Dict, List
+from typing import Dict, List, Optional
+from dataclasses import dataclass
+from enum import Enum
 import re
+
+from tools.claude_retry import call_claude_with_retry
+
+
+class NoFitTier(Enum):
+    """Tiers for no-fit response handling."""
+    HONEST_REJECTION = 1  # No viable segments at all
+    SITUATION_FALLBACK = 2  # Timing plays available
+    PIVOT_SUGGESTION = 3  # Recommend repositioning
+
+
+@dataclass
+class NoFitResponse:
+    """Response when no segments pass validation."""
+    tier: NoFitTier
+    should_abort: bool
+    message: str
+    pivot_suggestions: List[str]
+    fallback_segments: List[Dict]
+
+    def to_dict(self) -> Dict:
+        """Convert to dictionary for JSON serialization."""
+        return {
+            "tier": self.tier.name,
+            "tier_value": self.tier.value,
+            "should_abort": self.should_abort,
+            "message": self.message,
+            "pivot_suggestions": self.pivot_suggestions,
+            "fallback_segments": self.fallback_segments
+        }
 
 
 class Wave25SituationFallback:
@@ -116,15 +148,15 @@ class Wave25SituationFallback:
         # Take top 3 segments
         top_segments = scored_segments[:3]
 
-        # Determine if no-fit warning is needed
-        no_fit_warning = None
-        if not top_segments:
-            no_fit_warning = self._generate_no_fit_warning(product_fit)
+        # Determine no-fit response based on segment availability
+        no_fit_response = self._determine_no_fit_response(top_segments, product_fit)
 
         return {
             "situation_segments": top_segments,
             "fallback_used": True,
-            "no_fit_warning": no_fit_warning
+            "no_fit_response": no_fit_response.to_dict() if no_fit_response else None,
+            "should_abort": no_fit_response.should_abort if no_fit_response else False,
+            "no_fit_warning": no_fit_response.message if no_fit_response and no_fit_response.should_abort else None
         }
 
     async def _generate_category_segments(
@@ -162,8 +194,9 @@ PAIN_HYPOTHESIS: [Why they need the product NOW, not later]
 ---
 [Repeat for second segment]"""
 
-        response = await self.claude.messages.create(
-            model="claude-sonnet-4-20250514",
+        response = await call_claude_with_retry(
+            self.claude,
+            model="claude-sonnet-4-5-20250929",  # Sonnet 4.5 for faster situation gen
             max_tokens=1024,
             messages=[{"role": "user", "content": prompt}]
         )
@@ -262,8 +295,9 @@ MESSAGE_TYPE: [PQS/Situational_PVP]
 CONFIDENCE_LEVEL: [0-100]
 VERDICT: [PROCEED/REVISE/REJECT]"""
 
-        response = await self.claude.messages.create(
-            model="claude-sonnet-4-20250514",
+        response = await call_claude_with_retry(
+            self.claude,
+            model="claude-haiku-4-5-20251001",  # Haiku for simple scoring
             max_tokens=512,
             messages=[{"role": "user", "content": prompt}]
         )
@@ -301,8 +335,72 @@ VERDICT: [PROCEED/REVISE/REJECT]"""
 
         return scored
 
-    def _generate_no_fit_warning(self, product_fit: Dict) -> str:
-        """Generate warning when no situation segments pass."""
+    def _determine_no_fit_response(
+        self,
+        segments: List[Dict],
+        product_fit: Dict
+    ) -> Optional[NoFitResponse]:
+        """
+        Determine the appropriate no-fit response based on segment availability.
+
+        Tiers:
+        - HONEST_REJECTION: No viable segments, abort recommended
+        - SITUATION_FALLBACK: Timing plays available, continue
+        - PIVOT_SUGGESTION: Few low-quality segments, suggest repositioning
+        """
+        product_type = product_fit.get('product_type', 'Unknown')
+        core_problem = product_fit.get('core_problem', 'Unknown')
+
+        # Tier 2: Situation fallback successful - segments available
+        if segments and len(segments) >= 2:
+            avg_score = sum(s.get("product_fit_score", 0) for s in segments) / len(segments)
+            if avg_score >= 6:
+                return None  # Good segments, no warning needed
+
+            # Low-quality segments available
+            return NoFitResponse(
+                tier=NoFitTier.SITUATION_FALLBACK,
+                should_abort=False,
+                message=f"Situation-based segments generated with avg score {avg_score:.1f}/10",
+                pivot_suggestions=[
+                    "Consider targeting companies during specific events (trade shows, funding rounds)",
+                    "Focus on change-driven triggers (rebrands, office moves, M&A)",
+                    "Target seasonal spikes in relevant industries"
+                ],
+                fallback_segments=segments
+            )
+
+        # Tier 3: Few/weak segments - suggest pivot
+        if segments and len(segments) == 1:
+            return NoFitResponse(
+                tier=NoFitTier.PIVOT_SUGGESTION,
+                should_abort=False,
+                message=f"Only 1 viable situation segment found for {product_type}. Consider repositioning.",
+                pivot_suggestions=[
+                    f"Reframe {core_problem} around time-sensitive events",
+                    "Target companies post-funding for scale pressure plays",
+                    "Focus on rebrand/relocation triggers for change pressure",
+                    "Consider if product has vertical-specific applications worth exploring"
+                ],
+                fallback_segments=segments
+            )
+
+        # Tier 1: No viable segments - honest rejection
+        return NoFitResponse(
+            tier=NoFitTier.HONEST_REJECTION,
+            should_abort=True,
+            message=self._generate_no_fit_message(product_fit),
+            pivot_suggestions=[
+                "Internal Data Only: If sender has 100+ customers, can create benchmark PVPs",
+                "PQS-Only Approach: Use competitive intelligence for pain identification",
+                "Manual Targeting: This use case may require manual prospect identification",
+                "Consider if product fits the data-driven Blueprint methodology"
+            ],
+            fallback_segments=[]
+        )
+
+    def _generate_no_fit_message(self, product_fit: Dict) -> str:
+        """Generate detailed message for honest rejection tier."""
         return f"""⚠️ BLUEPRINT COMPATIBILITY WARNING
 
 No situation-based segments passed product-fit validation.
@@ -310,13 +408,15 @@ No situation-based segments passed product-fit validation.
 Product: {product_fit.get('product_type', 'Unknown')}
 Core Problem: {product_fit.get('core_problem', 'Unknown')}
 
-Options:
-1. Internal Data Only: If sender has 100+ customers, can create benchmark PVPs
-2. PQS-Only Approach: Use competitive intelligence for pain identification
-3. Manual Targeting: This use case may require manual prospect identification
+ASSESSMENT:
+This product may not be well-suited for the Blueprint GTM methodology, which requires:
+1. Externally detectable pain signals (government databases, public records)
+2. Time-sensitive urgency triggers (deadlines, violations, events)
+3. Direct product-to-pain connection (product solves the specific pain)
 
-Recommendation: Consider if this product fits the data-driven Blueprint methodology.
-The product may be better suited for traditional outbound approaches."""
+RECOMMENDATION:
+The product may be better suited for traditional outbound approaches or
+internal-data-driven campaigns using existing customer patterns."""
 
     def should_trigger(self, niche_results: Dict) -> bool:
         """Check if situation fallback should be triggered."""

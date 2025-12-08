@@ -10,6 +10,8 @@ import asyncio
 from typing import Dict, List
 import re
 
+from tools.claude_retry import call_claude_with_retry
+
 
 class Wave1CompanyResearch:
     """Wave 1: Explosive intelligence gathering with parallel calls."""
@@ -169,8 +171,9 @@ PERSONA_RESPONSIBILITIES: [specific daily activities]
 PERSONA_KPIS: [quantifiable metric1, metric2, metric3]
 PERSONA_BLIND_SPOTS: [data gaps and hidden inefficiencies]"""
 
-        response = await self.claude.messages.create(
-            model="claude-sonnet-4-20250514",  # Use Sonnet for bulk work
+        response = await call_claude_with_retry(
+            self.claude,
+            model="claude-sonnet-4-5-20250929",  # Sonnet 4.5 for faster research
             max_tokens=2048,
             messages=[{"role": "user", "content": prompt}]
         )

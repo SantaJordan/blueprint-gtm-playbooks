@@ -11,6 +11,8 @@ import asyncio
 from typing import Dict, List
 import re
 
+from tools.claude_retry import call_claude_with_retry
+
 
 class Wave2DataLandscape:
     """Wave 2: Map available data sources for the target niche."""
@@ -210,8 +212,9 @@ REJECT sources that:
 - Have update frequency >90 days
 - Cost >$1000/month for basic access"""
 
-        response = await self.claude.messages.create(
-            model="claude-sonnet-4-20250514",
+        response = await call_claude_with_retry(
+            self.claude,
+            model="claude-sonnet-4-5-20250929",  # Sonnet 4.5 for faster data landscape
             max_tokens=4096,
             messages=[{"role": "user", "content": prompt}]
         )

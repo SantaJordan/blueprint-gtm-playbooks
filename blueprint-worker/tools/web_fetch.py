@@ -12,7 +12,7 @@ import re
 class WebFetch:
     """Async HTTP client for fetching web pages."""
 
-    def __init__(self, timeout: int = 30, max_retries: int = 3):
+    def __init__(self, timeout: int = 15, max_retries: int = 2):  # Reduced for faster fail-fast
         self.timeout = timeout
         self.max_retries = max_retries
         self.headers = {

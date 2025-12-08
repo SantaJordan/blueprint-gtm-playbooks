@@ -5,6 +5,8 @@ Uses structured prompting to achieve stepwise analytical thinking.
 from typing import Dict, List, Optional
 import re
 
+from tools.claude_retry import call_claude_with_retry
+
 
 class SequentialThinking:
     """
@@ -52,7 +54,7 @@ Be thorough but efficient. 5-10 thoughts is typical."""
         context: str,
         task: str,
         num_thoughts: int = 10,
-        model: str = "claude-opus-4-20250514"
+        model: str = "claude-sonnet-4-5-20250929"  # Sonnet 4.5 for faster thinking
     ) -> Dict:
         """
         Perform sequential thinking analysis.
@@ -61,7 +63,7 @@ Be thorough but efficient. 5-10 thoughts is typical."""
             context: Background information for the analysis
             task: The specific analytical task to perform
             num_thoughts: Target number of thoughts (5-15 recommended)
-            model: Claude model to use (Opus recommended for synthesis)
+            model: Claude model to use (default: Haiku)
 
         Returns:
             {
@@ -85,7 +87,8 @@ TASK:
 Generate approximately {num_thoughts} thoughts leading to a well-reasoned conclusion."""
 
         try:
-            response = await self.claude.messages.create(
+            response = await call_claude_with_retry(
+                self.claude,
                 model=model,
                 max_tokens=4096,
                 messages=[{"role": "user", "content": prompt}]

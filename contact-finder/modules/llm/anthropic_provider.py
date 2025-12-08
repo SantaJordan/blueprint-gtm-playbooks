@@ -16,7 +16,7 @@ class AnthropicProvider(LLMProvider):
     def __init__(
         self,
         api_key: str | None = None,
-        model: str = "claude-3-haiku-20240307",
+        model: str = "claude-haiku-4-5-20251001",
         default_temperature: float = 0.1,
         default_max_tokens: int = 500
     ):

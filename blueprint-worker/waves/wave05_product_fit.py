@@ -7,6 +7,8 @@ Prevents generating segments with data that doesn't connect to product value.
 from typing import Dict, List
 import re
 
+from tools.claude_retry import call_claude_with_retry
+
 
 class Wave05ProductFit:
     """Wave 0.5: Product value anchoring."""
@@ -82,8 +84,9 @@ VALID_DOMAINS: [domain1, domain2, domain3]
 INVALID_DOMAINS: [domain1, domain2, domain3]
 PRODUCT_FIT_QUESTION: "Would resolving [pain] require buying [this product]?" """
 
-        response = await self.claude.messages.create(
-            model="claude-opus-4-20250514",  # Use Opus for critical decisions
+        response = await call_claude_with_retry(
+            self.claude,
+            model="claude-sonnet-4-5-20250929",  # Sonnet 4.5 for faster product fit
             max_tokens=2048,
             messages=[{"role": "user", "content": prompt}]
         )

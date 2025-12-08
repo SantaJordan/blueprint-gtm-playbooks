@@ -249,10 +249,18 @@ Each segment must meet ALL of these criteria:
 
 **CRITICAL:** After generating segments, EACH segment MUST pass all 5 hard gates before proceeding to message generation.
 
-**Load Validator:**
+**Invoke Validator Skill:**
 ```
-Read: .claude/skills/blueprint-pvp-deep/prompts/hard-gate-validator.md
-Reference: .claude/skills/blueprint-pvp-deep/prompts/banned-patterns-registry.md
+→ Invoke: Skill(skill: "blueprint-validator")
+→ Pass:
+  - Mode: SEGMENT_VALIDATION
+  - Product Context: core_problem, valid_domains, invalid_domains (from Wave 0.5)
+  - Segments: all generated segments
+→ Receive:
+  - VALIDATED_SEGMENTS: segments that passed all 5 gates
+  - REJECTED_SEGMENTS: segments that failed (with reasons)
+  - REVISION_CANDIDATES: segments that can be revised (Gate 3 or 4 failures only)
+
 Reference: .claude/skills/blueprint-turbo/modules/product-fit-triage.md
 ```
 

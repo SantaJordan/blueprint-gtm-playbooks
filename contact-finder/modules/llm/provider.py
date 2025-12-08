@@ -75,7 +75,7 @@ def get_provider(config: dict) -> LLMProvider:
         from .anthropic_provider import AnthropicProvider
         return AnthropicProvider(
             api_key=llm_config.get("anthropic_api_key"),
-            model=llm_config.get("model", "claude-3-haiku-20240307"),
+            model=llm_config.get("model", "claude-haiku-4-5-20251001"),
             default_temperature=llm_config.get("temperature", 0.1),
             default_max_tokens=llm_config.get("max_tokens", 500)
         )

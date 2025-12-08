@@ -7,8 +7,38 @@ interface JobStatus {
   status: 'not_found' | 'pending' | 'processing' | 'completed' | 'failed';
   playbook_url?: string;
   error?: string;
+  error_category?: 'timeout' | 'rate_limit' | 'unreachable' | 'blocked' | 'unknown';
   payment_status?: string;
   created_at?: string;
+  updated_at?: string;
+}
+
+// User-friendly error messages based on error category
+function getErrorMessage(category?: string): string {
+  switch (category) {
+    case 'timeout':
+      return 'The job timed out. This can happen with complex websites or high server load.';
+    case 'rate_limit':
+      return 'We hit a rate limit. Please try again in a few minutes.';
+    case 'unreachable':
+      return 'Could not access the website. Please verify the URL is correct and the site is online.';
+    case 'blocked':
+      return 'The website blocked our analysis. Some sites have strict access controls.';
+    default:
+      return 'An unexpected error occurred during generation.';
+  }
+}
+
+// Generate mailto link with pre-filled troubleshooting info
+function getSupportMailto(domain: string, jobId?: string, error?: string): string {
+  const subject = encodeURIComponent(`Blueprint GTM Issue - ${domain}`);
+  const body = encodeURIComponent(
+    `Domain: ${domain}\n` +
+    `Job ID: ${jobId || 'N/A'}\n` +
+    `Error: ${error || 'Unknown'}\n` +
+    `\nPlease describe any additional context:\n`
+  );
+  return `mailto:jordan@blueprintgtm.com?subject=${subject}&body=${body}`;
 }
 
 const POLL_INTERVAL = 5000; // 5 seconds
@@ -108,15 +138,15 @@ export default function StatusPage({ params }: { params: Promise<{ domain: strin
   const getStatusText = () => {
     switch (status?.status) {
       case 'pending':
-        return { title: 'Queued', subtitle: 'Waiting for worker...' };
+        return { title: 'Queued', subtitle: 'Your playbook is in the queue and will start shortly' };
       case 'processing':
-        return { title: 'Generating...', subtitle: 'Running 5-wave analysis' };
+        return { title: 'Generating Your Playbook', subtitle: 'Running AI-powered 5-wave analysis' };
       case 'completed':
-        return { title: 'Complete!', subtitle: 'Redirecting to your playbook...' };
+        return { title: 'Playbook Ready!', subtitle: 'Redirecting you now...' };
       case 'failed':
-        return { title: 'Failed', subtitle: 'No charge - authorization released' };
+        return { title: 'Generation Failed', subtitle: 'Your card was not charged' };
       default:
-        return { title: 'No Playbook Yet', subtitle: 'Start a new analysis' };
+        return { title: 'No Playbook Found', subtitle: 'This domain hasn\'t been analyzed yet' };
     }
   };
 
@@ -260,8 +290,33 @@ export default function StatusPage({ params }: { params: Promise<{ domain: strin
                   borderLeft: '3px solid #dc3545'
                 }}
               >
-                {status.error || 'An error occurred during generation'}
+                <strong className="block mb-2">What happened:</strong>
+                {getErrorMessage(status.error_category)}
               </div>
+
+              {/* Job Reference */}
+              {status.id && (
+                <p
+                  className="text-xs text-center mb-4"
+                  style={{ color: 'var(--dark-print)', opacity: 0.5 }}
+                >
+                  Reference: {status.id.slice(0, 8)}
+                </p>
+              )}
+
+              {/* Support Email Button */}
+              <a
+                href={getSupportMailto(displayDomain, status.id, status.error)}
+                className="w-full text-center block py-3 px-4 rounded-lg mb-3 font-medium"
+                style={{
+                  background: 'var(--light-print)',
+                  color: 'var(--dark-print)',
+                  border: '1px solid var(--dark-print)',
+                }}
+              >
+                Contact Support
+              </a>
+
               <a
                 href="/"
                 className="btn-primary w-full text-center block"

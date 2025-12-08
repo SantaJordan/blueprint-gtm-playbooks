@@ -4,10 +4,19 @@ import { createJob } from '@/lib/supabase';
 import Stripe from 'stripe';
 
 export async function POST(request: NextRequest) {
+  console.log('[stripe-webhook] Received webhook request');
+
   const body = await request.text();
   const signature = request.headers.get('stripe-signature');
 
+  console.log('[stripe-webhook] Request details:', {
+    bodyLength: body.length,
+    hasSignature: !!signature,
+    webhookSecretSet: !!process.env.STRIPE_WEBHOOK_SECRET,
+  });
+
   if (!signature) {
+    console.error('[stripe-webhook] Missing signature header');
     return NextResponse.json({ error: 'Missing signature' }, { status: 400 });
   }
 
@@ -19,8 +28,9 @@ export async function POST(request: NextRequest) {
       signature,
       process.env.STRIPE_WEBHOOK_SECRET!
     );
+    console.log('[stripe-webhook] Signature verified, event type:', event.type);
   } catch (err) {
-    console.error('Webhook signature verification failed:', err);
+    console.error('[stripe-webhook] Signature verification failed:', err);
     return NextResponse.json(
       { error: 'Invalid signature' },
       { status: 400 }
@@ -44,19 +54,29 @@ export async function POST(request: NextRequest) {
 }
 
 async function handleCheckoutCompleted(session: Stripe.Checkout.Session) {
+  console.log('[stripe-webhook] handleCheckoutCompleted called:', {
+    sessionId: session.id,
+    metadata: session.metadata,
+    paymentIntent: session.payment_intent,
+    customerEmail: session.customer_details?.email,
+    amountTotal: session.amount_total,
+  });
+
   const domain = session.metadata?.domain;
   const companyUrl = session.metadata?.company_url;
   const paymentIntentId = session.payment_intent as string;
   const customerEmail = session.customer_details?.email || undefined;
 
   if (!domain || !companyUrl) {
-    console.error('Missing domain or company_url in session metadata');
+    console.error('[stripe-webhook] Missing domain or company_url in session metadata:', session.metadata);
     return;
   }
 
   try {
+    console.log('[stripe-webhook] Creating job in Supabase...');
+
     // Create job in Supabase - this will trigger the Modal worker via Supabase webhook
-    await createJob({
+    const job = await createJob({
       company_url: companyUrl,
       status: 'pending',
       stripe_checkout_session_id: session.id,
@@ -66,9 +86,14 @@ async function handleCheckoutCompleted(session: Stripe.Checkout.Session) {
       amount_cents: session.amount_total || 3999,
     });
 
-    console.log(`Job created for ${domain}, payment authorized`);
+    console.log('[stripe-webhook] Job created successfully:', {
+      jobId: job.id,
+      domain,
+      companyUrl,
+      paymentStatus: 'authorized',
+    });
   } catch (error) {
-    console.error('Failed to create job:', error);
+    console.error('[stripe-webhook] Failed to create job:', error);
     throw error;
   }
 }

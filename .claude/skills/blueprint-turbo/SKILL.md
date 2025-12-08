@@ -235,13 +235,24 @@ User involvement: High (4 manual invocations + 4 review points)
 **Blueprint Turbo:**
 ```
 /blueprint-turbo <url> (single command)
-  → Wave 1 (parallel) → Synthesis (MCP) → Wave 2 (parallel) → Wave 3 (sequential) → Wave 4 (fast)
+  → Wave 1 (parallel) → Synthesis (MCP) → Hard Gates (validator skill) → Wave 2 (parallel) → Wave 3 (sequential) → Wave 4 (fast)
   ↓
 HTML playbook
 
 Total: 12-15 min, fully autonomous
 User involvement: Zero (single invocation, no review points)
 ```
+
+### Skill Dependencies
+
+Blueprint Turbo invokes other Blueprint skills for quality enforcement:
+
+| Skill | When Invoked | Purpose |
+|-------|--------------|---------|
+| `blueprint-validator` | After Synthesis | 5-gate validation, banned patterns, data feasibility |
+| `blueprint-pvp-deep` | Optional (Wave 3) | Enhanced PVP generation for Gold Standard 8.0+ |
+
+All validation methodology is centralized in `blueprint-validator` - Turbo itself contains no quality gates or anti-pattern logic.
 
 ### Database Discovery Approach
 
@@ -283,12 +294,22 @@ User wants to analyze a **SaaS company in logistics** (new vertical):
 │   └── blueprint-turbo.md          # Main orchestrator slash command
 │
 ├── skills/
-│   └── blueprint-turbo/
-│       ├── SKILL.md                # This documentation file
-│       ├── templates/
-│       │   └── html-template.html  # Blueprint HTML template
-│       └── prompts/
-│           └── methodology.md      # Buyer critique rubric, message formats
+│   ├── blueprint-turbo/
+│   │   ├── SKILL.md                # This documentation file
+│   │   ├── templates/
+│   │   │   └── html-template.html  # Blueprint HTML template
+│   │   └── prompts/
+│   │       └── methodology.md      # Buyer critique rubric, message formats
+│   │
+│   ├── blueprint-validator/        # Quality enforcement (invoked)
+│   │   ├── SKILL.md                # Validation orchestration
+│   │   └── prompts/
+│   │       ├── hard-gate-validator.md
+│   │       ├── banned-patterns-registry.md
+│   │       └── data-feasibility-framework.md
+│   │
+│   └── blueprint-pvp-deep/         # Enhanced PVP generation (optional)
+│       └── SKILL.md
 │
 └── settings.json                   # Progress tracking hooks (added)
 ```
@@ -300,6 +321,8 @@ User wants to analyze a **SaaS company in logistics** (new vertical):
 3. **`html-template.html`** - Blueprint brand template (extracted from original)
 4. **`methodology.md`** - Reusable prompts for critique rubric, message formats
 5. **`settings.json`** - Hooks for real-time progress visibility
+6. **`blueprint-validator/`** - Quality gates, banned patterns, feasibility (invoked after Synthesis)
+7. **`blueprint-pvp-deep/`** - Gold Standard 8.0+ PVP generation (optional)
 
 ---
 

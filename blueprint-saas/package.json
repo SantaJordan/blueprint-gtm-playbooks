@@ -6,7 +6,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "test:payment": "npx tsx scripts/test-payment-flow.ts",
+    "test:payment:live": "npx tsx scripts/test-payment-flow.ts --live"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.86.2",
@@ -23,6 +25,7 @@
     "eslint": "^9",
     "eslint-config-next": "16.0.7",
     "tailwindcss": "^4",
+    "tsx": "^4.19.2",
     "typescript": "^5"
   }
 }

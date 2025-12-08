@@ -255,13 +255,20 @@ For each of the 8-12 insights, verify:
 
 ## PHASE 1.5: Hard Gate Validation (MANDATORY)
 
-**Objective:** Validate ALL synthesis insights against 4 hard gates before drafting PVPs. AUTO-DESTROY any insight that fails.
+**Objective:** Validate ALL synthesis insights against 5 hard gates before drafting PVPs. AUTO-DESTROY any insight that fails.
 
-### Load Validators
+### Invoke Validator Skill
 
 ```
-Read: .claude/skills/blueprint-pvp-deep/prompts/hard-gate-validator.md
-Reference: .claude/skills/blueprint-pvp-deep/prompts/banned-patterns-registry.md
+→ Invoke: Skill(skill: "blueprint-validator")
+→ Pass:
+  - Mode: SEGMENT_VALIDATION
+  - Product Context: core_problem, valid_domains, invalid_domains (from Phase 0)
+  - Segments: all synthesis insights from Phase 1
+→ Receive:
+  - VALIDATED_SEGMENTS: insights that passed all 5 gates
+  - REJECTED_SEGMENTS: insights that failed (with reasons)
+  - REVISION_CANDIDATES: insights that can be revised (Gate 3 or 4 failures only)
 ```
 
 ### Validate EACH Insight Against 4 Gates
@@ -575,7 +582,7 @@ For concepts scoring 7.0-7.9:
 
 ### Load Feasibility Framework
 
-Read: `.claude/skills/blueprint-pvp-deep/prompts/data-feasibility-framework.md`
+Read: `.claude/skills/blueprint-validator/prompts/data-feasibility-framework.md`
 
 ### Step 1: Rank Gold Standard PVPs
 

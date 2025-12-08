@@ -12,6 +12,8 @@ from typing import Dict, List, Tuple
 import re
 import asyncio
 
+from tools.claude_retry import call_claude_with_retry
+
 
 class Wave3Messages:
     """Wave 3: Generate and validate messages for each segment."""
@@ -250,6 +252,17 @@ FEEDBACK: [specific improvement needed to make me reply]"""
         # Run all 8 calls at once
         all_results = await asyncio.gather(*pqs_tasks, *pvp_tasks, return_exceptions=True)
 
+        # Log any exceptions that were caught
+        failed_count = 0
+        for i, result in enumerate(all_results):
+            if isinstance(result, Exception):
+                failed_count += 1
+                task_type = "PQS" if i < len(segments) else "PVP"
+                print(f"[Wave 3] {task_type} generation task {i} failed: {type(result).__name__}: {str(result)[:200]}")
+
+        if failed_count > 0:
+            print(f"[Wave 3] WARNING: {failed_count}/{len(all_results)} message generation tasks failed")
+
         # Split results back into PQS and PVP
         all_pqs_results = all_results[:len(segments)]
         all_pvp_results = all_results[len(segments):]
@@ -270,6 +283,16 @@ FEEDBACK: [specific improvement needed to make me reply]"""
         ]
         all_critiques = await asyncio.gather(*critique_tasks, return_exceptions=True)
 
+        # Log any critique exceptions
+        critique_failed = 0
+        for i, result in enumerate(all_critiques):
+            if isinstance(result, Exception):
+                critique_failed += 1
+                print(f"[Wave 3] Critique task {i} failed: {type(result).__name__}: {str(result)[:200]}")
+
+        if critique_failed > 0:
+            print(f"[Wave 3] WARNING: {critique_failed}/{len(all_critiques)} critique tasks failed")
+
         # Assemble final messages with critiques
         all_messages = []
         for idx, (segment, pqs_msgs, pvp_msgs) in enumerate(segment_messages):
@@ -285,19 +308,28 @@ FEEDBACK: [specific improvement needed to make me reply]"""
 
         print(f"[Wave 3] Generated {len(all_messages)} total messages")
 
-        # Filter to keep only messages scoring ≥6.5 (lowered from 7.0 for more output)
+        # Sort ALL messages by score (best first)
+        all_messages.sort(
+            key=lambda m: m.get("critique", {}).get("average", 0),
+            reverse=True
+        )
+
+        # Filter to keep only messages scoring ≥6.5
         passing_messages = [
             m for m in all_messages
             if m.get("critique", {}).get("average", 0) >= 6.5
         ]
 
-        # Sort by score (best first)
-        passing_messages.sort(
-            key=lambda m: m.get("critique", {}).get("average", 0),
-            reverse=True
-        )
-
         print(f"[Wave 3] {len(passing_messages)} messages passed quality threshold (≥6.5)")
+
+        # V4 FIX: ALWAYS return at least top 4 messages even if all fail threshold
+        # This prevents 0-message output which is worse than low-quality messages
+        if len(passing_messages) < 4 and len(all_messages) >= 4:
+            print(f"[Wave 3] FALLBACK: Using top 4 messages (only {len(passing_messages)} passed threshold)")
+            return all_messages[:4]
+        elif len(passing_messages) == 0 and len(all_messages) > 0:
+            print(f"[Wave 3] FALLBACK: All messages below threshold, returning top {min(4, len(all_messages))}")
+            return all_messages[:4]
 
         return passing_messages
 
@@ -312,8 +344,9 @@ FEEDBACK: [specific improvement needed to make me reply]"""
             offering=context.get("offering", "")
         )
 
-        response = await self.claude.messages.create(
-            model="claude-opus-4-20250514",  # Maximum quality for paying customers
+        response = await call_claude_with_retry(
+            self.claude,
+            model="claude-sonnet-4-5-20250929",  # Sonnet 4.5 for faster message gen
             max_tokens=2048,
             messages=[{"role": "user", "content": prompt}]
         )
@@ -331,8 +364,9 @@ FEEDBACK: [specific improvement needed to make me reply]"""
             offering=context.get("offering", "")
         )
 
-        response = await self.claude.messages.create(
-            model="claude-opus-4-20250514",  # Maximum quality for paying customers
+        response = await call_claude_with_retry(
+            self.claude,
+            model="claude-sonnet-4-5-20250929",  # Sonnet 4.5 for faster message gen
             max_tokens=2048,
             messages=[{"role": "user", "content": prompt}]
         )
@@ -354,8 +388,9 @@ FEEDBACK: [specific improvement needed to make me reply]"""
             messages=messages_text
         )
 
-        response = await self.claude.messages.create(
-            model="claude-opus-4-20250514",  # Maximum quality for paying customers
+        response = await call_claude_with_retry(
+            self.claude,
+            model="claude-sonnet-4-5-20250929",  # Sonnet 4.5 for faster critique
             max_tokens=4096,
             messages=[{"role": "user", "content": prompt}]
         )
@@ -363,7 +398,7 @@ FEEDBACK: [specific improvement needed to make me reply]"""
         return self._parse_critiques(response.content[0].text, len(messages))
 
     def _parse_messages(self, text: str, msg_type: str) -> List[Dict]:
-        """Parse generated messages from response."""
+        """Parse generated messages from response with full metadata extraction."""
         messages = []
 
         # Find message variants
@@ -371,17 +406,51 @@ FEEDBACK: [specific improvement needed to make me reply]"""
         matches = re.findall(pattern, text, re.DOTALL | re.IGNORECASE)
 
         for _, content in matches:
-            msg = {"type": msg_type, "subject": "", "body": ""}
+            msg = {
+                "type": msg_type,
+                "subject": "",
+                "body": "",
+                "calculation_worksheet": "",
+                "data_sources": []
+            }
 
             # Extract subject
-            subject_match = re.search(r'Subject[:\s]+(.+?)(?=\n|Body|$)', content)
+            subject_match = re.search(r'Subject[:\s]+(.+?)(?=\n|Body|$)', content, re.IGNORECASE)
             if subject_match:
                 msg["subject"] = subject_match.group(1).strip()
 
-            # Extract body
-            body_match = re.search(r'Body[:\s]+(.+?)$', content, re.DOTALL)
+            # Extract body - stop at Calculation_Worksheet or Data_Sources_Used
+            body_match = re.search(
+                r'Body[:\s]+(.+?)(?=Calculation_Worksheet|Data_Sources_Used|$)',
+                content,
+                re.DOTALL | re.IGNORECASE
+            )
             if body_match:
                 msg["body"] = body_match.group(1).strip()
+
+            # Extract calculation worksheet
+            calc_match = re.search(
+                r'Calculation_Worksheet[:\s]+(.+?)(?=Data_Sources_Used|$)',
+                content,
+                re.DOTALL | re.IGNORECASE
+            )
+            if calc_match:
+                calc_text = calc_match.group(1).strip()
+                # Skip if it's just a placeholder like "[show the math...]"
+                if calc_text and not calc_text.startswith("["):
+                    msg["calculation_worksheet"] = calc_text
+
+            # Extract data sources used (for PVP messages)
+            sources_match = re.search(
+                r'Data_Sources_Used[:\s]+(.+?)$',
+                content,
+                re.DOTALL | re.IGNORECASE
+            )
+            if sources_match:
+                sources_text = sources_match.group(1).strip()
+                # Parse comma-separated sources
+                if sources_text and not sources_text.startswith("["):
+                    msg["data_sources"] = [s.strip() for s in sources_text.split(",") if s.strip()]
 
             if msg["subject"] or msg["body"]:
                 messages.append(msg)
@@ -389,7 +458,7 @@ FEEDBACK: [specific improvement needed to make me reply]"""
         return messages
 
     def _parse_critiques(self, text: str, expected_count: int) -> List[Dict]:
-        """Parse critique results for each message."""
+        """Parse critique results for each message with robust Texada parsing."""
         critiques = []
 
         # Split by MESSAGE blocks
@@ -411,16 +480,31 @@ FEEDBACK: [specific improvement needed to make me reply]"""
                     "non_obvious": False
                 },
                 "verdict": "DESTROY",
-                "feedback": ""
+                "feedback": "",
+                "placeholder_check": "PASS"
             }
 
-            # Parse scores
+            # Check for placeholder auto-destroy
+            placeholder_match = re.search(
+                r"PLACEHOLDER_CHECK[:\s]*(PASS|AUTO-DESTROY|FAIL)",
+                block,
+                re.IGNORECASE
+            )
+            if placeholder_match:
+                critique["placeholder_check"] = placeholder_match.group(1).upper()
+                if "DESTROY" in critique["placeholder_check"] or "FAIL" in critique["placeholder_check"]:
+                    critique["average"] = 0
+                    critique["verdict"] = "DESTROY"
+                    critiques.append(critique)
+                    continue  # Skip further parsing for destroyed messages
+
+            # Parse scores with flexible patterns
             score_patterns = {
-                "situation_recognition": r"Situation Recognition[:\s]+(\d+)",
-                "data_credibility": r"Data Credibility[:\s]+(\d+)",
-                "insight_value": r"Insight Value[:\s]+(\d+)",
-                "effort_to_reply": r"Effort to Reply[:\s]+(\d+)",
-                "emotional_resonance": r"Emotional Resonance[:\s]+(\d+)"
+                "situation_recognition": r"Situation Recognition[:\s-]+(\d+)",
+                "data_credibility": r"Data Credibility[:\s-]+(\d+)",
+                "insight_value": r"Insight Value[:\s-]+(\d+)",
+                "effort_to_reply": r"Effort to Reply[:\s-]+(\d+)",
+                "emotional_resonance": r"Emotional Resonance[:\s-]+(\d+)"
             }
 
             total = 0
@@ -438,13 +522,31 @@ FEEDBACK: [specific improvement needed to make me reply]"""
             if avg_match:
                 critique["average"] = float(avg_match.group(1))
 
-            # Parse Texada
-            texada_match = re.search(r"TEXADA[:\s]+(.+?)(?=VERDICT|FEEDBACK|$)", block, re.DOTALL | re.IGNORECASE)
-            if texada_match:
-                texada_text = texada_match.group(1).lower()
-                critique["texada"]["hyper_specific"] = "pass" in texada_text and "specific" in texada_text
-                critique["texada"]["factually_grounded"] = "pass" in texada_text and "grounded" in texada_text
-                critique["texada"]["non_obvious"] = "pass" in texada_text and "obvious" in texada_text
+            # Parse Texada with more robust patterns
+            # Look for individual test lines: "- Hyper-specific: PASS" or "Hyper-specific: PASS [evidence]"
+            texada_patterns = {
+                "hyper_specific": r"Hyper[- ]?specific[:\s]+(PASS|FAIL)",
+                "factually_grounded": r"Factually[- ]?grounded[:\s]+(PASS|FAIL)",
+                "non_obvious": r"Non[- ]?obvious[:\s]+(PASS|FAIL)"
+            }
+
+            for key, pattern in texada_patterns.items():
+                match = re.search(pattern, block, re.IGNORECASE)
+                if match:
+                    critique["texada"][key] = match.group(1).upper() == "PASS"
+
+            # Fallback: check TEXADA section if individual patterns didn't match
+            if not any(critique["texada"].values()):
+                texada_section = re.search(r"TEXADA[:\s]+(.+?)(?=VERDICT|FEEDBACK|$)", block, re.DOTALL | re.IGNORECASE)
+                if texada_section:
+                    texada_text = texada_section.group(1)
+                    # Look for PASS/FAIL patterns with evidence
+                    for key, label in [("hyper_specific", "specific"), ("factually_grounded", "grounded"), ("non_obvious", "obvious")]:
+                        # Pattern: "✓ Hyper-Specific" or "PASS" near the keyword
+                        if re.search(rf"(✓|PASS).*{label}", texada_text, re.IGNORECASE):
+                            critique["texada"][key] = True
+                        elif re.search(rf"{label}.*PASS", texada_text, re.IGNORECASE):
+                            critique["texada"][key] = True
 
             # Parse verdict
             verdict_match = re.search(r"VERDICT[:\s]+(KEEP|REVISE|DESTROY)", block, re.IGNORECASE)

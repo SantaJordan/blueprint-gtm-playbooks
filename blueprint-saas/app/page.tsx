@@ -137,7 +137,7 @@ function HomeContent() {
                 Creating checkout...
               </span>
             ) : (
-              'Get Your Playbook — $0.50'
+              'Get Your Playbook — $39.99'
             )}
           </button>
         </form>

@@ -3,15 +3,35 @@ Wave 1.5: Niche Conversion
 
 Converts generic verticals to regulated niches with data moats.
 Ensures Wave 2 searches for data moat sources, not generic signals.
+
+Uses reference data from data_moat_verticals for pre-scoring.
 """
-from typing import Dict, List
+from typing import Dict, List, Optional
 import re
+
+from tools.claude_retry import call_claude_with_retry
+
+# Try to import reference data (graceful fallback if not available)
+try:
+    from references.data_moat_verticals import (
+        get_vertical_score,
+        convert_to_niche,
+        get_vertical_info,
+        TIER_1_VERTICALS
+    )
+    HAS_REFERENCE_DATA = True
+except ImportError:
+    HAS_REFERENCE_DATA = False
+    TIER_1_VERTICALS = {}
+
+# Minimum product-solution alignment score to proceed (HARD GATE)
+MIN_PRODUCT_ALIGNMENT = 5
 
 
 class Wave15NicheConversion:
     """Wave 1.5: Convert generic verticals to regulated niches."""
 
-    # Auto-reject generic verticals
+    # Auto-reject generic verticals - EXPANDED list
     AUTO_REJECT = [
         "saas companies",
         "tech startups",
@@ -22,6 +42,15 @@ class Wave15NicheConversion:
         "enterprises",
         "smbs",
         "startups",
+        "tech companies",
+        "software companies",
+        "digital agencies",
+        "marketing agencies",
+        "consulting firms",
+        "general business",
+        "small businesses",
+        "medium businesses",
+        "large enterprises",
     ]
 
     def __init__(self, claude_client, web_search):
@@ -139,8 +168,9 @@ Return ONLY the niche name (e.g., "Licensed insurance agents in multi-state oper
 If no regulated niche applies, return "NONE"
 """
 
-        response = await self.claude.messages.create(
-            model="claude-sonnet-4-20250514",
+        response = await call_claude_with_retry(
+            self.claude,
+            model="claude-haiku-4-5-20251001",  # Haiku for simple niche identification
             max_tokens=256,
             messages=[{"role": "user", "content": prompt}]
         )
@@ -192,8 +222,9 @@ DATA_ACCESSIBILITY: [0-10]
 SPECIFICITY_POTENTIAL: [0-10]
 PRODUCT_SOLUTION_ALIGNMENT: [0-10]"""
 
-        response = await self.claude.messages.create(
-            model="claude-opus-4-20250514",  # Use Opus for critical scoring
+        response = await call_claude_with_retry(
+            self.claude,
+            model="claude-haiku-4-5-20251001",  # Haiku for simple scoring
             max_tokens=512,
             messages=[{"role": "user", "content": prompt}]
         )
@@ -226,18 +257,49 @@ PRODUCT_SOLUTION_ALIGNMENT: [0-10]"""
         return scores
 
     def _determine_tier(self, score: Dict) -> str:
-        """Determine tier based on scores."""
+        """
+        Determine tier based on scores.
+
+        HARD GATE: Product-solution alignment < 5 = REJECTED
+        This is non-negotiable - if the product doesn't solve the pain,
+        no amount of data moat quality matters.
+        """
         total = sum(score.values())
         product_fit = score.get("product_solution_alignment", 0)
 
-        if product_fit < 5:
+        # HARD GATE: Product alignment is non-negotiable
+        if product_fit < MIN_PRODUCT_ALIGNMENT:
+            print(f"[Wave 1.5] HARD GATE: Product alignment {product_fit} < {MIN_PRODUCT_ALIGNMENT} - REJECTED")
             return "REJECTED"
-        elif total >= 35 and product_fit >= 7:
+
+        # Tier assignment based on total score AND product fit
+        if total >= 35 and product_fit >= 7:
             return "TIER_1"
-        elif total >= 30 and product_fit >= 5:
+        elif total >= 30 and product_fit >= 6:
             return "TIER_2"
-        else:
+        elif total >= 25 and product_fit >= 5:
             return "TIER_3"
+        else:
+            # Low total score but passing product fit - situational play
+            return "TIER_4_SITUATIONAL"
+
+    def _quick_score_from_reference(self, vertical: str) -> Optional[int]:
+        """
+        Get a quick data moat score from reference data.
+
+        Returns pre-calculated score (0-40) if available, None otherwise.
+        """
+        if not HAS_REFERENCE_DATA:
+            return None
+
+        return get_vertical_score(vertical)
+
+    def _get_reference_info(self, vertical: str) -> Optional[Dict]:
+        """Get full reference info for a vertical if available."""
+        if not HAS_REFERENCE_DATA:
+            return None
+
+        return get_vertical_info(vertical)
 
     def _format_search_results(self, results: List[Dict]) -> str:
         """Format search results for prompt."""

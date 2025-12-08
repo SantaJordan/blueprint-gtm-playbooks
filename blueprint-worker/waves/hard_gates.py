@@ -7,9 +7,136 @@ Validates each segment against 5 mandatory gates:
 3. No Aggregates Ban (company-specific data only)
 4. Technical Feasibility Audit (detectable data)
 5. Product Connection (product solves this pain)
+
+Includes PRODUCT_DOMAIN_MAP for fast domain-based pre-validation.
 """
-from typing import Dict, List
+from typing import Dict, List, Optional, Tuple
 import re
+import asyncio
+
+from tools.claude_retry import call_claude_with_retry
+
+
+# Product type to pain domain mapping for fast Gate 5 pre-check
+# If segment description contains terms from invalid_keywords, auto-destroy
+PRODUCT_DOMAIN_MAP = {
+    # Contact sharing / networking products (e.g., Blinq, Popl)
+    "contact_networking": {
+        "keywords": ["contact", "card", "networking", "connect", "share contact", "business card"],
+        "valid_domains": [
+            "contact sharing", "networking events", "employee onboarding",
+            "sales introductions", "conference networking", "lead capture",
+            "contact management", "digital business card"
+        ],
+        "invalid_domains": [
+            "compliance deadlines", "license management", "regulatory violations",
+            "EPA violations", "OSHA citations", "FDA warnings", "CMS deficiencies",
+            "audit preparation", "permit expiration", "regulatory fines"
+        ]
+    },
+    # Sales engagement / productivity (e.g., Mixmax, Outreach)
+    "sales_engagement": {
+        "keywords": ["sales", "email", "sequence", "outreach", "engagement", "prospecting"],
+        "valid_domains": [
+            "sales productivity", "email engagement", "meeting booking",
+            "sales pipeline", "prospecting efficiency", "follow-up automation",
+            "response rates", "sales workflow", "inbox management"
+        ],
+        "invalid_domains": [
+            "healthcare compliance", "environmental violations", "food safety",
+            "trucking regulations", "nursing home deficiencies", "medical licensing"
+        ]
+    },
+    # Restaurant management (e.g., Owner.com, Toast)
+    "restaurant_management": {
+        "keywords": ["restaurant", "menu", "online ordering", "food service", "hospitality"],
+        "valid_domains": [
+            "online ordering", "menu management", "restaurant marketing",
+            "customer reviews", "delivery operations", "table booking",
+            "food cost management", "staff scheduling"
+        ],
+        "invalid_domains": [
+            "trucking violations", "nursing home deficiencies", "EPA compliance",
+            "pharmaceutical regulations", "financial audits"
+        ]
+    },
+    # Healthcare / compliance (e.g., Hint Health, Jane App)
+    "healthcare_compliance": {
+        "keywords": ["healthcare", "patient", "EHR", "medical", "HIPAA", "clinical"],
+        "valid_domains": [
+            "patient management", "healthcare billing", "clinical workflows",
+            "HIPAA compliance", "EHR integration", "medical scheduling",
+            "patient engagement", "care coordination", "medical licensing"
+        ],
+        "invalid_domains": [
+            "trucking violations", "restaurant inspections", "sales prospecting",
+            "networking events", "contact sharing"
+        ]
+    },
+    # Compliance / regulatory (generic)
+    "compliance_regulatory": {
+        "keywords": ["compliance", "regulatory", "audit", "violation", "inspection"],
+        "valid_domains": [
+            "regulatory violations", "audit preparation", "compliance deadlines",
+            "permit management", "license renewal", "inspection readiness",
+            "violation remediation", "compliance tracking"
+        ],
+        "invalid_domains": [
+            "general productivity", "sales efficiency", "networking",
+            "contact sharing", "social events"
+        ]
+    }
+}
+
+
+def detect_product_type(company_context: Dict) -> Optional[str]:
+    """Detect product type from company context to enable domain pre-check."""
+    offering = company_context.get("offering", "").lower()
+    company_name = company_context.get("company_name", "").lower()
+
+    for product_type, config in PRODUCT_DOMAIN_MAP.items():
+        for keyword in config["keywords"]:
+            if keyword.lower() in offering or keyword.lower() in company_name:
+                return product_type
+
+    return None
+
+
+def pre_check_domain_fit(
+    segment_description: str,
+    product_type: str
+) -> Tuple[bool, Optional[str]]:
+    """
+    Fast domain pre-check BEFORE LLM validation.
+
+    Returns:
+        (should_proceed, reason) - NOW ALWAYS proceeds (warning only, no auto-destroy)
+    """
+    if product_type not in PRODUCT_DOMAIN_MAP:
+        return True, None  # Unknown product type, proceed to LLM
+
+    config = PRODUCT_DOMAIN_MAP[product_type]
+    description_lower = segment_description.lower()
+
+    # Check for invalid domain keywords - WARNING ONLY (V4 fix - no longer auto-destroys)
+    for invalid_term in config["invalid_domains"]:
+        if invalid_term.lower() in description_lower:
+            # V4 FIX: Changed from auto-destroy to warning only
+            # Let LLM make final call - pre-check was too aggressive
+            print(f"[Hard Gates] DOMAIN WARNING: Segment mentions '{invalid_term}' - flagging for LLM review")
+            return True, f"Warning: Segment mentions '{invalid_term}' (flagged for review)"
+
+    # Check for at least one valid domain keyword (optional, just for logging)
+    has_valid = any(
+        valid_term.lower() in description_lower
+        for valid_term in config["valid_domains"]
+    )
+
+    if not has_valid:
+        # Warn but don't auto-destroy - let LLM make final call
+        print(f"[Hard Gates] Warning: Segment may not align with {product_type} valid domains")
+
+    return True, None
 
 
 class HardGates:
@@ -91,30 +218,95 @@ CAN_REVISE: YES/NO (only YES if failed Gate 3 or 4 only)"""
 
     def __init__(self, claude_client):
         self.claude = claude_client
+        self._product_type = None  # Cached product type for pre-check
 
-    async def validate(self, segments: List[Dict], product_fit: Dict) -> List[Dict]:
+    async def validate(
+        self,
+        segments: List[Dict],
+        product_fit: Dict,
+        company_context: Dict = None
+    ) -> List[Dict]:
         """
-        Validate all segments against hard gates.
+        Validate all segments against hard gates IN PARALLEL.
+
+        Uses a 2-phase approach:
+        1. Fast domain pre-check (no LLM) - auto-destroy mismatched segments
+        2. Full LLM validation for remaining segments
 
         Args:
             segments: List of segments from Synthesis
             product_fit: Output from Wave 0.5
+            company_context: Optional company context for domain pre-check
 
         Returns:
             List of validated segments that passed all 5 gates
         """
-        validated = []
+        if not segments:
+            return []
+
+        # Detect product type for domain pre-check
+        if company_context:
+            self._product_type = detect_product_type(company_context)
+            if self._product_type:
+                print(f"[Hard Gates] Product type detected: {self._product_type}")
+
+        # Phase 0: Fast domain pre-check (no LLM call)
+        pre_checked_segments = []
+        destroyed_count = 0
 
         for segment in segments:
-            result = await self._validate_segment(segment, product_fit)
+            if self._product_type:
+                should_proceed, reason = pre_check_domain_fit(
+                    segment.get("description", ""),
+                    self._product_type
+                )
+                if not should_proceed:
+                    print(f"[Hard Gates] PRE-CHECK DESTROY: {segment.get('name', 'Unknown')} - {reason}")
+                    destroyed_count += 1
+                    continue
+
+            pre_checked_segments.append(segment)
+
+        if destroyed_count > 0:
+            print(f"[Hard Gates] Pre-check destroyed {destroyed_count}/{len(segments)} segments")
+
+        if not pre_checked_segments:
+            print("[Hard Gates] All segments destroyed by pre-check")
+            return []
+
+        # Phase 1: Validate remaining segments in parallel
+        validation_tasks = [
+            self._validate_segment(segment, product_fit)
+            for segment in pre_checked_segments
+        ]
+        results = await asyncio.gather(*validation_tasks, return_exceptions=True)
+
+        # Phase 2: Identify segments that passed, failed, or need revision
+        validated = []
+        needs_revision = []
+
+        for segment, result in zip(pre_checked_segments, results):
+            # Handle exceptions from gather
+            if isinstance(result, Exception):
+                print(f"[Hard Gates] Validation error for {segment.get('name', 'Unknown')}: {result}")
+                continue
 
             if result["verdict"] == "PROCEED":
                 segment["validation"] = result
                 validated.append(segment)
             elif result["verdict"] == "REVISE_ONCE" and result.get("can_revise"):
-                # Attempt one revision
-                revised = await self._revise_segment(segment, result, product_fit)
-                if revised:
+                needs_revision.append((segment, result))
+
+        # Phase 3: Process all revisions in parallel
+        if needs_revision:
+            revision_tasks = [
+                self._revise_segment(segment, result, product_fit)
+                for segment, result in needs_revision
+            ]
+            revised_results = await asyncio.gather(*revision_tasks, return_exceptions=True)
+
+            for revised in revised_results:
+                if revised and not isinstance(revised, Exception):
                     validated.append(revised)
 
         return validated
@@ -131,8 +323,9 @@ CAN_REVISE: YES/NO (only YES if failed Gate 3 or 4 only)"""
             invalid_domains=", ".join(product_fit.get("invalid_domains", []))
         )
 
-        response = await self.claude.messages.create(
-            model="claude-opus-4-20250514",  # Use Opus for quality judgment
+        response = await call_claude_with_retry(
+            self.claude,
+            model="claude-sonnet-4-5-20250929",  # Use Sonnet 4.5 for validation (faster)
             max_tokens=2048,
             messages=[{"role": "user", "content": prompt}]
         )
@@ -227,8 +420,9 @@ REVISED_SEGMENT:
 - Fields: [specific field names/selectors]
 - Message Type: [PQS or PVP]"""
 
-        response = await self.claude.messages.create(
-            model="claude-sonnet-4-20250514",
+        response = await call_claude_with_retry(
+            self.claude,
+            model="claude-sonnet-4-5-20250929",  # Use Sonnet 4.5 for revision (faster)
             max_tokens=1024,
             messages=[{"role": "user", "content": prompt}]
         )
