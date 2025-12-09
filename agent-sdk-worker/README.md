@@ -1,4 +1,12 @@
-# Agent SDK Worker
+# Agent SDK Worker (Node.js)
+
+Cloud Blueprint Turbo execution using Claude Agent SDK.
+Runs on Modal.com, triggered by Supabase webhook.
+
+**Status:** Active - Primary worker for new deployments
+**Sibling:** See [`blueprint-worker/`](../blueprint-worker/) for Python alternative
+
+---
 
 Blueprint Turbo worker using the Claude Agent SDK.
 

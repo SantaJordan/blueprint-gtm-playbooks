@@ -75,3 +75,9 @@ contact-finder/*.json
 !contact-finder/config.yaml.example
 domain-resolver/config.yaml
 .secrets.md
+
+# Archive - old/unused files
+/archive/
+
+# Generated playbooks (published to GitHub Pages separately)
+/playbooks/

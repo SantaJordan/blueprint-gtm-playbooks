@@ -20,6 +20,32 @@ This repository uses **dual remotes** for different purposes:
 
 ---
 
+## Repository Structure
+
+This repo contains **4 main systems**:
+
+### 1. Blueprint GTM Skills (Local Execution)
+- **`.claude/skills/`** - 8 Claude Code skills for GTM intelligence
+- **`.claude/commands/`** - Slash commands (`/blueprint-turbo`)
+- Run locally: `/blueprint-turbo https://company.com`
+
+### 2. Blueprint Cloud Workers (Online Execution)
+- **`agent-sdk-worker/`** - Node.js worker using Claude Agent SDK (Modal)
+- **`blueprint-worker/`** - Python worker with 10-wave pipeline (Modal)
+- **`blueprint-trigger-api/`** - Vercel API for mobile job queue
+- **`blueprint-saas/`** - Next.js dashboard with Stripe payments
+
+### 3. Contact Finder (SMB Discovery)
+- **`contact-finder/`** - Find decision-makers at small businesses
+- **`evaluation/`** - Testing framework for contact-finder
+- **`domain-resolver/`** - Company name → domain resolution
+
+### 4. Documentation
+- **`docs/`** - Runbooks, distribution guides, templates
+- **`CLAUDE.md`** - Quick reference for Claude Code
+
+---
+
 ## What This System Does
 
 **Input:** Company website URL

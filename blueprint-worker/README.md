@@ -1,4 +1,12 @@
-# Blueprint GTM Worker
+# Blueprint Worker (Python)
+
+Cloud Blueprint Turbo execution using 10-wave Python pipeline.
+Runs on Modal.com, triggered by Supabase webhook.
+
+**Status:** Active - Production worker
+**Sibling:** See [`agent-sdk-worker/`](../agent-sdk-worker/) for Agent SDK alternative
+
+---
 
 Serverless worker that processes Blueprint GTM jobs using Modal.com.
 
