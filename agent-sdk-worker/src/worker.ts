@@ -32,7 +32,7 @@ interface QueryOptions {
     workingDirectory: string;
     settingSources: string[];
     permissionMode: string;
-    mcpServers?: Record<string, { command: string; args: string[] }>;
+    mcpServers?: Record<string, { type: string; command: string; args: string[] }>;
     allowedTools?: string[];
     maxTurns?: number;
     maxBudgetUsd?: number;
@@ -40,14 +40,24 @@ interface QueryOptions {
 }
 
 /**
- * Ensure the skills repository is cloned and up to date
+ * Ensure the skills repository is available
+ * In Modal, skills are pre-populated in the image at /app/blueprint-skills
+ * For local dev, clone the repo if not present
  */
 export async function ensureSkillsRepo(): Promise<string> {
   const config = getConfig();
   const repoPath = config.skillsRepoPath;
+  const claudeDir = `${repoPath}/.claude`;
 
   console.log(`[Worker] Ensuring skills repo at ${repoPath}`);
 
+  // Check if .claude directory already exists (pre-populated in Modal image)
+  if (existsSync(claudeDir)) {
+    console.log(`[Worker] Skills directory found at ${claudeDir} - using pre-populated skills`);
+    return repoPath;
+  }
+
+  // Clone repo if not present (for local development)
   if (!existsSync(repoPath)) {
     console.log(`[Worker] Cloning skills repo...`);
     execSync(`git clone ${config.skillsRepoUrl} ${repoPath}`, {
@@ -124,6 +134,26 @@ export async function runBlueprintTurbo(
   console.log(`[Worker] Starting Blueprint Turbo for ${companyUrl}`);
   console.log(`[Worker] Working directory: ${workingDirectory}`);
 
+  // Log directory contents for debugging
+  try {
+    const { readdirSync, existsSync } = await import("fs");
+    console.log(`[Worker] Working dir exists: ${existsSync(workingDirectory)}`);
+    if (existsSync(workingDirectory)) {
+      console.log(`[Worker] Working dir contents: ${readdirSync(workingDirectory).join(", ")}`);
+    }
+    const claudeDir = `${workingDirectory}/.claude`;
+    console.log(`[Worker] .claude dir exists: ${existsSync(claudeDir)}`);
+    if (existsSync(claudeDir)) {
+      console.log(`[Worker] .claude contents: ${readdirSync(claudeDir).join(", ")}`);
+      const commandsDir = `${claudeDir}/commands`;
+      if (existsSync(commandsDir)) {
+        console.log(`[Worker] commands contents: ${readdirSync(commandsDir).join(", ")}`);
+      }
+    }
+  } catch (e) {
+    console.log(`[Worker] Dir listing error: ${e}`);
+  }
+
   // Import the Agent SDK dynamically to handle cases where it's not installed yet
   let query: (options: QueryOptions) => AsyncIterable<AgentMessage>;
 
@@ -145,12 +175,13 @@ export async function runBlueprintTurbo(
     prompt: `/blueprint-turbo ${companyUrl}`,
     options: {
       workingDirectory,
-      settingSources: ["project"], // Loads CLAUDE.md and .claude/skills/
+      settingSources: ["user", "project"], // Loads CLAUDE.md and .claude/skills/
       permissionMode: "acceptEdits", // Allow file writes without prompting
       mcpServers: {
         "sequential-thinking": {
+          type: "stdio",
           command: "npx",
-          args: ["@sequentialthinking/mcp-server"],
+          args: ["@modelcontextprotocol/server-sequential-thinking"],
         },
       },
       allowedTools: [
@@ -162,6 +193,10 @@ export async function runBlueprintTurbo(
         "Bash",
         "Glob",
         "Grep",
+        "Task",
+        "Skill",
+        "SlashCommand",
+        "TodoWrite",
         "mcp__sequential-thinking__sequentialthinking",
       ],
       maxTurns: 100, // Blueprint Turbo can take many turns
@@ -170,9 +205,25 @@ export async function runBlueprintTurbo(
   };
 
   console.log(`[Worker] Invoking Agent SDK with options:`, JSON.stringify(queryOptions, null, 2));
+  console.log(`[Worker] ANTHROPIC_API_KEY present: ${!!process.env.ANTHROPIC_API_KEY}`);
 
+  let messageCount = 0;
   try {
+    console.log(`[Worker] Starting query iteration...`);
     for await (const message of query(queryOptions)) {
+      messageCount++;
+      console.log(`[Worker] Received message #${messageCount}, type: ${message.type}`);
+      // Log full message for debugging
+      console.log(`[Worker] Full message: ${JSON.stringify(message).substring(0, 1000)}`);
+      if (message.type === "result") {
+        const resultMsg = message as any;
+        console.log(`[Worker] Result subtype: ${resultMsg.subtype}`);
+        console.log(`[Worker] Result errors: ${JSON.stringify(resultMsg.errors)}`);
+        console.log(`[Worker] Result cost: $${resultMsg.total_cost_usd}`);
+        if (resultMsg.result) {
+          console.log(`[Worker] Result text: ${resultMsg.result.substring(0, 500)}`);
+        }
+      }
       // Process different message types
       if (message.type === "assistant" && message.message?.content) {
         for (const block of message.message.content) {
@@ -213,16 +264,22 @@ export async function runBlueprintTurbo(
   } catch (error) {
     const errorMessage = error instanceof Error ? error.message : String(error);
     console.error(`[Worker] Exception during Agent SDK execution:`, errorMessage);
+    console.error(`[Worker] Total messages received before error: ${messageCount}`);
     throw new Error(`Agent SDK execution failed: ${errorMessage}`);
   }
+
+  console.log(`[Worker] Query finished. Total messages: ${messageCount}`);
 
   if (!playbookUrl) {
     // If no URL was extracted, check if there was an error
     if (errorOutput) {
       throw new Error(`Blueprint Turbo failed: ${errorOutput}`);
     }
+    if (messageCount === 0) {
+      throw new Error(`Agent SDK returned no messages. Check ANTHROPIC_API_KEY and SDK configuration.`);
+    }
     throw new Error(
-      `Blueprint Turbo completed but no playbook URL was found in output. Last output: ${lastOutput.substring(0, 500)}`
+      `Blueprint Turbo completed but no playbook URL was found in output. Messages: ${messageCount}, Last output: ${lastOutput.substring(0, 500)}`
     );
   }
 

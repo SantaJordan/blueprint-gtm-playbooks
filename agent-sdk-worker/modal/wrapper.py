@@ -14,6 +14,10 @@ import sys
 # Define the Modal app
 app = modal.App("blueprint-agent-sdk-worker")
 
+# Get the agent-sdk-worker directory path and parent (Blueprint-GTM-Skills)
+AGENT_WORKER_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+BLUEPRINT_SKILLS_DIR = os.path.dirname(AGENT_WORKER_DIR)  # Parent directory with .claude/
+
 # Create a custom image with Node.js and required packages
 image = (
     modal.Image.debian_slim(python_version="3.11")
@@ -30,10 +34,26 @@ image = (
     # Install global npm packages
     .run_commands([
         "npm install -g tsx",
-        "npm install -g @sequentialthinking/mcp-server",
+        "npm install -g @modelcontextprotocol/server-sequential-thinking",
     ])
-    # Install Python dependencies for Supabase health checks
-    .pip_install(["supabase", "httpx"])
+    # Install Python dependencies for Supabase health checks and web endpoints
+    .pip_install(["supabase", "httpx", "fastapi"])
+    # Add the agent-sdk-worker source code to the image
+    .add_local_dir(
+        AGENT_WORKER_DIR,
+        remote_path="/app/agent-sdk-worker",
+        ignore=["node_modules", "dist", ".git", "__pycache__", "*.pyc"],
+    )
+    # Add the .claude/ skills directory (from parent Blueprint-GTM-Skills)
+    .add_local_dir(
+        os.path.join(BLUEPRINT_SKILLS_DIR, ".claude"),
+        remote_path="/app/blueprint-skills/.claude",
+    )
+    # Add CLAUDE.md from parent
+    .add_local_file(
+        os.path.join(BLUEPRINT_SKILLS_DIR, "CLAUDE.md"),
+        remote_path="/app/blueprint-skills/CLAUDE.md",
+    )
 )
 
 # Modal secrets - uses the same secrets as the existing blueprint-worker
@@ -41,24 +61,13 @@ secrets = [
     modal.Secret.from_name("blueprint-secrets"),
 ]
 
-# Mount the agent-sdk-worker directory
-agent_worker_mount = modal.Mount.from_local_dir(
-    local_path=os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
-    remote_path="/app/agent-sdk-worker",
-    condition=lambda path: not any(
-        x in path for x in ["node_modules", "dist", ".git", "__pycache__"]
-    ),
-)
-
 
 @app.function(
     image=image,
     secrets=secrets,
-    mounts=[agent_worker_mount],
-    timeout=1800,  # 30 minutes
+    timeout=2700,  # 45 minutes (Blueprint Turbo + overhead)
     cpu=2,
     memory=4096,
-    retries=0,  # No automatic retries - we handle errors ourselves
 )
 @modal.fastapi_endpoint(method="POST")
 async def process_blueprint_job(request: dict):
@@ -84,6 +93,60 @@ async def process_blueprint_job(request: dict):
         return {"success": False, "error": "Invalid request - missing id or company_url"}
 
     logger.info(f"Processing job {job_id} for {company_url}")
+
+    # Create symlinks so Agent SDK can find .claude directory from worker's cwd
+    logger.info("Setting up symlinks for skills directory...")
+    try:
+        subprocess.run(
+            ["ln", "-sf", "/app/blueprint-skills/.claude", "/app/agent-sdk-worker/.claude"],
+            check=True,
+            capture_output=True,
+        )
+        subprocess.run(
+            ["ln", "-sf", "/app/blueprint-skills/CLAUDE.md", "/app/agent-sdk-worker/CLAUDE.md"],
+            check=True,
+            capture_output=True,
+        )
+        logger.info("Symlinks created successfully")
+    except subprocess.CalledProcessError as e:
+        logger.warning(f"Symlink creation failed (may already exist): {e}")
+
+    # Initialize git repo for publishing (Wave 4.5)
+    logger.info("Setting up git repo for GitHub Pages publishing...")
+    try:
+        github_token = os.environ.get("GITHUB_TOKEN", "")
+        if github_token:
+            subprocess.run(
+                ["git", "init"],
+                cwd="/app/agent-sdk-worker",
+                check=True,
+                capture_output=True,
+            )
+            subprocess.run(
+                ["git", "config", "user.email", "blueprint-worker@modal.com"],
+                cwd="/app/agent-sdk-worker",
+                check=True,
+                capture_output=True,
+            )
+            subprocess.run(
+                ["git", "config", "user.name", "Blueprint Worker"],
+                cwd="/app/agent-sdk-worker",
+                check=True,
+                capture_output=True,
+            )
+            # Add remote for publishing playbooks
+            subprocess.run(
+                ["git", "remote", "add", "publish",
+                 f"https://{github_token}@github.com/SantaJordan/blueprint-gtm-playbooks.git"],
+                cwd="/app/agent-sdk-worker",
+                check=True,
+                capture_output=True,
+            )
+            logger.info("Git repo initialized with publish remote")
+        else:
+            logger.warning("GITHUB_TOKEN not found, skipping git setup")
+    except subprocess.CalledProcessError as e:
+        logger.warning(f"Git setup failed: {e}")
 
     # Install npm dependencies
     logger.info("Installing npm dependencies...")
@@ -114,10 +177,10 @@ async def process_blueprint_job(request: dict):
             env=env,
             capture_output=True,
             text=True,
-            timeout=1500,  # 25 minutes
+            timeout=2400,  # 40 minutes
         )
 
-        logger.info(f"Worker stdout: {result.stdout[-2000:]}")
+        logger.info(f"Worker stdout (full): {result.stdout}")
         if result.stderr:
             logger.warning(f"Worker stderr: {result.stderr[-1000:]}")
 
@@ -137,9 +200,10 @@ async def process_blueprint_job(request: dict):
             # If no JSON found, return success with last output
             return {"success": True, "output": result.stdout[-500:]}
         else:
-            error_msg = result.stderr or result.stdout[-500:]
-            logger.error(f"Worker failed with code {result.returncode}: {error_msg}")
-            return {"success": False, "error": error_msg}
+            # Include both stdout and stderr in error for debugging
+            error_msg = f"STDOUT:\n{result.stdout}\n\nSTDERR:\n{result.stderr}"
+            logger.error(f"Worker failed with code {result.returncode}: {error_msg[-2000:]}")
+            return {"success": False, "error": error_msg[-3000:]}
 
     except subprocess.TimeoutExpired:
         logger.error("Worker execution timed out")
@@ -152,7 +216,6 @@ async def process_blueprint_job(request: dict):
 @app.function(
     image=image,
     secrets=secrets,
-    mounts=[agent_worker_mount],
     timeout=1800,
     cpu=2,
     memory=4096,
@@ -169,6 +232,21 @@ async def poll_pending_jobs():
     logger = logging.getLogger("agent-sdk-worker-cron")
 
     logger.info("Polling for pending jobs...")
+
+    # Create symlinks so Agent SDK can find .claude directory from worker's cwd
+    try:
+        subprocess.run(
+            ["ln", "-sf", "/app/blueprint-skills/.claude", "/app/agent-sdk-worker/.claude"],
+            check=True,
+            capture_output=True,
+        )
+        subprocess.run(
+            ["ln", "-sf", "/app/blueprint-skills/CLAUDE.md", "/app/agent-sdk-worker/CLAUDE.md"],
+            check=True,
+            capture_output=True,
+        )
+    except subprocess.CalledProcessError as e:
+        logger.warning(f"Symlink creation failed (may already exist): {e}")
 
     # Install npm dependencies
     try:
@@ -214,20 +292,22 @@ def main(job_id: str = None, url: str = None, poll: bool = False):
         modal run modal/wrapper.py --url https://example.com
         modal run modal/wrapper.py --poll
     """
+    import asyncio
+
     if url:
-        # Create a mock job
-        result = process_blueprint_job.remote({
+        # Create a mock job - use .local() for webhook functions
+        result = asyncio.run(process_blueprint_job.local({
             "id": "test-" + str(hash(url))[:8],
             "company_url": url,
             "status": "pending",
-        })
+        }))
         print(f"Result: {result}")
     elif job_id:
-        result = process_blueprint_job.remote({
+        result = asyncio.run(process_blueprint_job.local({
             "id": job_id,
             "company_url": "placeholder",  # Will be fetched from Supabase
             "status": "pending",
-        })
+        }))
         print(f"Result: {result}")
     elif poll:
         result = poll_pending_jobs.remote()

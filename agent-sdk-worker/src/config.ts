@@ -56,7 +56,8 @@ export function loadConfig(): Config {
       "SKILLS_REPO_URL",
       "https://github.com/SantaJordan/Blueprint-GTM-Skills.git"
     ),
-    skillsRepoPath: optionalEnv("SKILLS_REPO_PATH", "/tmp/blueprint-skills"),
+    // Default to /app/blueprint-skills which is pre-populated in Modal image
+    skillsRepoPath: optionalEnv("SKILLS_REPO_PATH", "/app/blueprint-skills"),
 
     // Worker settings
     maxExecutionTimeMs: parseInt(
