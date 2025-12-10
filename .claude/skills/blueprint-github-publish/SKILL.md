@@ -5,11 +5,12 @@ Publishes Blueprint GTM playbooks to GitHub Pages and returns a live URL.
 ## Description
 
 This skill handles the git operations needed to publish a playbook HTML file to GitHub Pages:
-1. Stages the playbook file
-2. Creates a commit
-3. Pushes to the remote repository
-4. Generates the GitHub Pages URL
-5. Verifies the deployment is live
+1. Copies the playbook from `playbooks/` to `docs/` (GitHub Pages serving folder)
+2. Stages both files
+3. Creates a commit
+4. Pushes to the remote repository
+5. Generates the GitHub Pages URL (at root path, no `/playbooks/` prefix)
+6. Verifies the deployment is live
 
 ## Usage
 
@@ -48,40 +49,49 @@ If not in a git repository:
 
 ### Step 3: Get Remote Information
 
-Try `publish` remote first (for repos with separate publish remote), then fall back to `origin`:
+Use `origin` remote (the main repository where GitHub Pages is configured):
 
 ```bash
-# Try publish remote first
-REMOTE_URL=$(git config --get remote.publish.url 2>/dev/null)
-REMOTE_NAME="publish"
-
-# Fall back to origin
-if [ -z "$REMOTE_URL" ]; then
-    REMOTE_URL=$(git config --get remote.origin.url)
-    REMOTE_NAME="origin"
-fi
+# Use origin remote
+REMOTE_URL=$(git config --get remote.origin.url)
+REMOTE_NAME="origin"
 ```
 
 Extract GitHub username and repo name from the remote URL:
 - SSH format: `git@github.com:username/repo.git`
 - HTTPS format: `https://github.com/username/repo.git`
 
-### Step 4: Ensure .nojekyll Exists
+**Note:** Repo name in GitHub Pages URLs is lowercase (e.g., `blueprint-gtm-skills` not `Blueprint-GTM-Skills`).
 
-GitHub Pages uses Jekyll by default, which ignores files starting with underscore and processes certain files. The `.nojekyll` file disables this:
+### Step 4: Copy to docs/ Folder
+
+GitHub Pages serves from the `docs/` folder at the root URL path. Copy the playbook there:
 
 ```bash
-if [ ! -f ".nojekyll" ]; then
-    touch .nojekyll
-    git add .nojekyll
+# Extract filename from path
+FILENAME=$(basename [playbook-path])
+
+# Copy to docs/ folder for GitHub Pages serving
+cp [playbook-path] docs/$FILENAME
+```
+
+### Step 5: Ensure .nojekyll Exists
+
+GitHub Pages uses Jekyll by default, which ignores files starting with underscore and processes certain files. The `.nojekyll` file in `docs/` disables this:
+
+```bash
+if [ ! -f "docs/.nojekyll" ]; then
+    touch docs/.nojekyll
+    git add docs/.nojekyll
 fi
 ```
 
-### Step 5: Stage and Commit
+### Step 6: Stage and Commit
 
 ```bash
-# Stage the playbook
-git add [playbook-path]
+# Stage both locations (playbooks/ may be in .gitignore, so use -f)
+git add -f [playbook-path]
+git add docs/$FILENAME
 
 # Create commit with descriptive message
 git commit -m "Publish Blueprint GTM playbook: [company-name]"
@@ -91,7 +101,7 @@ Extract company name from filename:
 - `blueprint-gtm-playbook-owner.html` → `Owner`
 - `blueprint-gtm-playbook-canvas-medical.html` → `Canvas Medical`
 
-### Step 6: Push to Remote
+### Step 7: Push to Remote
 
 ```bash
 # Try main branch first, then master
@@ -103,19 +113,21 @@ If push fails:
 - Suggest checking remote access/permissions
 - Exit gracefully
 
-### Step 7: Generate GitHub Pages URL
+### Step 8: Generate GitHub Pages URL
 
-Construct the URL:
+Construct the URL using only the filename (GitHub Pages serves from docs/ at root):
 ```
-https://[username].github.io/[repo-name]/[playbook-path]
+https://[username].github.io/[repo-name-lowercase]/[filename-only]
 ```
 
 Example:
 ```
-https://jordancrawford.github.io/Blueprint-GTM-Skills/playbooks/blueprint-gtm-playbook-owner.html
+https://santajordan.github.io/blueprint-gtm-skills/blueprint-gtm-playbook-owner.html
 ```
 
-### Step 8: Verify Deployment (with Retries)
+**Important:** The URL does NOT include `/playbooks/` or `/docs/` - files in `docs/` are served at the root path.
+
+### Step 9: Verify Deployment (with Retries)
 
 GitHub Pages can take 30-60 seconds to deploy. Poll the URL with retries:
 
@@ -144,16 +156,18 @@ done
 **Success:**
 ```
 Publishing to GitHub Pages...
+Copied to docs/ folder
 Pushed to GitHub
-URL: https://jordancrawford.github.io/Blueprint-GTM-Skills/playbooks/blueprint-gtm-playbook-owner.html
+URL: https://santajordan.github.io/blueprint-gtm-skills/blueprint-gtm-playbook-owner.html
 Verified live (HTTP 200)
 ```
 
 **Push succeeded but verification pending:**
 ```
 Publishing to GitHub Pages...
+Copied to docs/ folder
 Pushed to GitHub
-URL: https://jordancrawford.github.io/Blueprint-GTM-Skills/playbooks/blueprint-gtm-playbook-owner.html
+URL: https://santajordan.github.io/blueprint-gtm-skills/blueprint-gtm-playbook-owner.html
 Deployment pending (may take 1-2 minutes to go live)
 ```
 
