@@ -57,13 +57,15 @@
       "mcp__databricks-mimi__list_tables",
       "mcp__databricks-mimi__describe_table",
       "Skill(blueprint-pvp-deep)",
+      "Skill(blueprint-github-publish)",
       "WebFetch(domain:beta.blitz-api.ai)",
       "WebFetch(domain:docs.scrapin.io)",
       "WebFetch(domain:rapidapi.com)",
       "WebFetch(domain:leadmagic.io)",
       "WebFetch(domain:docs.leadmagic.io)",
       "WebFetch(domain:www.openwebninja.com)",
-      "WebFetch(domain:santajordan.github.io)"
+      "WebFetch(domain:santajordan.github.io)",
+      "mcp__supabase__execute_sql"
     ],
     "deny": [],
     "ask": []

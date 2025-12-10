@@ -1418,178 +1418,91 @@ Write complete HTML file with:
 
 ---
 
-### Wave 4.5: Automatic GitHub Pages Publishing (1-2 min)
+### Wave 4.5: Output Playbook Path (Required)
 
-**Objective:** Automatically commit and push playbook to GitHub, generate shareable URL
+**Objective:** Output the playbook file path for the cloud worker to upload to Supabase Storage
 
-**Important:** This step executes automatically after HTML write. If git operations fail, gracefully skip and output local file path only.
+**Important:** This step is REQUIRED and executes immediately after HTML write. The cloud worker uses this marker to find and upload the playbook.
 
-Execute these steps sequentially:
+**Step 1: Output the PLAYBOOK_PATH Marker**
 
-**Step 1: Verify Git Repository**
-```bash
-git rev-parse --git-dir 2>/dev/null
+After writing the HTML file, output this marker on its own line:
+
 ```
-
-- If command succeeds → Continue to Step 2
-- If command fails (not a git repo) → Skip publishing, output warning:
-  ```
-  ⚠️  No git repository detected. Skipping GitHub Pages publish.
-  💾 Local file: [filename]
-
-  To enable auto-publishing, initialize git:
-  git init && gh repo create blueprint-gtm-playbooks --public --source=. --remote=origin
-  ```
-  Then end execution.
-
-**Step 2: Extract GitHub Remote Information**
-
-Check for `publish` remote first (preferred), fallback to `origin`:
-
-```bash
-# Try publish remote first (for blueprint-gtm-playbooks)
-REMOTE_URL=$(git config --get remote.publish.url 2>/dev/null)
-REMOTE_NAME="publish"
-
-# Fallback to origin if publish doesn't exist
-if [ -z "$REMOTE_URL" ]; then
-    REMOTE_URL=$(git config --get remote.origin.url 2>/dev/null)
-    REMOTE_NAME="origin"
-fi
-```
-
-Parse the result to extract:
-- GitHub username (e.g., "SantaJordan")
-- Repository name (e.g., "blueprint-gtm-playbooks")
-
-Use this logic:
-- If URL format is `https://github.com/[username]/[repo].git` → Extract username and repo
-- If URL format is `git@github.com:[username]/[repo].git` → Extract username and repo
-- If no remote found → Skip publishing, output warning and local file path
-
-**Step 3: Ensure .nojekyll Exists (Critical for Fast Deployment)**
-
-```bash
-# Create .nojekyll if it doesn't exist (disables Jekyll processing)
-if [ ! -f ".nojekyll" ]; then
-    touch .nojekyll
-    git add .nojekyll
-fi
-```
-
-**Step 4: Commit and Push Playbook**
-
-Execute these git commands sequentially:
-
-```bash
-# Add the HTML file
-git add [filename]
-
-# Create commit with timestamp
-git commit -m "Publish playbook: [company-name] ($(date +"%Y-%m-%d %H:%M:%S"))"
-
-# Push to GitHub using detected remote (publish or origin)
-git push $REMOTE_NAME main 2>/dev/null || git push $REMOTE_NAME master 2>/dev/null
-```
-
-**Error Handling:**
-- If git add fails → Output error, skip to local file output
-- If git commit fails (e.g., nothing to commit) → That's OK, continue (file was already committed in initial setup)
-- If git push fails → Output error, but still generate and show the URL (might already be published)
-
-**Step 5: Generate GitHub Pages URL**
-
-Construct the URL:
-```
-https://[username].github.io/[repo-name]/[filename]
+PLAYBOOK_PATH: playbooks/blueprint-gtm-playbook-[company-slug].html
 ```
 
 Example:
 ```
-https://santajordan.github.io/blueprint-gtm-playbooks/blueprint-gtm-playbook-mirrorweb.html
+PLAYBOOK_PATH: playbooks/blueprint-gtm-playbook-owner.html
 ```
 
-**Step 6: Verify Deployment with Retries**
+**Step 2: Output Success Message**
 
-**CRITICAL:** Do not report success until the URL is verified to be accessible. Use HTTP requests with retries to confirm GitHub Pages has deployed the file.
-
-```bash
-# Verify deployment with retries
-VERIFY_ATTEMPTS=0
-MAX_VERIFY_ATTEMPTS=4
-VERIFY_SUCCESS=false
-
-while [ $VERIFY_ATTEMPTS -lt $MAX_VERIFY_ATTEMPTS ]; do
-  # Calculate wait time: 5s, 10s, 15s, 20s (total max ~50s)
-  WAIT_TIME=$(( 5 + (VERIFY_ATTEMPTS * 5) ))
-  sleep $WAIT_TIME
-
-  # Check if URL returns 200
-  HTTP_STATUS=$(curl -s -o /dev/null -w "%{http_code}" "$PAGES_URL" --max-time 5 2>/dev/null || echo "000")
-
-  if [ "$HTTP_STATUS" = "200" ]; then
-    VERIFY_SUCCESS=true
-    break
-  fi
-
-  VERIFY_ATTEMPTS=$((VERIFY_ATTEMPTS + 1))
-done
-```
-
-**Verification Logic:**
-- Attempt 1: Wait 5s, check URL
-- Attempt 2: Wait 10s, check URL
-- Attempt 3: Wait 15s, check URL
-- Attempt 4: Wait 20s, check URL
-- Total maximum wait: ~50 seconds (covers even slow deployments)
-
-**Step 7: Output Final Results Based on Verification**
-
-**Verified Success Case (URL returns 200):**
-```
-✅ Wave 4/4: HTML playbook published!
-
-📎 Shareable URL:
-   https://[username].github.io/[repo-name]/[filename]
-
-💾 Local file: [filename]
-
-✅ GitHub Pages deployment verified (URL is live and accessible)
-```
-
-**Deployment In Progress Case (verification timed out but git push succeeded):**
-```
-✅ Wave 4/4: HTML playbook published to GitHub!
-
-📎 Shareable URL:
-   https://[username].github.io/[repo-name]/[filename]
-
-💾 Local file: [filename]
-
-⏳ GitHub Pages deployment still in progress...
-   - The file is safely committed to GitHub (not lost)
-   - Wait 30-60 seconds, then refresh the URL
-   - Under heavy load, GitHub Pages can take up to 2 minutes
-   - To check status: curl -I [URL]
-```
-
-**Git Push Failure Case:**
 ```
 ✅ Wave 4/4: HTML playbook generated!
 
-💾 Local file: [filename]
+💾 Local file: playbooks/blueprint-gtm-playbook-[company-slug].html
 
-⚠️  GitHub Pages publishing failed. To publish manually:
-   ./publish-playbook.sh [filename]
+PLAYBOOK_PATH: playbooks/blueprint-gtm-playbook-[company-slug].html
+
+The cloud worker will upload this file to Supabase Storage and return a public URL.
 ```
 
 **Wave 4.5 Output:**
-- HTML file committed to git repository
-- Changes pushed to GitHub
-- GitHub Pages URL verified with HTTP request (or timeout warning provided)
-- User gets confirmed-working URL or clear guidance on what to do
+- PLAYBOOK_PATH marker (REQUIRED - this is how the worker finds the file)
+- Local file path confirmation
+- Success message
 
-**Progress Hook:** Dynamic output based on verification status - either confirmed live or with clear next steps
+---
+
+### Wave 4.6: GitHub Pages Publish (LOCAL EXECUTION ONLY)
+
+**Objective:** Publish the playbook to GitHub Pages and return a live URL
+
+**IMPORTANT:** This wave executes ONLY when running locally (not via cloud worker). The cloud worker handles its own Supabase Storage upload.
+
+**Execute GitHub Publish Skill:**
+
+```
+→ Invoke: Skill(skill: "blueprint-github-publish")
+→ Input: playbook_path from Wave 4.5
+```
+
+The skill will:
+1. Verify git repository
+2. Get remote info (try `publish` remote, fallback to `origin`)
+3. Ensure `.nojekyll` exists
+4. Stage and commit the playbook
+5. Push to remote
+6. Generate GitHub Pages URL
+7. Verify deployment with retries
+
+**Wave 4.6 Output:**
+
+**Success:**
+```
+🚀 Publishing to GitHub Pages...
+✅ Pushed to GitHub
+🔗 URL: https://[username].github.io/[repo]/playbooks/blueprint-gtm-playbook-[company].html
+✅ Verified live (HTTP 200)
+```
+
+**If verification pending:**
+```
+🚀 Publishing to GitHub Pages...
+✅ Pushed to GitHub
+🔗 URL: https://[username].github.io/[repo]/playbooks/blueprint-gtm-playbook-[company].html
+⏳ Deployment pending (may take 1-2 minutes to go live)
+```
+
+**If error (non-blocking):**
+```
+⚠️ GitHub publish failed: [reason]
+💾 Playbook saved locally at: playbooks/blueprint-gtm-playbook-[company].html
+```
+
+**Progress Hook:** "🚀 Wave 4.6: Published to GitHub Pages"
 
 ---
 
