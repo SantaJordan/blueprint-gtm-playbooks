@@ -22,12 +22,337 @@ import {
 
 interface AgentMessage {
   type: "assistant" | "user" | "result" | "system";
-  subtype?: "success" | "error_during_execution" | "error_tool_execution";
+  subtype?: string;  // SDK has multiple error subtypes
   message?: {
-    content: Array<{ type: "text"; text: string } | { type: "tool_use"; name: string }>;
+    content: Array<{ type: "text"; text: string } | { type: "tool_use"; name: string; id?: string }>;
   };
   error?: string;
+  // Additional fields from SDK result messages
+  total_cost_usd?: number;
+  result?: string;
 }
+
+/**
+ * Execution metrics for observability
+ * Tracks tool calls, wave timings, and overall execution stats
+ */
+interface ExecutionMetrics {
+  startTime: number;
+  waves: Map<string, { startTime: number; endTime?: number; toolCalls: number }>;
+  toolCalls: Map<string, number>;  // tool name -> count
+  toolErrors: Map<string, number>; // tool name -> error count
+  totalMessages: number;
+  totalToolCalls: number;
+  currentWave: string;
+}
+
+/**
+ * Create a new metrics tracker
+ */
+function createMetrics(): ExecutionMetrics {
+  return {
+    startTime: Date.now(),
+    waves: new Map(),
+    toolCalls: new Map(),
+    toolErrors: new Map(),
+    totalMessages: 0,
+    totalToolCalls: 0,
+    currentWave: "init",
+  };
+}
+
+/**
+ * Detect which wave we're in based on text content
+ */
+function detectWave(text: string): string | null {
+  const wavePatterns = [
+    { pattern: /wave\s*0\.?5|product\s*(value\s*)?analysis/i, wave: "wave-0.5-product" },
+    { pattern: /wave\s*1\.?5|niche\s*qualification|vertical\s*qualification/i, wave: "wave-1.5-niche" },
+    { pattern: /wave\s*1[^.]|company\s*research|intelligence\s*gathering/i, wave: "wave-1-research" },
+    { pattern: /wave\s*2\.?5|situation.*fallback/i, wave: "wave-2.5-fallback" },
+    { pattern: /wave\s*2[^.]|data\s*landscape|database.*scan/i, wave: "wave-2-data" },
+    { pattern: /synthesis|segment.*generation|sequential.*thinking/i, wave: "synthesis" },
+    { pattern: /hard\s*gates?|validation|validator/i, wave: "validation" },
+    { pattern: /wave\s*3|message.*generation|buyer.*critique/i, wave: "wave-3-messaging" },
+    { pattern: /wave\s*4\.?[56]?|html.*assembly|playbook.*output/i, wave: "wave-4-output" },
+  ];
+
+  for (const { pattern, wave } of wavePatterns) {
+    if (pattern.test(text)) {
+      return wave;
+    }
+  }
+  return null;
+}
+
+/**
+ * Categorize tool by type for summary
+ */
+function categorizeToolCall(toolName: string): string {
+  if (toolName.includes("browser-mcp") || toolName.includes("chrome")) return "browser-mcp";
+  if (toolName.includes("WebFetch")) return "WebFetch";
+  if (toolName.includes("WebSearch")) return "WebSearch";
+  if (toolName.includes("sequential-thinking")) return "sequential-thinking";
+  if (toolName.includes("Read") || toolName.includes("Write") || toolName.includes("Edit")) return "file-ops";
+  if (toolName.includes("Bash") || toolName.includes("Glob") || toolName.includes("Grep")) return "system";
+  if (toolName.includes("Task")) return "sub-agent";
+  return "other";
+}
+
+/**
+ * Log metrics summary
+ */
+function logMetricsSummary(metrics: ExecutionMetrics): void {
+  const elapsed = (Date.now() - metrics.startTime) / 1000;
+
+  console.log(`\n[Metrics] ========== EXECUTION SUMMARY ==========`);
+  console.log(`[Metrics] Total time: ${elapsed.toFixed(1)}s (${(elapsed / 60).toFixed(1)} min)`);
+  console.log(`[Metrics] Total messages: ${metrics.totalMessages}`);
+  console.log(`[Metrics] Total tool calls: ${metrics.totalToolCalls}`);
+
+  // Wave timings
+  console.log(`[Metrics] --- Wave Timings ---`);
+  for (const [wave, data] of metrics.waves) {
+    const duration = data.endTime
+      ? ((data.endTime - data.startTime) / 1000).toFixed(1)
+      : "ongoing";
+    console.log(`[Metrics]   ${wave}: ${duration}s, ${data.toolCalls} tool calls`);
+  }
+
+  // Tool call breakdown
+  console.log(`[Metrics] --- Tool Call Breakdown ---`);
+  const toolCategories = new Map<string, number>();
+  for (const [tool, count] of metrics.toolCalls) {
+    const category = categorizeToolCall(tool);
+    toolCategories.set(category, (toolCategories.get(category) || 0) + count);
+  }
+  for (const [category, count] of toolCategories) {
+    console.log(`[Metrics]   ${category}: ${count} calls`);
+  }
+
+  // Errors
+  if (metrics.toolErrors.size > 0) {
+    console.log(`[Metrics] --- Tool Errors ---`);
+    for (const [tool, count] of metrics.toolErrors) {
+      console.log(`[Metrics]   ${tool}: ${count} errors`);
+    }
+  }
+
+  // Key insights
+  console.log(`[Metrics] --- Key Insights ---`);
+  const browserCalls = toolCategories.get("browser-mcp") || 0;
+  const webFetchCalls = toolCategories.get("WebFetch") || 0;
+  if (browserCalls === 0 && webFetchCalls > 0) {
+    console.log(`[Metrics]   ⚠️  NO browser-mcp calls detected (${webFetchCalls} WebFetch calls)`);
+    console.log(`[Metrics]   → Browser MCP may not be working - this causes slowdown`);
+  } else if (browserCalls > 0) {
+    console.log(`[Metrics]   ✓ Browser MCP active: ${browserCalls} calls`);
+  }
+
+  const avgTimePerMessage = elapsed / metrics.totalMessages;
+  if (avgTimePerMessage > 5) {
+    console.log(`[Metrics]   ⚠️  Slow execution: ${avgTimePerMessage.toFixed(1)}s per message`);
+  }
+
+  console.log(`[Metrics] =======================================\n`);
+}
+
+// ============================================================================
+// APIFY PRE-FETCH FUNCTIONS
+// Pre-fetch company data before agent execution to reduce tool-loop variance
+// ============================================================================
+
+interface PrefetchResult {
+  success: boolean;
+  artifactPath?: string;
+  webPages?: Array<{ url: string; markdown: string }>;
+  searchResults?: Array<{ title: string; url: string; snippet: string }>;
+  error?: string;
+}
+
+/**
+ * Run an Apify actor and wait for results
+ */
+async function runApifyActor(
+  actorId: string,
+  input: Record<string, any>,
+  timeoutMs: number = 120000
+): Promise<any[]> {
+  const apifyToken = process.env.APIFY_API_TOKEN;
+  if (!apifyToken) {
+    console.log(`[Prefetch] APIFY_API_TOKEN not set, skipping Apify actor`);
+    return [];
+  }
+
+  try {
+    console.log(`[Prefetch] Running Apify actor: ${actorId}`);
+
+    // Start the actor run
+    const runResponse = await fetch(
+      `https://api.apify.com/v2/acts/${actorId}/runs?token=${apifyToken}`,
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(input),
+      }
+    );
+
+    if (!runResponse.ok) {
+      console.error(`[Prefetch] Apify run failed: ${runResponse.status}`);
+      return [];
+    }
+
+    const runData = await runResponse.json() as { data?: { id?: string } };
+    const runId = runData.data?.id;
+    if (!runId) {
+      console.error(`[Prefetch] No run ID returned from Apify`);
+      return [];
+    }
+
+    console.log(`[Prefetch] Apify run started: ${runId}`);
+
+    // Poll for completion
+    const startTime = Date.now();
+    while (Date.now() - startTime < timeoutMs) {
+      await new Promise(resolve => setTimeout(resolve, 3000)); // Wait 3 seconds
+
+      const statusResponse = await fetch(
+        `https://api.apify.com/v2/actor-runs/${runId}?token=${apifyToken}`
+      );
+      const statusData = await statusResponse.json() as { data?: { status?: string } };
+      const status = statusData.data?.status;
+
+      if (status === "SUCCEEDED") {
+        console.log(`[Prefetch] Apify run completed: ${runId}`);
+        break;
+      } else if (status === "FAILED" || status === "ABORTED" || status === "TIMED-OUT") {
+        console.error(`[Prefetch] Apify run failed with status: ${status}`);
+        return [];
+      }
+    }
+
+    // Get the dataset items
+    const datasetResponse = await fetch(
+      `https://api.apify.com/v2/actor-runs/${runId}/dataset/items?token=${apifyToken}`
+    );
+    const items = await datasetResponse.json() as any[];
+    console.log(`[Prefetch] Retrieved ${items.length} items from Apify`);
+    return items;
+  } catch (error) {
+    console.error(`[Prefetch] Apify error: ${error}`);
+    return [];
+  }
+}
+
+/**
+ * Pre-fetch company data using Apify actors
+ * Returns web pages and search results for the agent to use
+ */
+async function prefetchCompanyData(companyUrl: string): Promise<PrefetchResult> {
+  const startTime = Date.now();
+  console.log(`[Prefetch] Starting pre-fetch for ${companyUrl}`);
+
+  try {
+    const domain = new URL(companyUrl).hostname.replace(/^www\./, "");
+
+    // Run both actors in parallel
+    const [webPages, searchResults] = await Promise.all([
+      // RAG Web Browser for the main website pages
+      runApifyActor("apify/rag-web-browser", {
+        query: companyUrl,
+        maxResults: 5,
+        outputFormats: ["markdown"],
+        requestTimeoutSecs: 30,
+      }),
+
+      // Google Search for context
+      runApifyActor("apify/google-search-scraper", {
+        queries: [
+          `${domain} products services`,
+          `${domain} customers case studies`,
+          `${domain} reviews`,
+        ],
+        maxPagesPerQuery: 3,
+        resultsPerPage: 5,
+      }),
+    ]);
+
+    const elapsed = (Date.now() - startTime) / 1000;
+    console.log(`[Prefetch] Completed in ${elapsed.toFixed(1)}s: ${webPages.length} pages, ${searchResults.length} search results`);
+
+    // Format results for the agent
+    const formattedPages = webPages.map((item: any) => ({
+      url: item.url || item.sourceUrl || companyUrl,
+      markdown: item.markdown || item.text || item.content || "",
+    }));
+
+    const formattedSearch = searchResults.flatMap((result: any) => {
+      // Handle different result formats
+      if (result.organicResults) {
+        return result.organicResults.map((r: any) => ({
+          title: r.title || "",
+          url: r.url || r.link || "",
+          snippet: r.description || r.snippet || "",
+        }));
+      }
+      return [{
+        title: result.title || "",
+        url: result.url || result.link || "",
+        snippet: result.description || result.snippet || "",
+      }];
+    });
+
+    return {
+      success: true,
+      webPages: formattedPages,
+      searchResults: formattedSearch,
+    };
+  } catch (error) {
+    console.error(`[Prefetch] Error: ${error}`);
+    return {
+      success: false,
+      error: String(error),
+    };
+  }
+}
+
+/**
+ * Format prefetch results as context for the agent prompt
+ */
+function formatPrefetchContext(prefetch: PrefetchResult): string {
+  if (!prefetch.success) {
+    return "";
+  }
+
+  let context = "\n\n=== PRE-FETCHED COMPANY DATA ===\n";
+  context += "(Use this data to save time. Avoid re-fetching these pages.)\n\n";
+
+  if (prefetch.webPages && prefetch.webPages.length > 0) {
+    context += "## WEBSITE CONTENT\n\n";
+    for (const page of prefetch.webPages.slice(0, 5)) {
+      context += `### ${page.url}\n`;
+      // Truncate to avoid overwhelming the context
+      const truncatedMarkdown = page.markdown.substring(0, 3000);
+      context += `${truncatedMarkdown}\n\n`;
+    }
+  }
+
+  if (prefetch.searchResults && prefetch.searchResults.length > 0) {
+    context += "## SEARCH RESULTS\n\n";
+    for (const result of prefetch.searchResults.slice(0, 15)) {
+      context += `- **${result.title}**\n`;
+      context += `  URL: ${result.url}\n`;
+      context += `  ${result.snippet}\n\n`;
+    }
+  }
+
+  context += "=== END PRE-FETCHED DATA ===\n\n";
+  return context;
+}
+
+// ============================================================================
+// QUERY OPTIONS & CORE WORKER
+// ============================================================================
 
 interface QueryOptions {
   prompt: string;
@@ -345,7 +670,7 @@ export async function runBlueprintTurbo(
 ): Promise<{ playbookUrl: string; companyName?: string }> {
   const config = getConfig();
   const startTime = Date.now();
-  const maxExecutionMs = 30 * 60 * 1000; // 30 minutes hard limit
+  const maxExecutionMs = 60 * 60 * 1000; // 60 minutes hard limit (increased for comprehensive output)
 
   console.log(`[Worker] Starting Blueprint Turbo for ${companyUrl}`);
   console.log(`[Worker] Working directory: ${workingDirectory}`);
@@ -372,7 +697,8 @@ export async function runBlueprintTurbo(
   }
 
   // Import the Agent SDK dynamically to handle cases where it's not installed yet
-  let query: (options: QueryOptions) => AsyncIterable<AgentMessage>;
+  // Note: Using 'any' for query function because SDK types are complex and we handle messages generically
+  let query: any;
 
   try {
     const sdk = await import("@anthropic-ai/claude-agent-sdk");
@@ -389,10 +715,51 @@ export async function runBlueprintTurbo(
   let lastOutput = "";
   let errorOutput = "";
 
+  // Initialize metrics tracking
+  const metrics = createMetrics();
+
+  // Pre-fetch company data using Apify (if APIFY_API_TOKEN is set)
+  let prefetchContext = "";
+  if (process.env.APIFY_API_TOKEN) {
+    console.log(`[Worker] Pre-fetching company data via Apify...`);
+    const prefetchResult = await prefetchCompanyData(companyUrl);
+    if (prefetchResult.success) {
+      prefetchContext = formatPrefetchContext(prefetchResult);
+      console.log(`[Worker] Pre-fetch successful: ${prefetchResult.webPages?.length || 0} pages, ${prefetchResult.searchResults?.length || 0} search results`);
+    } else {
+      console.log(`[Worker] Pre-fetch failed or skipped: ${prefetchResult.error || "unknown"}`);
+    }
+  } else {
+    console.log(`[Worker] Skipping pre-fetch (APIFY_API_TOKEN not set)`);
+  }
+
   // Use slash command with claude_code preset (matches local behavior)
   // The systemPrompt preset enables command discovery via progressive disclosure
-  const prompt = `/blueprint-turbo ${companyUrl}`;
-  console.log(`[Worker] Using slash command: ${prompt}`);
+  // Add timing constraints to prevent infinite research behavior
+  const timeboxInstructions = `
+IMPORTANT TIMING CONSTRAINTS FOR CLOUD EXECUTION:
+You have a maximum of 25 minutes total. Stick to these wave budgets:
+- Wave 0.5 (Product Analysis): max 2 minutes
+- Wave 1 (Company Research): max 4 minutes
+- Wave 1.5 (Niche Qualification): max 2 minutes
+- Wave 2 (Data Landscape): max 6 minutes
+- Synthesis: max 3 minutes
+- Wave 3 (Messaging): max 5 minutes
+- Wave 4 (HTML Assembly): max 2 minutes
+
+CRITICAL RULES:
+1. If data is thin after reasonable attempts, proceed with best-effort output
+2. Prefer fewer high-quality segments over exhaustive research that times out
+3. Do NOT retry failed web fetches more than twice per domain
+4. If a database portal is blocked or slow, skip it and use alternative sources
+5. Generate a COMPLETE playbook even if some sections are thinner than ideal
+${prefetchContext ? "\n6. USE THE PRE-FETCHED DATA BELOW - avoid re-fetching the company website" : ""}
+${prefetchContext}
+Now execute:
+`;
+
+  const prompt = `${timeboxInstructions}/blueprint-turbo ${companyUrl}`;
+  console.log(`[Worker] Using slash command with timing constraints${prefetchContext ? " + pre-fetched data" : ""}`);
 
   const queryOptions: QueryOptions = {
     prompt,
@@ -427,8 +794,8 @@ export async function runBlueprintTurbo(
 
       // No allowedTools restriction - bypassPermissions allows all tools
 
-      maxTurns: 150,
-      maxBudgetUsd: 25.0,
+      maxTurns: 300,        // Increased for comprehensive output
+      maxBudgetUsd: 35.0,   // Increased for comprehensive output
     },
   };
 
@@ -440,35 +807,44 @@ export async function runBlueprintTurbo(
     console.log(`[Worker] Starting query iteration...`);
     for await (const message of query(queryOptions)) {
       messageCount++;
+      metrics.totalMessages++;
 
       // Wall-clock timeout check
       const elapsed = Date.now() - startTime;
       if (elapsed > maxExecutionMs) {
         console.error(`[Worker] Wall-clock timeout after ${elapsed / 60000} minutes`);
+        logMetricsSummary(metrics);  // Log summary before timeout
         throw new Error(`Wall-clock timeout: execution exceeded ${maxExecutionMs / 60000} minutes`);
       }
 
       console.log(`[Worker] Message #${messageCount}, type: ${message.type}, elapsed: ${Math.round(elapsed / 1000)}s`);
-      // Log full message for debugging
-      console.log(`[Worker] Full message: ${JSON.stringify(message).substring(0, 1000)}`);
-      if (message.type === "result") {
-        const resultMsg = message as any;
-        console.log(`[Worker] Result subtype: ${resultMsg.subtype}`);
-        console.log(`[Worker] Result errors: ${JSON.stringify(resultMsg.errors)}`);
-        console.log(`[Worker] Result cost: $${resultMsg.total_cost_usd}`);
-        if (resultMsg.result) {
-          console.log(`[Worker] Result text: ${resultMsg.result.substring(0, 500)}`);
-        }
-      }
+
       // Process different message types
       if (message.type === "assistant" && message.message?.content) {
         for (const block of message.message.content) {
           if (block.type === "text") {
             lastOutput = block.text;
 
+            // Detect wave transitions for timing
+            const detectedWave = detectWave(block.text);
+            if (detectedWave && detectedWave !== metrics.currentWave) {
+              // End previous wave
+              const prevWaveData = metrics.waves.get(metrics.currentWave);
+              if (prevWaveData) {
+                prevWaveData.endTime = Date.now();
+              }
+              // Start new wave
+              metrics.currentWave = detectedWave;
+              metrics.waves.set(detectedWave, {
+                startTime: Date.now(),
+                toolCalls: 0,
+              });
+              console.log(`[Metrics] 🌊 Wave transition: ${metrics.currentWave} → ${detectedWave}`);
+            }
+
             // Log progress indicators
-            if (block.text.includes("Wave")) {
-              console.log(`[Worker] Progress: ${block.text.substring(0, 100)}...`);
+            if (block.text.includes("Wave") || block.text.includes("wave")) {
+              console.log(`[Worker] Progress: ${block.text.substring(0, 150)}...`);
             }
 
             // Try to extract URL
@@ -492,15 +868,43 @@ export async function runBlueprintTurbo(
               console.log(`[Worker] Found company name: ${companyName}`);
             }
           }
+
+          // Track tool calls
+          if (block.type === "tool_use") {
+            const toolName = block.name;
+            metrics.totalToolCalls++;
+            metrics.toolCalls.set(toolName, (metrics.toolCalls.get(toolName) || 0) + 1);
+
+            // Update current wave tool count
+            const waveData = metrics.waves.get(metrics.currentWave);
+            if (waveData) {
+              waveData.toolCalls++;
+            }
+
+            // Log tool calls with categorization
+            const category = categorizeToolCall(toolName);
+            console.log(`[Metrics] 🔧 Tool call #${metrics.totalToolCalls}: ${toolName} (${category})`);
+          }
         }
+      }
+
+      // Track tool errors
+      if (message.type === "result" && message.subtype === "error_tool_execution") {
+        const errorText = message.error || "";
+        // Try to extract tool name from error
+        const toolMatch = errorText.match(/tool[:\s]+(\w+)/i);
+        const toolName = toolMatch ? toolMatch[1] : "unknown";
+        metrics.toolErrors.set(toolName, (metrics.toolErrors.get(toolName) || 0) + 1);
+        console.log(`[Metrics] ❌ Tool error: ${toolName} - ${errorText.substring(0, 100)}`);
       }
 
       if (message.type === "result") {
         if (message.subtype === "success") {
           console.log(`[Worker] Agent SDK completed successfully`);
-        } else if (message.subtype === "error_during_execution") {
-          errorOutput = message.error || lastOutput;
-          console.error(`[Worker] Agent SDK error: ${errorOutput}`);
+          console.log(`[Worker] Result cost: $${message.total_cost_usd || "unknown"}`);
+        } else if (message.subtype?.includes("error")) {
+          errorOutput = message.error || message.result || lastOutput;
+          console.error(`[Worker] Agent SDK error (${message.subtype}): ${errorOutput}`);
         }
       }
     }
@@ -508,9 +912,12 @@ export async function runBlueprintTurbo(
     const errorMessage = error instanceof Error ? error.message : String(error);
     console.error(`[Worker] Exception during Agent SDK execution:`, errorMessage);
     console.error(`[Worker] Total messages received before error: ${messageCount}`);
+    logMetricsSummary(metrics);  // Log summary on error
     throw new Error(`Agent SDK execution failed: ${errorMessage}`);
   }
 
+  // Log final metrics summary
+  logMetricsSummary(metrics);
   console.log(`[Worker] Query finished. Total messages: ${messageCount}, elapsed: ${Math.round((Date.now() - startTime) / 1000)}s`);
 
   // UPLOAD STRATEGY:

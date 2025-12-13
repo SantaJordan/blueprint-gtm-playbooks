@@ -32,7 +32,12 @@ async function handleWebhook(): Promise<void> {
             id: record.id,
             company_url: record.company_url,
             status: "processing" as const,
+            playbook_url: null,
+            company_name: null,
+            error_message: null,
             created_at: new Date().toISOString(),
+            started_at: new Date().toISOString(),
+            completed_at: null,
           };
         } else {
           // Claim the job atomically from Supabase

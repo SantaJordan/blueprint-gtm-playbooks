@@ -200,7 +200,7 @@ def _run_job_internal(request: dict, logger):
             env=env,
             capture_output=True,
             text=True,
-            timeout=2200,  # 36 minutes (leave 4 min buffer for cleanup)
+            timeout=4200,  # 70 minutes (leave 5 min buffer for cleanup)
         )
 
         logger.info(f"Worker stdout (full): {result.stdout}")
@@ -241,7 +241,7 @@ def _run_job_internal(request: dict, logger):
 @app.function(
     image=image,
     secrets=secrets,
-    timeout=2700,  # 45 minutes (Blueprint Turbo + overhead)
+    timeout=4500,  # 75 minutes (comprehensive Blueprint Turbo + overhead)
     cpu=2,
     memory=4096,
 )
@@ -257,7 +257,7 @@ def test_job(request: dict):
 @app.function(
     image=image,
     secrets=secrets,
-    timeout=2700,  # 45 minutes (Blueprint Turbo + overhead)
+    timeout=4500,  # 75 minutes (comprehensive Blueprint Turbo + overhead)
     cpu=2,
     memory=4096,
 )
