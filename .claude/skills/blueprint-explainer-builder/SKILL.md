@@ -585,6 +585,29 @@ Single HTML file named: `blueprint-gtm-playbook-[company-name].html`
 - Transformation narrative
 - All using Blueprint brand styling
 
+**Cloud Worker Integration:**
+
+After writing the HTML file, ALWAYS output this marker on its own line:
+
+```
+PLAYBOOK_PATH: playbooks/blueprint-gtm-playbook-[company-slug].html
+```
+
+This marker tells the cloud worker where to find the generated file for upload to Vercel. The worker will:
+1. Read the local file from the path specified
+2. Upload to Vercel (`playbooks.blueprintgtm.com`)
+3. Return the public URL for the playbook
+
+Example output after writing the file:
+```
+I've generated the Blueprint GTM playbook and saved it to:
+playbooks/blueprint-gtm-playbook-owner.html
+
+PLAYBOOK_PATH: playbooks/blueprint-gtm-playbook-owner.html
+
+The playbook includes 3 PQS plays and 3 PVP plays...
+```
+
 ---
 
 ## Integration with Other Skills

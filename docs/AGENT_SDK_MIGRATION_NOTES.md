@@ -76,49 +76,43 @@ OUTPUT:
 - **Quality:** Rigorous 5-gate validation, buyer critique, 8.0+ score threshold
 - **Output:** Self-contained HTML playbook + GitHub Pages URL
 
-### The Phone Trigger Flow (iPhone → Vercel → Supabase → Modal)
+### Cloud Trigger Flows (Current)
 
+There are two cloud entrypoints depending on deployment.
+
+**A) Mobile trigger + local Mac worker (consultant):**
 ```
 iPhone Safari → Share Sheet → "Analyze with Blueprint" Shortcut
     ↓
-iOS Shortcut POSTs to: https://blueprint-trigger-api.vercel.app/api/queue-job
-  Body: {"companyUrl": "https://owner.com"}
+Vercel Trigger API (`blueprint-trigger-api`)
     ↓
-Vercel API (blueprint-trigger-api/api/queue-job.js)
-  - Validates URL
-  - Inserts into Supabase: blueprint_jobs table, status='pending'
-  - Returns: {id, statusUrl}
+Supabase job insert (status='pending')
     ↓
-Supabase Webhook (on INSERT)
-  - Triggers Modal endpoint immediately
+Local Mac worker (`scripts/blueprint-worker.js`)
     ↓
-Modal Worker (blueprint-worker/main.py)
-  - Pulls job from webhook payload
-  - Updates status → 'processing'
-  - Executes 10-wave Python pipeline:
-      Wave 1: wave1_company_research.py
-      Wave 0.5: wave05_product_fit.py
-      Wave 1.5: wave15_niche_conversion.py
-      Wave 2: wave2_data_landscape.py
-      Wave 2.5: wave25_situation_fallback.py (conditional)
-      Synthesis: synthesis.py
-      Hard Gates: hard_gates.py
-      Wave 3: wave3_messages.py
-      Wave 4: wave4_html.py
-      Wave 4.5: wave45_publish.py
-  - Updates Supabase: status='completed', playbook_url='...'
+Local Claude Code runs `/blueprint-turbo`
     ↓
-GitHub Pages
-  - HTML playbook published
-  - User checks status page → gets playbook URL
+GitHub Pages URL stored in playbook_url
 ```
 
-**Key characteristics:**
-- **Total time:** ~15-20 minutes (varies)
-- **Execution:** Sequential Python code calling Anthropic API
-- **No MCP servers:** Sequential Thinking is replicated as a prompt template
-- **No Claude Code tools:** No Read, Write, Edit, Bash—just API responses
-- **No skill access:** References are Python dicts, not the rich .claude/skills/ library
+**B) Paid SaaS + Modal Agent SDK Worker (primary cloud path):**
+```
+User → blueprint-saas (Stripe Checkout)
+    ↓
+Stripe webhook → Supabase job insert (payment_status='authorized')
+    ↓ INSERT webhook
+Modal Agent SDK Worker (`agent-sdk-worker`)
+    ↓
+Claude Agent SDK runs `/blueprint-turbo`
+    ↓
+Uploads HTML to Vercel Playbooks (playbooks.blueprintgtm.com)
+    ↓
+Updates Supabase (status='completed', playbook_url=Vercel URL)
+    ↓
+Calls /api/capture-payment to capture funds
+```
+
+**Legacy note:** The Python Modal worker (`blueprint-worker/main.py`) remains as a backup only. The analysis below describes why the Agent SDK migration was needed.
 
 ---
 
@@ -394,7 +388,7 @@ The evaluation will score each option on:
 
 1. **Quality Parity**: Agent SDK can achieve 90-95% parity with local `/blueprint-turbo` because it uses the exact same Claude Code engine. The 5-10% gap is primarily from Browser MCP limitations in serverless (acceptable with WebFetch fallback).
 
-2. **Single Source of Truth**: By using `settingSources: ['project']`, the Agent SDK loads `.claude/skills/` and `CLAUDE.md` directly. Updates to skills benefit both local and cloud execution automatically.
+2. **Single Source of Truth**: By using `settingSources: ['project', 'user']`, the Agent SDK loads `.claude/skills/` and `CLAUDE.md` directly (with Linux user-level fallback). Updates to skills benefit both local and cloud execution automatically.
 
 3. **MCP Server Support**: Agent SDK natively supports MCP servers. Sequential Thinking MCP can run in serverless (stdio-based). Browser MCP can be omitted for v1 with graceful fallback.
 

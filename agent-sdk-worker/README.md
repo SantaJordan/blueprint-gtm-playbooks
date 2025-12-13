@@ -17,6 +17,8 @@ This worker processes Blueprint Turbo jobs by invoking the `/blueprint-turbo` co
 - Loading `.claude/skills/` as the single source of truth
 - Using the Sequential Thinking MCP for synthesis
 - Running the exact same command flow as local execution
+- Publishing HTML to Vercel Playbooks (`https://playbooks.blueprintgtm.com/{slug}`)
+- Capturing Stripe payments after delivery (for SaaS-created jobs)
 
 ## Quick Start
 
@@ -30,7 +32,7 @@ npm install
 export ANTHROPIC_API_KEY="sk-ant-..."
 export SUPABASE_URL="https://..."
 export SUPABASE_SERVICE_KEY="sb_secret_..."
-export GITHUB_TOKEN="ghp_..."
+export VERCEL_TOKEN="..."  # For cloud publishing
 
 # Test with a URL (bypasses Supabase)
 npm run process-job -- --url https://owner.com
@@ -61,10 +63,9 @@ modal app logs blueprint-agent-sdk-worker
 agent-sdk-worker/
 ├── src/
 │   ├── index.ts      # Entry point (webhook + CLI)
-│   ├── worker.ts     # Core worker logic
+│   ├── worker.ts     # Core worker logic + Vercel publishing
 │   ├── supabase.ts   # Database operations
 │   ├── config.ts     # Environment config
-│   ├── github.ts     # GitHub API fallback
 │   └── cli.ts        # CLI entry point
 ├── modal/
 │   └── wrapper.py    # Modal deployment wrapper
@@ -79,9 +80,9 @@ agent-sdk-worker/
 | `ANTHROPIC_API_KEY` | Yes | Claude API key |
 | `SUPABASE_URL` | Yes | Supabase project URL |
 | `SUPABASE_SERVICE_KEY` | Yes | Supabase service key |
-| `GITHUB_TOKEN` | Yes | GitHub PAT for publishing |
-| `GITHUB_OWNER` | No | GitHub username (default: SantaJordan) |
-| `GITHUB_REPO` | No | Repository name (default: blueprint-gtm-playbooks) |
+| `VERCEL_TOKEN` | Yes | Vercel PAT for publishing to `playbooks.blueprintgtm.com` |
+| `VERCEL_API_URL` | If using Stripe | Base URL of the SaaS Vercel app (for `/api/capture-payment`) |
+| `MODAL_WEBHOOK_SECRET` | If using Stripe | Shared secret to authorize capture-payment calls |
 | `SKILLS_REPO_URL` | No | Skills repo URL |
 | `SKILLS_REPO_PATH` | No | Local path for skills repo |
 
@@ -90,11 +91,15 @@ agent-sdk-worker/
 1. **Job received** via Supabase webhook or polling
 2. **Skills repo** cloned/updated to get latest `.claude/skills/`
 3. **Agent SDK** invokes `/blueprint-turbo {url}` with:
-   - `settingSources: ['project']` to load skills
+   - `settingSources: ['project', 'user']` to load skills (Linux user-level fallback)
    - `mcpServers` for Sequential Thinking
    - `allowedTools` for web fetching, file ops
-4. **Playbook URL** extracted from agent output
-5. **Supabase** updated with status and URL
+4. **Playbook file** located from `PLAYBOOK_PATH` marker
+5. **HTML uploaded** to Vercel via REST API → `https://playbooks.blueprintgtm.com/{slug}`
+6. **Supabase** updated with status and `playbook_url`
+7. **Payment capture** triggered via SaaS API (if job has Stripe intent)
+
+> **Note:** Local CLI uses GitHub Pages for publishing via `.claude/skills/blueprint-github-publish`. This worker uses Vercel for proper HTML serving.
 
 ## Documentation
 

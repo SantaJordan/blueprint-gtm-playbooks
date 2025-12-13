@@ -1420,7 +1420,7 @@ Write complete HTML file with:
 
 ### Wave 4.5: Output Playbook Path (Required)
 
-**Objective:** Output the playbook file path for the cloud worker to upload to Supabase Storage
+**Objective:** Output the playbook file path for the cloud worker to upload to Vercel
 
 **Important:** This step is REQUIRED and executes immediately after HTML write. The cloud worker uses this marker to find and upload the playbook.
 
@@ -1446,7 +1446,7 @@ PLAYBOOK_PATH: playbooks/blueprint-gtm-playbook-owner.html
 
 PLAYBOOK_PATH: playbooks/blueprint-gtm-playbook-[company-slug].html
 
-The cloud worker will upload this file to Supabase Storage and return a public URL.
+The cloud worker will upload this file to Vercel and return a public URL (playbooks.blueprintgtm.com).
 ```
 
 **Wave 4.5 Output:**
@@ -1460,7 +1460,7 @@ The cloud worker will upload this file to Supabase Storage and return a public U
 
 **Objective:** Publish the playbook to GitHub Pages and return a live URL
 
-**IMPORTANT:** This wave executes ONLY when running locally (not via cloud worker). The cloud worker handles its own Supabase Storage upload.
+**IMPORTANT:** This wave executes ONLY when running locally (not via cloud worker). The cloud worker handles its own Vercel upload.
 
 **Execute GitHub Publish Skill:**
 

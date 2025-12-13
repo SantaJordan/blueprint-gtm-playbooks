@@ -38,6 +38,9 @@ curl -X POST https://blueprint-trigger-api.vercel.app/api/queue-job \
   -d '{"companyUrl": "https://example.com"}'
 ```
 
+Notes:
+- `companyUrl` can be a bare domain or full URL with paths; it will be canonicalized and stored as `https://domain`.
+
 Response:
 ```json
 {

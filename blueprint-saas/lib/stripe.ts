@@ -48,6 +48,43 @@ export function domainToSlug(domain: string): string {
   return normalizeCompanyDomain(domain).replace(/\./g, '-');
 }
 
+/**
+ * Convert a slug like "canvas-medical-com" back into likely domain candidates.
+ * Slugs are created by replacing dots with dashes, so hyphens are ambiguous.
+ */
+export function slugToDomainCandidates(slug: string): string[] {
+  const candidates = new Set<string>();
+
+  // Naive replacement (existing behavior)
+  candidates.add(slug.replace(/-/g, '.'));
+
+  const parts = slug.split('-').filter(Boolean);
+  if (parts.length >= 2) {
+    // Replace only the last dash with a dot (best for hyphenated hosts)
+    candidates.add(`${parts.slice(0, -1).join('-')}.${parts[parts.length - 1]}`);
+  }
+  if (parts.length >= 3) {
+    // Replace the last two dashes with dots (best for multi-part TLDs like co.uk)
+    candidates.add(`${parts.slice(0, -2).join('-')}.${parts.slice(-2).join('.')}`);
+  }
+
+  return Array.from(candidates);
+}
+
+/**
+ * Best-effort display domain from slug.
+ */
 export function slugToDomain(slug: string): string {
-  return slug.replace(/-/g, '.');
+  const parts = slug.split('-').filter(Boolean);
+  if (parts.length >= 3) {
+    const last = parts[parts.length - 1];
+    const secondLast = parts[parts.length - 2];
+    if (last.length === 2 && secondLast.length <= 3) {
+      return `${parts.slice(0, -2).join('-')}.${secondLast}.${last}`;
+    }
+  }
+  if (parts.length >= 2) {
+    return `${parts.slice(0, -1).join('-')}.${parts[parts.length - 1]}`;
+  }
+  return slug;
 }

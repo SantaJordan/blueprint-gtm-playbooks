@@ -25,11 +25,22 @@ async function handleWebhook(): Promise<void> {
       const record = payload.record || payload;
 
       if (record.id && record.company_url) {
-        // Claim the job atomically
-        job = await claimPendingJob(record.id);
-        if (!job) {
-          console.log("[Index] Job already claimed by another worker");
-          process.exit(0);
+        // Check for direct mode (bypasses Supabase claim check)
+        if (record.direct === true) {
+          console.log("[Index] Direct mode: bypassing Supabase claim check");
+          job = {
+            id: record.id,
+            company_url: record.company_url,
+            status: "processing" as const,
+            created_at: new Date().toISOString(),
+          };
+        } else {
+          // Claim the job atomically from Supabase
+          job = await claimPendingJob(record.id);
+          if (!job) {
+            console.log("[Index] Job already claimed by another worker");
+            process.exit(0);
+          }
         }
       } else {
         console.error("[Index] Invalid job data format:", record);

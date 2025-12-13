@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { getJobByDomain } from '@/lib/supabase';
 
 export const runtime = 'edge';
 
@@ -12,8 +13,32 @@ export async function GET(
     return new NextResponse('Domain is required', { status: 400 });
   }
 
-  // Construct the GitHub Pages URL
-  const githubPagesUrl = `https://santajordan.github.io/blueprint-gtm-playbooks/blueprint-gtm-playbook-${domain}.html`;
+  // Prefer the stored playbook_url (Vercel custom domain or GitHub Pages).
+  try {
+    const job = await getJobByDomain(domain);
+    if (job?.playbook_url && job.status === 'completed') {
+      return NextResponse.redirect(job.playbook_url, 302);
+    }
+    if (job && job.status !== 'completed') {
+      // If a job exists but isn't done, send user to status.
+      return NextResponse.redirect(new URL(`/status/${domain}`, request.url));
+    }
+  } catch (e) {
+    console.error('[playbook] Failed to resolve job by domain:', e);
+  }
+
+  // Legacy fallback: construct GitHub Pages URL using old slug (without TLD).
+  const parts = domain.split('-').filter(Boolean);
+  let oldSlug = domain;
+  if (parts.length >= 2) {
+    oldSlug = parts.slice(0, -1).join('-');
+    const last = parts[parts.length - 1];
+    const secondLast = parts[parts.length - 2];
+    if (last.length === 2 && secondLast.length <= 3 && parts.length >= 3) {
+      oldSlug = parts.slice(0, -2).join('-');
+    }
+  }
+  const githubPagesUrl = `https://santajordan.github.io/blueprint-gtm-playbooks/blueprint-gtm-playbook-${oldSlug}.html`;
 
   try {
     const response = await fetch(githubPagesUrl, {

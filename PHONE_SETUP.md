@@ -2,6 +2,9 @@
 
 This guide shows you how to trigger Blueprint Turbo analyses from your iPhone.
 
+> This guide is for the **mobile trigger + local Mac worker** flow.  
+> If you’re deploying the paid SaaS + Modal Agent SDK Worker path, use `blueprint-saas/README.md` and `docs/AGENT_SDK_RUNBOOK.md` instead.
+
 ## 🎯 What You'll Get
 
 - **Share Sheet Integration**: Browse to any company website → Tap Share → "Analyze with Blueprint"

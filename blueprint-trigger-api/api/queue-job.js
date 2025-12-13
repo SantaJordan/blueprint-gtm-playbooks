@@ -39,11 +39,18 @@ export default async function handler(req, res) {
       return res.status(400).json({ error: 'Invalid URL format' });
     }
 
+    // Normalize to canonical company URL (https://domain)
+    const parsedUrl = new URL(companyUrl);
+    const canonicalHost = parsedUrl.hostname
+      .toLowerCase()
+      .replace(/^www\./, '');
+    const canonicalCompanyUrl = `https://${canonicalHost}`;
+
     // Insert job into Supabase queue
     const { data, error } = await supabase
       .from('blueprint_jobs')
       .insert([{
-        company_url: companyUrl,
+        company_url: canonicalCompanyUrl,
         status: 'pending'
       }])
       .select()
@@ -55,11 +62,7 @@ export default async function handler(req, res) {
     }
 
     // Generate domain slug for clean URL
-    const domainSlug = companyUrl
-      .replace(/^https?:\/\//, '')
-      .replace(/^www\./, '')
-      .split('/')[0]
-      .replace(/\./g, '-');
+    const domainSlug = canonicalHost.replace(/\./g, '-');
 
     // Return success response with job details and clean URL
     return res.status(200).json({

@@ -1,5 +1,19 @@
 import { createClient, SupabaseClient } from '@supabase/supabase-js';
 
+// Pure slug helper duplicated here to keep edge routes free of Stripe SDK.
+function slugToDomainCandidates(slug: string): string[] {
+  const candidates = new Set<string>();
+  candidates.add(slug.replace(/-/g, '.'));
+  const parts = slug.split('-').filter(Boolean);
+  if (parts.length >= 2) {
+    candidates.add(`${parts.slice(0, -1).join('-')}.${parts[parts.length - 1]}`);
+  }
+  if (parts.length >= 3) {
+    candidates.add(`${parts.slice(0, -2).join('-')}.${parts.slice(-2).join('.')}`);
+  }
+  return Array.from(candidates);
+}
+
 // Lazy initialization to avoid errors during build
 let _supabase: SupabaseClient | null = null;
 
@@ -52,15 +66,22 @@ export async function createJob(data: Partial<BlueprintJob>): Promise<BlueprintJ
 }
 
 export async function getJobByDomain(domain: string): Promise<BlueprintJob | null> {
-  // Normalize the domain for matching
-  const normalizedDomain = domain.replace(/-/g, '.');
-  const companyUrl = `https://${normalizedDomain}`;
-  const companyUrlWww = `https://www.${normalizedDomain}`;
+  // Normalize the domain slug into likely host candidates.
+  const domainCandidates = slugToDomainCandidates(domain);
+
+  // Build ilike patterns to tolerate legacy/raw stored URLs with http/paths.
+  const patterns: string[] = [];
+  for (const cand of domainCandidates) {
+    patterns.push(`company_url.ilike.https://${cand}%`);
+    patterns.push(`company_url.ilike.http://${cand}%`);
+    patterns.push(`company_url.ilike.https://www.${cand}%`);
+    patterns.push(`company_url.ilike.http://www.${cand}%`);
+  }
 
   const { data: jobs, error } = await getSupabase()
     .from('blueprint_jobs')
     .select('*')
-    .or(`company_url.eq.${companyUrl},company_url.eq.${companyUrlWww}`)
+    .or(patterns.join(','))
     .order('created_at', { ascending: false })
     .limit(1);
 

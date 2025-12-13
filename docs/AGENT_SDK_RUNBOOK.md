@@ -1,7 +1,7 @@
 # Agent SDK Worker Runbook
 
-**Version:** 1.0.0
-**Last Updated:** 2025-12-08
+**Version:** 1.1.0
+**Last Updated:** 2025-12-12
 
 This runbook describes how to operate the Agent SDK Worker for Blueprint Turbo.
 
@@ -14,24 +14,28 @@ The Agent SDK Worker replaces the previous Modal Python worker with a Claude Age
 - **90-95% quality parity** with local `/blueprint-turbo` execution
 - **Single source of truth**: Uses `.claude/skills/` directly
 - **Native MCP support**: Sequential Thinking MCP for synthesis
-- **Automatic skill loading**: Via `settingSources: ['project']`
+- **Automatic skill loading**: Via `settingSources: ['project', 'user']` (Linux user-level fallback enabled)
 
 ---
 
 ## Architecture
 
 ```
-iPhone → Vercel API → Supabase → Modal Webhook
-                                      ↓
-                              Agent SDK Worker (Node.js)
-                                      ↓
-                              query("/blueprint-turbo {url}")
-                                      ↓
-                              Claude Code Engine
-                                      ↓
-                              HTML playbook + git push
-                                      ↓
-                              Update Supabase
+Vercel Trigger API OR Stripe webhook (blueprint-saas)
+        ↓
+Supabase (blueprint_jobs)
+        ↓ INSERT webhook
+Modal Agent SDK Worker (Node.js)
+        ↓ query("/blueprint-turbo {url}")
+Claude Code Engine + .claude/skills
+        ↓
+HTML playbook
+        ↓
+Upload to Vercel Playbooks (playbooks.blueprintgtm.com)
+        ↓
+Update Supabase (status, playbook_url)
+        ↓ (if Stripe job)
+POST /api/capture-payment on SaaS to capture funds
 ```
 
 ---
@@ -67,6 +71,13 @@ export SUPABASE_SERVICE_KEY="sb_secret_..."
 export GITHUB_TOKEN="ghp_..."
 export GITHUB_OWNER="SantaJordan"
 export GITHUB_REPO="blueprint-gtm-playbooks"
+
+# Vercel hosting (primary for playbooks)
+export VERCEL_TOKEN="vercel_pat_..."
+
+# Payment capture (only for Stripe/SaaS jobs)
+export VERCEL_API_URL="https://playbooks.blueprintgtm.com"
+export MODAL_WEBHOOK_SECRET="shared_secret_value"
 ```
 
 ### Running Locally
@@ -97,11 +108,17 @@ npm run process-job -- --poll
 
 ### Configure Secrets
 
-Ensure the `blueprint-secrets` Modal secret contains:
-- `ANTHROPIC_API_KEY`
-- `SUPABASE_URL`
-- `SUPABASE_SERVICE_KEY`
-- `GITHUB_TOKEN`
+Ensure Modal secrets contain:
+
+- `blueprint-secrets`:
+  - `ANTHROPIC_API_KEY`
+  - `SUPABASE_URL`
+  - `SUPABASE_SERVICE_KEY`
+  - `GITHUB_TOKEN`
+  - `VERCEL_API_URL` (required only for Stripe/manual capture)
+  - `MODAL_WEBHOOK_SECRET` (required only for Stripe/manual capture)
+- `blueprint-vercel`:
+  - `VERCEL_TOKEN`
 
 ### Deploy
 

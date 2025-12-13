@@ -25,15 +25,32 @@ export default async function handler(req, res) {
   }
 
   try {
-    // Convert domain slug back to URL pattern
-    // e.g., "owner-com" -> "%owner.com%"
-    const normalizedDomain = domain.replace(/-/g, '.');
+    // Convert domain slug back to likely domain candidates.
+    const parts = String(domain).split('-').filter(Boolean);
+    const candidates = new Set();
+    candidates.add(parts.join('.')); // naive
+    if (parts.length >= 2) {
+      candidates.add(`${parts.slice(0, -1).join('-')}.${parts[parts.length - 1]}`);
+    }
+    if (parts.length >= 3) {
+      candidates.add(`${parts.slice(0, -2).join('-')}.${parts.slice(-2).join('.')}`);
+    }
+
+    const candidateList = Array.from(candidates);
 
     // Look for the most recent job matching this domain
+    const patterns = [];
+    for (const cand of candidateList) {
+      patterns.push(`company_url.ilike.https://${cand}%`);
+      patterns.push(`company_url.ilike.http://${cand}%`);
+      patterns.push(`company_url.ilike.https://www.${cand}%`);
+      patterns.push(`company_url.ilike.http://www.${cand}%`);
+    }
+
     const { data: jobs, error } = await supabase
       .from('blueprint_jobs')
       .select('id, status, playbook_url, error, company_url, company_name, created_at')
-      .ilike('company_url', `%${normalizedDomain}%`)
+      .or(patterns.join(','))
       .order('created_at', { ascending: false })
       .limit(1);
 
@@ -45,7 +62,7 @@ export default async function handler(req, res) {
     if (!jobs || jobs.length === 0) {
       return res.json({
         status: 'not_found',
-        domain: normalizedDomain
+        domain: candidateList[0]
       });
     }
 

@@ -57,7 +57,23 @@ export default function StatusPage({ params }: { params: Promise<{ domain: strin
   const [currentStage, setCurrentStage] = useState(0);
   const [timeRemaining, setTimeRemaining] = useState<number | null>(null);
 
-  const displayDomain = domain.replace(/-/g, '.');
+  // Best-effort display of slug back to domain (handles hyphenated hosts + multi-part TLDs)
+  const slugToDisplayDomain = (slug: string) => {
+    const parts = slug.split('-').filter(Boolean);
+    if (parts.length >= 3) {
+      const last = parts[parts.length - 1];
+      const secondLast = parts[parts.length - 2];
+      if (last.length === 2 && secondLast.length <= 3) {
+        return `${parts.slice(0, -2).join('-')}.${secondLast}.${last}`;
+      }
+    }
+    if (parts.length >= 2) {
+      return `${parts.slice(0, -1).join('-')}.${parts[parts.length - 1]}`;
+    }
+    return slug;
+  };
+
+  const displayDomain = slugToDisplayDomain(domain);
 
   // Calculate time remaining based on job creation time
   useEffect(() => {

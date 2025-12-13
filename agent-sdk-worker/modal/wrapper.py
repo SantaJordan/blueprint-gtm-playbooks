@@ -18,11 +18,26 @@ app = modal.App("blueprint-agent-sdk-worker")
 AGENT_WORKER_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 BLUEPRINT_SKILLS_DIR = os.path.dirname(AGENT_WORKER_DIR)  # Parent directory with .claude/
 
-# Create a custom image with Node.js and required packages
+# Create a custom image with Node.js, Chromium, and required packages
 image = (
     modal.Image.debian_slim(python_version="3.11")
-    # Install Node.js 20
-    .apt_install("curl", "git")
+    # Install Node.js 20 and Chromium with dependencies
+    .apt_install(
+        "curl",
+        "git",
+        # Chromium and its dependencies for browser-mcp
+        "chromium",
+        "libgbm1",
+        "libnss3",
+        "libatk1.0-0",
+        "libatk-bridge2.0-0",
+        "libcups2",
+        "libxkbcommon0",
+        "libxcomposite1",
+        "libxdamage1",
+        "libxrandr2",
+        "libasound2",
+    )
     .run_commands([
         # Install Node.js 20 via NodeSource
         "curl -fsSL https://deb.nodesource.com/setup_20.x | bash -",
@@ -35,54 +50,74 @@ image = (
     .run_commands([
         "npm install -g tsx",
         "npm install -g @modelcontextprotocol/server-sequential-thinking",
+        "npm install -g browser-mcp",  # Add browser-mcp for Wave 1-2 research
     ])
+    # Set Chromium environment variables for browser-mcp
+    .env({
+        "CHROME_PATH": "/usr/bin/chromium",
+        "PUPPETEER_EXECUTABLE_PATH": "/usr/bin/chromium",
+        "PUPPETEER_SKIP_CHROMIUM_DOWNLOAD": "true",
+    })
     # Install Python dependencies for Supabase health checks and web endpoints
     .pip_install(["supabase", "httpx", "fastapi"])
-    # Add the agent-sdk-worker source code to the image
+    # Add the agent-sdk-worker source code to the image (copy=True to allow npm install after)
     .add_local_dir(
         AGENT_WORKER_DIR,
         remote_path="/app/agent-sdk-worker",
         ignore=["node_modules", "dist", ".git", "__pycache__", "*.pyc"],
+        copy=True,
     )
     # Add the .claude/ skills directory (from parent Blueprint-GTM-Skills)
     .add_local_dir(
         os.path.join(BLUEPRINT_SKILLS_DIR, ".claude"),
         remote_path="/app/blueprint-skills/.claude",
+        copy=True,
     )
     # Add CLAUDE.md from parent
     .add_local_file(
         os.path.join(BLUEPRINT_SKILLS_DIR, "CLAUDE.md"),
         remote_path="/app/blueprint-skills/CLAUDE.md",
+        copy=True,
     )
+    # Pre-install Node dependencies into the image to avoid per-job npm install.
+    .run_commands([
+        "cd /app/agent-sdk-worker && npm install --omit=dev",
+    ])
 )
 
-# Modal secrets - uses the same secrets as the existing blueprint-worker
+# Modal secrets - uses blueprint-secrets plus blueprint-vercel for Vercel deployment
 secrets = [
     modal.Secret.from_name("blueprint-secrets"),
+    modal.Secret.from_name("blueprint-vercel"),  # Contains VERCEL_TOKEN for HTML hosting
 ]
 
 
-@app.function(
-    image=image,
-    secrets=secrets,
-    timeout=2700,  # 45 minutes (Blueprint Turbo + overhead)
-    cpu=2,
-    memory=4096,
-)
-@modal.fastapi_endpoint(method="POST")
-async def process_blueprint_job(request: dict):
-    """
-    Webhook endpoint for Supabase to trigger job processing.
+def update_job_status_timeout(job_id: str, logger):
+    """Mark job as failed due to timeout - prevents orphaned jobs"""
+    from supabase import create_client
+    from datetime import datetime
 
-    Expects a Supabase webhook payload with the job record.
-    """
-    import logging
+    supabase_url = os.environ.get("SUPABASE_URL")
+    supabase_key = os.environ.get("SUPABASE_SERVICE_KEY")
 
-    logging.basicConfig(level=logging.INFO)
-    logger = logging.getLogger("agent-sdk-worker")
+    if not supabase_url or not supabase_key:
+        logger.error("Missing Supabase credentials for timeout handler")
+        return
 
-    logger.info(f"Received webhook request: {json.dumps(request, indent=2)[:500]}")
+    try:
+        client = create_client(supabase_url, supabase_key)
+        client.table("blueprint_jobs").update({
+            "status": "failed",
+            "error_message": f"Wall-clock timeout at {datetime.utcnow().isoformat()}",
+            "completed_at": datetime.utcnow().isoformat(),
+        }).eq("id", job_id).execute()
+        logger.info(f"Marked job {job_id} as failed due to timeout")
+    except Exception as e:
+        logger.error(f"Failed to update job on timeout: {e}")
 
+
+def _run_job_internal(request: dict, logger):
+    """Internal job processing logic - shared by webhook and test function."""
     # Extract job from webhook payload
     record = request.get("record", request)
     job_id = record.get("id")
@@ -94,9 +129,36 @@ async def process_blueprint_job(request: dict):
 
     logger.info(f"Processing job {job_id} for {company_url}")
 
-    # Create symlinks so Agent SDK can find .claude directory from worker's cwd
-    logger.info("Setting up symlinks for skills directory...")
+    # CRITICAL FIX: On Linux, project-level skills (.claude/skills/) don't auto-discover
+    # Only user-level skills (~/.claude/skills/) work on Linux (GitHub Issue #268)
+    # Copy skills to user-level location instead of project-level symlinks
+    logger.info("Setting up USER-LEVEL skills for Linux compatibility...")
     try:
+        # Create user-level .claude directories
+        subprocess.run(["mkdir", "-p", "/root/.claude/skills"], check=True, capture_output=True)
+        subprocess.run(["mkdir", "-p", "/root/.claude/commands"], check=True, capture_output=True)
+
+        # Copy skills to user-level location
+        subprocess.run(
+            ["cp", "-r", "/app/blueprint-skills/.claude/skills/.", "/root/.claude/skills/"],
+            check=True,
+            capture_output=True,
+        )
+        # Copy commands to user-level location
+        subprocess.run(
+            ["cp", "-r", "/app/blueprint-skills/.claude/commands/.", "/root/.claude/commands/"],
+            check=True,
+            capture_output=True,
+        )
+        logger.info("User-level skills copied successfully to /root/.claude/")
+
+        # List what was copied for debugging
+        skills_result = subprocess.run(["ls", "-la", "/root/.claude/skills/"], capture_output=True, text=True)
+        logger.info(f"User skills: {skills_result.stdout}")
+        commands_result = subprocess.run(["ls", "-la", "/root/.claude/commands/"], capture_output=True, text=True)
+        logger.info(f"User commands: {commands_result.stdout}")
+
+        # Also keep project-level symlinks as fallback
         subprocess.run(
             ["ln", "-sf", "/app/blueprint-skills/.claude", "/app/agent-sdk-worker/.claude"],
             check=True,
@@ -107,63 +169,24 @@ async def process_blueprint_job(request: dict):
             check=True,
             capture_output=True,
         )
-        logger.info("Symlinks created successfully")
+        logger.info("Project-level symlinks also created as fallback")
     except subprocess.CalledProcessError as e:
-        logger.warning(f"Symlink creation failed (may already exist): {e}")
+        logger.warning(f"Skills setup failed: {e}")
 
-    # Initialize git repo for publishing (Wave 4.5)
-    logger.info("Setting up git repo for GitHub Pages publishing...")
-    try:
-        github_token = os.environ.get("GITHUB_TOKEN", "")
-        if github_token:
-            subprocess.run(
-                ["git", "init"],
-                cwd="/app/agent-sdk-worker",
-                check=True,
-                capture_output=True,
-            )
-            subprocess.run(
-                ["git", "config", "user.email", "blueprint-worker@modal.com"],
-                cwd="/app/agent-sdk-worker",
-                check=True,
-                capture_output=True,
-            )
-            subprocess.run(
-                ["git", "config", "user.name", "Blueprint Worker"],
-                cwd="/app/agent-sdk-worker",
-                check=True,
-                capture_output=True,
-            )
-            # Add remote for publishing playbooks
-            subprocess.run(
-                ["git", "remote", "add", "publish",
-                 f"https://{github_token}@github.com/SantaJordan/blueprint-gtm-playbooks.git"],
-                cwd="/app/agent-sdk-worker",
-                check=True,
-                capture_output=True,
-            )
-            logger.info("Git repo initialized with publish remote")
-        else:
-            logger.warning("GITHUB_TOKEN not found, skipping git setup")
-    except subprocess.CalledProcessError as e:
-        logger.warning(f"Git setup failed: {e}")
-
-    # Install npm dependencies
-    logger.info("Installing npm dependencies...")
+    # Create playbooks directory for agent output
+    # (Vercel publishing reads from this directory)
     try:
         subprocess.run(
-            ["npm", "install"],
-            cwd="/app/agent-sdk-worker",
+            ["mkdir", "-p", "/app/blueprint-skills/playbooks"],
             check=True,
             capture_output=True,
-            timeout=120,
         )
-    except subprocess.TimeoutExpired:
-        logger.error("npm install timed out")
-        return {"success": False, "error": "npm install timed out"}
+        logger.info("Created playbooks directory at /app/blueprint-skills/playbooks")
     except subprocess.CalledProcessError as e:
-        logger.error(f"npm install failed: {e.stderr.decode()}")
-        return {"success": False, "error": f"npm install failed: {e.stderr.decode()[:500]}"}
+        logger.warning(f"Failed to create playbooks directory: {e}")
+
+    # Dependencies are installed in the image; avoid per-job npm install.
+    logger.info("Node dependencies preinstalled in image; skipping npm install")
 
     # Run the TypeScript worker via tsx
     logger.info("Running Agent SDK worker...")
@@ -177,7 +200,7 @@ async def process_blueprint_job(request: dict):
             env=env,
             capture_output=True,
             text=True,
-            timeout=2400,  # 40 minutes
+            timeout=2200,  # 36 minutes (leave 4 min buffer for cleanup)
         )
 
         logger.info(f"Worker stdout (full): {result.stdout}")
@@ -206,11 +229,50 @@ async def process_blueprint_job(request: dict):
             return {"success": False, "error": error_msg[-3000:]}
 
     except subprocess.TimeoutExpired:
-        logger.error("Worker execution timed out")
-        return {"success": False, "error": "Execution timed out after 25 minutes"}
+        logger.error("Worker execution timed out after 36 minutes")
+        # CRITICAL: Mark job as failed before returning to prevent orphaned jobs
+        update_job_status_timeout(job_id, logger)
+        return {"success": False, "error": "Execution timed out after 36 minutes"}
     except Exception as e:
         logger.error(f"Worker exception: {str(e)}")
         return {"success": False, "error": str(e)}
+
+
+@app.function(
+    image=image,
+    secrets=secrets,
+    timeout=2700,  # 45 minutes (Blueprint Turbo + overhead)
+    cpu=2,
+    memory=4096,
+)
+def test_job(request: dict):
+    """Non-webhook function for CLI testing."""
+    import logging
+    logging.basicConfig(level=logging.INFO)
+    logger = logging.getLogger("agent-sdk-worker-test")
+    logger.info(f"Test job request: {json.dumps(request, indent=2)[:500]}")
+    return _run_job_internal(request, logger)
+
+
+@app.function(
+    image=image,
+    secrets=secrets,
+    timeout=2700,  # 45 minutes (Blueprint Turbo + overhead)
+    cpu=2,
+    memory=4096,
+)
+@modal.fastapi_endpoint(method="POST")
+async def process_blueprint_job(request: dict):
+    """
+    Webhook endpoint for Supabase to trigger job processing.
+
+    Expects a Supabase webhook payload with the job record.
+    """
+    import logging
+    logging.basicConfig(level=logging.INFO)
+    logger = logging.getLogger("agent-sdk-worker")
+    logger.info(f"Received webhook request: {json.dumps(request, indent=2)[:500]}")
+    return _run_job_internal(request, logger)
 
 
 @app.function(
@@ -233,8 +295,29 @@ async def poll_pending_jobs():
 
     logger.info("Polling for pending jobs...")
 
-    # Create symlinks so Agent SDK can find .claude directory from worker's cwd
+    # CRITICAL FIX: On Linux, project-level skills (.claude/skills/) don't auto-discover
+    # Only user-level skills (~/.claude/skills/) work on Linux (GitHub Issue #268)
+    logger.info("Setting up USER-LEVEL skills for Linux compatibility...")
     try:
+        # Create user-level .claude directories
+        subprocess.run(["mkdir", "-p", "/root/.claude/skills"], check=True, capture_output=True)
+        subprocess.run(["mkdir", "-p", "/root/.claude/commands"], check=True, capture_output=True)
+
+        # Copy skills to user-level location
+        subprocess.run(
+            ["cp", "-r", "/app/blueprint-skills/.claude/skills/.", "/root/.claude/skills/"],
+            check=True,
+            capture_output=True,
+        )
+        # Copy commands to user-level location
+        subprocess.run(
+            ["cp", "-r", "/app/blueprint-skills/.claude/commands/.", "/root/.claude/commands/"],
+            check=True,
+            capture_output=True,
+        )
+        logger.info("User-level skills copied successfully to /root/.claude/")
+
+        # Also keep project-level symlinks as fallback
         subprocess.run(
             ["ln", "-sf", "/app/blueprint-skills/.claude", "/app/agent-sdk-worker/.claude"],
             check=True,
@@ -246,20 +329,10 @@ async def poll_pending_jobs():
             capture_output=True,
         )
     except subprocess.CalledProcessError as e:
-        logger.warning(f"Symlink creation failed (may already exist): {e}")
+        logger.warning(f"Skills setup failed: {e}")
 
     # Install npm dependencies
-    try:
-        subprocess.run(
-            ["npm", "install"],
-            cwd="/app/agent-sdk-worker",
-            check=True,
-            capture_output=True,
-            timeout=120,
-        )
-    except Exception as e:
-        logger.error(f"npm install failed: {e}")
-        return {"success": False, "error": str(e)}
+    logger.info("Node dependencies preinstalled in image; skipping npm install")
 
     # Run the worker in poll mode (no JOB_DATA = poll for oldest pending)
     env = os.environ.copy()
@@ -292,22 +365,26 @@ def main(job_id: str = None, url: str = None, poll: bool = False):
         modal run modal/wrapper.py --url https://example.com
         modal run modal/wrapper.py --poll
     """
-    import asyncio
+    import uuid
 
     if url:
-        # Create a mock job - use .local() for webhook functions
-        result = asyncio.run(process_blueprint_job.local({
-            "id": "test-" + str(hash(url))[:8],
+        # Create a mock job with proper UUID - use test_job.remote() to run in Modal container
+        # Use direct=true to bypass Supabase claim check for test jobs
+        test_uuid = str(uuid.uuid4())
+        print(f"Generated test job ID: {test_uuid}")
+        result = test_job.remote({
+            "id": test_uuid,
             "company_url": url,
             "status": "pending",
-        }))
+            "direct": True,  # Bypass Supabase claim check
+        })
         print(f"Result: {result}")
     elif job_id:
-        result = asyncio.run(process_blueprint_job.local({
+        result = test_job.remote({
             "id": job_id,
             "company_url": "placeholder",  # Will be fetched from Supabase
             "status": "pending",
-        }))
+        })
         print(f"Result: {result}")
     elif poll:
         result = poll_pending_jobs.remote()

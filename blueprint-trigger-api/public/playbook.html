@@ -359,7 +359,19 @@
 
         // Update the domain display
         function updateDomainDisplay(domain) {
-            const displayDomain = domain.replace(/-/g, '.');
+            const parts = domain.split('-').filter(Boolean);
+            let displayDomain;
+            if (parts.length >= 3) {
+                const last = parts[parts.length - 1];
+                const secondLast = parts[parts.length - 2];
+                if (last.length === 2 && secondLast.length <= 3) {
+                    displayDomain = `${parts.slice(0, -2).join('-')}.${secondLast}.${last}`;
+                }
+            }
+            if (!displayDomain && parts.length >= 2) {
+                displayDomain = `${parts.slice(0, -1).join('-')}.${parts[parts.length - 1]}`;
+            }
+            if (!displayDomain) displayDomain = domain;
             document.getElementById('domainName').textContent = displayDomain;
             document.title = `Blueprint Playbook - ${displayDomain}`;
         }

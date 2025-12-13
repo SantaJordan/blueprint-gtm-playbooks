@@ -2,6 +2,9 @@
 
 Use this checklist to deploy the complete system step-by-step.
 
+> This checklist covers the **mobile trigger + local Mac worker** flow: iOS Shortcut → `blueprint-trigger-api` → Supabase → `scripts/blueprint-worker.js` → GitHub Pages.  
+> For the fully cloud paid flow (Stripe → Modal Agent SDK Worker → Vercel Playbooks), see `docs/AGENT_SDK_RUNBOOK.md` and `blueprint-saas/README.md`.
+
 ## 📋 Pre-Deployment Checklist
 
 - [x] Supabase project created: `hvuwlhdaswixbkglnrxu`

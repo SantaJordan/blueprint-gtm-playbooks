@@ -13,6 +13,8 @@ export interface BlueprintJob {
   playbook_url: string | null;
   company_name: string | null;
   error_message: string | null;
+  stripe_payment_intent_id?: string | null;
+  payment_status?: string | null;
   created_at: string;
   started_at: string | null;
   completed_at: string | null;

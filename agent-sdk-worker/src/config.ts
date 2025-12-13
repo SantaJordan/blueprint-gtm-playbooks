@@ -11,11 +11,6 @@ export interface Config {
   supabaseUrl: string;
   supabaseServiceKey: string;
 
-  // GitHub
-  githubToken: string;
-  githubOwner: string;
-  githubRepo: string;
-
   // Skills repository
   skillsRepoUrl: string;
   skillsRepoPath: string;
@@ -45,11 +40,6 @@ export function loadConfig(): Config {
     // Supabase
     supabaseUrl: requireEnv("SUPABASE_URL"),
     supabaseServiceKey: requireEnv("SUPABASE_SERVICE_KEY"),
-
-    // GitHub
-    githubToken: requireEnv("GITHUB_TOKEN"),
-    githubOwner: optionalEnv("GITHUB_OWNER", "SantaJordan"),
-    githubRepo: optionalEnv("GITHUB_REPO", "blueprint-gtm-playbooks"),
 
     // Skills repository
     skillsRepoUrl: optionalEnv(

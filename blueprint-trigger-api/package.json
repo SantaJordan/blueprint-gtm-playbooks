@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "API endpoint to queue Blueprint GTM analyses from mobile",
   "type": "module",
+  "scripts": {
+    "test": "node --test"
+  },
   "dependencies": {
     "@supabase/supabase-js": "^2.39.0"
   }
